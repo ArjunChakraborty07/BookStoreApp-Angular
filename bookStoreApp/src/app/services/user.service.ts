@@ -13,7 +13,13 @@ export class UserService {
   }
 
   public register(user: any): Observable<any> {
+    console.log(user);
     return this.http.post(this.usersUrl + 'register', user);
+  }
+
+  public search(search: any): Observable<any> {
+    console.log(search);
+    return this.http.put(this.usersUrl + '/' + search, {});
   }
 
 }

@@ -25,11 +25,14 @@ import {
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    DashboardComponent,
 
   ],
   imports: [

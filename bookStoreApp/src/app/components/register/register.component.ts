@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit {
         username: this.username.value,
         role: this.role
       };
-      console.log(data);
       this.service.register(data).subscribe((response: any) => {
         alert(response.message);
       });

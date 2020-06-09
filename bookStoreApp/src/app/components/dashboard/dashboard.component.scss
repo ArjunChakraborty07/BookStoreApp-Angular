@@ -1,0 +1,52 @@
+.dashboard{
+    width:92%;
+    margin-left: 4%;
+    
+}
+.logo{
+    position: absolute;
+    color:aliceblue;
+    margin-top: 1.5%;
+    margin-left: 15%
+}
+.cartname{
+    position: absolute;
+    color:aliceblue;;
+    margin-top: 1.5%;
+    margin-left: 980px;
+   
+}
+.tool{
+    height: 55px;
+    background-color: rgb(114, 10, 10);
+    
+}
+.mattool{
+    height:30px;
+    margin-left: 300px;
+    width:450px;
+    align-content: space-around;
+}
+.input{    
+    height:20px;
+    border: none;
+    outline: none;
+    position: absolute;
+    margin-left: 350px;
+    margin-top: 2px; 
+}
+.mysearch{
+    position: absolute;
+    border: none;
+    outline: none;
+    margin-left: 300px;
+}
+span{
+    margin-left: 250px;
+}
+.cart{
+    margin-left: 250px;
+    background-color: none;
+    outline: none;
+    color:aliceblue;
+}
