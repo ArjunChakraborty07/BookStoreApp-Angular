@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { EncrDecrService } from 'src/app/services/encr-decr-service.service';
 
 @Component({
   selector: 'app-register',
@@ -28,11 +29,23 @@ export class RegisterComponent implements OnInit {
     Validators.minLength(4)
   ]));
   role: any;
-  constructor(private service: UserService) { }
+  passwordType = 'password';
+  show = false;
+  constructor(private service: UserService, private EncrDecr: EncrDecrService) { }
 
   ngOnInit() {
+    //const decrypted = this.EncrDecr.get('123456$#@$^@1ERF', encrypted);
   }
 
+  onclick() {
+    if (this.show) {
+      this.passwordType = 'password';
+      this.show = false;
+    } else {
+      this.passwordType = 'text';
+      this.show = true;
+    }
+  }
   onRegister() {
     if (this.email.hasError('required') || this.name.hasError('required') ||
       this.password.hasError('required') || this.phone.hasError('required') ||
@@ -51,7 +64,7 @@ export class RegisterComponent implements OnInit {
         email: this.email.value,
         name: this.name.value,
         phone: this.phone.value,
-        password: this.password.value,
+        password: this.EncrDecr.set('123456$#@$^@1ERF', this.password.value),
         username: this.username.value,
         role: this.role
       };

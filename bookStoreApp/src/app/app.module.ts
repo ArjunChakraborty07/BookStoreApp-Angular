@@ -26,6 +26,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EncrDecrService } from './services/encr-decr-service.service';
 
 
 @NgModule({
@@ -56,7 +57,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatSnackBarModule,
     MatRadioModule
   ],
-  providers: [UserService],
+  providers: [UserService, EncrDecrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
