@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   MatSnackBarModule,
@@ -22,14 +23,21 @@ import {
   MatExpansionModule,
   MatSidenavModule,
   MatListModule,
+  
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './services/user.service';
-
+import { UserService } from 'src/services/user.service';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { VerificationComponent } from './components/verification/verification.component';
+import { EncrDecrService } from "src/services/encr-decr.service";
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    VerificationComponent,
 
   ],
   imports: [
@@ -51,9 +59,10 @@ import { UserService } from './services/user.service';
     MatListModule,
     //MatMenuTrigger,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    FlexLayoutModule
   ],
-  providers: [UserService],
+  providers: [UserService,EncrDecrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
