@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { DashboardService } from 'src/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   searchBook: string;
   books: any;
-  constructor(private service: UserService, private router: Router) { }
+  constructor(private service: DashboardService, private router: Router) { }
 
   ngOnInit() {
   }

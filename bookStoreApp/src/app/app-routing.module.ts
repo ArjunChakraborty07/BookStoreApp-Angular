@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
+
 	{path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   { path: 'register', component: RegisterComponent },
   {path:'forgotpassword',component:ForgotPasswordComponent},
@@ -18,8 +19,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
-      { path: 'dashboard', redirectTo: '/dashboard/register', pathMatch: 'full' },
-      { path: 'register', component: RegisterComponent }]
+      ]
   }
 ];
 
@@ -29,3 +29,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [RegisterComponent, DashboardComponent];
+

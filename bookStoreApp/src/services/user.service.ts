@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResetPassword } from '../models/reset-password.model';
@@ -9,15 +10,11 @@ import { HttpService } from './http.service';
 })
 export class UserService {
 
-  private usersUrl: string;
-  constructor(private http: HttpService) {
-    this.usersUrl = 'http://localhost:8080/users/';
-  }
+constructor(private http: HttpService) {}
 
-  public register(user: any): Observable<any> {
-    const token = '';
-    return this.http.POST('register', user,token);
-  }
+public register(user: any): Observable<any> {
+  return this.http.POST('user/register', user, '');
+}
 
   forgotPassword(email: string):Observable<any>{
     console.log(email);

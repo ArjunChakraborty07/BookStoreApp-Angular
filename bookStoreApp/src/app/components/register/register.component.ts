@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     } else if (this.email.hasError('email') || this.name.hasError('minlength') ||
       this.password.hasError('minlength') || this.password.hasError('maxlength') ||
       this.phone.hasError('minlength')) {
-      alert('Cannot submit empty fields');
+      alert('Cannot submit invalid input');
     } else if (this.role === undefined) {
       alert('Please select account type');
     } else if (isNaN(this.phone.value)) {

@@ -26,7 +26,6 @@ import {
   
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-
 import { UserService } from 'src/services/user.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -35,6 +34,7 @@ import { EncrDecrService } from "src/services/encr-decr.service";
 
 //import { UserService } from './services/user.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HttpService } from 'src/services/http.service';
 //import { EncrDecrService } from './services/encr-decr-service.service';
 
 @NgModule({
@@ -71,7 +71,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatRadioModule,
     FlexLayoutModule
   ],
-  providers: [UserService,EncrDecrService],
+ providers: [UserService, EncrDecrService, HttpService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
