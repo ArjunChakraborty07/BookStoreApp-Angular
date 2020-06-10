@@ -55,15 +55,16 @@ export class LoginComponent implements OnInit {
 
    this.loading = true;
    this.userService.login(this.LoginForm.value)
-   .subscribe(response:any => {
-       console.log();
-              
+   .subscribe(response:any) => {
+       console.log(response);
+              if(response.statusCode===200){
               this.router.navigate(['/DashBoard']);
               console.log("user has been successfully logged in");
               this.snackBar.open(response.message,'ok',{duration:5000});
+                
            },
            error => {
-               
+               console.log(error);
                this.loading = false;
                if(error.status===401){
                this.snackBar.open(error.error.error,'ok',{duration:2000});
