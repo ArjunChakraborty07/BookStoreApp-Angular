@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(  private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService:UserService
+    private userService:UserService,
+    private snackBar: MatSnackBar
 
   ) { }
 
@@ -54,14 +55,18 @@ export class LoginComponent implements OnInit {
 
    this.loading = true;
    this.userService.login(this.LoginForm.value)
-   .subscribe(login => {
+   .subscribe(response:any => {
        console.log();
               
               this.router.navigate(['/DashBoard']);
+              console.log("user has been successfully logged in");
+              this.snackBar.open(response.message,'ok',{duration:5000});
            },
            error => {
                
                this.loading = false;
+               if(error.status===401){
+               this.snackBar.open(error.error.error,'ok',{duration:2000});
            });
 }
 
