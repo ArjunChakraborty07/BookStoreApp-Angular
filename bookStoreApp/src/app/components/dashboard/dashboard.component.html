@@ -1,0 +1,21 @@
+<div class="dashboard">
+    <span class="logo">BookStore</span>
+    <span class="cartname">Cart</span>
+    <mat-toolbar class=" tool">
+        <mat-card class="mattool">           
+        </mat-card>
+            <button mat-icon-button class="mysearch" (click)="onSearch()" mattooltip="search">
+                <mat-icon>search</mat-icon>
+            </button>    
+            <input
+                class="input"
+                type="text"
+                [(ngModel)]="searchBook"
+                name="searchBook"
+                matInput placeholder="Search"/>
+        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="cart">
+            <mat-icon>shopping_cart</mat-icon>
+        </button>    
+    </mat-toolbar>
+</div>
+

@@ -26,18 +26,27 @@ import {
   
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+
 import { UserService } from 'src/services/user.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from "src/services/encr-decr.service";
+
+//import { UserService } from './services/user.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+//import { EncrDecrService } from './services/encr-decr-service.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+
     ForgotPasswordComponent,
     ResetPasswordComponent,
     VerificationComponent,
+
+    DashboardComponent,
 
   ],
   imports: [
