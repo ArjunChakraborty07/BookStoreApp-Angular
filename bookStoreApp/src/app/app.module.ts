@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+
 import {
   MatSnackBarModule,
   MatTooltipModule,
@@ -36,6 +37,7 @@ import { EncrDecrService } from "src/services/encr-decr.service";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpService } from 'src/services/http.service';
 //import { EncrDecrService } from './services/encr-decr-service.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { HttpService } from 'src/services/http.service';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     VerificationComponent,
-
+     LoginComponent,
     DashboardComponent,
 
   ],
