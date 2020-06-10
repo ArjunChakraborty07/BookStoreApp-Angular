@@ -24,9 +24,10 @@ import {
   MatListModule,
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './services/user.service';
+import { UserService } from '../services/user.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EncrDecrService } from './services/encr-decr-service.service';
+import { EncrDecrService } from '../services/encr-decr-service.service';
+import { HttpService } from 'src/services/http.service';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { EncrDecrService } from './services/encr-decr-service.service';
     MatSnackBarModule,
     MatRadioModule
   ],
-  providers: [UserService, EncrDecrService],
+  providers: [UserService, EncrDecrService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

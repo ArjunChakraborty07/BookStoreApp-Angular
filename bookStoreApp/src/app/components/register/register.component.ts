@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { EncrDecrService } from 'src/app/services/encr-decr-service.service';
+import { UserService } from 'src/services/user.service';
+import { EncrDecrService } from 'src/services/encr-decr-service.service';
 
 @Component({
   selector: 'app-register',
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     } else if (this.email.hasError('email') || this.name.hasError('minlength') ||
       this.password.hasError('minlength') || this.password.hasError('maxlength') ||
       this.phone.hasError('minlength')) {
-      alert('Cannot submit empty fields');
+      alert('Cannot submit invalid input');
     } else if (this.role === undefined) {
       alert('Please select account type');
     } else if (isNaN(this.phone.value)) {
