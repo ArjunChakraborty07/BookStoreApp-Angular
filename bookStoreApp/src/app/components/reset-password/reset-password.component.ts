@@ -19,15 +19,16 @@ export class ResetPasswordComponent implements OnInit {
   private encryptPassword: string;
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private router:Router,
-              private route:ActivatedRoute,
-              private snackBar: MatSnackBar,private encrDecr : EncrDecrService) { }
-  private resetPasswordForm :FormGroup ;
-  private resetPassword : ResetPassword;
-  private token : string;
+              private router: Router,
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar,
+              private encrDecr: EncrDecrService) { }
+  public resetPasswordForm: FormGroup ;
+  private resetPassword: ResetPassword;
+  private token: string;
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
-      password: ['',[Validators.required,Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/)]],
+      password: ['', [Validators.required,Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/)]],
       confirmPassword: ['',[Validators.required]]
     },{validator: PasswordValidator});
 
@@ -35,7 +36,6 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onConfirm(){
-  
     this.resetPassword.password = this.encrDecr.set('123456$#@$^@1ERF',this.resetPasswordForm.get('password').value);
     // console.log(this.resetPassword.password);
     this.userService.resetPassword(this.resetPassword,this.token).subscribe((response:any)=>{
