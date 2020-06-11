@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   searchBook: string;
   books: any;
-  constructor(private service: DashboardService, private router: Router, public dialog: MatDialog) { }
+  constructor(private service: DashboardService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -29,6 +29,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/books']);
   }
   onLogin() {
-    const dialogRef = this.dialog.open(RegisterComponent);
+    this.router.navigate(['/login']);
   }
 }
