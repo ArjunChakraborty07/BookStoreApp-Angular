@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   searchBook: string;
   books: any;
-  constructor(private service: DashboardService, private router: Router) { }
+  constructor(private service: DashboardService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -22,5 +24,11 @@ export class DashboardComponent implements OnInit {
   }
   onCart() {
     this.router.navigate(['/dashboard/cart']);
+  }
+  onBookStore() {
+    this.router.navigate(['/books']);
+  }
+  onLogin() {
+    const dialogRef = this.dialog.open(RegisterComponent);
   }
 }

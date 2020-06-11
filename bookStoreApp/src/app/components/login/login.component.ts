@@ -1,13 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { UserService } from "src/services/user.service";
-import { MatSnackBar } from "@angular/material";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/services/user.service';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
-  selector: "dashboard/login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: 'dashboard/login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   hide = true;
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error = "";
+  error = '';
   role: any;
 
   constructor(
@@ -23,13 +24,14 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.LoginForm = this.formBuilder.group({
       username: [
-        "",
+        '',
         [
           Validators.required,
           Validators.minLength(4),
@@ -37,18 +39,18 @@ export class LoginComponent implements OnInit {
         ],
       ],
       password: [
-        "",
+        '',
         [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(12),
         ],
       ],
-      role: ["", Validators.required],
+      role: ['', Validators.required],
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -59,10 +61,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
-    console.log("Submitting");
+    console.log('Submitting');
     if (!this.LoginForm.valid) {
       console.log(
-        "Form not valid. Please check that fields are correctly filled in"
+        'Form not valid. Please check that fields are correctly filled in'
       );
       return;
     }
@@ -71,17 +73,21 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.LoginForm.value).subscribe((response: any) => {
       console.log(response);
       if (response.statusCode === 200) {
-        this.router.navigate(["/DashBoard"]);
-        console.log("user has been successfully logged in");
-        this.snackBar.open(response.message, "ok", { duration: 5000 });
+        this.router.navigate(['/DashBoard']);
+        console.log('user has been successfully logged in');
+        this.snackBar.open(response.message, 'ok', { duration: 5000 });
       }
       (error) => {
         console.log(error);
         this.loading = false;
         if (error.status === 401) {
-          this.snackBar.open(error.error.error, "ok", { duration: 2000 });
+          this.snackBar.open(error.error.error, 'ok', { duration: 2000 });
         }
       };
     });
+  }
+
+  onRegister() {
+    const dialogRef = this.dialog.open(RegisterComponent);
   }
 }

@@ -46,8 +46,8 @@
               <div class="line"><mat-divider></mat-divider></div>
               <mat-card class="my-card">
                 <form class="my-form">
-                    <p  style="text-align: center;"><a  href="register">Want To Register?</a></p>
-                    <p  style="text-align: center; margin-right:2%;"><button mat-raised-button  [routerLink]="['/register']">Register</button></p>
+                    <p  style="text-align: center;"><a (click)="onRegister()">Want To Register?</a></p>
+                    <p  style="text-align: center; margin-right:2%;"><button mat-raised-button  (click)="onRegister()">Register</button></p>
                     </form>
               </mat-card>
               </div>
