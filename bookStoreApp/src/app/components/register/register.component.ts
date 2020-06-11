@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 
 import { UserService } from 'src/services/user.service';
-// import { EncrDecrService } from 'src/services/encr-decr.service';
-
-//import { UserService } from 'src/app/services/user.service';
-import { EncrDecrService } from 'src/services/encr-decr-service.service';
+import { EncrDecrService } from 'src/services/encr-decr.service';
 
 
 @Component({
@@ -39,7 +36,7 @@ export class RegisterComponent implements OnInit {
   constructor(private service: UserService, private EncrDecr: EncrDecrService) { }
 
   ngOnInit() {
-    //const decrypted = this.EncrDecr.get('123456$#@$^@1ERF', encrypted);
+
   }
 
   onclick() {
