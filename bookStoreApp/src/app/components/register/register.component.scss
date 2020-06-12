@@ -1,39 +1,29 @@
-.tool{
-    background-color: rgb(114, 10, 10);
-    height: 55px;
-    width:92%;
-    margin-left: 4%;
-}
-.bookStore{
-    margin-top: 0.6%;
-    margin-left: 16%;
-    color: aliceblue;
-    font: 1em sans-serif;
-    font-size: 81%;
-}
-.container-fluid{
-    width: 750px
-}
-input{
-    width: 250px;
-    border: none;
-    outline: none;
-    margin-top: 10px
-}
-.container-fluid{
-    margin-left: 35%;
-}
-h3{
-  margin-left: 45px;
-  margin-top:80px;
-}
+
 button{
-    margin-top: 10px;
     background-color: rgb(114, 10, 10); 
     color: aliceblue;
 }
 mat-card{
-    margin-top: 10px;
+    width: 40%;
 }
 
-  
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: black;
+    
+}
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: black;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: rgb(114, 10, 10);
+}
+
+::ng-deep .mat-form-field-label {
+    color: rgb(114, 10, 10);
+    // color: $mainColor!important;
+}
+::ng-deep .mat-card{
+    border-radius: 2% !important;
+    border: #000 !important;
+   }

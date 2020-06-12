@@ -88,6 +88,6 @@ export class LoginComponent implements OnInit {
   }
 
   onRegister() {
-    const dialogRef = this.dialog.open(RegisterComponent);
+    this.router.navigate(['/register']);
   }
 }

@@ -1,73 +1,57 @@
-<mat-card>
-    <h1 mat-dialog-title>Registration Form</h1>
-    <div>
-        <input
-            maxlength="25"
-            type="text"
-            [formControl]="name"
-            placeholder="Name"
-            class="input"/>
-        <mat-icon style="margin-top: 8px; margin-left: 10px">account_circle</mat-icon>
-        <mat-hint *ngIf="name.hasError('minlength')">Atleast 4 letters</mat-hint>
-    </div>
-    <div>
-        <input
-            maxlength="25"
-            [formControl]="email"
-            placeholder="Email Id"
-            class="input"
-            style="margin-top:25px"/>
-        <mat-icon style="margin-top: 8px; margin-left: 10px">
-            email</mat-icon>
-        <mat-hint *ngIf="email.hasError('email')">Enter valid email ex:abc@gmail.com</mat-hint>
-    </div>
-    <div>
-        <input
-            maxlength="15"
-            placeholder="UserName"
-            [formControl]="username"
-            class="input"
-            style="margin-top:25px"/>
-        <mat-icon style="margin-top: 8px; margin-left: 10px">
-            face</mat-icon>
-        <mat-hint *ngIf="username.hasError('minlength')">Atleast 4 letters</mat-hint>
-    </div>
-    <div>
-        <input
-            maxlength="16"
-            [type]="passwordType"
-            placeholder="Password"
-            [formControl]="password"
-            class="input"
-            style="margin-top:25px"/>
-        <mat-icon
-            style="margin-top: 8px; margin-left: 10px"
-            *ngIf="(!show)"
-            (click)="onclick()">
-            visibility_off</mat-icon>
-        <mat-icon
-            style="margin-top: 8px; margin-left: 10px"
-            *ngIf="(show)"
-            (click)="onclick()">
-            visibility_on</mat-icon>
-        <mat-hint *ngIf="password.hasError('minlength')">Atleast 8 character</mat-hint>
-    </div>
-    <div>
-        <input
-            maxlength="10"
-            placeholder="Mobile Number"
-            [formControl]="phone"
-            class="input"
-            style="margin-top:25px"/>
-        <mat-icon style="margin-top: 8px; margin-left: 10px">
-            phone_android</mat-icon>
-        <mat-hint *ngIf=" phone.hasError('minlength')">Atleast 10 digits</mat-hint>
-    </div>
-    <div style="margin-top: 20px">
-        <mat-radio-group [(ngModel)]="role" name="role">
-            <mat-radio-button value="b">Buyer's Account</mat-radio-button>
-            <mat-radio-button style="margin-left: 5px" value="s">Seller's Account</mat-radio-button>
-        </mat-radio-group>
-    </div>
-    <button mat-raised-button mattooltip="Register" (click)="onRegister()">Register</button>
-</mat-card>
+<div fxLayout="column" fxLayoutAlign="space-around center">
+
+    <mat-card fxLayout="column" fxLayoutAlign="space-around center">
+
+        <h1 mat-dialog-title>Registration Form</h1>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput maxlength="25" type="text" [formControl]="name" placeholder="Name" class="input" />
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-hint *ngIf="name.hasError('minlength')">Atleast 4 letters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email Id</mat-label>
+            <input matInput maxlength="25" [formControl]="email" placeholder="Email Id" class="input" />
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-hint *ngIf="email.hasError('email')">Ex: abc@gmail.com</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input matInput maxlength="14" type="text" [formControl]="username" placeholder="User Name" class="input" />
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-hint *ngIf="username.hasError('minlength')">Atleast 4 letters</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput maxlength="16" [type]="passwordType" placeholder="Password" [formControl]="password"
+                class="input" />
+            <mat-icon matSuffix *ngIf="(!show)" (click)="onclick()">
+                visibility_off</mat-icon>
+            <mat-icon matSuffix *ngIf="(show)" (click)="onclick()">
+                visibility_on</mat-icon>
+            <mat-hint *ngIf="password.hasError('minlength')">Atleast 8 character</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput maxlength="10" placeholder="Mobile Number" [formControl]="phone" class="input" />
+            <mat-icon matSuffix>phone_android</mat-icon>
+            <mat-hint *ngIf=" phone.hasError('minlength')">Atleast 10 digits</mat-hint>
+        </mat-form-field>
+        <div>
+            <mat-radio-group [(ngModel)]="role" name="role">
+                <mat-radio-button value="buyer">Buyer's Account</mat-radio-button>
+                <mat-radio-button value="seller">Seller's Account</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center" >
+            <button mat-raised-button mattooltip="Register" (click)="onRegister()">Register</button>
+            <button mat-raised-button mattooltip="Login" style="margin-left: 10%" (click)="onLogin()">Login</button>
+        </div>
+
+    </mat-card>
+</div>
