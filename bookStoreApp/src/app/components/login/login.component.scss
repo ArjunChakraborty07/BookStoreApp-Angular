@@ -1,82 +1,84 @@
- .my-card{
-    width: 300px;
-    outline: none;
-     border: none;
-    margin-right: 20%;
-     display: flex;
-     padding:10px; 
-     flex-wrap: wrap;
-     box-sizing: border-box; 
-     justify-content:center;
-     box-shadow: 0 4px 8px 0 rgba(114, 146, 119, 0.2), 0 6px 20px 0 rgba(95, 218, 146, 0.19);
-    border-radius: 10px;
- }
- @media screen and (max-width: 959px) {
-    /* Column Gap */
-    .my-card{
-        margin-right: 50px;
-    }
-    }
-
-    @media screen and (max-width: 599px) {
-        .my-card {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-        }
-    }
- 
-
-
-
-
-
- .example-container .mat-form-field + .mat-form-field {
-     margin-left: 8px;
-   }
- .mat-form-field {
-     width: 90%;
-     padding: 0.4375rem 0;
-  }
-
-
- .mat-radio-button{
-    margin: 0 4px 0 4px;
-    padding: 0.4375rem 0;
- }
-
- a{
-    color: #2da1c1;
-    font-size:medium;
-    text-decoration: none;
-    // float: right;
+.my-card {
+  width: 300px;
+  outline: none;
+  border: none;
+  margin-right: 20%;
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(114, 146, 119, 0.2),
+    0 6px 20px 0 rgba(95, 218, 146, 0.19);
+  border-radius: 10px;
 }
- 
-.container-fluid{
-      margin-left: 35%;
-      padding: 0px;
+mat-toolbar {
+  background-color: rgb(179, 59, 59);
 }
-.line{
-      width: 300px;
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+}
+@media screen and (max-width: 959px) {
+  /* Column Gap */
+  .my-card {
+    margin-right: 50px;
   }
+}
 
-.mat-divider{
-   border-top-width: 2px;
+@media screen and (max-width: 599px) {
+  .my-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
+}
 
-.mat-raised-button{
-       margin-top: 10px;
-       background-color: rgb(114, 10, 10); 
-       color: aliceblue;
-       margin-right:30%;
-  }
- 
-   
+//  .example-container .mat-form-field + .mat-form-field {
+//      margin-left: 8px;
+//    }
+.mat-form-field {
+  width: 90%;
+  padding: 0.4375rem 0;
+}
 
+.mat-radio-button {
+  margin: 0 4px 0 4px;
+  padding: 0.4375rem 0;
+}
 
+a {
+  color: #2da1c1;
+  font-size: medium;
+  text-decoration: none;
+  // float: right;
+}
 
+.container-fluid {
+  margin-left: 35%;
+  padding: 0px;
+}
+.line {
+  width: 300px;
+}
 
-.mat-card{
-     margin-top: 20px;
- }
- 
+.mat-divider {
+  border-top-width: 2px;
+}
+
+.mat-raised-button {
+  margin-top: 10px;
+  background-color: rgb(114, 10, 10);
+  color: aliceblue;
+  margin-right: 30%;
+}
+
+.mat-card {
+  margin-top: 20px;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
