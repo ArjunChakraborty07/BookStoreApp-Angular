@@ -13,8 +13,14 @@
     position: absolute;
     color:aliceblue;;
     margin-top: 1.5%;
-    margin-left: 980px;
+    margin-left: 66%;
    
+}
+.loginText{
+    position: absolute;
+    color:aliceblue;;
+    margin-top: 1.5%;
+    margin-left: 75%;
 }
 .tool{
     height: 55px;
@@ -45,7 +51,13 @@ span{
     margin-left: 250px;
 }
 .cart{
-    margin-left: 250px;
+    margin-left: 10%;
+    background-color: none;
+    outline: none;
+    color:aliceblue;
+}
+.login{
+    margin-left: 8%;
     background-color: none;
     outline: none;
     color:aliceblue;

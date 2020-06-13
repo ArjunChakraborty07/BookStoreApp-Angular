@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
-
 import { UserService } from 'src/services/user.service';
 import { EncrDecrService } from 'src/services/encr-decr.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -33,11 +32,11 @@ export class RegisterComponent implements OnInit {
   role: any;
   passwordType = 'password';
   show = false;
-  constructor(private service: UserService, private EncrDecr: EncrDecrService) { }
+  constructor(private service: UserService,
+              private EncrDecr: EncrDecrService,
+              private router: Router) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   onclick() {
     if (this.show) {
@@ -74,10 +73,9 @@ export class RegisterComponent implements OnInit {
         alert(response.message);
       });
     }
-
-
-
-
   }
 
+  onLogin() {
+    this.router.navigate(['/login']);
+  }
 }

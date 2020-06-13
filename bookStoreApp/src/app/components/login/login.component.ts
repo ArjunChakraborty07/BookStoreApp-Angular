@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "src/services/user.service";
-import { MatSnackBar } from "@angular/material";
+import { MatSnackBar, MatDialog } from "@angular/material";
+import { RegisterComponent } from "../register/register.component";
 
 @Component({
   selector: "dashboard/login",
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -84,5 +86,9 @@ export class LoginComponent implements OnInit {
         }
       };
     });
+  }
+
+  onRegister() {
+    this.router.navigate(["/register"]);
   }
 }
