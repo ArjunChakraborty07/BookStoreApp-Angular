@@ -32,6 +32,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from 'src/services/encr-decr.service';
+import { MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { EncrDecrService } from 'src/services/encr-decr.service';
     MatSnackBarModule,
     MatRadioModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule
   ],
   providers: [UserService, EncrDecrService, HttpService],
   bootstrap: [AppComponent]

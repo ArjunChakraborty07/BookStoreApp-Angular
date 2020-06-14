@@ -42,15 +42,13 @@
             <mat-icon matSuffix>phone_android</mat-icon>
             <mat-hint *ngIf=" phone.hasError('minlength')">Atleast 10 digits</mat-hint>
         </mat-form-field>
+        <section class="example-section">
+            <mat-checkbox class="example-margin" [(ngModel)]="buyer" name="buyer">Buyer</mat-checkbox>
+            <mat-checkbox class="example-margin" style="margin-left: 5px" [(ngModel)]="seller" name="buyer">Seller</mat-checkbox>
+        </section>
         <div>
-            <mat-radio-group [(ngModel)]="role" name="role">
-                <mat-radio-button value="buyer">Buyer's Account</mat-radio-button>
-                <mat-radio-button value="seller">Seller's Account</mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center" >
             <button mat-raised-button mattooltip="Register" (click)="onRegister()">Register</button>
-            <button mat-raised-button mattooltip="Login" style="margin-left: 10%" (click)="onLogin()">Login</button>
+            <button mat-raised-button mattooltip="Login" style="margin-left:10px" (click)="onLogin()">Login</button>
         </div>
 
     </mat-card>
