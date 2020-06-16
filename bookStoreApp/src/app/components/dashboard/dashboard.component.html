@@ -1,10 +1,11 @@
 <div class="dashboard">
-    <span class="logo">BookStore</span>
+    <span class="logo" (click)="onBookStore()">BookStore</span>
     <span class="cartname">Cart</span>
+    <span class="loginText" >Login</span>
     <mat-toolbar class=" tool">
         <mat-card class="mattool">           
         </mat-card>
-            <button mat-icon-button class="mysearch" (click)="onSearch()" mattooltip="search">
+            <button mat-icon-button class="mysearch" (click)="onSearch()" mattooltip="Search">
                 <mat-icon>search</mat-icon>
             </button>    
             <input
@@ -13,9 +14,12 @@
                 [(ngModel)]="searchBook"
                 name="searchBook"
                 matInput placeholder="Search"/>
-        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="cart">
+        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
             <mat-icon>shopping_cart</mat-icon>
         </button>    
+        <button class="login" mat-icon-button (click)="onLogin()" matTooltip="Login">
+            <mat-icon>login</mat-icon>
+        </button>   
     </mat-toolbar>
 </div>
 

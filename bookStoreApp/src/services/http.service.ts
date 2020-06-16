@@ -7,10 +7,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
-
-  constructor(private http:HttpClient) { }
-
-  private baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl;
+  constructor( private http: HttpClient) { }
 
   public POST(url: any, data: any, token: any) {
     return this.http.post(this.baseUrl + url, data, token);

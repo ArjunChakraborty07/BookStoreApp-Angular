@@ -1,60 +1,96 @@
-<div fxLayout="column" fxLayoutGap="50%" fxLayoutAlign="space-around center">
-<form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
-<div class="container-fluid" fxLayout="column" fxLayoutAlign="space-around center">
-    <mat-card class="my-card" fxLayout="column" >
-        <mat-card-title>
-            Login Form
-        </mat-card-title>
-            <div class="example-container">
-                 <div fxLayout="column" fxFlex="100" class="1"> 
-                    <div fxLayout="column" fxLayoutAlign="center">
-                    <mat-form-field appearance="outline">
-                    <mat-label>Username</mat-label>
-                    <input type="text" formControlName="username" placeholder="username"  rows="3" maxlength="300"   matInput [ngClass]= "{ 'is-invalid': submitted && f.username.errors }">
-                    <mat-icon matSuffix>account_circle</mat-icon>
-                    <mat-error *ngIf="LoginForm.get('username').hasError('required')">*username is required</mat-error>
-                    <mat-error *ngIf="LoginForm.get('username').hasError('minlength')">*provide minimum 4 characters</mat-error>
-                    <mat-error *ngIf="LoginForm.get('username').hasError('maxlength')">provide less than 15 characters</mat-error>
-                   </mat-form-field><br>
-                    </div>
+<div class="container">
+  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+    <div class="container-fluid">
+      <mat-card class="my-card">
+        <mat-toolbar>
+          <span class="title-center">{{ title }}</span></mat-toolbar
+        >
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            formControlName="username"
+            placeholder="username"
+            rows="3"
+            maxlength="300"
+            matInput
+            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          />
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error *ngIf="LoginForm.get('username').hasError('required')"
+            >*username is required</mat-error
+          >
+          <mat-error *ngIf="LoginForm.get('username').hasError('minlength')"
+            >*provide minimum 4 characters</mat-error
+          >
+          <mat-error *ngIf="LoginForm.get('username').hasError('maxlength')"
+            >provide less than 15 characters</mat-error
+          > </mat-form-field
+        ><br />
 
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="password"
+            rows="3"
+            maxlength="300"
+            matInput
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon matSuffix>{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <mat-error *ngIf="LoginForm.get('password').hasError('required')"
+            >*password is required</mat-error
+          >
+          <mat-error *ngIf="LoginForm.get('password').hasError('minlength')"
+            >provide a strong password</mat-error
+          >
+          <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')"
+            >provide password less than 12 characters</mat-error
+          > </mat-form-field
+        ><br />
 
-                    <div fxLayout="column" fxLayoutAlign="center"> 
-                     <mat-form-field appearance="outline">
-                     <mat-label>Password</mat-label>
-                     <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password" placeholder="password"  rows="3" maxlength="300"   matInput [ngClass]= "{ 'is-invalid': submitted && f.password.errors }" >
-                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                     <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
-                     <mat-error *ngIf="LoginForm.get('password').hasError('required')">*password is required</mat-error>
-                     <mat-error *ngIf="LoginForm.get('password').hasError('minlength')">provide a strong password</mat-error>
-                     <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')">provide  password less than 12 characters</mat-error>
-                     </mat-form-field><br>
-                    </div>
-                     
-                     <mat-radio-group formControlName="role">
-                     <mat-radio-button value="admin">admin</mat-radio-button>
-                     <mat-radio-button value="vendor">vendor</mat-radio-button>
-                     <mat-radio-button style="margin-left: 5px" value="customer">customer</mat-radio-button>
-                     <mat-error *ngIf="LoginForm.get('role').hasError('required')">*role is required</mat-error>
-                     </mat-radio-group><br>
-                
-                     
-                     <button mat-raised-button type="submit">Login</button>  <a href="forgotpassword">Forgot password</a>
-               </div>
-              </div>
-              </mat-card><br>
-              <div class="line"><mat-divider></mat-divider></div>
-              <mat-card class="my-card">
-                <form class="my-form">
-                    <p  style="text-align: center;"><a  href="register">Want To Register?</a></p>
-                    <p  style="text-align: center; margin-right:2%;"><button mat-raised-button  [routerLink]="['/register']">Register</button></p>
-                    </form>
-              </mat-card>
-              </div>
-            </form>
-           </div>
-            
-        
+        <mat-radio-group formControlName="role">
+          <mat-radio-button value="admin">admin</mat-radio-button>
+          <mat-radio-button value="vendor">vendor</mat-radio-button>
+          <mat-radio-button style="margin-left: 5px;" value="customer"
+            >customer</mat-radio-button
+          >
+          <mat-error *ngIf="LoginForm.get('role').hasError('required')"
+            >*role is required</mat-error
+          > </mat-radio-group
+        ><br />
 
-
-
+        <button mat-raised-button type="submit">
+          Login
+        </button>
+        <a href="forgotpassword">Forgot password</a> </mat-card
+      ><br />
+      <div class="line"><mat-divider></mat-divider></div>
+      <mat-card class="my-card">
+        <form class="my-form">
+          <p style="text-align: center;">
+            <a href="register">Want To Register?</a>
+          </p>
+          <p style="text-align: center; margin-right: 2%;">
+            <button mat-raised-button [routerLink]="['/register']">
+              Register
+            </button>
+          </p>
+        </form>
+      </mat-card>
+    </div>
+  </form>
+</div>

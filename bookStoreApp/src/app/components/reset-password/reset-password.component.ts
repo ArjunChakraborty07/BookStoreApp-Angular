@@ -10,29 +10,40 @@ import { EncrDecrService } from 'src/services/encr-decr.service';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit {
-
   hide = true;
   hide1 = true;
+  title = 'Reset Password';
   private encryptPassword: string;
-  private userPassword = '';
-  constructor(private formBuilder: FormBuilder,
-              private userService: UserService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private snackBar: MatSnackBar,
-              private encrDecr: EncrDecrService) { }
-  public resetPasswordForm: FormGroup ;
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private encrDecr: EncrDecrService
+  ) {}
+  public resetPasswordForm: FormGroup;
   private resetPassword: ResetPassword;
   private token: string;
   ngOnInit() {
-    this.resetPasswordForm = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/)]],
-      confirmPassword: ['', [Validators.required]]
-    }, {validator: PasswordValidator});
-
+    this.resetPasswordForm = this.formBuilder.group(
+      {
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/
+            ),
+          ],
+        ],
+        confirmPassword: ['', [Validators.required]],
+      },
+      { validator: PasswordValidator }
+    );
     this.token = this.route.snapshot.paramMap.get('token');
   }
 
