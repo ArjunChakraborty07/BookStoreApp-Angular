@@ -17,6 +17,7 @@ export class ResetPasswordComponent implements OnInit {
   hide = true;
   hide1 = true;
   private encryptPassword: string;
+  private userPassword = '';
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private router: Router,
@@ -28,26 +29,29 @@ export class ResetPasswordComponent implements OnInit {
   private token: string;
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
-      password: ['', [Validators.required,Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/)]],
-      confirmPassword: ['',[Validators.required]]
-    },{validator: PasswordValidator});
+      password: ['', [Validators.required, Validators.pattern(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/)]],
+      confirmPassword: ['', [Validators.required]]
+    }, {validator: PasswordValidator});
 
     this.token = this.route.snapshot.paramMap.get('token');
   }
 
-  onConfirm(){
-    this.resetPassword.password = this.encrDecr.set('123456$#@$^@1ERF',this.resetPasswordForm.get('password').value);
-    // console.log(this.resetPassword.password);
-    this.userService.resetPassword(this.resetPassword,this.token).subscribe((response:any)=>{
-      console.log(response)
-      if(response.statusCode === 200){
-        this.snackBar.open(response.message,'ok',{duration:3000});
+  onConfirm() {
+    // this.userPassword = this.resetPasswordForm.get('password').value;
+    // console.log(this.userPassword);
+    // console.log(this.resetPasswordForm.get('password').value );
+    this.resetPassword = this.resetPasswordForm.value;
+    console.log(this.resetPassword.password);
+    this.resetPassword.password = this.encrDecr.set('123456$#@$^@1ERF', this.resetPassword.password);
+    console.log(this.resetPassword.password);
+    this.userService.resetPassword(this.resetPassword, this.token).subscribe((response: any) => {
+      console.log(response);
+      if (response.statusCode === 200) {
+        this.snackBar.open(response.message, 'ok', {duration: 3000});
         this.router.navigate(['login']);
       }
-    },(error:any)=>{
-      this.snackBar.open(error.error.error,'ok',{duration:3000});
+    }, (error: any) => {
+      this.snackBar.open(error.error.error, 'ok', {duration: 3000});
     });
-    
   }
-
 }
