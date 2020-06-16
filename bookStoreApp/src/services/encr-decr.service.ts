@@ -13,7 +13,7 @@ export class EncrDecrService {
     const encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(value.toString()), key,
     {
         keySize: 128 / 8,
-        '{iv}' : iv,
+        iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
@@ -26,7 +26,7 @@ export class EncrDecrService {
     const iv = CryptoJS.enc.Utf8.parse(keys);
     const decrypted = CryptoJS.AES.decrypt(value, key, {
         keySize: 128 / 8,
-        '{iv}': iv,
+        iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });

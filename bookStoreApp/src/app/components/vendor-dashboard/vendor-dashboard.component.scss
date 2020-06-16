@@ -1,0 +1,57 @@
+mat-toolbar {
+  background-color: brown;
+}
+.search-mat-card {
+  width: 40%;
+  height: 60%;
+  padding: 0px;
+  //   height: 10%;
+}
+.searchIcon {
+  opacity: 0.5;
+}
+.searchIcon:hover {
+  opacity: 1;
+}
+.searchInput {
+  //   height: 70%;
+  width: 90%;
+  border: none;
+  outline: none;
+}
+.titleText {
+  color: white;
+}
+.bookText {
+  font-size: 90%;
+  color: white;
+}
+.accountIcon {
+  opacity: 0.5;
+}
+accountIcon:hover {
+  opacity: 1;
+}
+button {
+  outline: none;
+}
+.book-mat-card {
+  padding: 0px;
+  margin-top: 2%;
+  width: 40%;
+}
+.bookInput {
+  padding: 1% 4% 1%;
+  border: none;
+  outline: none;
+}
+.addBookButton {
+  color: white;
+  margin-top: 2%;
+  width: 10%;
+  background-color: brown;
+}
+
+::placeholder {
+  font-size: 90%;
+}

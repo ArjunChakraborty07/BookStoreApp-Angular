@@ -7,7 +7,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerificationComponent } from './components/verification/verification.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminComponent } from './components/admin/admin.component';
-
+import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -20,6 +20,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    children: [],
+  },
+  {
+    path: 'vendor-dashboard',
+    component: VendorDashboardComponent,
     children: [],
   },
 ];
