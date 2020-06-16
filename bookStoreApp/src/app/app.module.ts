@@ -31,12 +31,9 @@ import { UserService } from 'src/services/user.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { VerificationComponent } from './components/verification/verification.component';
-import { EncrDecrService } from "src/services/encr-decr.service";
-
-//import { UserService } from './services/user.service';
+import { EncrDecrService } from 'src/services/encr-decr.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpService } from 'src/services/http.service';
-//import { EncrDecrService } from './services/encr-decr-service.service';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
@@ -68,7 +65,6 @@ import { LoginComponent } from './components/login/login.component';
     MatExpansionModule,
     MatSidenavModule,
     MatListModule,
-    //MatMenuTrigger,
     MatSnackBarModule,
     MatRadioModule,
     FlexLayoutModule
