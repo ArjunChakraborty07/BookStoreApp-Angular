@@ -77,12 +77,11 @@ export class RegisterComponent implements OnInit {
       const data = {
         email: this.email.value,
         name: this.name.value,
-        phone: this.phone.value,
+        mobileNumber: Number(this.phone.value),
         password: this.password.value,
         username: this.username.value,
         role: this.bvalue + this.svalue
       };
-      console.log(data);
       this.service.register(data).subscribe((response: any) => {
         alert(response.message);
       });

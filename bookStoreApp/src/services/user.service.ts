@@ -12,6 +12,7 @@ export class UserService {
   constructor(private http: HttpService) { }
 
   public register(user: any): Observable<any> {
+    console.log(user);
     return this.http.POST('user/register', user, '');
   }
 

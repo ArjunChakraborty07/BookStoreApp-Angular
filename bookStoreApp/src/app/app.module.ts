@@ -33,6 +33,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from 'src/services/encr-decr.service';
 import { MatCheckboxModule} from '@angular/material/checkbox';
+import { AdminComponent } from './components/admin/admin.component';
+import { GetallusersComponent } from './components/getallusers/getallusers.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
     ForgotPasswordComponent,
     LoginComponent,
     ResetPasswordComponent,
-    VerificationComponent
+    VerificationComponent,
+    AdminComponent,
+    GetallusersComponent
 
   ],
   imports: [

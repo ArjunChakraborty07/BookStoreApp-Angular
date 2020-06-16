@@ -1,0 +1,28 @@
+<div class="admin">
+    <span class="logo" (click)="onBookStore()">BookStore</span>
+    <span class="welcome">Welcome Admin</span>
+    <mat-toolbar class="tool">
+        <button mat-icon-button (click)="sidenav.toggle()" class="myMenu" matTooltip="menu">
+            <mat-icon class="menu">menu</mat-icon>
+        </button>
+    </mat-toolbar>
+</div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-nav-list>
+              <button mat-menu-item routerLink="/admin/getAllUsers" (click)="notes()">
+                <mat-icon>note</mat-icon>
+                Users
+            </button>
+            <button mat-menu-item routerLink="/admin/getAllBuyers" (click)="reminders()">
+                <mat-icon>notifications</mat-icon>
+                Buyers
+            </button>
+            <button mat-menu-item routerLink="/admin/getAllSellers" (click)="label()">
+                <mat-icon>label</mat-icon>
+                Sellers
+            </button>
+        </mat-nav-list>
+    </mat-drawer>
+</mat-drawer-container>
+<app-getallusers></app-getallusers>

@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'verification/:token', component: VerificationComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
+  { path: 'admin/:token', component: AdminComponent},
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -28,4 +30,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [RegisterComponent, DashboardComponent, LoginComponent,
-  ForgotPasswordComponent, VerificationComponent, ResetPasswordComponent];
+  ForgotPasswordComponent, VerificationComponent, ResetPasswordComponent, AdminComponent];
