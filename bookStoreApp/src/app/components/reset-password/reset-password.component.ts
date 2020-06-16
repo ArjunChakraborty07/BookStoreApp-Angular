@@ -44,16 +44,17 @@ export class ResetPasswordComponent implements OnInit {
       },
       { validator: PasswordValidator }
     );
-
     this.token = this.route.snapshot.paramMap.get('token');
   }
 
   onConfirm() {
+    this.resetPassword = this.resetPasswordForm.value;
+    console.log(this.resetPassword.password);
     this.resetPassword.password = this.encrDecr.set(
       '123456$#@$^@1ERF',
-      this.resetPasswordForm.get('password').value
+      this.resetPassword.password
     );
-    // console.log(this.resetPassword.password);
+    console.log(this.resetPassword.password);
     this.userService.resetPassword(this.resetPassword, this.token).subscribe(
       (response: any) => {
         console.log(response);
