@@ -14,21 +14,27 @@
     <mat-icon>account_circle</mat-icon>
   </button>
 </mat-toolbar>
-<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2%">
-  <mat-card class="book-mat-card" *ngIf="isBookFormOpened == false">
-    <input
-      class="bookInput"
-      type="text"
-      placeholder="Add a book.."
-      onclick="openBookForm()"
-    />
-  </mat-card>
-  <button
-    mat-raised-button
-    class="addBookButton"
-    fxLayoutAlign="center"
-    [disableRipple]="true"
+<div class="contentDiv">
+  <mat-card
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="1%"
+    class="mainContent"
+    ngClass.lt-md="mainContainer-lt-md
+      "
+    ngClass.gt-sm="mainContainer-lg"
   >
-    <span class="bookText">Add Book</span>
-  </button>
+    <span class="mainSellingSpan">Start Selling Books-Online</span>
+    <span class="subSellingSpan">Sell On BookStore</span>
+
+    <button
+      mat-raised-button
+      class="addBookButton"
+      fxLayoutAlign="center"
+      [disableRipple]="true"
+      (click)="openBookForm()"
+    >
+      <span class="bookText">Add Book</span>
+    </button>
+  </mat-card>
 </div>
