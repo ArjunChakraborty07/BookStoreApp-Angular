@@ -1,0 +1,82 @@
+<mat-card fxLayout="column" fxLayoutGap="2%" ngClass.lt-lg="mat-card-lt-md">
+  <mat-toolbar fxLayoutAlign="center center"
+    ><span>Add Book Form </span>
+  </mat-toolbar>
+  <div>
+    <form [formGroup]="bookForm" fxLayout="column" (ngSubmit)="onFormSubmit()">
+      <div fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline" class="titleInput">
+          <mat-label>title</mat-label>
+          <input
+            matInput
+            placeholder="title"
+            formControlName="bookTitle"
+            autocomplete="off"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="authorInput">
+          <mat-label>author</mat-label>
+          <input
+            matInput
+            placeholder="author name..."
+            formControlName="bookAuthor"
+            autocomplete="off"
+          />
+        </mat-form-field>
+      </div>
+      <div fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline" class="priceInput">
+          <mat-label>Amount</mat-label>
+          <input
+            matInput
+            type="number"
+            class="example-right-align"
+            min="0"
+            autocomplete="off"
+            formControlName="bookPrice"
+          />
+          <span matPrefix>₹&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="quantityInput">
+          <mat-label>quantity</mat-label>
+          <input
+            matInput
+            placeholder="quantity"
+            type="number"
+            min="1"
+            autocomplete="off"
+            formControlName="bookQuantity"
+          />
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>description</mat-label>
+        <textarea
+          matInput
+          placeholder="description"
+          style="overflow: hidden;"
+          formControlName="bookDescription"
+          autocomplete="off"
+        ></textarea>
+      </mat-form-field>
+      <div fxLayout="column">
+        <input
+          type="file"
+          formControlName="bookProfileName"
+          autocomplete="off"
+        />
+        <div fxLayoutAlign="end">
+          <button
+            mat-raised-button
+            type="submit"
+            [disableRipple]="true"
+            [disabled]="!bookForm.valid"
+          >
+            submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-card>
