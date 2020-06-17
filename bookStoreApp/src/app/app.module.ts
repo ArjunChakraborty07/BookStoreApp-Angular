@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-d
     ResetPasswordComponent,
     VerificationComponent,
     VendorDashboardComponent,
+    AddBookComponent,
   ],
   imports: [
     BrowserModule,
