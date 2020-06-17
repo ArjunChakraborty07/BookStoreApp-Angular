@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { AddBookComponent } from '../add-book/add-book.component';
 
 @Component({
   selector: 'app-vendor-dashboard',
@@ -8,11 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class VendorDashboardComponent implements OnInit {
   isBookFormOpened = false;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {}
 
   openBookForm() {
-    this.isBookFormOpened = true;
+    this.dialog.open(AddBookComponent, {
+      panelClass: 'custom-modalbox',
+    });
   }
 }
