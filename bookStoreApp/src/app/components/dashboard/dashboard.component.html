@@ -5,7 +5,7 @@
     <mat-toolbar class=" tool">
         <mat-card class="mattool">           
         </mat-card>
-            <button mat-icon-button class="mysearch" (click)="onSearch()" matTooltip="Search">
+            <button mat-icon-button class="mysearch" (click)="onSearch()" mattooltip="Search">
                 <mat-icon>search</mat-icon>
             </button>    
             <input
@@ -14,12 +14,22 @@
                 [(ngModel)]="searchBook"
                 name="searchBook"
                 matInput placeholder="Search"/>
-        <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
-            <mat-icon>shopping_cart</mat-icon>
-        </button>    
-        <button class="login" mat-icon-button (click)="onLogin()" matTooltip="Login">
-            <mat-icon>login</mat-icon>
-        </button>   
+        <button class="cart" mat-icon-button   (click)="onCart()" matTooltip="Cart"></button><br> <mat-icon>shopping_cart</mat-icon> 
+        <button class="login" mat-icon-button  matTooltip="Login"   (click)="openDialog()" ></button><br><mat-icon>login</mat-icon>   
     </mat-toolbar>
+    <div class="box">
+    <div class="left">
+       <select matNativeControl required>
+              <option>sort by relevance</option>
+              <option value="">Low to High</option>
+              <option value="">new Arrivals</option>
+            </select>
+    </div>
+
+
+
+</div>
+
+
 </div>
 
