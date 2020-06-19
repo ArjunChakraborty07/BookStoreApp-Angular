@@ -1,40 +1,43 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="space-around center">
-  <span class="titleText">BookStore</span>
-  <mat-card
-    class="search-mat-card"
-    fxLayout="row"
-    fxLayoutAlign="space-around center"
-  >
-    <button mat-icon-button [disableRipple]="true" matTooltip="search">
-      <mat-icon class="searchIcon">search</mat-icon>
-    </button>
-    <input class="searchInput" type="text" placeholder="Search..." />
-  </mat-card>
-  <button mat-icon-button matTooltip="Account" [disableRipple]="true">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar>
-<div class="contentDiv">
-  <mat-card
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxLayoutGap="1%"
-    class="mainContent"
-    ngClass.lt-md="mainContainer-lt-md
-      "
-    ngClass.gt-sm="mainContainer-lg"
-  >
-    <span class="mainSellingSpan">Start Selling Books-Online</span>
-    <span class="subSellingSpan">Sell On BookStore</span>
-
-    <button
-      mat-raised-button
-      class="addBookButton"
-      fxLayoutAlign="center"
-      [disableRipple]="true"
-      (click)="openBookForm()"
+<div>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="space-around center">
+    <span class="titleText">BookStore</span>
+    <mat-card
+      class="search-mat-card"
+      fxLayout="row"
+      fxLayoutAlign="space-around center"
     >
-      <span class="bookText">Add Book</span>
+      <button mat-icon-button [disableRipple]="true" matTooltip="search">
+        <mat-icon class="searchIcon">search</mat-icon>
+      </button>
+      <input class="searchInput" type="text" placeholder="Search..." />
+    </mat-card>
+    <button mat-icon-button matTooltip="Account" [disableRipple]="true">
+      <mat-icon>account_circle</mat-icon>
     </button>
-  </mat-card>
+  </mat-toolbar>
+  <div class="contentDiv">
+    <mat-card
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="1%"
+      class="mainContent"
+      ngClass.lt-md="mainContainer-lt-md
+      "
+      ngClass.gt-sm="mainContainer-lg"
+    >
+      <span class="mainSellingSpan">Start Selling Books-Online</span>
+      <span class="subSellingSpan">Sell On BookStore</span>
+
+      <button
+        mat-raised-button
+        class="addBookButton"
+        fxLayoutAlign="center"
+        [disableRipple]="true"
+        (click)="openBookForm()"
+      >
+        <span class="bookText">Add Book</span>
+      </button>
+    </mat-card>
+    <router-outlet></router-outlet>
+  </div>
 </div>
