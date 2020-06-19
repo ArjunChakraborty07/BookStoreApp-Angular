@@ -38,6 +38,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AddBookComponent } from './components/add-book/add-book.component';
     GetallusersComponent,
     VendorDashboardComponent,
     AddBookComponent,
+    DisplayBooksComponent,
   ],
   imports: [
     BrowserModule,
