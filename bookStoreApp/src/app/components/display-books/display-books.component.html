@@ -1,0 +1,20 @@
+<div class="main-div" fxLayoutAlign="space-around center">
+  <mat-card>
+    <div class="bookImageDiv" fxLayoutAlign="center">
+      <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+    </div>
+    <div class="bookInfoDiv" fxLayout="column">
+      <input class="input-title" matInput type="text" autocomplete="off" />
+      <input class="input-author" matInput type="text" autocomplete="off" />
+      <input class="input-price" matInput type="text" autocomplete="off" />
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <button mat-raised-button fxLayoutAlign="center" [disableRipple]="true">
+          APPROVAL
+        </button>
+        <button mat-raised-button fxLayoutAlign="center" [disableRipple]="true">
+          DELETE
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
