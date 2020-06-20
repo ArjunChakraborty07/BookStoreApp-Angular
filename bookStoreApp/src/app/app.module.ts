@@ -27,18 +27,14 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from 'src/services/encr-decr.service';
-<<<<<<< HEAD
-import { MatCheckboxModule} from '@angular/material/checkbox';
-import { AdminComponent } from './components/admin/admin.component';
-import { GetallusersComponent } from './components/getallusers/getallusers.component';
-=======
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpService } from 'src/services/http.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
->>>>>>> e9f116e0b1ff51725778cc1672c3ffc7fd96eaba
+import { AdminComponent } from './components/admin/admin.component';
+import { GetallusersComponent } from './components/getallusers/getallusers.component';
 
 @NgModule({
   declarations: [
@@ -49,13 +45,10 @@ import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-d
     LoginComponent,
     ResetPasswordComponent,
     VerificationComponent,
-<<<<<<< HEAD
     AdminComponent,
-    GetallusersComponent
-
-=======
+    GetallusersComponent,
     VendorDashboardComponent,
->>>>>>> e9f116e0b1ff51725778cc1672c3ffc7fd96eaba
+
   ],
   imports: [
     BrowserModule,
