@@ -1,20 +1,71 @@
-<div class="main-div" fxLayoutAlign="space-around center">
-  <mat-card>
-    <div class="bookImageDiv" fxLayoutAlign="center">
-      <img src="../../../assets/images/bookstore-wallpaper.jpg" />
-    </div>
-    <div class="bookInfoDiv" fxLayout="column">
-      <input class="input-title" matInput type="text" autocomplete="off" />
-      <input class="input-author" matInput type="text" autocomplete="off" />
-      <input class="input-price" matInput type="text" autocomplete="off" />
-      <div fxLayout="row" fxLayoutAlign="space-between">
-        <button mat-raised-button fxLayoutAlign="center" [disableRipple]="true">
-          APPROVAL
-        </button>
-        <button mat-raised-button fxLayoutAlign="center" [disableRipple]="true">
-          DELETE
-        </button>
+<div
+  style="
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+  "
+  fxLayoutGap="40px"
+  ngClass.lt-md="main-div-lt-md"
+  fxLayout="row wrap"
+>
+  <div *ngFor="let book of books" fxLayout="row">
+    <mat-card>
+      <div class="bookImageDiv" fxLayoutAlign="center">
+        <img src="../../../assets/images/bookstore-wallpaper.jpg" />
       </div>
+      <div class="bookInfoDiv" fxLayout="column">
+        <input
+          class="input-title"
+          matInput
+          type="text"
+          autocomplete="off"
+          [(ngModel)]="book.bookName"
+        />
+        <div fxlayout="row">
+          <span class="input-author">by</span>
+          <input
+            class="input-author"
+            matInput
+            type="text"
+            autocomplete="off"
+            [(ngModel)]="book.authorName"
+          />
+        </div>
+        <div fxlayout="row">
+          <span class="input-price">Rs.</span>
+          <input
+            class="input-price"
+            matInput
+            type="text"
+            autocomplete="off"
+            [(ngModel)]="book.price"
+          />
+        </div>
+        <!-- <span class="span-title">Don't make me think</span>
+      <span class="span-author"> by steve krug</span>
+      <span class="span-price"> Rs.1500</span> -->
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <button
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+          >
+            APPROVAL
+          </button>
+          <button
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onDeleteBook(book.bookId)"
+          >
+            DELETE
+          </button>
+        </div>
+      </div>
+    </mat-card>
+    <div class="book-details">
+      <span>{{ book.bookDetails }}</span>
     </div>
-  </mat-card>
+  </div>
 </div>
