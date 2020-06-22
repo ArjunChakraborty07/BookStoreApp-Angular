@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
       role:this.role1
     };
     this.loading = true;
-   /*this.userService.login(data).subscribe((response:any) => {
+   this.userService.login(data).subscribe((response:any) => {
       console.log("LOGIN COMPONENT:",response);
       if (response.status === 200) {
         localStorage.setItem("token",response['token']);
@@ -125,7 +125,7 @@ export class LoginComponent implements OnInit {
           this.snackBar.open(error.error.error, 'ok', { duration: 2000 });
         }
       };
-    });*/ 
+    });
   }
 
   onRegister() {
