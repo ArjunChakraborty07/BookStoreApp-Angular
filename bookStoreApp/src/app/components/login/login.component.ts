@@ -75,16 +75,28 @@ export class LoginComponent implements OnInit {
     else {
       this.roles=2;
     }*/
-     this.roles=this.LoginForm.get('userroles').value.localeCompare('vendor');
-     if(this.roles==0)
+   // console.log("user role:",this.LoginForm.get('userroles').value);
+     if(this.LoginForm.get('userroles').value.localeCompare('admin')===0)
+     {
+       this.role1=1;
+     }
+     if(this.LoginForm.get('userroles').value.localeCompare('vendor')===0)
+     {
+       this.role1=2;
+     }
+     if(this.LoginForm.get('userroles').value.localeCompare('customer')===0)
+     {
+       this.role1=3;
+     }
+     /*if(this.roles==0)
      {
        this.role1=1;
      }
     else
      {
         this.role1=2;
-    }
-    //console.log("ROLE:",this.role1);
+    }*/
+    console.log("ROLE:",this.role1);
     const data={
       loginId:this.LoginForm.get('loginid').value,
       password:this.LoginForm.get('password').value,
