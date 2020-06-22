@@ -27,14 +27,22 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from 'src/services/encr-decr.service';
+
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AdminComponent } from './components/admin/admin.component';
+import { GetallusersComponent } from './components/getallusers/getallusers.component';
+
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpService } from 'src/services/http.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { GetallusersComponent } from './components/getallusers/getallusers.component';
+
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +56,8 @@ import { GetallusersComponent } from './components/getallusers/getallusers.compo
     AdminComponent,
     GetallusersComponent,
     VendorDashboardComponent,
-
+    AddBookComponent,
+    DisplayBooksComponent,
   ],
   imports: [
     BrowserModule,

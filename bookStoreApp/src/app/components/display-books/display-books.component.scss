@@ -1,0 +1,65 @@
+.main-div {
+  margin-top: 50px;
+}
+mat-card {
+  width: 200px;
+
+  padding: 0%;
+}
+mat-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+    0 6px 20px 0 rgba(29, 29, 29, 0.19);
+}
+.bookImageDiv {
+  background-color: rgb(240, 233, 233);
+}
+img {
+  padding: 10%;
+  //   width: 80%;
+  //   height: 30vh;
+  width: 140px;
+  height: 160px;
+}
+.bookInfoDiv {
+  padding: 4% 10% 10% 10%;
+}
+.span-title-price {
+  font-size: small;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+.span-author {
+  font-size: x-small;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+.input-title {
+  height: 24px;
+  font-size: small;
+  font-weight: 500;
+  border: none;
+  outline: none;
+}
+.input-author {
+  height: 20px;
+  font-size: xx-small;
+  border: none;
+  outline: none;
+}
+.input-price {
+  height: 20px;
+  font-size: x-small;
+  font-weight: 500;
+  border: none;
+  outline: none;
+}
+button {
+  height: 32px;
+  width: 70px;
+  font-size: x-small;
+  background-color: brown;
+  color: white;
+  padding: 0px;
+  margin-top: 3%;
+  border: none;
+}

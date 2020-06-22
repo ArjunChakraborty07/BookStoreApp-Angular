@@ -1,11 +1,16 @@
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 mat-toolbar {
+  width: 100%;
   background-color: brown;
 }
 .search-mat-card {
   width: 40%;
   height: 60%;
   padding: 0px;
-  //   height: 10%;
 }
 .searchIcon {
   opacity: 0.5;
@@ -14,7 +19,7 @@ mat-toolbar {
   opacity: 1;
 }
 .searchInput {
-  //   height: 70%;
+  height: 90%;
   width: 90%;
   border: none;
   outline: none;
@@ -35,11 +40,7 @@ accountIcon:hover {
 button {
   outline: none;
 }
-.book-mat-card {
-  padding: 0px;
-  margin-top: 2%;
-  width: 40%;
-}
+
 .bookInput {
   padding: 1% 4% 1%;
   border: none;
@@ -47,11 +48,35 @@ button {
 }
 .addBookButton {
   color: white;
-  margin-top: 2%;
-  width: 10%;
+  width: 15%;
   background-color: brown;
+  border-radius: 2vw;
 }
 
 ::placeholder {
   font-size: 90%;
+}
+.mainSellingSpan {
+  font-weight: bold;
+  font-size: 150%;
+}
+.subSellingSpan {
+  font-weight: 500;
+}
+.contentDiv {
+  width: 100%;
+  height: 90%;
+}
+.mainContent {
+  width: 100%;
+  height: 40%;
+  // position: fixed;
+  // background: none;
+  background-image: url('../../../assets/images/bookstore-wallpaper2.jpg');
+}
+.mainContainer-lt-md {
+  height: 35%;
+}
+.mainContainer-lg {
+  height: 25%;
 }

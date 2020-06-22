@@ -9,18 +9,18 @@ export class AdminService {
   constructor(private http: HttpService) { }
 
   getAllUsers() {
-    return this.http.GET('admin/allUsers', '');
+    return this.http.GET('admin/getAllUsers', '');
   }
   getAllBuyers() {
-    return this.http.GET('admin/allBuyers', '');
+    return this.http.GET('admin/getAllBuyers', '');
   }
   getAllSellers() {
-    return this.http.GET('admin/allSellers', '');
+    return this.http.GET('admin/getAllSellers', '');
   }
   getAllBooks() {
-    return this.http.GET('admin/allBooks', '');
+    return this.http.GET('admin/getAllBooks', '');
   }
   getAllBooksForVerigication() {
-    return this.http.GET('admin/allBooksForVerigication', '');
+    return this.http.GET('admin/getAllBooksForVerigication', '');
   }
 }

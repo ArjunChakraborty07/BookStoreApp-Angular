@@ -8,6 +8,8 @@ import { VerificationComponent } from './components/verification/verification.co
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -16,7 +18,8 @@ const routes: Routes = [
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'verification/:token', component: VerificationComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
-  { path: 'admin/:token', component: AdminComponent},
+  { path: 'admin/:token', component: AdminComponent },
+  { path: 'addbook', component: AddBookComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -25,7 +28,13 @@ const routes: Routes = [
   {
     path: 'vendor-dashboard',
     component: VendorDashboardComponent,
-    children: [],
+    children: [
+      { path: '', redirectTo: 'display-books', pathMatch: 'full' },
+      {
+        path: 'display-books',
+        component: DisplayBooksComponent,
+      },
+    ],
   },
 ];
 
@@ -33,6 +42,13 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
-export const routingComponents = [RegisterComponent, DashboardComponent, LoginComponent,
-  ForgotPasswordComponent, VerificationComponent, ResetPasswordComponent, AdminComponent];
+export class AppRoutingModule {}
+export const routingComponents = [
+  RegisterComponent,
+  DashboardComponent,
+  LoginComponent,
+  ForgotPasswordComponent,
+  VerificationComponent,
+  ResetPasswordComponent,
+  AdminComponent,
+];

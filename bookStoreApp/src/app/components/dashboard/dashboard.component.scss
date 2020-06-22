@@ -1,8 +1,30 @@
 .dashboard{
     width:92%;
     margin-left: 4%;
+   
     
 }
+.left{
+    float: right;
+    height:-10px;
+    width: 15%;
+    margin-top: -47%;
+    margin-left: 40px;
+    border-color: white;
+}
+.mat-icon{
+    color: white;
+
+}
+
+.box{
+    width: 100%;
+    height: 100%;  
+     padding: 25%;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+}
+
 .logo{
     position: absolute;
     color:aliceblue;
@@ -24,7 +46,7 @@
 }
 .tool{
     height: 55px;
-    background-color: rgb(114, 10, 10);
+    background-color: rgb(179, 59, 59);
     
 }
 .mattool{
@@ -57,7 +79,7 @@ span{
     color:aliceblue;
 }
 .login{
-    margin-left: 8%;
+    margin-left: 6%;
     background-color: none;
     outline: none;
     color:aliceblue;

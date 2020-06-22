@@ -14,7 +14,7 @@ export class GetallusersComponent implements OnInit {
 
   ngOnInit() {
     this.service.getAllUsers().subscribe((data: any) => {
-      this.users = data;
+      this.users = data.data;
       console.log(data);
     });
   }
