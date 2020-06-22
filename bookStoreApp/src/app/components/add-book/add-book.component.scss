@@ -1,6 +1,7 @@
 mat-card {
   width: 100%;
   height: fit-content;
+  overflow: auto;
 }
 .titleInput,
 .authorInput,
@@ -19,5 +20,12 @@ mat-toolbar {
 }
 button {
   background-color: brown;
+  outline: none;
+}
+mat-error {
+  font-size: x-small;
+}
+.fileButton {
+  // width: 50%;
   outline: none;
 }

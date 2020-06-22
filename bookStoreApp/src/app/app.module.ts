@@ -39,7 +39,11 @@ import { LoginComponent } from './components/login/login.component';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
+
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+
+import { VendorService } from 'src/services/vendor.service';
+
 
 @NgModule({
   declarations: [
@@ -81,8 +85,11 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     FlexLayoutModule,
     MatCheckboxModule,
   ],
+
   entryComponents:[EditProfileComponent],
-  providers: [UserService, EncrDecrService, HttpService],
+ 
+  providers: [UserService, EncrDecrService, HttpService, VendorService],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
