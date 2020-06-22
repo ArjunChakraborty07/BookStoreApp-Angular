@@ -4,7 +4,7 @@ export class User {
     name: any;
     userName: any;
     password: any;
-    phone: any;
+    mobileNumber: any;
     role: any;
     isVerify: any;
 }
