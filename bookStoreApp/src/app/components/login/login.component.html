@@ -9,21 +9,21 @@
           <mat-label>Username</mat-label>
           <input
             type="text"
-            formControlName="username"
+            formControlName="loginid"
             placeholder="username" 
             rows="3"
             maxlength="300"
             matInput
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+            [ngClass]="{ 'is-invalid': submitted && f.loginid.errors }"
           />
           <mat-icon matSuffix>account_circle</mat-icon>
-          <mat-error *ngIf="LoginForm.get('username').hasError('required')"
+          <mat-error *ngIf="LoginForm.get('loginid').hasError('required')"
             >*username is required</mat-error
           >
-          <mat-error *ngIf="LoginForm.get('username').hasError('minlength')"
+          <mat-error *ngIf="LoginForm.get('loginid').hasError('minlength')"
             >*provide minimum 4 characters</mat-error
           >
-          <mat-error *ngIf="LoginForm.get('username').hasError('maxlength')"
+          <mat-error *ngIf="LoginForm.get('loginid').hasError('maxlength')"
             >provide less than 15 characters</mat-error
           > </mat-form-field
         ><br />
@@ -55,17 +55,15 @@
           <div class="right">
             <button mat-button   [routerLink]="['/forgotpassword']">forgot password?</button>
            </div>
-        <mat-radio-group formControlName="role">
+        <mat-radio-group formControlName="userroles">
         <mat-radio-button value="vendor">vendor</mat-radio-button>
           <mat-radio-button style="margin-left: 5px;" value="customer">customer</mat-radio-button>
-          <mat-error *ngIf="LoginForm.get('role').hasError('required')">*role is required</mat-error>
+          <mat-error *ngIf="LoginForm.get('userroles').hasError('required')">*role is required</mat-error>
          </mat-radio-group><br />
           <div class="left">
-          <button mat-button   [routerLink]="['/register']">Register</button>      <button mat-raised-button type="submit">Next</button>
+          <button mat-button   [routerLink]="['/register']">Register</button>      <button mat-raised-button mat-dialog-close type="submit">Next</button>
           </div>
          </mat-card><br/>
       </div>
   </form>
 </div>
-
-

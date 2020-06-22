@@ -44,6 +44,12 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
 
 
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+
+import { VendorService } from 'src/services/vendor.service';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +64,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
     VendorDashboardComponent,
     AddBookComponent,
     DisplayBooksComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +90,11 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
     FlexLayoutModule,
     MatCheckboxModule,
   ],
-  providers: [UserService, EncrDecrService, HttpService],
+
+  entryComponents: [EditProfileComponent],
+
+  providers: [UserService, EncrDecrService, HttpService, VendorService],
+
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
