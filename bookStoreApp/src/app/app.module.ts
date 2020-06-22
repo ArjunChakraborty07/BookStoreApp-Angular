@@ -39,6 +39,7 @@ import { LoginComponent } from './components/login/login.component';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import { VendorService } from 'src/services/vendor.service';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
     FlexLayoutModule,
     MatCheckboxModule,
   ],
-  providers: [UserService, EncrDecrService, HttpService],
+  providers: [UserService, EncrDecrService, HttpService, VendorService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
