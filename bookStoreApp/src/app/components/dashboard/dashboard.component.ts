@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,16 @@ export class DashboardComponent implements OnInit {
 
   searchBook: string;
   books: any;
-  constructor(private service: DashboardService, private router: Router) { }
+  constructor(private service: DashboardService, private router: Router,public dialog: MatDialog) { }
+  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '40%',
+      height:'90%'
+      
+      
+    });
+  }
 
   ngOnInit() {
   }
