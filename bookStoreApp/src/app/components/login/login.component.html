@@ -56,8 +56,9 @@
             <button mat-button   [routerLink]="['/forgotpassword']">forgot password?</button>
            </div>
         <mat-radio-group formControlName="userroles">
+        <mat-radio-button value="admin">Admin</mat-radio-button>
         <mat-radio-button value="vendor">vendor</mat-radio-button>
-          <mat-radio-button style="margin-left: 5px;" value="customer">customer</mat-radio-button>
+          <mat-radio-button value="customer">customer</mat-radio-button>
           <mat-error *ngIf="LoginForm.get('userroles').hasError('required')">*role is required</mat-error>
          </mat-radio-group><br />
           <div class="left">
