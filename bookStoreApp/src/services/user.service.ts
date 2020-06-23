@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
 import { ResetPassword } from 'src/models/reset-password.model';
+import { User } from 'src/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,16 @@ import { ResetPassword } from 'src/models/reset-password.model';
 export class UserService {
 
   constructor(private http: HttpService) { }
-
   public register(user: any): Observable<any> {
     console.log(user);
-    return this.http.POST('user/register', user, '');
+    return this.http.POST('users/register', user, '');
   }
 
   forgotPassword(email: string): Observable<any> {
-    console.log(email);
-    const params = new HttpParams().set('emailId', email);
-    return this.http.PUT('user/forgotpassword', email, params);
+    console.log('mail to be sent:', email);
+    const params = new HttpParams().set('email', email);
+    return this.http.PUT('users/forgotpassword', email, params);
+    // return this.http.PUT('users/forgotpassword',email,'');
   }
 
   resetPassword(password: ResetPassword, authorization: string): Observable<any> {
@@ -33,6 +34,10 @@ export class UserService {
   }
 
   public login(login: any): Observable<any> {
-    return this.http.POST('user/login', login, '');
+    return this.http.POST('users/login', login, '');
+  }
+  uploadProfie(file: FormData) {
+    console.log('IN USERSERVICE TO UPLOAD IMAGE:', file);
+    return this.http.POST('users/uploadimage', file, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
 }

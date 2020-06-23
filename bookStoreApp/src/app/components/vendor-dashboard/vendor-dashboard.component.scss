@@ -1,18 +1,17 @@
-.container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+.toolBarDiv {
+  position: fixed;
 }
 mat-toolbar {
   width: 100%;
   background-color: brown;
-  height: 10%;
+  top: 0;
+  position: fixed;
+  z-index: 100;
 }
 .search-mat-card {
   width: 40%;
   height: 60%;
   padding: 0px;
-  //   height: 10%;
 }
 .searchIcon {
   opacity: 0.5;
@@ -21,7 +20,6 @@ mat-toolbar {
   opacity: 1;
 }
 .searchInput {
-  //   height: 70%;
   height: 90%;
   width: 90%;
   border: none;
@@ -35,9 +33,11 @@ mat-toolbar {
   color: white;
 }
 .accountIcon {
+  margin-left: 10%;
+  font-size: 200%;
   opacity: 0.5;
 }
-accountIcon:hover {
+.accountIcon:hover {
   opacity: 1;
 }
 button {
@@ -66,20 +66,19 @@ button {
 .subSellingSpan {
   font-weight: 500;
 }
-.contentDiv {
-  width: 100%;
-  height: 90%;
-}
 .mainContent {
   width: 100%;
   height: 40%;
-  // position: fixed;
-  // background: none;
-  background-image: url('../../../assets/images/bookstore-wallpaper2.jpg');
 }
 .mainContainer-lt-md {
+  width: 100%;
   height: 35%;
+  margin-top: 50px;
+  background-image: url("../../../assets/images/bookstore-wallpaper2.jpg");
 }
 .mainContainer-lg {
+  width: 100%;
   height: 25%;
+  margin-top: 50px;
+  background-image: url("../../../assets/images/bookstore-wallpaper2.jpg");
 }

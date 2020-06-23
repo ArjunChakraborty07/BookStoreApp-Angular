@@ -11,4 +11,16 @@ export class AdminService {
   getAllUsers() {
     return this.http.GET('admin/getAllUsers', '');
   }
+  getAllBuyers() {
+    return this.http.GET('admin/getAllBuyers', '');
+  }
+  getAllSellers() {
+    return this.http.GET('admin/getAllSellers', '');
+  }
+  getAllBooks() {
+    return this.http.GET('admin/getAllBooks', '');
+  }
+  getAllBooksForVerigication() {
+    return this.http.GET('admin/getAllBooksForVerigication', '');
+  }
 }

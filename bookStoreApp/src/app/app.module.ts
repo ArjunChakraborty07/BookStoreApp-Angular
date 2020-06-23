@@ -28,16 +28,28 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from 'src/services/encr-decr.service';
 
+
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AdminComponent } from './components/admin/admin.component';
 import { GetallusersComponent } from './components/getallusers/getallusers.component';
+
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpService } from 'src/services/http.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
+
 import { AddBookComponent } from './components/add-book/add-book.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
+
+
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+
+import { VendorService } from 'src/services/vendor.service';
+import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +64,9 @@ import { AddBookComponent } from './components/add-book/add-book.component';
     GetallusersComponent,
     VendorDashboardComponent,
     AddBookComponent,
+    DisplayBooksComponent,
+    EditProfileComponent,
+    GetallbooksComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +92,11 @@ import { AddBookComponent } from './components/add-book/add-book.component';
     FlexLayoutModule,
     MatCheckboxModule,
   ],
-  providers: [UserService, EncrDecrService, HttpService],
+
+  entryComponents: [EditProfileComponent],
+
+  providers: [UserService, EncrDecrService, HttpService, VendorService],
+
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

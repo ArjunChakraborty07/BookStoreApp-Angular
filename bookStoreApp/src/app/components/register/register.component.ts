@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
       alert('Phone Number should be digits only');
     } else {
       if (this.buyer) {
-        this.bvalue = 1;
+        this.bvalue = 3;
       } else {
         this.bvalue = 0;
       }
@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
         name: this.name.value,
         mobileNumber: this.phone.value,
         password: this.password.value,
-        username: this.username.value,
+        userName: this.username.value,
         role: this.bvalue + this.svalue
       };
       this.service.register(data).subscribe((response: any) => {

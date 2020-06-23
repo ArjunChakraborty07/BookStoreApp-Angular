@@ -13,7 +13,7 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Email Id</mat-label>
-            <input matInput [formControl]="email" type="email" placeholder="Email Id" class="input" />
+            <input matInput maxlength="35" [formControl]="email" placeholder="Email Id" class="input" />
             <mat-icon matSuffix>email</mat-icon>
             <mat-hint *ngIf="email.hasError('email')">Ex: abc@gmail.com</mat-hint>
         </mat-form-field>

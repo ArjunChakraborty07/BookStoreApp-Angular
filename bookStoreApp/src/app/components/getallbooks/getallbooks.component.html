@@ -1,0 +1,26 @@
+
+
+
+<div class="row">
+    <div class="main-div" fxLayoutAlign="space-around center"  *ngFor="let book of books"  >
+      <mat-card>
+          <div class="bookImageDiv" fxLayoutAlign="center">
+            <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+          </div>
+          <div class="bookInfoDiv" fxLayout="column">
+            <mat-card-content>
+              <div class="a">
+                <mat-card-title>{{book.bookName}}</mat-card-title>    
+              <mat-card-subtitle>By {{book.authorName}}</mat-card-subtitle>
+               </div>
+              <div class="price"> Rs.{{book.price}}</div> 
+              </mat-card-content>
+              <div class="left">
+                <button mat-raised-button color="primary">ADD</button>   <button mat-stroked-button>WISHLIST</button>
+              </div>
+              </div>
+        </mat-card>
+      </div>
+      </div>
+      
+    

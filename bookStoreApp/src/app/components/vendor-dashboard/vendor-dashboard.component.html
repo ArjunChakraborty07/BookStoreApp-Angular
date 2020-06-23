@@ -1,40 +1,82 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="space-around center">
-  <span class="titleText">BookStore</span>
-  <mat-card
-    class="search-mat-card"
-    fxLayout="row"
-    fxLayoutAlign="space-around center"
-  >
-    <button mat-icon-button [disableRipple]="true" matTooltip="search">
-      <mat-icon class="searchIcon">search</mat-icon>
-    </button>
-    <input class="searchInput" type="text" placeholder="Search..." />
-  </mat-card>
-  <button mat-icon-button matTooltip="Account" [disableRipple]="true">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar>
-<div class="contentDiv">
-  <mat-card
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxLayoutGap="1%"
-    class="mainContent"
-    ngClass.lt-md="mainContainer-lt-md
-      "
-    ngClass.gt-sm="mainContainer-lg"
-  >
-    <span class="mainSellingSpan">Start Selling Books-Online</span>
-    <span class="subSellingSpan">Sell On BookStore</span>
+<div style="width: 100%; height: 100%;">
+  <div>
+    <mat-toolbar fxLayout="row" fxLayoutAlign="space-around center">
+      <span class="titleText">BookStore</span>
+      <mat-card
+        class="search-mat-card"
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <button mat-icon-button [disableRipple]="true" matTooltip="search">
+          <mat-icon class="searchIcon">search</mat-icon>
+        </button>
+        <input class="searchInput" type="text" placeholder="Search..." />
+      </mat-card>
+      <button mat-icon-button matTooltip="Account" [disableRipple]="true">
+        <mat-icon class="accountIcon" [matMenuTriggerFor]="profileMenu"
+          >account_circle</mat-icon
+        >
+      </button>
+      <mat-menu #profileMenu="matMenu" yPosition="below">
+        <div fxLayoutAlign="center" style="padding: 2%;">
+          <img mat-card-avatar src="djfslfkj" />
+        </div>
+        <div class="usertext" fxLayout="column" fxLayoutAlign="center">
+          <span fxLayoutAlign="center" style="font-weight: bold;"
+            >Sai Datta</span
+          >
+          <span fxLayoutAlign="center" style="padding: 2%; font-weight: bold;"
+            >saidatta1432015@gmail.com</span
+          >
+        </div>
+        <div fxLayout="column" fxLayoutGap="4%">
+          <div fxLayoutAlign="center">
+            <button
+              style="background-color: brown; color: white;"
+              class="edit"
+              mat-raised-button
+              [disableRipple]="true"
+              class="editbutton"
+            >
+              Edit Profile
+            </button>
+          </div>
 
-    <button
-      mat-raised-button
-      class="addBookButton"
-      fxLayoutAlign="center"
-      [disableRipple]="true"
-      (click)="openBookForm()"
+          <div class="logout" fxLayoutAlign="center">
+            <button
+              id="logout"
+              mat-raised-button
+              [disableRipple]="true"
+              style="background-color: brown; color: white;"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </mat-menu>
+    </mat-toolbar>
+    <mat-card
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="1%"
+      ngClass.lt-md="mainContainer-lt-md
+      "
+      ngClass.gt-sm="mainContainer-lg"
     >
-      <span class="bookText">Add Book</span>
-    </button>
-  </mat-card>
+      <span class="mainSellingSpan">Start Selling Books-Online</span>
+      <span class="subSellingSpan">Sell On BookStore</span>
+
+      <button
+        mat-raised-button
+        class="addBookButton"
+        fxLayoutAlign="center"
+        [disableRipple]="true"
+        (click)="openBookForm()"
+      >
+        <span class="bookText">Add Book</span>
+      </button>
+    </mat-card>
+  </div>
+
+  <router-outlet></router-outlet>
 </div>
