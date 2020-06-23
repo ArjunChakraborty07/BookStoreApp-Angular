@@ -18,9 +18,10 @@ export class UserService
   }
 
   forgotPassword(email: string): Observable<any> {
-    console.log(email);
-    const params = new HttpParams().set('emailId', email);
-    return this.http.PUT('forgotpassword', email, params);
+    console.log("mail to be sent:",email);
+    const params = new HttpParams().set('email', email);
+    return this.http.PUT('users/forgotpassword', email, params);
+    //return this.http.PUT('users/forgotpassword',email,'');
   }
 
   resetPassword(password: ResetPassword, authorization: string): Observable<any> {

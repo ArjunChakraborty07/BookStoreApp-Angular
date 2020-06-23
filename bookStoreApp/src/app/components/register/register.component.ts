@@ -65,12 +65,12 @@ export class RegisterComponent implements OnInit {
       alert('Phone Number should be digits only');
     } else {
       if (this.buyer) {
-        this.bvalue = 2;
+        this.bvalue = 3;
       } else {
         this.bvalue = 0;
       }
       if (this.seller) {
-        this.svalue = 1;
+        this.svalue = 2;
       } else {
         this.svalue = 0;
       }
