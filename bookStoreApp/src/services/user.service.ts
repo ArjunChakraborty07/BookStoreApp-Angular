@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
 import { ResetPassword } from 'src/models/reset-password.model';
@@ -19,17 +19,17 @@ export class UserService {
   forgotPassword(email: string): Observable<any> {
     console.log(email);
     const params = new HttpParams().set('emailId', email);
-    return this.http.PUT('forgotpassword', email, params);
+    return this.http.PUT('user/forgotpassword', email, params);
   }
 
   resetPassword(password: ResetPassword, authorization: string): Observable<any> {
     const token = '';
-    return this.http.PUT('resetpassword' + authorization, password, token);
+    return this.http.PUT('user/resetpassword' + authorization, password, token);
   }
 
   verification(authorization: string) {
     const token = '';
-    return this.http.GET('verification' + authorization, token);
+    return this.http.GET('user/verify' + authorization, token);
   }
 
   public login(login: any): Observable<any> {
