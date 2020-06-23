@@ -53,7 +53,7 @@
           <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')">provide password less than 12 characters</mat-error> 
           </mat-form-field>
           <div class="right">
-            <button mat-button   [routerLink]="['/forgotpassword']">forgot password?</button>
+            <button mat-button   mat-dialog-close [routerLink]="['/forgotpassword']">forgot password?</button>
            </div>
         <mat-radio-group formControlName="userroles">
         <mat-radio-button value="admin">Admin</mat-radio-button>

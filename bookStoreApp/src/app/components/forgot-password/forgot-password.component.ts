@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { UserService } from 'src/services/user.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -10,7 +11,7 @@ import { UserService } from 'src/services/user.service';
 export class ForgotPasswordComponent implements OnInit {
 
 
-  constructor(private userService: UserService, private snackBar: MatSnackBar) { }
+  constructor(private userService: UserService, private snackBar: MatSnackBar,private router: Router) { }
 
   forgotPasswordForm = new FormGroup({
     emailId: new FormControl('', [Validators.required, Validators.email])
@@ -28,12 +29,12 @@ export class ForgotPasswordComponent implements OnInit {
     this.userService.forgotPassword(this.emailId.value).subscribe(
       (response: any) => {
         console.log(response);
-        if (response.statusCode === 200) {
+        if (response.statusCode === 201) {
           console.log('Verifivation link send to your mailid,please your check mail');
           this.snackBar.open(response.message, 'ok', { duration: 5000 });
           console.log(response.object);
-          localStorage.setItem('token', response.object);
-
+          localStorage.setItem('forgotoken', response.object);
+          this.router.navigate(['resetpassword/:token'])
         }
       }, (error: any) => {
         console.log(error);

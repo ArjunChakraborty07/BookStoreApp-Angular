@@ -41,10 +41,16 @@ export class DashboardComponent implements OnInit {
        this.login=true;
        this.username=localStorage.getItem('name');
        this.usermail=localStorage.getItem('email');
-       if(localStorage.getItem('image').length===0)
-         this.profile="./assets/images/user.png";
-       else
-         this.profile=localStorage.getItem("image");
+       if(localStorage.getItem('image').length!==0)
+       {
+          this.profile=localStorage.getItem("image");
+       }
+       if(localStorage['image']===undefined || localStorage['image']===0 || localStorage['image']===null || localStorage['image']===false || localStorage['image']==='')
+       {
+        console.log("image length",localStorage.getItem('image').length);
+        this.profile="./assets/images/user.png";
+       }
+         
      }
   }
   openDialogztoedit()
@@ -97,9 +103,12 @@ export class DashboardComponent implements OnInit {
       console.log("FormData:",formData.get('file'));
       this.userService.uploadProfie(formData).subscribe((result:any)=>{
       console.log("PROFILE RESULT:",result);
-      localStorage.setItem("image",result.data['imageUrl']);
-      this.profile=result.data.imageUrl;
-      console.log(this.profile)
+      if(result.status===200)
+      {
+        localStorage.setItem("image",result.data);
+        this.profile=result.data;
+        console.log(this.profile)
+      }
       });
     }
   }

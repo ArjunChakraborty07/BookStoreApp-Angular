@@ -113,7 +113,18 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email',response.data['email']);
         localStorage.setItem('mobile',response.data['mobileNumber']);
         localStorage.setItem('status',response.data['userStatus']);
-        this.router.navigate(['/dashboard']);
+        if(this.role1===3)
+        {
+          this.router.navigate(['/dashboard']);
+        }
+        if(this.role1===1)
+        {
+          this.router.navigate(['admin/:token']);
+        }
+        if(this.role1===2)
+        {
+          this.router.navigate(['vendor-dashboard']);
+        }
         this.logsuccess=true;
         //console.log('user has been successfully logged in:');
         this.snackBar.open(response.message, 'ok', { duration: 5000 });
