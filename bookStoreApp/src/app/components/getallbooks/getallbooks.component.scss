@@ -1,0 +1,97 @@
+.main-div {
+    margin-top:-24%;
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+    padding-bottom: 27%;
+
+   }
+   .row {margin: 0 -30%;}
+   
+   .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .main-div {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+}
+
+.mat-card {
+width: 220px;
+padding: 0%;
+}
+.mat-card:hover {
+box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+0 6px 20px 0 rgba(29, 29, 29, 0.19);
+  }
+  
+  
+  .mat-card-title{
+      font-size: 14px;
+  }
+  .mat-card-subtitle{
+      font-size: 11px;
+  }
+  
+  .price{
+      font-size: 12px;
+      color: black;
+      font-weight: bold;
+      margin-top: -10px;
+      
+  }
+  
+  .bookImageDiv {
+    background-color: rgb(240, 233, 233);
+  }
+  
+  .a{
+      line-height: normal;
+  }
+  
+ img {
+    padding: 10%;
+    //   width: 80%;
+    //   height: 30vh;
+    width: 140px;
+    height: 160px;
+  }
+  .bookInfoDiv {
+    padding: 7% 10% 10% 10%;
+  }
+  
+  
+  
+  .mat-raised-button {
+    height: 26px;
+    width: 78px;
+    font-size: 13px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    font-weight: 100;
+    background-color: brown;
+    color: white;
+    margin-right: 11%;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .mat-stroked-button{
+      font-weight: 100;
+      font-size: 13px;
+      padding-bottom: 30px;
+      height: 26px;
+      width: 78px;
+      background-color: whitesmoke;
+      color: black;
+      text-align: center;
+      display: inline-block;
+  }
+  
+  
