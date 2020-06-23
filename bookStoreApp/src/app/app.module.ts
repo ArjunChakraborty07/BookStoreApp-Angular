@@ -47,6 +47,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 import { VendorService } from 'src/services/vendor.service';
+import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 
 
 
@@ -65,6 +66,7 @@ import { VendorService } from 'src/services/vendor.service';
     AddBookComponent,
     DisplayBooksComponent,
     EditProfileComponent,
+    GetallbooksComponent,
   ],
   imports: [
     BrowserModule,
