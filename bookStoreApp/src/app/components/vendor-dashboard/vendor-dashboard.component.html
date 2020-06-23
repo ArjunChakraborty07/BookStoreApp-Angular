@@ -13,8 +13,47 @@
         <input class="searchInput" type="text" placeholder="Search..." />
       </mat-card>
       <button mat-icon-button matTooltip="Account" [disableRipple]="true">
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon class="accountIcon" [matMenuTriggerFor]="profileMenu"
+          >account_circle</mat-icon
+        >
       </button>
+      <mat-menu #profileMenu="matMenu" yPosition="below">
+        <div fxLayoutAlign="center" style="padding: 2%;">
+          <img mat-card-avatar src="djfslfkj" />
+        </div>
+        <div class="usertext" fxLayout="column" fxLayoutAlign="center">
+          <span fxLayoutAlign="center" style="font-weight: bold;"
+            >Sai Datta</span
+          >
+          <span fxLayoutAlign="center" style="padding: 2%; font-weight: bold;"
+            >saidatta1432015@gmail.com</span
+          >
+        </div>
+        <div fxLayout="column" fxLayoutGap="4%">
+          <div fxLayoutAlign="center">
+            <button
+              style="background-color: brown; color: white;"
+              class="edit"
+              mat-raised-button
+              [disableRipple]="true"
+              class="editbutton"
+            >
+              Edit Profile
+            </button>
+          </div>
+
+          <div class="logout" fxLayoutAlign="center">
+            <button
+              id="logout"
+              mat-raised-button
+              [disableRipple]="true"
+              style="background-color: brown; color: white;"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </mat-menu>
     </mat-toolbar>
     <mat-card
       fxLayout="column"

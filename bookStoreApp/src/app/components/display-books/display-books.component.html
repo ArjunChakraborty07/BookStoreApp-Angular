@@ -14,6 +14,7 @@
       <div class="bookImageDiv" fxLayoutAlign="center">
         <img src="../../../assets/images/bookstore-wallpaper.jpg" />
       </div>
+
       <div class="bookInfoDiv" fxLayout="column">
         <input
           class="input-title"
@@ -23,7 +24,7 @@
           [(ngModel)]="book.bookName"
         />
         <div fxlayout="row">
-          <span class="input-author">by</span>
+          <span class="input-author-span">by</span>
           <input
             class="input-author"
             matInput
@@ -33,7 +34,7 @@
           />
         </div>
         <div fxlayout="row">
-          <span class="input-price">Rs.</span>
+          <span class="input-price-span">Rs.</span>
           <input
             class="input-price"
             matInput
