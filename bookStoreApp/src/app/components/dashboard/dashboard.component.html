@@ -1,69 +1,106 @@
 <div class="dashboard">
-    <span class="logo" (click)="onBookStore()">BookStore</span>
-    <span class="cartname">Cart</span>
-    <mat-toolbar class=" tool">
-        <mat-card class="mattool">           
-        </mat-card>
-            <button mat-icon-button class="mysearch" (click)="onSearch()" mattooltip="Search">
-                <mat-icon>search</mat-icon>
-            </button>    
+  <span class="logo" (click)="onBookStore()">BookStore</span>
+  <span class="cartname">Cart</span>
+  <mat-toolbar class="tool">
+    <mat-card class="mattool"> </mat-card>
+    <button
+      mat-icon-button
+      class="mysearch"
+      (click)="onSearch()"
+      mattooltip="Search"
+    >
+      <mat-icon>search</mat-icon>
+    </button>
+    <input
+      class="input"
+      type="text"
+      [(ngModel)]="searchBook"
+      name="searchBook"
+      matInput
+      placeholder="Search"
+    />
+    <button
+      class="cart"
+      mat-icon-button
+      (click)="onCart()"
+      matTooltip="Cart"
+    ></button
+    ><br />
+    <mat-icon>shopping_cart</mat-icon>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="signoutmenu"
+      disableRipple
+      style="outline: none;"
+    >
+      <img mat-card-avatar [src]="profile" alt="profile" class="profile" />
+    </button>
+    <mat-menu
+      #signoutmenu="matMenu"
+      (click)="$event.stopPropagation()"
+      class="profilemenu"
+      xPosition="after"
+      yPosition="below"
+    >
+      <div *ngIf="login; then loginblock; else notloggedblock"></div>
+      <ng-template #loginblock>
+        <div>
+          <img mat-card-avatar [src]="profile" class="pic" />
+          <div class="upload-img">
+            <label for="file-input">
+              <mat-icon class="icon">camera_alt</mat-icon>
+            </label>
             <input
-                class="input"
-                type="text"
-                [(ngModel)]="searchBook"
-                name="searchBook"
-                matInput placeholder="Search"/>
-        <button class="cart" mat-icon-button   (click)="onCart()" matTooltip="Cart"></button><br> <mat-icon>shopping_cart</mat-icon> 
-        <button mat-icon-button [matMenuTriggerFor]="signoutmenu"  disableRipple style="outline: none;">
-            <img mat-card-avatar [src]='profile' alt="profile" class="profile">
-        </button>
-        <mat-menu #signoutmenu="matMenu" (click)="$event.stopPropagation();" class="profilemenu" xPosition="after" yPosition="below">
-            <div *ngIf="login; then loginblock; else notloggedblock"></div>
-            <ng-template #loginblock>
-                <div>
-                    <img mat-card-avatar [src]='profile' class="pic">
-                    <div class="upload-img">
-                        <label for="file-input">
-                            <mat-icon class="icon">camera_alt</mat-icon>
-                        </label>
-                        <input type="file" (change)="OnSelectedFile($event)" class="fileuploadbtn" id="file-input"/>
-                    </div>
-                </div>
-                 <div class="usertext">
-                    <div class="mat-subheading-1">{{this.username}}</div>
-                    <div class="mat-subheading-1">{{this.usermail}}</div><br/>
-                </div>
-                <mat-divider></mat-divider><br/>
-                <div class="editprofile">
-                    <button class="edit" mat-raised-button class="editbutton" (click)="openDialogztoedit()">Edit Profile</button>
-                </div><br/>
-                <mat-divider></mat-divider>
-                <div class="logout">
-                    <button id="logout" mat-button (click)="Logout()">Sign Out</button>
-                </div>
-            </ng-template>
-            <ng-template #notloggedblock>
-                <i><div class="mat-headline">WelCome To Online</div>
-                <div class="mat-headline">Book Store</div></i><br/>
-                <mat-divider></mat-divider><br/>
-                <button mat-button class="signup" (click)="onsignup()">SignUp</button><br/><br/>
-                <button mat-button class="log" (click)="openDialog()">Login</button>
-            </ng-template>
-        </mat-menu>
-        <mat-icon>camera_alt</mat-icon>
-    </mat-toolbar>
-    <div class="box">
+              type="file"
+              (change)="OnSelectedFile($event)"
+              class="fileuploadbtn"
+              id="file-input"
+            />
+          </div>
+        </div>
+        <div class="usertext">
+          <div class="mat-subheading-1">{{ this.username }}</div>
+          <div class="mat-subheading-1">{{ this.usermail }}</div>
+          <br />
+        </div>
+        <mat-divider></mat-divider><br />
+        <div class="editprofile">
+          <button
+            class="edit"
+            mat-raised-button
+            class="editbutton"
+            (click)="openDialogztoedit()"
+          >
+            Edit Profile
+          </button>
+        </div>
+        <br />
+        <mat-divider></mat-divider>
+        <div class="logout">
+          <button id="logout" mat-button (click)="Logout()">Sign Out</button>
+        </div>
+      </ng-template>
+      <ng-template #notloggedblock>
+        <i
+          ><div class="mat-headline">WelCome To Online</div>
+          <div class="mat-headline">Book Store</div></i
+        ><br />
+        <mat-divider></mat-divider><br />
+        <button mat-button class="signup" (click)="onsignup()">SignUp</button
+        ><br /><br />
+        <button mat-button class="log" (click)="openDialog()">Login</button>
+      </ng-template>
+    </mat-menu>
+    <mat-icon>camera_alt</mat-icon>
+  </mat-toolbar>
+  <div class="box">
     <div class="left">
-       <select matNativeControl required>
-              <option>sort by relevance</option>
-              <option value="">Low to High</option>
-              <option value="">new Arrivals</option>
-            </select>
+      <select matNativeControl required>
+        <option>sort by relevance</option>
+        <option value="">Low to High</option>
+        <option value="">new Arrivals</option>
+      </select>
     </div>
-<app-getallbooks></app-getallbooks>
-
-
-</div>
-
-
+    <app-getallbooks></app-getallbooks>
+  </div>
 </div>
