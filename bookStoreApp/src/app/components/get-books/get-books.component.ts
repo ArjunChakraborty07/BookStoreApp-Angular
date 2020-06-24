@@ -2,23 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/services/admin.service';
 
 @Component({
-  selector: 'app-getallusers',
-  templateUrl: './getallusers.component.html',
-  styleUrls: ['./getallusers.component.scss']
+  selector: 'app-get-books',
+  templateUrl: './get-books.component.html',
+  styleUrls: ['./get-books.component.scss']
 })
-export class GetallusersComponent implements OnInit {
+export class GetBooksComponent implements OnInit {
 
   constructor(private service: AdminService) { }
 
-  profile =  './assets/images/user.png';
+  profile: './assets/images/user.png';
   users: any;
 
   ngOnInit() {
-    this.service.getAllUsers().subscribe((data: any) => {
+    this.service.getAllBooks().subscribe((data: any) => {
       this.users = data.data;
       console.log(data);
     });
-
   }
 
 }

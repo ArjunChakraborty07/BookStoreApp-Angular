@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/services/admin.service';
 
 @Component({
-  selector: 'app-getallusers',
-  templateUrl: './getallusers.component.html',
-  styleUrls: ['./getallusers.component.scss']
+  selector: 'app-get-all-buyers',
+  templateUrl: './get-all-buyers.component.html',
+  styleUrls: ['./get-all-buyers.component.scss']
 })
-export class GetallusersComponent implements OnInit {
+export class GetAllBuyersComponent implements OnInit {
 
   constructor(private service: AdminService) { }
 
@@ -14,11 +14,10 @@ export class GetallusersComponent implements OnInit {
   users: any;
 
   ngOnInit() {
-    this.service.getAllUsers().subscribe((data: any) => {
+    this.service.getAllBuyers().subscribe((data: any) => {
       this.users = data.data;
       console.log(data);
     });
-
   }
 
 }
