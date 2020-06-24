@@ -17,14 +17,18 @@ export class VendorService {
 
   addBook(formGroup: FormGroup): Observable<any> {
     return this.http.post(
-      environment.baseUrl + this.addBookApi + localStorage.getItem('token'),
-      formGroup
+      environment.baseUrl + this.addBookApi,
+      formGroup,{
+         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      }
     );
   }
 
   displayBooks(): Observable<any> {
     return this.http.get(
-      environment.baseUrl + this.displayBookApi + localStorage.getItem('token')
+      environment.baseUrl + this.displayBookApi ,{
+         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      }
     );
   }
 
@@ -32,9 +36,9 @@ export class VendorService {
     return this.http.delete(
       environment.baseUrl +
         this.deleteBookApi +
-        bookId +
-        '/' +
-        localStorage.getItem('token')
+        bookId ,{
+         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      }
     );
   }
 }

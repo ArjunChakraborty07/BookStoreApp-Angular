@@ -56,11 +56,25 @@ img {
 .input-author {
   height: 20px;
   font-size: xx-small;
-
+  border: none;
+  outline: none;
+}
+.input-author-span {
+  padding-left: 1%;
+  height: 20px;
+  font-size: xx-small;
   border: none;
   outline: none;
 }
 .input-price {
+  height: 20px;
+  font-size: x-small;
+  font-weight: 500;
+  border: none;
+  outline: none;
+}
+.input-price-span {
+  padding-left: 1%;
   height: 20px;
   font-size: x-small;
   font-weight: 500;

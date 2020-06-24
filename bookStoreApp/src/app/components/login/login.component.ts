@@ -75,13 +75,25 @@ export class LoginComponent implements OnInit {
      else {
        this.roles=2;
      }*/
-    this.roles = this.LoginForm.get('userroles').value.localeCompare('vendor');
-    if (this.roles == 0) {
+    // console.log("user role:",this.LoginForm.get('userroles').value);
+    if (this.LoginForm.get('userroles').value.localeCompare('admin') === 0) {
       this.role1 = 1;
-    } else {
+    }
+    if (this.LoginForm.get('userroles').value.localeCompare('vendor') === 0) {
       this.role1 = 2;
     }
-    // console.log("ROLE:",this.role1);
+    if (this.LoginForm.get('userroles').value.localeCompare('customer') === 0) {
+      this.role1 = 3;
+    }
+    /*if(this.roles==0)
+    {
+      this.role1=1;
+    }
+   else
+    {
+       this.role1=2;
+   }*/
+    console.log('ROLE:', this.role1);
     const data = {
       loginId: this.LoginForm.get('loginid').value,
       password: this.LoginForm.get('password').value,
@@ -91,16 +103,24 @@ export class LoginComponent implements OnInit {
     this.userService.login(data).subscribe((response: any) => {
       console.log('LOGIN COMPONENT:', response);
       if (response.status === 200) {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('image', response.data.imageUrl);
-        localStorage.setItem('name', response.data.name);
-        localStorage.setItem('username', response.data.userName);
-        localStorage.setItem('email', response.data.email);
-        localStorage.setItem('mobile', response.data.mobileNumber);
-        localStorage.setItem('status', response.data.userStatus);
-        this.router.navigate(['/dashboard']);
+        localStorage.setItem('token', response['token']);
+        localStorage.setItem('image', response.data['imageUrl']);
+        localStorage.setItem('name', response.data['name']);
+        localStorage.setItem('username', response.data['userName']);
+        localStorage.setItem('email', response.data['email']);
+        localStorage.setItem('mobile', response.data['mobileNumber']);
+        localStorage.setItem('status', response.data['userStatus']);
+        if (this.role1 === 3) {
+          this.router.navigate(['/dashboard']);
+        }
+        if (this.role1 === 1) {
+          this.router.navigate(['admin-dashboard']);
+        }
+        if (this.role1 === 2) {
+          this.router.navigate(['vendor-dashboard']);
+        }
         this.logsuccess = true;
-        // console.log('user has been successfully logged in:');
+        //console.log('user has been successfully logged in:');
         this.snackBar.open(response.message, 'ok', { duration: 5000 });
       }
       (error) => {

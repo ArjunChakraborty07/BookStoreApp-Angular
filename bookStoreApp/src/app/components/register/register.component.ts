@@ -27,7 +27,8 @@ export class RegisterComponent implements OnInit {
   ]));
   username = new FormControl('', Validators.compose([
     Validators.required,
-    Validators.minLength(4)
+    Validators.minLength(4),
+    Validators.pattern(RegExp('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'))
   ]));
   buyer: false;
   seller: false;
@@ -36,8 +37,8 @@ export class RegisterComponent implements OnInit {
   bvalue: any = '';
   svalue: any = '';
   constructor(private service: UserService,
-    private EncrDecr: EncrDecrService,
-    private router: Router) { }
+              private EncrDecr: EncrDecrService,
+              private router: Router) { }
 
   ngOnInit() { }
 
@@ -65,19 +66,19 @@ export class RegisterComponent implements OnInit {
       alert('Phone Number should be digits only');
     } else {
       if (this.buyer) {
-        this.bvalue = 2;
+        this.bvalue = 3;
       } else {
         this.bvalue = 0;
       }
       if (this.seller) {
-        this.svalue = 1;
+        this.svalue = 2;
       } else {
         this.svalue = 0;
       }
       const data = {
         email: this.email.value,
         name: this.name.value,
-        mobileNumber: Number(this.phone.value),
+        mobileNumber: this.phone.value,
         password: this.password.value,
         userName: this.username.value,
         role: this.bvalue + this.svalue

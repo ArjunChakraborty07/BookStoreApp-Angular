@@ -28,19 +28,26 @@ export class DashboardComponent implements OnInit {
               private service: DashboardService,
               private router: Router,
               public dialog: MatDialog) {
-    if (localStorage.length === 0) {
-      this.login = false;
-      this.profile = './assets/images/user.png';
-    } else {
-      this.login = true;
-      this.username = localStorage.getItem('name');
-      this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image').length === 0) {
+     if (localStorage.length === 0) {
+       this.login = false;
+       console.log('note logged');
+       this.profile = './assets/images/user.png';
+     } else {
+       console.log('logged in');
+       this.login = true;
+       this.username = localStorage.getItem('name');
+       this.usermail = localStorage.getItem('email');
+       if (localStorage.getItem('image').length !== 0) {
+          this.profile = localStorage.getItem('image');
+       }
+       if (localStorage.image === undefined || localStorage.image === 0 ||
+        localStorage.image === null || localStorage.image === false ||
+        localStorage.image === '') {
+        console.log('image length', localStorage.getItem('image').length);
         this.profile = './assets/images/user.png';
-      } else {
-        this.profile = localStorage.getItem('image');
-      }
-    }
+       }
+
+     }
   }
   openDialogztoedit() {
     this.dialog.open(EditProfileComponent);
@@ -86,10 +93,12 @@ export class DashboardComponent implements OnInit {
       this.file.inProgress = true;
       console.log('FormData:', formData.get('file'));
       this.userService.uploadProfie(formData).subscribe((result: any) => {
-        console.log('PROFILE RESULT:', result);
-        localStorage.setItem('image', result.data['imageUrl']);
-        this.profile = result.data.imageUrl;
+      console.log('PROFILE RESULT:', result);
+      if (result.status === 200) {
+        localStorage.setItem('image', result.data);
+        this.profile = result.data;
         console.log(this.profile);
+      }
       });
     }
   }

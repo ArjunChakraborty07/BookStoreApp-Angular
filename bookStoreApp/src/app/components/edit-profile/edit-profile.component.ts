@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent implements OnInit {
+  public hide = true;
   profile: string = localStorage.getItem('image');
   username: string = localStorage.getItem('username');
+  password: string;
   usermail: string = localStorage.getItem('email');
   fullname: string = localStorage.getItem('name');
   mobile = localStorage.getItem('mobile');
@@ -15,5 +17,9 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  update() {
+    console.log('to update');
+    console.log(this.fullname);
+    console.log(this.password);
+  }
 }
