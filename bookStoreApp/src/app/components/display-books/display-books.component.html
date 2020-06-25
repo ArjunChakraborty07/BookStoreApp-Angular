@@ -1,39 +1,27 @@
 <div
-  style="
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-bottom: 2%;
-  "
+  class="main-div"
   fxLayoutGap="40px"
-  ngClass.lt-md="main-div-lt-md"
-  fxLayout="row wrap"
+  fxLayout.lt-sm="column"
+  fxLayout.sm="row wrap"
+  fxLayoutAlign.sm="start center"
+  fxLayout.md="row wrap"
+  fxLayoutAlign.md="start center"
+  fxLayoutAlign.lt-sm="center center"
+  fxLayout.lg="row wrap"
+  fxLayoutAlign.lg="start center"
 >
-  <div *ngFor="let book of books" fxLayout="row">
+  <div *ngFor="let book of books" style="margin: 0px;" fxLayout="row">
     <mat-card>
       <div class="bookImageDiv" fxLayoutAlign="center">
-        <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+        <img src="{{ book.image }}" />
       </div>
 
       <div class="bookInfoDiv" fxLayout="column">
-        <input
-          class="input-title"
-          matInput
-          type="text"
-          autocomplete="off"
-          [(ngModel)]="book.bookName"
-        />
-        <div fxlayout="row">
-          <span class="input-author-span">by</span>
-          <input
-            class="input-author"
-            matInput
-            type="text"
-            autocomplete="off"
-            [(ngModel)]="book.authorName"
-          />
+        <div class="input-title">
+          {{ book.bookName }}
         </div>
-        <div fxlayout="row">
+        <div fxlayout="row" class="input-author">by {{ book.authorName }}</div>
+        <div fxlayout="row" (click)="onUpdateBookForm(book)">
           <span class="input-price-span">Rs.</span>
           <input
             class="input-price"
@@ -43,9 +31,17 @@
             [(ngModel)]="book.price"
           />
         </div>
-        <!-- <span class="span-title">Don't make me think</span>
-      <span class="span-author"> by steve krug</span>
-      <span class="span-price"> Rs.1500</span> -->
+        <div fxLayout="row">
+          <span class="input-price">Qty.</span>
+          <input
+            class="input-price"
+            matInput
+            type="text"
+            autocomplete="off"
+            [(ngModel)]="book.quantity"
+            (click)="onUpdateBookForm(book)"
+          />
+        </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <button
             mat-raised-button
@@ -66,7 +62,8 @@
       </div>
     </mat-card>
     <div class="book-details">
-      <span>{{ book.bookDetails }}</span>
+      <h5>Book Details</h5>
+      <span class="input-price">{{ book.bookDetails }}</span>
     </div>
   </div>
 </div>
