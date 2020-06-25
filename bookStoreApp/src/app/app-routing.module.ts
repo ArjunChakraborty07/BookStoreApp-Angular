@@ -10,6 +10,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-dashboard.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import { UpdateBookComponent } from './components/update-book/update-book.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'admin/:token', component: AdminComponent },
   { path: 'addbook', component: AddBookComponent },
+  { path: 'updateBook', component: UpdateBookComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
