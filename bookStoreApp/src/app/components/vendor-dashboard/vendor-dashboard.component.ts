@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material';
 import { AddBookComponent } from '../add-book/add-book.component';
 import { MessageService } from 'src/services/message.service';
 import { UserService } from 'src/services/user.service';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-dashboard',
@@ -12,21 +14,52 @@ import { UserService } from 'src/services/user.service';
 export class VendorDashboardComponent implements OnInit {
   isBookFormOpened = false;
   file: any;
+  profile: string;
+  isProfile = 'true';
+
+  isProfileAvailable = false;
+  login: boolean;
+  username: string;
+  usermail: string;
+  updateStats: any;
+  userProfile: any;
 
   constructor(
     private dialog: MatDialog,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.messageService.changeMessage();
+    this.username = localStorage.getItem('name');
+    this.usermail = localStorage.getItem('email');
+    this.userProfile = localStorage.getItem('image');
+    if (this.userProfile != null) {
+      this.isProfileAvailable = true;
+      this.profile = this.userProfile;
+    } else {
+      console.log(localStorage.getItem('image'));
+      this.isProfileAvailable = false;
+    }
   }
-
+  openDialogztoedit() {
+    this.dialog.open(EditProfileComponent);
+  }
   openBookForm() {
     this.dialog.open(AddBookComponent, {
       panelClass: 'custom-modalbox',
     });
+  }
+  onKey(event: any) {
+    this.messageService.searchBook(event);
+  }
+  Logout() {
+    console.log('CAME TO LOGOUT');
+    localStorage.clear();
+    console.log(localStorage.length);
+    this.router.navigate(['/dashboard']);
   }
   OnSelectedFile(event) {
     console.log(event.target.files[0]);
@@ -36,10 +69,16 @@ export class VendorDashboardComponent implements OnInit {
       formData.append('file', this.file);
       this.file.inProgress = true;
       console.log('FormData:', formData.get('file'));
-      this.userService.uploadProfie(formData).subscribe((result: any) => {
-        console.log('PROFILE RESULT:', result);
-        localStorage.setItem('image', result.data['imageUrl']);
-      });
+      this.userService
+        .uploadProfie(formData, this.isProfile)
+        .subscribe((result: any) => {
+          console.log('PROFILE RESULT:', result);
+          if (result.status === 200) {
+            localStorage.setItem('image', result.data);
+            this.profile = result.data;
+            console.log(this.profile);
+          }
+        });
     }
   }
 }
