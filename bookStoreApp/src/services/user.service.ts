@@ -19,7 +19,7 @@ export class UserService {
     console.log('mail to be sent:', email);
     const params = new HttpParams().set('email', email);
     return this.http.PUT('users/forgotpassword', email, params);
-    //return this.http.PUT('users/forgotpassword',email,'');
+    // return this.http.PUT('users/forgotpassword',email,'');
   }
 
   resetPassword(
@@ -27,12 +27,12 @@ export class UserService {
     authorization: string
   ): Observable<any> {
     const token = '';
-    return this.http.PUT('resetpassword' + authorization, password, token);
+    return this.http.PUT('user/resetpassword' + authorization, password, token);
   }
 
   verification(authorization: string) {
     const token = '';
-    return this.http.GET('verification' + authorization, token);
+    return this.http.GET('user/verify' + authorization, token);
   }
 
   public login(login: any): Observable<any> {

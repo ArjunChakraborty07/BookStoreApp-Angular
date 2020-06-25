@@ -47,8 +47,13 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 import { VendorService } from 'src/services/vendor.service';
+import { GetAllBuyersComponent } from './components/get-all-buyers/get-all-buyers.component';
+import { GetAllSellersComponent } from './components/get-all-sellers/get-all-sellers.component';
+import { GetBooksComponent } from './components/get-books/get-books.component';
+import { GetBooksForVerificationComponent } from './components/get-books-for-verification/get-books-for-verification.component';
 import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
+
 
 
 
@@ -67,6 +72,10 @@ import { UpdateBookComponent } from './components/update-book/update-book.compon
     AddBookComponent,
     DisplayBooksComponent,
     EditProfileComponent,
+    GetAllBuyersComponent,
+    GetAllSellersComponent,
+    GetBooksComponent,
+    GetBooksForVerificationComponent,
     GetallbooksComponent,
     UpdateBookComponent,
   ],
