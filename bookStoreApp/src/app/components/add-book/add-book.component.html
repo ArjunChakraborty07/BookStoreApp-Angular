@@ -92,6 +92,7 @@
           type="file"
           formControlName="image"
           autocomplete="off"
+          (change)="onUploadBookImage($event)"
         />
         <mat-error *ngIf="bookForm.get('image').hasError('required')"
           >image must be uploaded</mat-error
