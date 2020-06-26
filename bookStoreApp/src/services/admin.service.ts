@@ -9,41 +9,25 @@ export class AdminService {
 
   constructor(private http: HttpService) { }
 
-  getAllUsers() {
-    return this.http.GET('admin/getAllUsers', {
-      headers: new HttpHeaders().set('token', localStorage.getItem('token'))
-    });
-  }
-  getAllBuyers() {
-    return this.http.GET('admin/getAllBuyers', {
-      headers: new HttpHeaders().set('token', localStorage.getItem('token'))
-    });
-  }
   getAllSellers() {
-    return this.http.GET('admin/getAllSellers', {
+    return this.http.GET('admin/getSellersForVerification', {
       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
   }
-  getAllBooks() {
-    return this.http.GET('admin/getAllBooks', {
+  getAllBooksForVerification() {
+    console.log('service', localStorage.getItem('token'));
+    return this.http.GET('admin/getBooksForVerification/' + localStorage.getItem('sellerId'), {
       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
   }
-  getAllBooksForVerigication() {
-    return this.http.GET('admin/getBooksForVerification', {
-      headers: new HttpHeaders().set('token', localStorage.getItem('token'))
-    });
-  } 
   logout() {
     return this.http.PUT('users/logout', null, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
   }
   verfy(bookId: any, sellerId: any, verification: any) {
-    return this.http.PUT('admin/bookVerification/' + bookId + '/' + sellerId, {
-      param: new HttpParams().set('verify', verification)
-    },
-      {
+    console.log(verification);
+    return this.http.PUT('admin/bookVerification/' + bookId + '/' + sellerId + '/' + verification, null, {
         headers: new HttpHeaders().set('token', localStorage.getItem('token'))
       });
   }

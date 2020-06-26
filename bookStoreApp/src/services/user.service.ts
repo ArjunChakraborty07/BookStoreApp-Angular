@@ -6,11 +6,10 @@ import { ResetPassword } from 'src/models/reset-password.model';
 import { User } from 'src/models/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
   public register(user: any): Observable<any> {
     console.log(user);
     return this.http.POST('users/register', user, '');
@@ -23,7 +22,10 @@ export class UserService {
     // return this.http.PUT('users/forgotpassword',email,'');
   }
 
-  resetPassword(password: ResetPassword, authorization: string): Observable<any> {
+  resetPassword(
+    password: ResetPassword,
+    authorization: string
+  ): Observable<any> {
     const token = '';
     return this.http.PUT('user/resetpassword' + authorization, password, token);
   }
@@ -36,8 +38,11 @@ export class UserService {
   public login(login: any): Observable<any> {
     return this.http.POST('users/login', login, '');
   }
-  uploadProfie(file: FormData) {
+  uploadProfie(file: FormData, isProfile: any) {
     console.log('IN USERSERVICE TO UPLOAD IMAGE:', file);
-    return this.http.POST('users/uploadimage', file, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+    return this.http.POST('users/uploadImage', file, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      params: new HttpParams().set('isProfile', isProfile),
+    });
   }
 }

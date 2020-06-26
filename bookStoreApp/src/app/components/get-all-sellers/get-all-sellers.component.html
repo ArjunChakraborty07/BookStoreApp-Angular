@@ -1,4 +1,4 @@
-
+<app-admin></app-admin>
 <div class="user" *ngFor="let user of users" fxLayout="column" fxLayoutAlign="space-around center">
     <table style="margin-top: 2%">
         <tr>
@@ -17,7 +17,7 @@
           <td>{{user.userName}}</td>
           <td>{{user.mobileNumber}}</td>
           <td>{{user.verify}}</td>
-          <td><a mat-button href="http://localhost:4200/admin-dashboard/books" target="_blank" (click)="onLink(user)">Verify Books</a></td>
+          <td><a mat-button href="http://localhost:4200/admin-dashboard/booksForVerification" (click)="onLink(user)">Verify Books</a></td>
         </tr>
       </table>
 </div>

@@ -12,21 +12,25 @@ import { AdminService } from 'src/services/admin.service';
 export class GetBooksForVerificationComponent implements OnInit {
 
   books: any;
+  response: any;
 
   constructor(
     private service: AdminService
   ) { }
 
   ngOnInit() {
-    this.service.getAllBooksForVerigication().subscribe((data: any) => {
+    this.service.getAllBooksForVerification().subscribe((data: any) => {
       this.books = data.data;
-      console.log(data);
     });
   }
   onApprove(book: any) {
-    this.service.verfy(book.bookId, book.userId, 'yes');
+    console.log(book);
+    this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true);
   }
   onReject(book: any) {
-    this.service.verfy(book.bookId, book.userId, 'no');
+    console.log('check');
+    this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
+      this.response = data;
+    });
   }
 }

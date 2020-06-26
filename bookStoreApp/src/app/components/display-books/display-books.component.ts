@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from 'src/services/vendor.service';
 import { MessageService } from 'src/services/message.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { UpdateBookComponent } from '../update-book/update-book.component';
 
 @Component({
   selector: 'app-display-books',
@@ -14,13 +15,24 @@ export class DisplayBooksComponent implements OnInit {
   constructor(
     private vendorService: VendorService,
     private messageService: MessageService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.messageService.currentMessage.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
+    });
+  }
+  onBookDetail(event) {
+    event.stopPropagation();
+  }
+  onUpdateBookForm(book) {
+    this.dialog.open(UpdateBookComponent, {
+      width: '600px',
+      data: book,
+      panelClass: 'custom-modalbox',
     });
   }
 
