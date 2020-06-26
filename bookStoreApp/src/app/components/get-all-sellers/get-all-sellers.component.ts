@@ -16,8 +16,11 @@ export class GetAllSellersComponent implements OnInit {
   ngOnInit() {
     this.service.getAllSellers().subscribe((data: any) => {
       this.users = data.data;
-      console.log(data);
     });
+  }
+  onLink(user: any) {
+    console.log(user.id);
+    localStorage.setItem('sellerId', user.id);
   }
 
 }

@@ -1,1 +1,57 @@
-<p>get-books-for-verification works!</p>
+<div
+  style="
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+  "
+  fxLayoutGap="40px"
+  ngClass.lt-md="main-div-lt-md"
+  fxLayout="row wrap"
+>
+  <div *ngFor="let book of books" fxLayout="row">
+    <mat-card>
+      <div class="bookImageDiv" fxLayoutAlign="center">
+        <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+      </div>
+
+      <div class="bookInfoDiv" fxLayout="column">
+        <input
+          class="input-title"
+          matInput
+          type="text"
+          autocomplete="off"
+          [(ngModel)]="book.bookName"
+        />
+        <div fxlayout="row">
+          <span class="input-author-span">by{{book.authorName}}</span>
+        </div>
+        <div fxlayout="row">
+          <span class="input-price-span">Rs.{{book.price}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <button
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onApprove(book)"
+          >
+            APPROVE
+          </button>
+          <button
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onReject(book)"
+          >
+            REJECT
+          </button>
+        </div>
+      </div>
+    </mat-card>
+    <div class="book-details">
+      <span>{{ book.bookDetails }}</span>
+    </div>
+  </div>
+</div>
+

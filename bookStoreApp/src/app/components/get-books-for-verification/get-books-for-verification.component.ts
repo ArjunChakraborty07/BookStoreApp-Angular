@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { VendorService } from 'src/services/vendor.service';
+import { MessageService } from 'src/services/message.service';
+import { MatSnackBar } from '@angular/material';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-get-books-for-verification',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GetBooksForVerificationComponent implements OnInit {
 
-  constructor() { }
+  books: any;
+
+  constructor(
+    private service: AdminService
+  ) { }
 
   ngOnInit() {
+    this.service.getAllBooksForVerigication().subscribe((data: any) => {
+      this.books = data.data;
+      console.log(data);
+    });
   }
-
+  onApprove(book: any) {
+    this.service.verfy(book.bookId, book.userId, 'yes');
+  }
+  onReject(book: any) {
+    this.service.verfy(book.bookId, book.userId, 'no');
+  }
 }

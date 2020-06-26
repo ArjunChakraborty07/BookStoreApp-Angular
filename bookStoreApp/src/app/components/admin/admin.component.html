@@ -2,18 +2,19 @@
     <span class="logo" (click)="onBookStore()">BookStore</span>
     <span class="welcome">Welcome Admin</span>
     <mat-toolbar class="tool">
-        <button
+        <!-- <button
             mat-icon-button
             (click)="sidenav.toggle()"
             class="myMenu"
             matTooltip="menu">
             <mat-icon class="menu">menu</mat-icon>
-        </button>
+        </button> -->
         <button mat-icon-button style="margin-left: 90%; color: aliceblue;" matTooltip="Logout" (click)="onLogout()">
             <mat-icon>logout</mat-icon>
         </button>
     </mat-toolbar>
-    <div fxLayout="row">
+    <app-get-all-sellers></app-get-all-sellers>
+    <!-- <div fxLayout="row">
         <mat-sidenav
             mode="side"
             #sidenav
@@ -48,7 +49,7 @@
                 <button mat-menu-item class="list" matTooltip="Verify Books" routerLink="/admin-dashboard/booksForVerification" (click)="booksForVerification()">
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <mat-icon>local_post_office</mat-icon>
-                        <label class="list-label">Pending Verification</label>
+                        <label class="list-label">Verification</label>
                     </div>
                 </button>
             </mat-nav-list>
@@ -62,12 +63,12 @@
         <div *ngIf='toggle==3' style="width: 80%; margin-left: 2%">
                 <app-get-all-sellers class="users"></app-get-all-sellers>
         </div>
-        <div *ngIf='toggle==4' style="width: 80%; margin-left: 2%">
+        <div *ngIf='toggle==4' >
                 <app-get-books class="users"></app-get-books>
         </div>
-        <div *ngIf='toggle==5' style="width: 80%; margin-left: 2%">
-                <app-get-books-for-verification class="users"></app-get-books-for-verification>
+        <div *ngIf='toggle==5' >
+                <app-get-books-for-verification></app-get-books-for-verification>
         </div>
-    </div>
+    </div> -->
     
 </div>

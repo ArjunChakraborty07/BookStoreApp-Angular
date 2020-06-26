@@ -11,11 +11,11 @@ export class GetBooksComponent implements OnInit {
   constructor(private service: AdminService) { }
 
   profile: './assets/images/user.png';
-  users: any;
+  books: any;
 
   ngOnInit() {
     this.service.getAllBooks().subscribe((data: any) => {
-      this.users = data.data;
+      this.books = data.data;
       console.log(data);
     });
   }

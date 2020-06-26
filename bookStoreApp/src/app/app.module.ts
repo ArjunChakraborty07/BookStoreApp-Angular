@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatTableModule} from '@angular/material/table';
 import {
   MatSnackBarModule,
   MatTooltipModule,
@@ -76,6 +77,7 @@ import { GetallbooksComponent } from './components/getallbooks/getallbooks.compo
     GetBooksComponent,
     GetBooksForVerificationComponent,
     GetallbooksComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -100,6 +102,7 @@ import { GetallbooksComponent } from './components/getallbooks/getallbooks.compo
     MatDialogModule,
     FlexLayoutModule,
     MatCheckboxModule,
+    MatTableModule
   ],
 
   entryComponents: [EditProfileComponent],

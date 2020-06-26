@@ -1,15 +1,17 @@
 
-.users{
-    margin-top: 5%;
-    width: 47%;
-}
-.imagediv,.img
-{
-    height: 100px;
-    width: 100px;
-    left: 20%;
-    top: 2%;
-}
-.mat-card-header{
-    background-color: rgb(114, 10, 10); 
-}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
