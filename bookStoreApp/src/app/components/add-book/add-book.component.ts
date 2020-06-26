@@ -19,8 +19,8 @@ export class AddBookComponent implements OnInit {
     authorName: null,
     price: null,
     quantity: null,
-    bookDetails: null,
-    image: null,
+    description: null,
+    imageURL: null,
   };
   constructor(
     private vendorService: VendorService,
@@ -35,8 +35,8 @@ export class AddBookComponent implements OnInit {
     authorName: new FormControl('', Validators.required),
     price: new FormControl('', [Validators.min(1), Validators.required]),
     quantity: new FormControl('', [Validators.min(1), Validators.required]),
-    bookDetails: new FormControl('', Validators.required),
-    image: new FormControl(this.bookImageUrl, Validators.required),
+    description: new FormControl('', Validators.required),
+    imageURL: new FormControl(this.bookImageUrl, Validators.required),
   });
   ngOnInit() {}
 
@@ -46,9 +46,9 @@ export class AddBookComponent implements OnInit {
     this.book.authorName = this.bookForm.value.authorName;
     this.book.price = this.bookForm.value.price;
     this.book.quantity = this.bookForm.value.quantity;
-    this.book.bookDetails = this.bookForm.value.bookDetails;
-    this.book.image = this.bookImageUrl;
-    console.log(this.book.image);
+    this.book.description = this.bookForm.value.description;
+    this.book.imageURL = this.bookImageUrl;
+    console.log(this.book.imageURL);
 
     this.vendorService.addBook(this.book).subscribe((data) => {
       this.messageService.changeMessage();

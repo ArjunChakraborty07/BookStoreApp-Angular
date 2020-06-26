@@ -13,7 +13,7 @@
   <div *ngFor="let book of books" style="margin: 0px;" fxLayout="row">
     <mat-card>
       <div class="bookImageDiv" fxLayoutAlign="center">
-        <img src="{{ book.image }}" />
+        <img src="{{ book.imageURL }}" />
       </div>
 
       <div class="bookInfoDiv" fxLayout="column">
@@ -42,13 +42,43 @@
             (click)="onUpdateBookForm(book)"
           />
         </div>
+        <div class="input-price" *ngIf="book.rejectionCounts > 0">
+          Rejection: {{ book.rejectionCounts }}
+        </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <button
+            *ngIf="book.approvalStatus === 'created'"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onApproval(book.bookId)"
+          >
+            APPROVAL
+          </button>
+          <button
+            *ngIf="book.approvalStatus === 'waiting'"
             mat-raised-button
             fxLayoutAlign="center"
             [disableRipple]="true"
           >
+            SENT
+          </button>
+          <button
+            *ngIf="book.approvalStatus === 'rejected'"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+            (click)="onApproval(book.bookId)"
+          >
             APPROVAL
+          </button>
+          <button
+            *ngIf="book.approvalStatus === 'approved'"
+            mat-raised-button
+            fxLayoutAlign="center"
+            [disableRipple]="true"
+          >
+            APPROVED
           </button>
           <button
             mat-raised-button
@@ -63,7 +93,7 @@
     </mat-card>
     <div class="book-details">
       <h5>Book Details</h5>
-      <span class="input-price">{{ book.bookDetails }}</span>
+      <span class="input-price">{{ book.description }}</span>
     </div>
   </div>
 </div>

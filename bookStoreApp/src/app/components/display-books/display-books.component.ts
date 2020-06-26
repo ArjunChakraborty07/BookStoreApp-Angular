@@ -63,4 +63,21 @@ export class DisplayBooksComponent implements OnInit {
       }
     );
   }
+  onApproval(bookId: any) {
+    this.vendorService.onApprove(bookId).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.messageService.changeMessage();
+          this.snackBar.open(data.message, 'ok', {
+            duration: 2000,
+          });
+        }
+      },
+      (error) => {
+        this.snackBar.open(error.message, 'ok', {
+          duration: 2000,
+        });
+      }
+    );
+  }
 }

@@ -13,6 +13,7 @@ export class VendorService {
   private deleteBookApi = 'sellers/removeBook/';
   private displayBookApi = 'sellers/displayBooks/';
   private uploadBookProfileApi = 'users/uploadImage';
+  private approveBookApi = 'sellers/approvalSent/';
 
   constructor(private http: HttpClient) {}
 
@@ -47,6 +48,15 @@ export class VendorService {
     return this.http.put(
       environment.baseUrl + this.updateBookApi + '/' + bookId,
       formGroup,
+      {
+        headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      }
+    );
+  }
+  onApprove(bookId: any): Observable<any> {
+    return this.http.put(
+      environment.baseUrl + this.approveBookApi + bookId,
+      '',
       {
         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
       }
