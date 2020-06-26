@@ -82,7 +82,7 @@ export class AdminLoginComponent implements OnInit {
         localStorage.setItem('status', response.data.userStatus);
 
         if (this.role1 === 1) {
-          this.router.navigate(['admin-dashboard']);
+          this.router.navigate(['admin-dashboard/sellers']);
         }
 
         this.logsuccess = true;

@@ -7,12 +7,10 @@
   " fxLayoutGap="40px" ngClass.lt-md="main-div-lt-md" fxLayout="row wrap">
   <div *ngFor="let book of books" fxLayout="row">
     <mat-card>
-      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf="user.imageUrl==null">
+      <div class="bookImageDiv" fxLayoutAlign="center">
         <img src="../../../assets/images/bookstore-wallpaper.jpg" />
       </div>
-      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf="user.imageUrl!=null">
-        <img src={{book.image}} />
-      </div>
+      
 
       <div class="bookInfoDiv" fxLayout="column">
         <input class="input-title" matInput type="text" autocomplete="off" [(ngModel)]="book.bookName" />
@@ -33,7 +31,7 @@
       </div>
     </mat-card>
     <div class="book-details">
-      <span>{{ book.bookDetails }}</span>
+      <span>{{book.bookDetails}}</span>
     </div>
   </div>
 </div>

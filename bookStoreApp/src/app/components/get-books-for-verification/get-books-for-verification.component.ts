@@ -15,22 +15,30 @@ export class GetBooksForVerificationComponent implements OnInit {
   response: any;
 
   constructor(
-    private service: AdminService
+    private service: AdminService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
+
     this.service.getAllBooksForVerification().subscribe((data: any) => {
       this.books = data.data;
+      this.snackBar.open(data.message, 'ok', { duration: 5000 });
     });
   }
   onApprove(book: any) {
     console.log(book);
-    this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true);
+    this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true).subscribe((data: any) => {
+    this.snackBar.open(data.message, 'ok', { duration: 5000 });
+    window.location.reload();
+    });
   }
   onReject(book: any) {
     console.log('check');
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
       this.response = data;
+      this.snackBar.open(data.message, 'ok', { duration: 5000 });
+      window.location.reload();
     });
   }
 }

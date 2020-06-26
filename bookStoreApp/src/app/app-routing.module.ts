@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'addbook', component: AddBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'admin-login', component: AdminLoginComponent},
+  { path: 'admin-dashboard', redirectTo: '/admin-dashboard/sellers', pathMatch: 'full' },
 
   {
     path: 'dashboard',
