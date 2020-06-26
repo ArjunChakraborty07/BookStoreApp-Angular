@@ -79,10 +79,10 @@
           matInput
           placeholder="description"
           style="overflow: hidden;"
-          formControlName="bookDetails"
+          formControlName="description"
           autocomplete="off"
         ></textarea>
-        <mat-error *ngIf="bookForm.get('bookDetails').hasError('required')"
+        <mat-error *ngIf="bookForm.get('description').hasError('required')"
           >book description is required</mat-error
         >
       </mat-form-field>
@@ -90,11 +90,11 @@
         <input
           class="fileButton"
           type="file"
-          formControlName="image"
+          formControlName="imageURL"
           autocomplete="off"
           (change)="onUploadBookImage($event)"
         />
-        <mat-error *ngIf="bookForm.get('image').hasError('required')"
+        <mat-error *ngIf="bookForm.get('imageURL').hasError('required')"
           >image must be uploaded</mat-error
         >
         <div fxLayoutAlign="end">
