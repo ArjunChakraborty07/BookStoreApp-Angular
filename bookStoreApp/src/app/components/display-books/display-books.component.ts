@@ -41,9 +41,9 @@ export class DisplayBooksComponent implements OnInit {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
-      this.snackBar.open(data.message, 'ok', {
-        duration: 2000,
-      });
+      // this.snackBar.open(data.message, 'ok', {
+      //   duration: 2000,
+      // });
     }
   }
 
