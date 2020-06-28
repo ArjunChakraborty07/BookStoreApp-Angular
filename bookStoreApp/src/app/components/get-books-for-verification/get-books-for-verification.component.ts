@@ -30,7 +30,7 @@ export class GetBooksForVerificationComponent implements OnInit {
     console.log(book);
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true).subscribe((data: any) => {
     this.snackBar.open(data.message, 'ok', { duration: 5000 });
-    window.location.reload();
+   // window.location.reload();
     });
   }
   onReject(book: any) {
@@ -38,7 +38,7 @@ export class GetBooksForVerificationComponent implements OnInit {
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
       this.response = data;
       this.snackBar.open(data.message, 'ok', { duration: 5000 });
-      window.location.reload();
+     // window.location.reload();
     });
   }
 }

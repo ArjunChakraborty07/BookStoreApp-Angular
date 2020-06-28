@@ -20,12 +20,7 @@
             <mat-error *ngIf="LoginForm.get('loginid').hasError('required')"
               >*username is required</mat-error
             >
-            <mat-error *ngIf="LoginForm.get('loginid').hasError('minlength')"
-              >*provide minimum 4 characters</mat-error
-            >
-            <mat-error *ngIf="LoginForm.get('loginid').hasError('maxlength')"
-              >provide less than 15 characters</mat-error
-            > </mat-form-field
+            </mat-form-field
           ><br />
   
           <mat-form-field appearance="outline">
@@ -49,14 +44,14 @@
                 hide ? "visibility_off" : "visibility"}}</mat-icon>
             </button>
             <mat-error *ngIf="LoginForm.get('password').hasError('required')">*password is required</mat-error>
-            <mat-error *ngIf="LoginForm.get('password').hasError('minlength')">provide a strong password</mat-error>
-            <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')">provide password less than 12 characters</mat-error> 
+           
             </mat-form-field>
-            <div class="right">
+            <div>
               <button mat-button  [routerLink]="['/forgotpassword']">forgot password?</button>
+              <button mat-raised-button type="submit">Next</button>
              </div>
             <div class="left">
-            <button mat-raised-button type="submit">Next</button>
+            
             </div>
            </mat-card><br/>
         </div>

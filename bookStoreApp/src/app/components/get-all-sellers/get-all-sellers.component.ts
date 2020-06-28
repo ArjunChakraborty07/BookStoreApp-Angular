@@ -14,7 +14,7 @@ export class GetAllSellersComponent implements OnInit {
 
   profile = './assets/images/user.png';
   users: any;
-
+  counter = 0;
   ngOnInit() {
     this.service.getAllSellers().subscribe((data: any) => {
       this.users = data.data;

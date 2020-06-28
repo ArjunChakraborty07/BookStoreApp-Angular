@@ -1,5 +1,8 @@
-<app-admin></app-admin>
-<div class="user" *ngFor="let user of users" fxLayout="column" fxLayoutAlign="space-around center">
+<div>
+        <app-admin></app-admin>
+</div>
+<div class="user"  fxLayout="column" fxLayoutAlign="space-around center">
+        
     <table style="margin-top: 2%">
         <tr>
           <th>Seller Id</th>
@@ -10,60 +13,15 @@
           <th>Verification Status</th>
           <th>Action</th>
         </tr>
-        <tr>
-          <td>{{user.id}}</td>
+        
+        <tr *ngFor="let user of users; let i = index">
+          <td style="text-align: center">{{i+1}}</td>
           <td>{{user.name}}</td>
           <td>{{user.email}}</td>
           <td>{{user.userName}}</td>
-          <td>{{user.mobileNumber}}</td>
-          <td>{{user.verify}}</td>
-          <td><a mat-button href="http://localhost:4200/admin-dashboard/booksForVerification" (click)="onLink(user)">Verify Books</a></td>
+          <td style="text-align: right">{{user.mobileNumber}}</td>
+          <td style="text-align: center">{{user.verify}}</td>
+          <td><a mat-button style="color: brown" href="http://localhost:4200/admin-dashboard/booksForVerification" (click)="onLink(user)">Verify Books</a></td>
         </tr>
       </table>
 </div>
-    
-<!-- <mat-card class="users">
-            <mat-card-content>
-                <mat-toolbar style="background-color: rgb(179, 59, 59); height: 35px;"></mat-toolbar>
-                <div class="container" style="margin-left: 35%; margin-top: 2%">
-                        <div fxFlex="1 2 calc(10em + 20px)" fxFlexFill class="imgdiv">
-                            <div class="imagediv" *ngIf="user.imageUrl!=null">
-                                <img src={{user.imageUrl}} class="img"/>
-                            </div>
-                            <div class="imagediv" *ngIf="user.imageUrl==null">
-                                    <img src={{this.profile}} class="img"/>
-                                </div>
-                        </div>
-                </div>
-                    <br>
-                <mat-divider></mat-divider>
-                <br>
-                <div>
-                    <b>Name:</b> {{user.name}}
-                </div>
-                <br>
-                <mat-divider></mat-divider>
-                <br>
-                <div>
-                    <b>Email Id:</b> {{user.email}}
-                </div>
-                <br>
-                <mat-divider></mat-divider>
-                <br>
-                <div>
-                    <b>User Name:</b> {{user.userName}}
-                </div>
-                <br>
-                <mat-divider></mat-divider>
-                <br>
-                <div>
-                    <b>Mobile Number:</b> {{user.mobileNumber}}
-                </div>
-                <br>
-                <mat-divider></mat-divider>
-                <br>
-                <div>
-                    <b>Account Verification Status:</b> {{user.verify}}
-                </div>
-            </mat-card-content>
-        </mat-card> -->

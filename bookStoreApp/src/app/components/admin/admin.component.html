@@ -1,73 +1,9 @@
-<div class="admin">
-    <span class="logo" (click)="onBookStore()">BookStore</span>
-    <span class="welcome">Welcome Admin</span>
-    <mat-toolbar class="tool">
-        <!-- <button
-            mat-icon-button
-            (click)="sidenav.toggle()"
-            class="myMenu"
-            matTooltip="menu">
-            <mat-icon class="menu">menu</mat-icon>
-        </button> -->
-        <button mat-icon-button style="margin-left: 90%; color: aliceblue;" matTooltip="Logout" (click)="onLogout()">
+<div>    
+    <mat-toolbar class="tool" fxLayout="row" fxLayoutAlign="space-around center">
+            <span>BookStore</span>
+            <span>Welcome Admin</span>
+        <button mat-icon-button style=" color: aliceblue;" matTooltip="Logout" (click)="onLogout()">
             <mat-icon>logout</mat-icon>
         </button>
-    </mat-toolbar>
-    <!-- <div fxLayout="row">
-        <mat-sidenav
-            mode="side"
-            #sidenav
-            class="sidenav"
-            [opened]="true"
-            style="width: 20%;">
-            <mat-nav-list fxLayout="column">
-                <button mat-menu-item class="list" matTooltip="Users" routerLink="/admin-dashboard/users" (click)="users()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>supervisor_account</mat-icon>
-                        <label class="list-label">Users</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" matTooltip="Buyers" routerLink="/admin-dashboard/buyers" (click)="buyers()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>account_circle</mat-icon>
-                        <label class="list-label">Buyers</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" matTooltip="Sellers" routerLink="/admin-dashboard/sellers" (click)="sellers()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>face</mat-icon>
-                        <label class="list-label">Sellers</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" matTooltip="Books" routerLink="/admin-dashboard/books" (click)="books()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>school</mat-icon>
-                        <label class="list-label">Books</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" matTooltip="Verify Books" routerLink="/admin-dashboard/booksForVerification" (click)="booksForVerification()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>local_post_office</mat-icon>
-                        <label class="list-label">Verification</label>
-                    </div>
-                </button>
-            </mat-nav-list>
-        </mat-sidenav>
-        <div *ngIf='toggle==1' style="width: 80%; margin-left: 2%">
-                <app-getallusers class="users"></app-getallusers>
-        </div>
-        <div *ngIf='toggle==2' style="width: 80%; margin-left: 2%">
-                <app-get-all-buyers class="users"></app-get-all-buyers>
-        </div>
-        <div *ngIf='toggle==3' style="width: 80%; margin-left: 2%">
-                <app-get-all-sellers class="users"></app-get-all-sellers>
-        </div>
-        <div *ngIf='toggle==4' >
-                <app-get-books class="users"></app-get-books>
-        </div>
-        <div *ngIf='toggle==5' >
-                <app-get-books-for-verification></app-get-books-for-verification>
-        </div>
-    </div> -->
-    
+    </mat-toolbar>    
 </div>
