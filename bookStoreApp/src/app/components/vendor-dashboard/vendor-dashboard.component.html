@@ -1,6 +1,10 @@
 <div style="width: 100%; height: 100%;">
   <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
-    <span class="titleText">BookStore</span>
+    <div class="titleText">
+      <a [routerLink]="['/vendor-dashboard']" style="color: white;"
+        >BookStore</a
+      >
+    </div>
     <mat-card
       class="search-mat-card"
       fxLayout="row"

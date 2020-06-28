@@ -18,6 +18,7 @@
           min="0"
           autocomplete="off"
           formControlName="price"
+          [(ngModel)]="data.price"
         />
         <mat-error *ngIf="updateBookForm.get('price').hasError('min')"
           >Amount should not be less than zero</mat-error
@@ -26,7 +27,6 @@
           >book price is required</mat-error
         >
         <span matPrefix>₹&nbsp;</span>
-        <span matSuffix>.00</span>
       </mat-form-field>
       <mat-form-field appearance="outline" class="quantityInput">
         <mat-label>quantity</mat-label>
@@ -38,10 +38,8 @@
           min="1"
           autocomplete="off"
           formControlName="quantity"
+          [(ngModel)]="data.quantity"
         />
-        <!-- <mat-error *ngIf="updateBookForm.get('quantity').hasError('min')"
-          >Amount should not be less than zero</mat-error
-        > -->
         <mat-error *ngIf="updateBookForm.get('quantity').hasError('required')"
           >book quantity is required</mat-error
         >

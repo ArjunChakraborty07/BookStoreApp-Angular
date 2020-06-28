@@ -48,11 +48,21 @@ export class AddBookComponent implements OnInit {
     this.book.quantity = this.bookForm.value.quantity;
     this.book.description = this.bookForm.value.description;
     this.book.imageURL = this.bookImageUrl;
-    console.log(this.book.imageURL);
-
-    this.vendorService.addBook(this.book).subscribe((data) => {
-      this.messageService.changeMessage();
-    });
+    this.vendorService.addBook(this.book).subscribe(
+      (data) => {
+        if (data.status === 201) {
+          this.messageService.changeMessage();
+          this.snackBar.open(data.message, 'ok', {
+            duration: 2000,
+          });
+        }
+      },
+      (error) => {
+        this.snackBar.open(error.message, 'cancel', {
+          duration: 2000,
+        });
+      }
+    );
   }
   onUploadBookImage(event) {
     if (event.target.files.length > 0) {

@@ -6,6 +6,7 @@ export interface Book {
   quantity: string;
   description: string;
   imageURL: string;
-  approvalStatus: string;
+  isApproved: boolean;
   rejectionCounts: any;
+  isApprovalSent: boolean;
 }
