@@ -2,21 +2,21 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
-import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
-import {EditProfileComponent} from '../edit-profile/edit-profile.component';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
   data: any;
+  isProfile = 'true';
   searchBook: string;
   books: any;
   profile:string='./assets/images/user.png';
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   usermail:string;
   updateStats: any;
   file:any;
-  isProfile = 'true';
+  
   constructor(private userService: UserService,
               private service: DashboardService, 
               private router: Router,
@@ -80,25 +80,21 @@ export class DashboardComponent implements OnInit {
   onLogin() {
     this.router.navigate(['/login']);
   }
-  onsignup()
-  {
+  onsignup() {
     this.router.navigate(['/register']);
   }
-  Logout()
-  {
-    console.log("CAME TO LOGOUT");
+  Logout() {
+    console.log('CAME TO LOGOUT');
     localStorage.clear();
     console.log(localStorage.length);
     this.router.navigate(['/dashboard']);
   }
-  OnSelectedFile(event)
-  {
+  OnSelectedFile(event) {
     console.log(event.target.files[0]);
-    if(event.target.files.length>0)
-    {
-      this.file=event.target.files[0];
-      const formData = new FormData();  
-      formData.append('file', this.file);  
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      const formData = new FormData();
+      formData.append('file', this.file);
       this.file.inProgress = true;
       console.log("FormData:",formData.get('file'));
       this.userService.uploadProfie(formData,this.isProfile).subscribe((result:any)=>{

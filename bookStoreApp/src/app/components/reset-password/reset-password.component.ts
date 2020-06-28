@@ -66,7 +66,7 @@ export class ResetPasswordComponent implements OnInit {
         console.log(response);
         if (response.status === 201) {
           this.snackBar.open(response.message, 'ok', { duration: 3000 });
-          this.router.navigate(['login']);
+          //this.router.navigate(['login']);
         }
       },
       (error: any) => {

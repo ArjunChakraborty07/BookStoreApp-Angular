@@ -4,7 +4,7 @@ import { UserService } from 'src/services/user.service';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit {
   public hide:boolean=true;
@@ -20,11 +20,9 @@ export class EditProfileComponent implements OnInit {
   mobile=localStorage.getItem('mobile');
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
-  }
-  update()
-  {
-    console.log("to update");
+  ngOnInit() {}
+  update() {
+    console.log('to update');
     console.log(this.fullname);
     console.log(this.password);
   }

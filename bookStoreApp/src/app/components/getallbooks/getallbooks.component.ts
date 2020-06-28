@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { BookService } from 'src/services/book.service';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-getallbooks',
@@ -9,11 +10,12 @@ import { BookService } from 'src/services/book.service';
 })
 export class GetallbooksComponent implements OnInit {
 
-  books:any;
+
+  books: any;
   cards = [this.books];
 
 
-constructor(private bookservice:BookService) { }
+  constructor(private bookservice: BookService) { }
 
 
   ngOnInit() {
@@ -21,11 +23,13 @@ constructor(private bookservice:BookService) { }
 
   }
 
-  private loadAllBooks(){
-    this.bookservice.getAllbooks().pipe(first()).subscribe(books => { 
-    this.books = books; 
-});
-
+  private loadAllBooks() {
+    this.bookservice.getAllbooks().pipe(first()).subscribe(books => {
+      this.books = books;
+    });
 
   }
+
+
+
 }

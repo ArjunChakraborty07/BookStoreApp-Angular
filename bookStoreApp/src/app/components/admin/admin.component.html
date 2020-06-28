@@ -1,49 +1,9 @@
-<div class="admin">
-    <span class="logo" (click)="onBookStore()">BookStore</span>
-    <span class="welcome">Welcome Admin</span>
-    <mat-toolbar class="tool">
-        <button
-            mat-icon-button
-            (click)="sidenav.toggle()"
-            class="myMenu"
-            matTooltip="menu">
-            <mat-icon class="menu">menu</mat-icon>
+<div>    
+    <mat-toolbar class="tool" fxLayout="row" fxLayoutAlign="space-around center">
+            <span>BookStore</span>
+            <span>Welcome Admin</span>
+        <button mat-icon-button style=" color: aliceblue;" matTooltip="Logout" (click)="onLogout()">
+            <mat-icon>logout</mat-icon>
         </button>
-    </mat-toolbar>
-    <div fxLayout="row">
-        <mat-sidenav
-            mode="side"
-            #sidenav
-            class="sidenav"
-            [opened]="true"
-            style="width: 20%;">
-            <mat-nav-list fxLayout="column">
-                <button mat-menu-item class="list" routerLink="/dashboard/notes" (click)="notes()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>note</mat-icon>
-                        <label class="list-label">Users</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" routerLink="/dashboard/notes" (click)="notes()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>note</mat-icon>
-                        <label class="list-label">Sellers</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" routerLink="/dashboard/notes" (click)="notes()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>note</mat-icon>
-                        <label class="list-label">Books</label>
-                    </div>
-                </button>
-                <button mat-menu-item class="list" routerLink="/dashboard/notes" (click)="notes()">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon>note</mat-icon>
-                        <label class="list-label">Notes</label>
-                    </div>
-                </button>
-            </mat-nav-list>
-        </mat-sidenav>
-        <app-getallusers class="users"></app-getallusers>
-    </div>
+    </mat-toolbar>    
 </div>

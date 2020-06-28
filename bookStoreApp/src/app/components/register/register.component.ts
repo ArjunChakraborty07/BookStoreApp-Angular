@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
       const data = {
         email: this.email.value,
         name: this.name.value,
-        mobileNumber: Number(this.phone.value),
+        mobileNumber: this.phone.value,
         password: this.password.value,
         userName: this.username.value,
         role:this.selectedrole

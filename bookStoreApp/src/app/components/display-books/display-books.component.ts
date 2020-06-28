@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from 'src/services/vendor.service';
 import { MessageService } from 'src/services/message.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { UpdateBookComponent } from '../update-book/update-book.component';
 
 @Component({
   selector: 'app-display-books',
@@ -14,7 +15,8 @@ export class DisplayBooksComponent implements OnInit {
   constructor(
     private vendorService: VendorService,
     private messageService: MessageService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -23,15 +25,26 @@ export class DisplayBooksComponent implements OnInit {
       this.onDisplayBooks(data);
     });
   }
+  onBookDetail(event) {
+    event.stopPropagation();
+  }
+  onUpdateBookForm(book) {
+    this.dialog.open(UpdateBookComponent, {
+      width: '600px',
+      data: book,
+      panelClass: 'custom-modalbox',
+    });
+  }
 
   onDisplayBooks(data) {
+    console.log(data);
     if (data.status === 200) {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
-      this.snackBar.open(data.message, 'ok', {
-        duration: 2000,
-      });
+      // this.snackBar.open(data.message, 'ok', {
+      //   duration: 2000,
+      // });
     }
   }
 
@@ -48,6 +61,23 @@ export class DisplayBooksComponent implements OnInit {
       },
       (error: any) => {
         this.snackBar.open(error.error, 'ok', { duration: 2000 });
+      }
+    );
+  }
+  onApproval(bookId: any) {
+    this.vendorService.onApprove(bookId).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.messageService.changeMessage();
+          this.snackBar.open(data.message, 'ok', {
+            duration: 2000,
+          });
+        }
+      },
+      (error) => {
+        this.snackBar.open(error.message, 'ok', {
+          duration: 2000,
+        });
       }
     );
   }
