@@ -48,23 +48,30 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onConfirm() {
-    this.resetPassword = this.resetPasswordForm.value;
-    console.log(this.resetPassword.password);
+    /*this.resetPassword = this.resetPasswordForm.value;
+    console.log(this.resetPassword.password+" token:",this.token);
     this.resetPassword.password = this.encrDecr.set(
       '123456$#@$^@1ERF',
       this.resetPassword.password
     );
-    console.log(this.resetPassword.password);
-    this.userService.resetPassword(this.resetPassword, this.token).subscribe(
+    console.log(this.resetPassword.password);*/
+    const data={
+      password:this.resetPasswordForm.get('password').value,
+      confirmpassword:this.resetPasswordForm.get('confirmPassword').value
+    }
+   // console.log("data:",data);
+   // console.log("token:",this.token);
+    this.userService.resetPassword(data, this.token).subscribe(
       (response: any) => {
         console.log(response);
-        if (response.statusCode === 200) {
+        if (response.status === 201) {
           this.snackBar.open(response.message, 'ok', { duration: 3000 });
           this.router.navigate(['login']);
         }
       },
       (error: any) => {
-        this.snackBar.open(error.error.error, 'ok', { duration: 3000 });
+        //console.log(error);
+        this.snackBar.open(error.error, 'ok', { duration: 3000 });
       }
     );
   }

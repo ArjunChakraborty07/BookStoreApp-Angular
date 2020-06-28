@@ -12,7 +12,7 @@ import { UserService } from "src/services/user.service";
 export class VendorDashboardComponent implements OnInit {
   isBookFormOpened = false;
   file: any;
-
+  isProfile = 'true';
   constructor(
     private dialog: MatDialog,
     private messageService: MessageService,
@@ -36,7 +36,7 @@ export class VendorDashboardComponent implements OnInit {
       formData.append("file", this.file);
       this.file.inProgress = true;
       console.log("FormData:", formData.get("file"));
-      this.userService.uploadProfie(formData).subscribe((result: any) => {
+      this.userService.uploadProfie(formData,this.isProfile).subscribe((result: any) => {
         console.log("PROFILE RESULT:", result);
         localStorage.setItem("image", result.data["imageUrl"]);
       });

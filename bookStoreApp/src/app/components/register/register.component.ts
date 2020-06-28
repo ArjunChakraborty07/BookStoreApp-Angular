@@ -3,6 +3,8 @@ import { Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/services/user.service';
 import { EncrDecrService } from 'src/services/encr-decr.service';
 import { Router } from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,8 @@ export class RegisterComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   name = new FormControl('', Validators.compose([
     Validators.required,
-    Validators.minLength(4)
+    Validators.minLength(8),
+    Validators.pattern('^[A-Z][a-z]+\\s?[A-Z][a-z]+$')
   ]));
   phone = new FormControl('', Validators.compose([
     Validators.required,
@@ -27,17 +30,17 @@ export class RegisterComponent implements OnInit {
   ]));
   username = new FormControl('', Validators.compose([
     Validators.required,
-    Validators.minLength(4)
+    Validators.minLength(4),
+    Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')
   ]));
-  buyer: false;
-  seller: false;
   passwordType = 'password';
   show = false;
-  bvalue: any = '';
-  svalue: any = '';
+  radioval=0;
+  selectedrole;
   constructor(private service: UserService,
     private EncrDecr: EncrDecrService,
-    private router: Router) { }
+    private router: Router,
+    private dialog:MatDialog) {  }
 
   ngOnInit() { }
 
@@ -59,20 +62,20 @@ export class RegisterComponent implements OnInit {
       this.password.hasError('minlength') || this.password.hasError('maxlength') ||
       this.phone.hasError('minlength')) {
       alert('Cannot submit invalid input');
-    } else if ((this.buyer === undefined || this.buyer === false) && (this.seller === undefined || this.seller === false)) {
-      alert('Please select account type');
-    } else if (isNaN(this.phone.value)) {
+    }else if (isNaN(this.phone.value)) {
       alert('Phone Number should be digits only');
+    }
+    else if(this.radioval==0)
+    {
+      alert('Select the role');
     } else {
-      if (this.buyer) {
-        this.bvalue = 3;
-      } else {
-        this.bvalue = 0;
+      if(this.radioval==2)
+      {
+        this.selectedrole=2;
       }
-      if (this.seller) {
-        this.svalue = 2;
-      } else {
-        this.svalue = 0;
+       else if(this.radioval==3)
+      {
+        this.selectedrole=3;
       }
       const data = {
         email: this.email.value,
@@ -80,7 +83,7 @@ export class RegisterComponent implements OnInit {
         mobileNumber: Number(this.phone.value),
         password: this.password.value,
         userName: this.username.value,
-        role: this.bvalue + this.svalue
+        role:this.selectedrole
       };
       this.service.register(data).subscribe((response: any) => {
         alert(response.message);
@@ -89,6 +92,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onLogin() {
-    this.router.navigate(['/login']);
+      const dialogRef = this.dialog.open(LoginComponent, {
+     //  width: '40%',
+     //  height:'90%',
+      });
+    //this.router.navigate(['/login']);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,11 +10,15 @@ export class EditProfileComponent implements OnInit {
   public hide:boolean=true;
   profile:string=localStorage.getItem('image');
   username:string=localStorage.getItem('username');
-  password:string;
+  password:string="**********";
+  editicon:boolean=true;
+  passicon:boolean=false;
+  file: any;
+  isProfile = 'true';
   usermail:string=localStorage.getItem('email');
   fullname:string=localStorage.getItem('name');
   mobile=localStorage.getItem('mobile');
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -22,5 +27,31 @@ export class EditProfileComponent implements OnInit {
     console.log("to update");
     console.log(this.fullname);
     console.log(this.password);
+  }
+  changeIcon()
+  {
+    this.editicon=false;
+    this.passicon=true;
+    console.log("came to change icon");
+  }
+  OnSelectedFile(event)
+   {
+    console.log(event.target.files[0]);
+    if (event.target.files.length > 0)
+    {
+      this.file = event.target.files[0];
+      const formData = new FormData();
+      formData.append('file', this.file);
+      this.file.inProgress = true;
+      console.log('FormData:', formData.get('file'));
+      this.userService.uploadProfie(formData, this.isProfile).subscribe((result: any) => {
+          console.log('PROFILE RESULT:', result);
+          if (result.status === 200) {
+            localStorage.setItem('image', result.data);
+            this.profile = result.data;
+            console.log(this.profile);
+          }
+        });
+    }
   }
 }

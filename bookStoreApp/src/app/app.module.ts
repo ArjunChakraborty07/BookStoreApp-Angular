@@ -93,7 +93,7 @@ import { GetallbooksComponent } from './components/getallbooks/getallbooks.compo
     MatCheckboxModule,
   ],
 
-  entryComponents: [EditProfileComponent],
+  entryComponents: [EditProfileComponent,ForgotPasswordComponent],
 
   providers: [UserService, EncrDecrService, HttpService, VendorService],
 

@@ -4,7 +4,7 @@
     width: 100px;
     //left: 20%;
     top: 2%;
-    position: relative;
+    //position: relative;
 }
 .input-field
 {
@@ -43,10 +43,14 @@ h6{
     height:0;
     display: none;
 }
-::placeholder { 
-    color: green;
+/*::placeholder { 
+    color: black;
     opacity: 1;
-  }
+  }*/
+.matbutton
+{
+    outline: none;
+}
 .icon
 {
     float: right;
