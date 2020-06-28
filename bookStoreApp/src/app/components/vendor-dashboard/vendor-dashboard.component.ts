@@ -52,6 +52,9 @@ export class VendorDashboardComponent implements OnInit {
       panelClass: 'custom-modalbox',
     });
   }
+  navigateTo() {
+    this.router.navigate(['/vendor-dashboard']);
+  }
   onKey(event: any) {
     this.messageService.searchBook(event);
   }
