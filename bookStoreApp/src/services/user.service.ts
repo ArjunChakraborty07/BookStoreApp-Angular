@@ -39,6 +39,11 @@ export class UserService {
   uploadProfie(file:FormData,isProfile:any)
   {
     console.log("IN USERSERVICE TO UPLOAD IMAGE:",file);
-    return this.http.POST('users/uploadimage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+    return this.http.POST('users/uploadImage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+  }
+  updateUser(data)
+  {
+    console.log("in update user service:",data);
+    return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
   }
 }
