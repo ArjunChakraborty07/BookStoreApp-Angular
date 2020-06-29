@@ -12,7 +12,7 @@ export class GetallbooksComponent implements OnInit {
 
 
   books: any;
-  cards = [this.books];
+  // cards = [this.books];
 
 
   constructor(private bookservice: BookService) { }
@@ -24,9 +24,11 @@ export class GetallbooksComponent implements OnInit {
   }
 
   private loadAllBooks() {
-    this.bookservice.getAllbooks().pipe(first()).subscribe(books => {
-      this.books = books;
-    });
+    this.bookservice.getAllbooks().subscribe((data: any) => {
+      this.books = data.data;
+    },
+    );
+
 
   }
 
