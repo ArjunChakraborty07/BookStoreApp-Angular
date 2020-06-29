@@ -17,15 +17,15 @@ export class UserService {
 
   forgotPassword(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);
-    return this.http.PUT('users/forgotpassword',params,'');
+    return this.http.PUT('users/forgotpassword', params, '');
   }
 
-  resetPassword(data:any,token:string): Observable<any> {
-    console.log("IN USER SERVICE");
+  resetPassword(data: any, token: string): Observable<any> {
+    console.log('IN USER SERVICE');
     console.log(data);
     console.log(token);
     //const params=new HttpParams().set('token',token);
-    return this.http.PUT('users/resetpassword?token='+token,data,'');
+    return this.http.PUT('users/resetpassword?token=' + token, data, '');
   }
 
   verification(authorization: string) {
@@ -36,9 +36,11 @@ export class UserService {
   public login(login: any): Observable<any> {
     return this.http.POST('users/login', login, '');
   }
-  uploadProfie(file:FormData,isProfile:any)
-  {
-    console.log("IN USERSERVICE TO UPLOAD IMAGE:",file);
-    return this.http.POST('users/uploadimage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+  uploadProfie(file: FormData, isProfile: any) {
+    console.log('IN USERSERVICE TO UPLOAD IMAGE:', file);
+    return this.http.POST('users/uploadImage', file, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      params: new HttpParams().set('isProfile', isProfile),
+    });
   }
 }
