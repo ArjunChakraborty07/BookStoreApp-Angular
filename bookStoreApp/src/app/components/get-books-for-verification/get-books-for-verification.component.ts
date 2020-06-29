@@ -14,6 +14,8 @@ export class GetBooksForVerificationComponent implements OnInit {
   books: any;
   response: any;
 
+  counter = 0;
+
   constructor(
     private service: AdminService,
     private snackBar: MatSnackBar,
@@ -27,18 +29,17 @@ export class GetBooksForVerificationComponent implements OnInit {
     });
   }
   onApprove(book: any) {
-    console.log(book);
+
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true).subscribe((data: any) => {
-    this.snackBar.open(data.message, 'ok', { duration: 5000 });
-   // window.location.reload();
+      this.snackBar.open(data.message, 'ok', { duration: 5000 });
+      this.counter = book.bookId;
     });
   }
   onReject(book: any) {
-    console.log('check');
+
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
-      this.response = data;
       this.snackBar.open(data.message, 'ok', { duration: 5000 });
-     // window.location.reload();
+      this.counter = book.bookId;
     });
   }
 }

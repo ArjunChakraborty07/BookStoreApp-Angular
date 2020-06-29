@@ -9,7 +9,7 @@ mat-toolbar {
   z-index: 100;
 }
 .search-mat-card {
-  margin-left: 4%;
+  margin-left: 2%;
   width: 40%;
   height: 60%;
   padding: 0px;
@@ -27,8 +27,15 @@ mat-toolbar {
   outline: none;
 }
 .titleText {
-  margin-left: 10%;
+  margin-left: 12%;
   color: white;
+}
+@media only screen and (max-width: 720px) {
+  .titleText {
+    font-size: medium;
+    margin-left: 2%;
+    color: white;
+  }
 }
 .bookText {
   font-size: 90%;
@@ -45,7 +52,7 @@ button {
   outline: none;
 }
 .spanClass {
-  flex-grow: 1;
+  flex-grow: 0.5;
 }
 
 .bookInput {

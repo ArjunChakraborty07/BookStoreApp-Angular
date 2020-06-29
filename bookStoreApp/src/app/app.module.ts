@@ -55,6 +55,8 @@ import { GetBooksForVerificationComponent } from './components/get-books-for-ver
 import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ReviewComponent } from './components/review/review.component';
 
 
 
@@ -81,6 +83,8 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
     GetallbooksComponent,
     UpdateBookComponent,
     AdminLoginComponent,
+    CartComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,

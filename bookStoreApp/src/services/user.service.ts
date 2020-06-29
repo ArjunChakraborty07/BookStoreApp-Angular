@@ -17,15 +17,15 @@ export class UserService {
 
   forgotPassword(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);
-    return this.http.PUT('users/forgotpassword',params,'');
+    return this.http.PUT('users/forgotpassword', params, '');
   }
 
-  resetPassword(data:any,token:string): Observable<any> {
-    console.log("IN USER SERVICE");
+  resetPassword(data: any, token: string): Observable<any> {
+    console.log('IN USER SERVICE');
     console.log(data);
     console.log(token);
     //const params=new HttpParams().set('token',token);
-    return this.http.PUT('users/resetpassword?token='+token,data,'');
+    return this.http.PUT('users/resetpassword?token=' + token, data, '');
   }
 
   verification(authorization: string) {
