@@ -24,10 +24,10 @@
           <span class="input-price-span">Rs.{{book.price}}</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
-          <button mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onApprove(book)">
+          <button mat-raised-button [disabled]="(counter==book.bookId)" fxLayoutAlign="center" [disableRipple]="true" (click)="onApprove(book)" >
             APPROVE
           </button>
-          <button mat-raised-button fxLayoutAlign="center" [disableRipple]="true" (click)="onReject(book)">
+          <button mat-raised-button [disabled]="(counter==book.bookId)"fxLayoutAlign="center" [disableRipple]="true" (click)="onReject(book)" >
             REJECT
           </button>
         </div>
