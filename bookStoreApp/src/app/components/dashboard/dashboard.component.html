@@ -82,13 +82,15 @@
       </ng-template>
       <ng-template #notloggedblock>
         <i
-          ><div class="mat-headline">WelCome To Online</div>
-          <div class="mat-headline">Book Store</div></i
+          ><div style="padding-top: 8%;" class="mat-headline">Welcome</div>
+        </i
         ><br />
         <mat-divider></mat-divider><br />
-        <button mat-button class="signup" (click)="onsignup()">SignUp</button
-        ><br /><br />
-        <button mat-button class="log" (click)="openDialog()">Login</button>
+        <div fxLayoutAlign="end">
+          <button mat-button class="signup" (click)="onsignup()">SignUp</button
+          ><br /><br />
+          <button mat-button class="log" (click)="openDialog()">Sign In</button>
+        </div>
       </ng-template>
     </mat-menu>
     <mat-icon>camera_alt</mat-icon>

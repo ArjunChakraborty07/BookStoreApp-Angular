@@ -1,11 +1,13 @@
 .admin{
-    width:92%;
-    margin-left: 4%;
+    width: 100%
+    // width:92%;
+    // margin-left: 4%;
 }
 .tool{
     background-color: rgb(179, 59, 59);
     height: 55px;
-    //position: relative;
+    color: aliceblue;
+    
  }
 .logo{
     position: absolute;
@@ -17,53 +19,9 @@
     position: absolute;
     color:aliceblue;
     margin-top: 0.8%;
-    margin-left: 40%;
+    margin-left: 45%;
     font-size: 150%;
 }
-.menu{
-    color: white;
-    margin-left: 4%;
-    
-}
-.myMenu{
-    background: none;
-    outline: none;
-    
-}
-.list{
-    border-radius: 3px;
-    height: 50px;
-    border: none;
-    outline: none;
-    
-    mat-icon{
-        color: rgb(179, 59, 59);
-        
-    }
-    button{
-        width: 150%;
-    }
-}
-.list:hover{
-    background-color: rgb(179, 59, 59);
-    color: white;
-    mat-icon{
-        color: white;
-    }
-    button{
-        width: 150%;
-    }
-}
-.list-label{
-    padding-top: 10px;
-    padding-left: 10%;
-}
-.sidenav{
-    border: none;
-    height: 100%;
-    
-}
-.users{
-    width: 100%;
-    margin-left: -15%;
-}
+
+
+

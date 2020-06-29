@@ -7,6 +7,7 @@ import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
+import { AutofillMonitor } from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,49 +19,50 @@ export class DashboardComponent implements OnInit {
   isProfile = 'true';
   searchBook: string;
   books: any;
-  profile: string;
-  login: boolean;
-  username: string;
-  usermail: string;
+  profile:string='./assets/images/user.png';
+  login:boolean;
+  username:string;
+  usermail:string;
   updateStats: any;
-  file: any;
-  constructor(
-    private userService: UserService,
-    private service: DashboardService,
-    private router: Router,
-    public dialog: MatDialog
-  ) {
-    if (localStorage.length === 0) {
-      this.login = false;
-      console.log('note logged');
-      this.profile = './assets/images/user.png';
-    } else {
-      console.log('logged in');
-      this.login = true;
-      this.username = localStorage.getItem('name');
-      this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image').length !== 0) {
-        this.profile = localStorage.getItem('image');
-      }
-      if (
-        localStorage['image'] === undefined ||
-        localStorage['image'] === 0 ||
-        localStorage['image'] === null ||
-        localStorage['image'] === false ||
-        localStorage['image'] === ''
-      ) {
-        console.log('image length', localStorage.getItem('image').length);
-        this.profile = './assets/images/user.png';
-      }
-    }
+  file:any;
+  
+  constructor(private userService: UserService,
+              private service: DashboardService, 
+              private router: Router,
+              public dialog: MatDialog) 
+  {
+     if(localStorage.length===0)
+     {
+       this.login=false;
+       console.log("not logged");
+       this.profile='./assets/images/user.png';
+     }
+     else
+     {
+       console.log("logged in");
+       this.login=true;
+       this.username=localStorage.getItem('name');
+       this.usermail=localStorage.getItem('email');
+       if(localStorage.getItem('image').length!=0)
+       {
+          this.profile=localStorage.getItem("image");
+       }
+       /*if(localStorage.getItem('image').length==0)
+       {
+        console.log("image length",localStorage.getItem('image').length);
+        this.profile='./assets/images/user.png';
+       }*/
+         
+     }
   }
-  openDialogztoedit() {
-    this.dialog.open(EditProfileComponent);
+  openDialogztoedit()
+  {
+    this.dialog.open(EditProfileComponent);  
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '40%',
-      height: '90%',
+   //  width: '40%',
+   //  height:'90%',
     });
   }
   ngOnInit() {}
@@ -94,17 +96,16 @@ export class DashboardComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
       this.file.inProgress = true;
-      console.log('FormData:', formData.get('file'));
-      this.userService
-        .uploadProfie(formData, this.isProfile)
-        .subscribe((result: any) => {
-          console.log('PROFILE RESULT:', result);
-          if (result.status === 200) {
-            localStorage.setItem('image', result.data);
-            this.profile = result.data;
-            console.log(this.profile);
-          }
-        });
+      console.log("FormData:",formData.get('file'));
+      this.userService.uploadProfie(formData,this.isProfile).subscribe((result:any)=>{
+      console.log("PROFILE RESULT:",result);
+      if(result.status===200)
+      {
+        localStorage.setItem("image",result.data);
+        this.profile=result.data;
+        console.log(this.profile)
+      }
+      });
     }
   }
 }

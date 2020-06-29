@@ -110,7 +110,7 @@ import { CartComponent } from './components/cart/cart.component';
     MatTableModule
   ],
 
-  entryComponents: [EditProfileComponent],
+  entryComponents: [EditProfileComponent,ForgotPasswordComponent],
 
   providers: [UserService, EncrDecrService, HttpService, VendorService],
 

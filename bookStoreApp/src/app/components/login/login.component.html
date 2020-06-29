@@ -1,7 +1,7 @@
-<div class="container">
-  <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+<div mat-dialog-content class="mat-dialog-content">
+<form [formGroup]="LoginForm">
     <div class="container-fluid">
-      <mat-card class="my-card">
+      <div class="my-card" fxFlexAlign="center">
         <mat-toolbar>
           <span class="title-center">{{ title }}</span>
         </mat-toolbar>
@@ -14,6 +14,7 @@
             rows="3"
             maxlength="300"
             matInput
+            autocomplete="off"
             [ngClass]="{ 'is-invalid': submitted && f.loginid.errors }"
           />
           <mat-icon matSuffix>account_circle</mat-icon>
@@ -53,18 +54,18 @@
           <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')">provide password less than 12 characters</mat-error> 
           </mat-form-field>
           <div class="right">
-            <button mat-button   mat-dialog-close [routerLink]="['/forgotpassword']">forgot password?</button>
-           </div>
-        <mat-radio-group formControlName="userroles">
-        <mat-radio-button value="admin">Admin</mat-radio-button>
-        <mat-radio-button value="vendor">vendor</mat-radio-button>
-          <mat-radio-button value="customer">customer</mat-radio-button>
-          <mat-error *ngIf="LoginForm.get('userroles').hasError('required')">*role is required</mat-error>
-         </mat-radio-group><br />
-          <div class="left">
-          <button mat-button   [routerLink]="['/register']">Register</button>      <button mat-raised-button mat-dialog-close type="submit">Next</button>
+            <button mat-button style="outline: none;" (click)="opendialogforforgotpassowrd()">forgot password?</button>
           </div>
-         </mat-card><br/>
+          <mat-radio-group formControlName="userroles" #roleselected>
+            <mat-radio-button class="firstRadiobutton" [checked]=true value="vendor">vendor</mat-radio-button>
+            <mat-radio-button value="customer">customer</mat-radio-button>
+            <mat-error *ngIf="LoginForm.get('userroles').hasError('required') && roleselected.touched">*role is required</mat-error><br/>
+          </mat-radio-group>
+          <div class="left">
+            <button mat-button  mat-dialog-close [routerLink]="['/register']">Sign up</button>
+            <button mat-raised-button mat-dialog-close (click)="onSubmit()" type="submit">Login</button>
+          </div>
+         </div><br/>
       </div>
   </form>
 </div>

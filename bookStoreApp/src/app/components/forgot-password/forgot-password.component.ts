@@ -29,12 +29,12 @@ export class ForgotPasswordComponent implements OnInit {
     this.userService.forgotPassword(this.emailId.value).subscribe(
       (response: any) => {
         console.log(response);
-        if (response.statusCode === 201) {
+        if (response.status === 201) {
           console.log('Verifivation link send to your mailid,please your check mail');
           this.snackBar.open(response.message, 'ok', { duration: 5000 });
           console.log(response.object);
-          localStorage.setItem('forgotoken', response.object);
-          this.router.navigate(['resetpassword/:token'])
+         // localStorage.setItem('forgotoken', response.object);
+          //this.router.navigate(['resetpassword/:token'])
         }
       }, (error: any) => {
         console.log(error);

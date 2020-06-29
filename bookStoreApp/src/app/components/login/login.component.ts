@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/services/user.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog,MatDialogConfig } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
-import { User } from '../../../models/user';
+import {User} from '../../../models/user';
+import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'dashboard/login',
@@ -59,7 +60,11 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.LoginForm.controls;
   }
-
+  opendialogforforgotpassowrd()
+  {
+    console.log("to open forgot popup")
+    this.dialog.open(ForgotPasswordComponent,{height: '50%',width: '30%'});
+  }
   onSubmit() {
     this.submitted = true;
     // stop here if form is invalid
@@ -123,13 +128,13 @@ export class LoginComponent implements OnInit {
         //console.log('user has been successfully logged in:');
         this.snackBar.open(response.message, 'ok', { duration: 5000 });
       }
-      (error) => {
-        // console.log(error);
-        this.loading = false;
-        if (error.status === 401) {
-          this.snackBar.open(error.error.error, 'ok', { duration: 2000 });
-        }
-      };
+    },
+    (error) => {
+      //console.log(error);
+      this.loading = false;
+     // if (error.status === 400) {
+        this.snackBar.open('Oops! Failed,provide valid credidentals', 'ok', { duration: 2000 });
+     // }
     });
   }
 
