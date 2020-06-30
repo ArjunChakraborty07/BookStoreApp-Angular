@@ -19,45 +19,39 @@ export class DashboardComponent implements OnInit {
   isProfile = 'true';
   searchBook: string;
   books: any;
-  profile:string='./assets/images/user.png';
-  login:boolean;
-  username:string;
-  usermail:string;
+  profile = './assets/images/user.png';
+  login: boolean;
+  username: string;
+  usermail: string;
   updateStats: any;
-  file:any;
-  
+  file: any;
+
   constructor(private userService: UserService,
-              private service: DashboardService, 
+              private service: DashboardService,
               private router: Router,
-              public dialog: MatDialog) 
-  {
-     if(localStorage.length===0)
-     {
-       this.login=false;
-       console.log("not logged");
-       this.profile='./assets/images/user.png';
-     }
-     else
-     {
-       console.log("logged in");
-       this.login=true;
-       this.username=localStorage.getItem('name');
-       this.usermail=localStorage.getItem('email');
-       if(localStorage.getItem('image').length!=0)
-       {
-          this.profile=localStorage.getItem("image");
+              public dialog: MatDialog) {
+     if (localStorage.length === 0) {
+       this.login = false;
+       console.log('not logged');
+       this.profile = './assets/images/user.png';
+     } else {
+       console.log('logged in');
+       this.login = true;
+       this.username = localStorage.getItem('name');
+       this.usermail = localStorage.getItem('email');
+       if (localStorage.getItem('image').length !== 0) {
+          this.profile = localStorage.getItem('image');
        }
        /*if(localStorage.getItem('image').length==0)
        {
         console.log("image length",localStorage.getItem('image').length);
         this.profile='./assets/images/user.png';
        }*/
-         
+
      }
   }
-  openDialogztoedit()
-  {
-    this.dialog.open(EditProfileComponent);  
+  openDialogztoedit() {
+    this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
@@ -96,14 +90,13 @@ export class DashboardComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
       this.file.inProgress = true;
-      console.log("FormData:",formData.get('file'));
-      this.userService.uploadProfie(formData,this.isProfile).subscribe((result:any)=>{
-      console.log("PROFILE RESULT:",result);
-      if(result.status===200)
-      {
-        localStorage.setItem("image",result.data);
-        this.profile=result.data;
-        console.log(this.profile)
+      console.log('FormData:', formData.get('file'));
+      this.userService.uploadProfie(formData, this.isProfile).subscribe((result: any) => {
+      console.log('PROFILE RESULT:', result);
+      if (result.status === 200) {
+        localStorage.setItem('image', result.data);
+        this.profile = result.data;
+        console.log(this.profile);
       }
       });
     }
