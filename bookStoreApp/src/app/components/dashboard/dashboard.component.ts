@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
@@ -8,6 +8,7 @@ import { LoginComponent } from '../login/login.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,17 +20,18 @@ export class DashboardComponent implements OnInit {
   isProfile = 'true';
   searchBook: string;
   books: any;
-  profile:string='./assets/images/user.png';
-  login:boolean;
-  username:string;
-  usermail:string;
+  profile = './assets/images/user.png';
+  login: boolean;
+  username: string;
+  usermail: string;
   updateStats: any;
   file:any;
-  
+  mySubscription: any;
   constructor(private userService: UserService,
-              private service: DashboardService, 
+              private service: DashboardService,
               private router: Router,
-              public dialog: MatDialog) 
+              public dialog: MatDialog,
+              private Adminservice:AdminService) 
   {
      if(localStorage.length===0)
      {
@@ -52,12 +54,25 @@ export class DashboardComponent implements OnInit {
         console.log("image length",localStorage.getItem('image').length);
         this.profile='./assets/images/user.png';
        }*/
-         
+
      }
+     this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
   }
-  openDialogztoedit()
-  {
-    this.dialog.open(EditProfileComponent);  
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
+  }
+  openDialogztoedit() {
+    this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
@@ -85,6 +100,7 @@ export class DashboardComponent implements OnInit {
   }
   Logout() {
     console.log('CAME TO LOGOUT');
+    this.Adminservice.logout().subscribe();
     localStorage.clear();
     console.log(localStorage.length);
     this.router.navigate(['/dashboard']);
@@ -96,14 +112,13 @@ export class DashboardComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.file);
       this.file.inProgress = true;
-      console.log("FormData:",formData.get('file'));
-      this.userService.uploadProfie(formData,this.isProfile).subscribe((result:any)=>{
-      console.log("PROFILE RESULT:",result);
-      if(result.status===200)
-      {
-        localStorage.setItem("image",result.data);
-        this.profile=result.data;
-        console.log(this.profile)
+      console.log('FormData:', formData.get('file'));
+      this.userService.uploadProfie(formData, this.isProfile).subscribe((result: any) => {
+      console.log('PROFILE RESULT:', result);
+      if (result.status === 200) {
+        localStorage.setItem('image', result.data);
+        this.profile = result.data;
+        console.log(this.profile);
       }
       });
     }
