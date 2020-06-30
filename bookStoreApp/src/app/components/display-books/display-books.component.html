@@ -47,6 +47,7 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <button
+            class="approval-button"
             *ngIf="!book.approved && !book.approvalSent"
             mat-raised-button
             fxLayoutAlign="center"
@@ -56,6 +57,7 @@
             APPROVAL
           </button>
           <button
+            class="sent-button"
             *ngIf="!book.approved && book.approvalSent"
             mat-raised-button
             fxLayoutAlign="center"
@@ -64,6 +66,7 @@
             SENT
           </button>
           <button
+            class="approved-button"
             *ngIf="book.approved"
             mat-raised-button
             fxLayoutAlign="center"
@@ -72,6 +75,7 @@
             APPROVED
           </button>
           <button
+            class="delete-button"
             mat-raised-button
             fxLayoutAlign="center"
             [disableRipple]="true"
