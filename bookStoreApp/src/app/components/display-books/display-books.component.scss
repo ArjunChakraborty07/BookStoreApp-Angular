@@ -65,7 +65,7 @@ img {
   border: none;
   outline: none;
 }
-button {
+.approval-button {
   height: 32px;
   width: 70px;
   font-size: x-small;
@@ -74,7 +74,39 @@ button {
   padding: 0px;
   margin-top: 3%;
   border: none;
-
+  outline: none;
+}
+.delete-button {
+  height: 32px;
+  width: 70px;
+  font-size: x-small;
+  background-color: #a03037;
+  color: white;
+  padding: 0px;
+  margin-top: 3%;
+  border: none;
+  outline: none;
+}
+.sent-button {
+  height: 32px;
+  width: 70px;
+  font-size: x-small;
+  background-color: #3371b5;
+  color: white;
+  padding: 0px;
+  margin-top: 3%;
+  border: none;
+  outline: none;
+}
+.approved-button {
+  height: 32px;
+  width: 70px;
+  font-size: x-small;
+  background-color: #054927;
+  color: white;
+  padding: 0px;
+  margin-top: 3%;
+  border: none;
   outline: none;
 }
 .book-details {
@@ -169,7 +201,7 @@ mat-card:hover + .book-details {
 @media only screen and (width: 640px) {
   .main-div {
     background-color: green($color: #000000);
-    padding-left: 14%;
+    padding-left: 15%;
     padding-right: 10%;
     padding-bottom: 2%;
     width: 100%;
