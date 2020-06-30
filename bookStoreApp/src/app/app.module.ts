@@ -57,8 +57,10 @@ import { UpdateBookComponent } from './components/update-book/update-book.compon
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ReviewComponent } from './components/review/review.component';
+import { SuccessPageComponent } from './components/success-page/success-page.component';
 
-
+import { CdkColumnDef } from '@angular/cdk/table';
+import { ReviewService } from 'src/services/review.service';
 
 
 @NgModule({
@@ -85,6 +87,7 @@ import { ReviewComponent } from './components/review/review.component';
     AdminLoginComponent,
     CartComponent,
     ReviewComponent,
+    SuccessPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,9 +115,9 @@ import { ReviewComponent } from './components/review/review.component';
     MatTableModule
   ],
 
-  entryComponents: [EditProfileComponent,ForgotPasswordComponent],
+  entryComponents: [EditProfileComponent, ForgotPasswordComponent, ReviewComponent],
 
-  providers: [UserService, EncrDecrService, HttpService, VendorService],
+  providers: [UserService, EncrDecrService, HttpService, VendorService, CdkColumnDef, ReviewService],
 
   bootstrap: [AppComponent],
 })

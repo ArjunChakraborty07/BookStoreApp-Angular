@@ -19,4 +19,11 @@ export class BookService {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
     });
   }
+
+  public getNumberOfItems(): Observable<any> {
+    return this.http.GET('books/getBookCount',"");
+  }
+  
+
+
 }
