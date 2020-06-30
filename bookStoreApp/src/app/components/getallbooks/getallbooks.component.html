@@ -1,23 +1,28 @@
-<div class="row">
-    <div
-        class="main-div"
-        fxLayoutAlign="space-around center"
-        *ngFor="let book of books">
-        <mat-card>
-            <div class="bookImageDiv" fxLayoutAlign="center">
-                <img src="../../../assets/images/bookstore-wallpaper.jpg"/>
-            </div>
-            <div class="bookInfoDiv" fxLayout="column">
-                <mat-card-content>
-                    <div class="a">
-                        <mat-card-title>{{book.bookName}}</mat-card-title>
-                        <mat-card-subtitle>By
-                            {{book.authorName}}</mat-card-subtitle>
-                    </div>
-                    <div class="price">
-                        Rs.{{book.price}}</div>
-                </mat-card-content>
-            </div>
-        </mat-card>
+<div class="items">
+    <h3 class="b">Books<mat-card-subtitle>({{countResult}})</mat-card-subtitle></h3>
     </div>
-</div>
+    
+    
+    <div class="row">
+        <div
+            class="main-div"
+            fxLayoutAlign="space-around center"
+            *ngFor="let book of books">
+            <mat-card>
+                <div class="bookImageDiv" fxLayoutAlign="center">
+                    <img src="../../../assets/images/bookstore-wallpaper.jpg"/>
+                </div>
+                <div class="bookInfoDiv" fxLayout="column">
+                    <mat-card-content>
+                        <div class="a">
+                            <mat-card-title>{{book.bookName}}</mat-card-title>
+                            <mat-card-subtitle>By
+                                {{book.authorName}}</mat-card-subtitle>
+                        </div>
+                        <div class="price">
+                            Rs.{{book.price}}</div>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+    </div>
