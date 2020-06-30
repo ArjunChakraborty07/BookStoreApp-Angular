@@ -17,6 +17,7 @@ import { GetAllSellersComponent } from './components/get-all-sellers/get-all-sel
 import { GetBooksForVerificationComponent } from './components/get-books-for-verification/get-books-for-verification.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { CartComponent } from './components/cart/cart.component';
+import { SuccessPageComponent } from './components/success-page/success-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'verification/:token', component: VerificationComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'admin-dashboard/sellers', component: GetAllSellersComponent },
+  { path: 'successPage', component: SuccessPageComponent },
   {
     path: 'admin-dashboard/booksForVerification',
     component: GetBooksForVerificationComponent,
