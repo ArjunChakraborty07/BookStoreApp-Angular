@@ -36,11 +36,14 @@ export class UserService {
   public login(login: any): Observable<any> {
     return this.http.POST('users/login', login, '');
   }
-  uploadProfie(file: FormData, isProfile: any) {
-    console.log('IN USERSERVICE TO UPLOAD IMAGE:', file);
-    return this.http.POST('users/uploadImage', file, {
-      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
-      params: new HttpParams().set('isProfile', isProfile),
-    });
+  uploadProfie(file:FormData,isProfile:any)
+  {
+    console.log("IN USERSERVICE TO UPLOAD IMAGE:",file);
+    return this.http.POST('users/uploadImage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+  }
+  updateUser(data)
+  {
+    console.log("in update user service:",data);
+    return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
   }
 }

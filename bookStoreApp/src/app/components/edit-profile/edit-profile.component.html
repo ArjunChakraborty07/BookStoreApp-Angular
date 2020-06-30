@@ -18,7 +18,7 @@
     <table>
         <tr><td>User Name </td><td>:</td><td><input [(ngModel)]="username" class="input-field" type="text" class="emailfield" readonly ></td></tr>
         <mat-divider></mat-divider><br>
-        <tr><td>Password </td><td>:</td><td><input [(ngModel)]="password" (click)="changeIcon()" #pass class="input-field" type="text" [type]="hide ? 'password' : 'text'"></td>
+        <tr><td>&nbsp;Password </td><td>:</td><td><input [(ngModel)]="password" (click)="changeIcon()" #pass class="input-field" type="text" [type]="hide ? 'password' : 'text'"></td>
             <button mat-icon-button matSuffix class="matbutton" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon *ngIf="editicon" (click)="changeIcon()">edit</mat-icon>
                 <mat-icon *ngIf="passicon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -26,11 +26,11 @@
         </tr>
         <!--{{pass.className}}-->
         <mat-divider></mat-divider><br>
-        <tr><td>Full Name </td><td>:</td><td><input [(ngModel)]="fullname" class="input-field" readonly type="text" ></td><mat-icon matSuffix class="icon">edit</mat-icon></tr>
+        <tr><td>Full Name </td><td>:&nbsp;&nbsp;</td><td><input [(ngModel)]="fullname" class="input-field" type="text" ></td><mat-icon matSuffix class="icon">edit</mat-icon></tr>
         <mat-divider></mat-divider><br>
-        <tr><td>Email</td><td>:</td><td><input [(ngModel)]="usermail" class="input-field" class="emailfield" type="text" readonly></td><td></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Email</td><td>:&nbsp;&nbsp;</td><td><input [(ngModel)]="usermail" class="input-field" class="emailfield" type="text" readonly></td><td></td></tr>
         <mat-divider></mat-divider><br>
-        <tr><td>Mobile</td><td>:</td><td><input [(ngModel)]="mobile" class="input-field" class="emailfield" type="text"></td></tr>
+        <tr><td>&nbsp;&nbsp;&nbsp;Mobile</td><td>:&nbsp;&nbsp;</td><td><input [(ngModel)]="mobile" class="input-field" class="emailfield" type="text"></td></tr>
     </table>
 </mat-card>
 <div class="buttons">
