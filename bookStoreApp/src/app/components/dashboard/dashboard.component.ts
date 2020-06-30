@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RegisterComponent } from '../register/register.component';
@@ -8,6 +8,7 @@ import { LoginComponent } from '../login/login.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
 import { AutofillMonitor } from '@angular/cdk/text-field';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,11 +26,12 @@ export class DashboardComponent implements OnInit {
   usermail:string;
   updateStats: any;
   file:any;
-  
+  mySubscription: any;
   constructor(private userService: UserService,
               private service: DashboardService, 
               private router: Router,
-              public dialog: MatDialog) 
+              public dialog: MatDialog,
+              private Adminservice:AdminService) 
   {
      if(localStorage.length===0)
      {
@@ -54,6 +56,20 @@ export class DashboardComponent implements OnInit {
        }*/
          
      }
+     this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Trick the Router into believing it's last link wasn't previously loaded
+        this.router.navigated = false;
+      }
+    });
+  }
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
   }
   openDialogztoedit()
   {
@@ -85,6 +101,7 @@ export class DashboardComponent implements OnInit {
   }
   Logout() {
     console.log('CAME TO LOGOUT');
+    this.Adminservice.logout().subscribe();
     localStorage.clear();
     console.log(localStorage.length);
     this.router.navigate(['/dashboard']);
