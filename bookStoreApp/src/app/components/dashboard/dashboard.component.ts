@@ -25,38 +25,34 @@ export class DashboardComponent implements OnInit {
   username: string;
   usermail: string;
   updateStats: any;
-  file:any;
+  file: any;
   mySubscription: any;
   constructor(private userService: UserService,
-              private service: DashboardService,
-              private router: Router,
-              public dialog: MatDialog,
-              private Adminservice:AdminService) 
-  {
-     if(localStorage.length===0)
-     {
-       this.login=false;
-       console.log("not logged");
+    private service: DashboardService,
+    private router: Router,
+    public dialog: MatDialog,
+    private Adminservice: AdminService) {
+    if (localStorage.length === 0) {
+      this.login = false;
+      console.log("not logged");
+      this.profile = './assets/images/user.png';
+    }
+    else {
+      console.log("logged in");
+      this.login = true;
+      this.username = localStorage.getItem('name');
+      this.usermail = localStorage.getItem('email');
+      if (localStorage.getItem('image').length != 0) {
+        this.profile = localStorage.getItem("image");
+      }
+      /*if(localStorage.getItem('image').length==0)
+      {
+       console.log("image length",localStorage.getItem('image').length);
        this.profile='./assets/images/user.png';
-     }
-     else
-     {
-       console.log("logged in");
-       this.login=true;
-       this.username=localStorage.getItem('name');
-       this.usermail=localStorage.getItem('email');
-       if(localStorage.getItem('image').length!=0)
-       {
-          this.profile=localStorage.getItem("image");
-       }
-       /*if(localStorage.getItem('image').length==0)
-       {
-        console.log("image length",localStorage.getItem('image').length);
-        this.profile='./assets/images/user.png';
-       }*/
+      }*/
 
-     }
-     this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    }
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {
@@ -76,11 +72,11 @@ export class DashboardComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-   //  width: '40%',
-   //  height:'90%',
+      //  width: '40%',
+      //  height:'90%',
     });
   }
-  ngOnInit() {}
+  ngOnInit() { }
   onSearch() {
     this.service.search(this.searchBook).subscribe((response: any) => {
       this.books = response;
@@ -114,12 +110,12 @@ export class DashboardComponent implements OnInit {
       this.file.inProgress = true;
       console.log('FormData:', formData.get('file'));
       this.userService.uploadProfie(formData, this.isProfile).subscribe((result: any) => {
-      console.log('PROFILE RESULT:', result);
-      if (result.status === 200) {
-        localStorage.setItem('image', result.data);
-        this.profile = result.data;
-        console.log(this.profile);
-      }
+        console.log('PROFILE RESULT:', result);
+        if (result.status === 200) {
+          localStorage.setItem('image', result.data);
+          this.profile = result.data;
+          console.log(this.profile);
+        }
       });
     }
   }

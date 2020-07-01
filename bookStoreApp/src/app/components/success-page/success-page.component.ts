@@ -10,8 +10,6 @@ import { ReviewComponent } from '../review/review.component';
 export class SuccessPageComponent implements OnInit {
 
 
-
-
   constructor(public dialog: MatDialog) { }
 
 

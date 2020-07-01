@@ -24,4 +24,46 @@
 }
 
 
-
+@media only screen and (min-width: 600px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (width: 823px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (width: 736px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (width: 731px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (width: 812px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (width: 768px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    .main-div {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .main-div{
+        width: 100%;
+    }
+    .tool {
+      width: 100%;
+    }
+  }

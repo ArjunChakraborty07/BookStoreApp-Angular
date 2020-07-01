@@ -23,6 +23,9 @@
         <div fxlayout="row">
           <span class="input-price-span">Rs.{{book.price}}</span>
         </div>
+        <div fxlayout="row">
+          <span class="input-price-span">Quantity: {{book.quantity}}</span>
+        </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
           <button mat-raised-button [disabled]="(counter==book.bookId)" fxLayoutAlign="center" [disableRipple]="true" (click)="onApprove(book)" >
             APPROVE
