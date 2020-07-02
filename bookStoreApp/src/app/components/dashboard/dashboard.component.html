@@ -19,14 +19,12 @@
       matInput
       placeholder="Search"
     />
-    <button
-      class="cart"
-      mat-icon-button
-      (click)="onCart()"
-      matTooltip="Cart"
-    ><mat-icon matBadge= {{cartCounter}}  MatBadgeSize = 'small'>shopping_cart</mat-icon></button
+    <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
+      <mat-icon matBadge="{{ cartCounter }}" MatBadgeSize="small"
+        >shopping_cart</mat-icon
+      ></button
     ><br />
-    
+
     <button
       mat-icon-button
       [matMenuTriggerFor]="signoutmenu"
@@ -81,9 +79,7 @@
         </div>
       </ng-template>
       <ng-template #notloggedblock>
-        <i
-          ><div style="padding-top: 8%;" class="mat-headline">Welcome</div>
-        </i
+        <i><div style="padding-top: 8%;" class="mat-headline">Welcome</div> </i
         ><br />
         <mat-divider></mat-divider><br />
         <div fxLayoutAlign="end">
@@ -103,25 +99,26 @@
         <option value="">new Arrivals</option>
       </select>
     </div>
-    <app-getallbooks *ngIf="!isCart" (cartCounter)='AddToCart($event)'></app-getallbooks>
-    <app-cart *ngIf="isCart" (cartCounter)="AddToCart($event)"></app-cart>
-    <!-- <router-outlet (cartCounter)="AddToCart($event)"></router-outlet> -->
-<!-- <mat-paginator [length]="length"
+    <!-- <app-getallbooks *ngIf="!isCart" (cartCounter)='AddToCart($event)'></app-getallbooks>
+    <app-cart *ngIf="isCart" (cartCounter)="AddToCart($event)"></app-cart> -->
+    <router-outlet (cartCounter)="AddToCart($event)"></router-outlet>
+    <!-- <mat-paginator [length]="length"
                [pageSize]="pageSize"
                [pageSizeOptions]="pageSizeOptions"
                (page)="pageEvent = $event">
 </mat-paginator> -->
-<br><br>
-
-</div>
+    <br /><br />
+  </div>
 </div>
 <div class="divfooter">
   <mat-toolbar class="matfooter">
-  <footer>
-    <p style="text-align: center;"><span class="small">Copyright &copy;2020, Bookstore Private Limited.All Rights Reserved.</span></p>
-  </footer>
+    <footer>
+      <p style="text-align: center;">
+        <span class="small"
+          >Copyright &copy;2020, Bookstore Private Limited.All Rights
+          Reserved.</span
+        >
+      </p>
+    </footer>
   </mat-toolbar>
-  </div>
-
-
-  
+</div>
