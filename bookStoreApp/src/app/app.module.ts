@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatTableModule} from '@angular/material/table';
+import {MatBadgeModule} from '@angular/material/badge';
 import {
   MatSnackBarModule,
   MatTooltipModule,
@@ -112,7 +113,8 @@ import { ReviewService } from 'src/services/review.service';
     MatDialogModule,
     FlexLayoutModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    MatBadgeModule
   ],
 
   entryComponents: [EditProfileComponent, ForgotPasswordComponent, ReviewComponent],
