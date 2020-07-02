@@ -25,29 +25,26 @@ export class DashboardComponent implements OnInit {
   username: string;
   usermail: string;
   updateStats: any;
-  file:any;
+  file: any;
+  isCart: boolean;
+  cartCounter: number;
   mySubscription: any;
   constructor(private userService: UserService,
               private service: DashboardService,
               private router: Router,
               public dialog: MatDialog,
-              private Adminservice:AdminService) 
-  {
-     if(localStorage.length===0)
-     {
-       this.login=false;
-       console.log("not logged");
-       this.profile='./assets/images/user.png';
-     }
-     else
-     {
-       console.log("logged in");
-       this.login=true;
-       this.username=localStorage.getItem('name');
-       this.usermail=localStorage.getItem('email');
-       if(localStorage.getItem('image').length!=0)
-       {
-          this.profile=localStorage.getItem("image");
+              private Adminservice: AdminService) {
+     if (localStorage.length === 0) {
+       this.login = false;
+       console.log('not logged');
+       this.profile = './assets/images/user.png';
+     } else {
+       console.log('logged in');
+       this.login = true;
+       this.username = localStorage.getItem('name');
+       this.usermail = localStorage.getItem('email');
+       if (localStorage.getItem('image') == null) {
+          this.profile = localStorage.getItem('image');
        }
        /*if(localStorage.getItem('image').length==0)
        {
@@ -56,10 +53,10 @@ export class DashboardComponent implements OnInit {
        }*/
 
      }
-     this.router.routeReuseStrategy.shouldReuseRoute = function () {
+     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
-    this.mySubscription = this.router.events.subscribe((event) => {
+     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Trick the Router into believing it's last link wasn't previously loaded
         this.router.navigated = false;
@@ -85,12 +82,15 @@ export class DashboardComponent implements OnInit {
     this.service.search(this.searchBook).subscribe((response: any) => {
       this.books = response;
     });
+    this.isCart = false;
   }
   onCart() {
-    this.router.navigate(['/dashboard/cart']);
+    this.isCart = true;
+    // this.router.navigate(['/dashboard/cart']);
   }
   onBookStore() {
-    this.router.navigate(['/books']);
+    this.isCart = false;
+    this.router.navigate(['/dashboard/getallbooks']);
   }
   onLogin() {
     this.router.navigate(['/login']);
@@ -122,5 +122,8 @@ export class DashboardComponent implements OnInit {
       }
       });
     }
+  }
+  AddToCart(count: number) {
+    this.cartCounter = count;
   }
 }
