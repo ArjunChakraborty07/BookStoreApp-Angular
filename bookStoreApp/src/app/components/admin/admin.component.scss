@@ -1,10 +1,11 @@
-.admin{
-    width: 100%
+.main-div{
+    width: device-width;
     // width:92%;
     // margin-left: 4%;
 }
 .tool{
     background-color: rgb(179, 59, 59);
+    width: device-width;
     height: 55px;
     color: aliceblue;
     
@@ -23,47 +24,9 @@
     font-size: 150%;
 }
 
-
-@media only screen and (min-width: 600px) {
-    .main-div {
-      width: 100%;
-    }
+@media only screen and (max-width: 600px) {
+  .tool {
+    width: device-width;
   }
-  @media only screen and (width: 823px) {
-    .main-div {
-      width: 100%;
-    }
-  }
-  @media only screen and (width: 736px) {
-    .main-div {
-      width: 100%;
-    }
-  }
-  @media only screen and (width: 731px) {
-    .main-div {
-      width: 100%;
-    }
-  }
-  @media only screen and (width: 812px) {
-    .main-div {
-      width: 100%;
-    }
-  }
-  @media only screen and (width: 768px) {
-    .main-div {
-      width: 100%;
-    }
-  }
-  @media only screen and (max-width: 320px) {
-    .main-div {
-      width: 100%;
-    }
-  }
-  @media only screen and (max-width: 500px) {
-    .main-div{
-        width: 100%;
-    }
-    .tool {
-      width: 100%;
-    }
-  }
+}
+  

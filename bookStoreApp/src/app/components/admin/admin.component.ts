@@ -16,6 +16,6 @@ export class AdminComponent implements OnInit {
   onLogout() {
    this.service.logout().subscribe();
    localStorage.clear();
-   this.router.navigate(['dashboard']);
+   this.router.navigate(['admin-login']);
   }
 }
