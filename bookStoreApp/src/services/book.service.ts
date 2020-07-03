@@ -24,6 +24,16 @@ export class BookService {
     return this.http.GET('books/getBookCount',"");
   }
   
+  public addToWishListBooks(bookId: any): Observable<any> {
+    return this.http.POST('wishlists/addToWishlist/' + bookId,"",{
+      headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+    });
+  }   
 
+public viewWishlist(): Observable<any>{
+  return this.http.GET('wishlists/displayItems',{
+    headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+  });
+}
 
 }

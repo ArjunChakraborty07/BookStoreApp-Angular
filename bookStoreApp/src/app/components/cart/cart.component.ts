@@ -10,6 +10,9 @@ import { MessageService } from 'src/services/message.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+
+  public show:boolean = false;
+  public buttonName:any = 'Show';
   @Output() cartCounter = new EventEmitter<number>();
   @Output() isCart = new EventEmitter<boolean>();
   books: any = [];
@@ -102,6 +105,18 @@ export class CartComponent implements OnInit {
       }
     );
   }
+
+  toggle() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)  
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
+  }
+
+
 
   removeQuantity(cartBook: any) {
     this.cartService.removeQuantity(cartBook.cartBookId).subscribe(

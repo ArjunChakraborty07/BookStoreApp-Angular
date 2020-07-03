@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <span class="title-center">WishList</span>
+  </mat-toolbar><br>
+<h3 mat-dialog-title>book added to WishList</h3>
+
+<div fxLayout="row" fxLayoutAlign="space-around center">
+    <img style="vertical-align:-150px" src="../../../assets/images/bookstore-wallpaper.jpg">
+    <span class="right">
+        <div class="name">
+    <mat-card-title>{{data.bookname}}</mat-card-title>
+        </div>
+       <div class="author">
+    By {{data.bookauthor}}
+       </div>
+    <div class="price">
+    Rs.{{data.bookprice}}
+    </div>
+     </span>
+  </div>
+  <br>
+  
+  <div class="left"   fxLayout="row" fxLayoutAlign="space-around center" >
+    <button mat-raised-button    [mat-dialog-close] [routerLink]="['']" >View WishList</button>   <button mat-stroked-button   [mat-dialog-close]  [routerLink]="['dashboard']">Continue Shopping</button>
+  </div>
+
+
+
+
+
+               
