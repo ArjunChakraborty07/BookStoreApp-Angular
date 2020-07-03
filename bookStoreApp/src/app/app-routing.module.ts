@@ -18,6 +18,7 @@ import { GetBooksForVerificationComponent } from './components/get-books-for-ver
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { CartComponent } from './components/cart/cart.component';
 import { SuccessPageComponent } from './components/success-page/success-page.component';
+import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -27,31 +28,31 @@ const routes: Routes = [
   { path: 'verification/:token', component: VerificationComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'admin-dashboard/sellers', component: GetAllSellersComponent },
-  { path: 'successPage', component: SuccessPageComponent },
-  {
-    path: 'admin-dashboard/booksForVerification',
-    component: GetBooksForVerificationComponent,
-  },
+
   { path: 'addbook', component: AddBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'admin-login', component: AdminLoginComponent },
-  // {
-  //   path: 'admin-dashboard',
-  //   redirectTo: '/admin-dashboard/sellers',
-  //   pathMatch: 'full',
-  // },
-  { path: 'cart', component: CartComponent },
+
+
 
   {
     path: 'dashboard',
     component: DashboardComponent,
-    children: [],
+    children: [
+      { path: '', redirectTo: 'getallbooks', pathMatch: 'full' },
+      {
+        path: 'getallbooks',
+        component: GetallbooksComponent,
+      },
+      { path: 'cart', component: CartComponent },
+      { path: 'successPage', component: SuccessPageComponent },
+      ],
   },
   {
     path: 'admin-dashboard',
     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'admin-dashboard/sellers', pathMatch: 'full' },
+      { path: '', redirectTo: 'sellers', pathMatch: 'full' },
       { path: 'sellers', component: GetAllSellersComponent },
       {
         path: 'booksForVerification',
@@ -85,4 +86,6 @@ export const routingComponents = [
   VerificationComponent,
   ResetPasswordComponent,
   AdminComponent,
+  CartComponent,
+  GetAllSellersComponent
 ];

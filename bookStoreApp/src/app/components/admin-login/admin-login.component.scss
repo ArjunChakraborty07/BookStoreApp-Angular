@@ -2,7 +2,7 @@
     width: 300px;
     outline: none;
     border: none;
-    margin-right: 20%;
+    //margin-right: 20%;
     display: flex;
     padding: 10px;
     flex-wrap: wrap;
@@ -18,20 +18,20 @@
     flex: 1 1 auto;
     text-align: center;
   }
-  @media screen and (max-width: 959px) {
-    /* Column Gap */
-    .my-card {
-      margin-right: 50px;
-    }
-  }
+  // @media screen and (max-width: 959px) {
+  //   /* Column Gap */
+  //   .my-card {
+  //     margin-right: 50px;
+  //   }
+  // }
   
-  @media screen and (max-width: 599px) {
-    .my-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-  }
+  // @media screen and (max-width: 599px) {
+  //   .my-card {
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: flex-start;
+  //   }
+  // }
   
   //  .example-container .mat-form-field + .mat-form-field {
   //      margin-left: 8px;

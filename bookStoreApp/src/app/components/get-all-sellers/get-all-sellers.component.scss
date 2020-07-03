@@ -1,28 +1,43 @@
 
-.user{
-  width: device-width;
-  // width:92%;
-  // margin-left: 4%;
-}
+
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    table-layout: fixed;
   }
   
   td, th {
-    border: 1px solid #292828;
+    //border: 1px solid #292828;
     text-align: center;
     padding: 8px;
+     
   }
   td {
-    border: 1px solid #292828;
+    //border: 1px solid #292828;
     text-align: left;
     padding: 8px;
   }
   
   tr:nth-child(even) {
-    background-color: #dddddd;
+    //background-color: #dddddd;
   }
   
-    
+  @media only screen and (max-width: 450px) {
+    table{
+      font-size: xx-small;
+    }
+    .contact{
+      //padding-left: 0.2%;
+    }
+    .contactButton{
+      padding: 5px;
+      padding-left: 0.5%;
+      margin-left: 0.5%;
+    }
+  }
+
+  @media only screen and (max-width: 350px) {
+    .contact{
+      padding-left: 0.2%;
+    }
+  }

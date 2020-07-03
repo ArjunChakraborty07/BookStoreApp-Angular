@@ -16,17 +16,20 @@
     margin-top: 1.2%;
     margin-left: 15%
 }
-.welcome{
-    position: absolute;
-    color:aliceblue;
-    margin-top: 0.8%;
-    margin-left: 45%;
-    font-size: 150%;
-}
 
 @media only screen and (max-width: 600px) {
-  .tool {
-    width: device-width;
+  .content{
+    font-size: 80%;
+    width: 20%;
   }
+  mat-icon{
+    font-size: 120%;
+  }
+  // span{
+  //   font-size: 100%;
+  // }
+  
+    
+  
 }
   

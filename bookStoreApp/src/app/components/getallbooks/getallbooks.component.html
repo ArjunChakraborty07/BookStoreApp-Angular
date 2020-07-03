@@ -21,10 +21,10 @@
                         </div>
                         <div class="price">
                             Rs.{{book.price}}</div>
+                            <div class="left">
+                                <button mat-raised-button color="primary" (click)="addToCart(book)">ADD</button>   <button mat-stroked-button>WISHLIST</button>
+                              </div>
                     </mat-card-content>
-                    <div class="left">
-                        <button mat-raised-button color="primary">ADD</button>   <button mat-stroked-button>WISHLIST</button>
-                      </div>
                 </div>
             </mat-card>
         </div>

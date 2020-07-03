@@ -18,4 +18,7 @@ export class AdminComponent implements OnInit {
    localStorage.clear();
    this.router.navigate(['admin-login']);
   }
+  navigateTo() {
+    this.router.navigate(['/admin-dashboard']);
+  }
 }
