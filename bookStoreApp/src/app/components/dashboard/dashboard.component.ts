@@ -9,6 +9,7 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { AdminService } from 'src/services/admin.service';
+import { MessageService } from 'src/services/message.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,34 +31,36 @@ export class DashboardComponent implements OnInit {
   isSuccess: boolean;
   cartCounter: number;
   mySubscription: any;
-  constructor(private userService: UserService,
-              private service: DashboardService,
-              private router: Router,
-              public dialog: MatDialog,
-              private Adminservice: AdminService) {
-     if (localStorage.length === 0) {
-       this.login = false;
-       console.log('not logged');
-       this.profile = './assets/images/user.png';
-     } else {
-       console.log('logged in');
-       this.login = true;
-       this.username = localStorage.getItem('name');
-       this.usermail = localStorage.getItem('email');
-       if (localStorage.getItem('image') == null) {
-          this.profile = localStorage.getItem('image');
-       }
-       /*if(localStorage.getItem('image').length==0)
+  constructor(
+    private userService: UserService,
+    private service: DashboardService,
+    private router: Router,
+    public dialog: MatDialog,
+    private Adminservice: AdminService,
+    private messageService: MessageService
+  ) {
+    if (localStorage.length === 0) {
+      this.login = false;
+      console.log('not logged');
+      this.profile = './assets/images/user.png';
+    } else {
+      console.log('logged in');
+      this.login = true;
+      this.username = localStorage.getItem('name');
+      this.usermail = localStorage.getItem('email');
+      if (localStorage.getItem('image') == null) {
+        this.profile = localStorage.getItem('image');
+      }
+      /*if(localStorage.getItem('image').length==0)
        {
         console.log("image length",localStorage.getItem('image').length);
         this.profile='./assets/images/user.png';
        }*/
-
-     }
-     this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    }
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
-     this.mySubscription = this.router.events.subscribe((event) => {
+    this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Trick the Router into believing it's last link wasn't previously loaded
         this.router.navigated = false;
@@ -86,11 +89,12 @@ export class DashboardComponent implements OnInit {
     this.isCart = false;
   }
   onCart() {
-    this.isCart = true;
-    // this.router.navigate(['/dashboard/cart']);
+    // this.isCart = true;
+    this.router.navigate(['/dashboard/cart']);
   }
   onSuccess() {
     this.isSuccess = true;
+    this.router.navigate(['/dashboard/successPage']);
   }
   onBookStore() {
     this.isCart = false;
@@ -117,14 +121,16 @@ export class DashboardComponent implements OnInit {
       formData.append('file', this.file);
       this.file.inProgress = true;
       console.log('FormData:', formData.get('file'));
-      this.userService.uploadProfie(formData, this.isProfile).subscribe((result: any) => {
-        console.log('PROFILE RESULT:', result);
-        if (result.status === 200) {
-          localStorage.setItem('image', result.data);
-          this.profile = result.data;
-          console.log(this.profile);
-        }
-      });
+      this.userService
+        .uploadProfie(formData, this.isProfile)
+        .subscribe((result: any) => {
+          console.log('PROFILE RESULT:', result);
+          if (result.status === 200) {
+            localStorage.setItem('image', result.data);
+            this.profile = result.data;
+            console.log(this.profile);
+          }
+        });
     }
   }
   AddToCart(count: number) {

@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'addbook', component: AddBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'admin-login', component: AdminLoginComponent },
+  {path: 'successPage', component: SuccessPageComponent},
 
 
 
