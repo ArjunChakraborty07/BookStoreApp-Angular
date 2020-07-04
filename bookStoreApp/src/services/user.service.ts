@@ -48,7 +48,7 @@ export class UserService {
   }
   checkout(bookId,quantity)
   {
-    console.log("in user service for checkout")
-    return this.http.POST('orders/checkout/'+bookId+'/'+quantity,{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))},'');
+    console.log("in user service for checkout",bookId,quantity);
+    return this.http.POST('orders/checkout/'+bookId+'/'+quantity,'',{ params:new HttpParams().set('token',localStorage.getItem('token'))});
   }
 }

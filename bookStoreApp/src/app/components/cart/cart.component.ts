@@ -6,6 +6,7 @@ import { MessageService } from 'src/services/message.service';
 import {FormBuilder} from '@angular/forms';
 import { UserService } from 'src/services/user.service';
 import { CartModule } from 'src/models/cart/cart.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -28,7 +29,8 @@ export class CartComponent implements OnInit {
     private snackBar: MatSnackBar,
     private messageService: MessageService,
     private fb:FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private route:Router
   ) {}
 
   addressGroup=this.fb.group({
@@ -206,8 +208,12 @@ export class CartComponent implements OnInit {
   checkout(id,qty)
   {
     console.log("Ordered Successfully",id,qty);
+    localStorage.setItem("bookId",id);
     this.userService.checkout(id,qty).subscribe((result:any)=>{
-
+      if(result.status==200)
+      {
+        this.route.navigate(['/successPage']);
+      }
     });
   }
 }
