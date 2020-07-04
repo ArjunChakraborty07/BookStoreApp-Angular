@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { VendorService } from './vendor.service';
 import { BookService } from './book.service';
 import { CartServiceService } from './cart.service';
+import { CartModule } from 'src/models/cart/cart.module';
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +28,12 @@ export class MessageService {
     });
   }
   cartBooks() {
-    this.cartService.displayBooksInCart().subscribe((data: any) => {
-      console.log(data.data);
-      this.messageSource.next(data);
-    });
+    if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
+        this.messageSource.next(JSON.parse(localStorage.getItem('cart')));
+    } else {
+      this.cartService.displayBooksInCart().subscribe((data: any) => {
+        this.messageSource.next(data);
+      });
+    }
   }
 }
