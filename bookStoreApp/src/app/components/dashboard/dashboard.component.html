@@ -1,6 +1,6 @@
 <div class="dashboard">
   <span class="logo" (click)="onBookStore()">BookStore</span>
-  <span class="cartname">Cart</span>
+  <!-- <span class="cartname">Cart</span> -->
   <mat-toolbar class="tool">
     <mat-card class="mattool"> </mat-card>
     <button
@@ -20,7 +20,7 @@
       placeholder="Search"
     />
     <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
-      <mat-icon matBadge="{{ cartCounter }}" MatBadgeSize="small"
+     Cart <mat-icon matBadge="{{ cartCounter }}" MatBadgeSize="small"
         >shopping_cart</mat-icon
       ></button
     ><br />
@@ -103,13 +103,13 @@
     <mat-icon>camera_alt</mat-icon>
   </mat-toolbar>
   <div class="box">
-    <div class="left" *ngIf="!isCart">
+    <!-- <div class="left" *ngIf="!isCart">
       <select matNativeControl required>
         <option>sort by relevance</option>
         <option value="">Low to High</option>
         <option value="">new Arrivals</option>
       </select>
-    </div>
+    </div> -->
     <!-- <app-getallbooks *ngIf="!isCart" (cartCounter)='AddToCart($event)'></app-getallbooks>
     <app-cart *ngIf="isCart" (cartCounter)="AddToCart($event)"></app-cart> -->
     <router-outlet></router-outlet>
