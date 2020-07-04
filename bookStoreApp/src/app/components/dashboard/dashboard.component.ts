@@ -10,6 +10,7 @@ import { UserService } from 'src/services/user.service';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { AdminService } from 'src/services/admin.service';
 import { MessageService } from 'src/services/message.service';
+import { CartServiceService } from 'src/services/cart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ import { MessageService } from 'src/services/message.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  subscription: Subscription;
   data: any;
   isProfile = 'true';
   searchBook: string;
@@ -36,9 +38,10 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private Adminservice: AdminService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private cartService: CartServiceService
   ) {
-    if (localStorage.length === 0) {
+    if (localStorage.getItem('token') === null) {
       this.login = false;
       console.log('not logged');
       this.profile = './assets/images/user.png';
@@ -47,16 +50,17 @@ export class DashboardComponent implements OnInit {
       this.login = true;
       this.username = localStorage.getItem('name');
       this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image') == null) {
-        this.profile = localStorage.getItem('image');
-      }
+      // if (localStorage.getItem('image') == null) {
+      this.profile = localStorage.getItem('image');
+      // }
       /*if(localStorage.getItem('image').length==0)
        {
         console.log("image length",localStorage.getItem('image').length);
         this.profile='./assets/images/user.png';
        }*/
     }
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    // tslint:disable-next-line: only-arrow-functions
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {
@@ -66,6 +70,14 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  ngOnInit() {
+    this.subscription = this.cartService.getCartCounter().subscribe(cartSize => {
+      console.log(cartSize);
+      this.cartCounter = cartSize;
+    });
+  }
+
   ngOnDestroy() {
     if (this.mySubscription) {
       this.mySubscription.unsubscribe();
@@ -80,7 +92,7 @@ export class DashboardComponent implements OnInit {
       //  height:'90%',
     });
   }
-  ngOnInit() {}
+
   onSearch() {
     this.service.search(this.searchBook).subscribe((response: any) => {
       this.books = response;
@@ -128,7 +140,7 @@ export class DashboardComponent implements OnInit {
         });
     }
   }
-  AddToCart(count: number) {
+   AddToCart(count: number) {
     this.cartCounter = count;
   }
   myorders()

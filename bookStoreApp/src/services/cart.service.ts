@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class CartServiceService {
   private displayItemsApi = 'carts/displayItems';
   private addQuantityApi = 'carts/addQuantity/';
   private removeQuantityApi = 'carts/removeQuantity/';
-
+  private subject = new Subject<any>();
   constructor(private http: HttpService) { }
 
   addToCart(bookId: any): Observable <any> {
@@ -43,5 +43,12 @@ export class CartServiceService {
     return this.http.PUT(this.removeQuantityApi + cartBookId, '', {
       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
+  }
+
+  getCartCounter(): Observable<any> {
+    return this.subject.asObservable();
+  }
+  sendCartCounter(cartSize: number) {
+    this.subject.next(cartSize);
   }
 }

@@ -27,9 +27,12 @@ export class MessageService {
     });
   }
   cartBooks() {
-    this.cartService.displayBooksInCart().subscribe((data: any) => {
-      console.log(data.data);
-      this.messageSource.next(data);
-    });
+    if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
+        this.messageSource.next(JSON.parse(localStorage.getItem('cart')));
+    } else {
+      this.cartService.displayBooksInCart().subscribe((data: any) => {
+        this.messageSource.next(data);
+      });
+    }
   }
 }
