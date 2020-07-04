@@ -19,6 +19,7 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { CartComponent } from './components/cart/cart.component';
 import { SuccessPageComponent } from './components/success-page/success-page.component';
 import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
+import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'admin-dashboard/sellers', component: GetAllSellersComponent },
   { path: 'successPage', component: SuccessPageComponent },
+  { path: 'viewWishList', component: ViewWishlistComponent  },
+
   {
     path: 'admin-dashboard/booksForVerification',
     component: GetBooksForVerificationComponent,

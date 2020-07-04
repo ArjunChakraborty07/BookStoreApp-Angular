@@ -3,12 +3,18 @@ import { first } from 'rxjs/operators';
 import { BookService } from 'src/services/book.service';
 import { AdminService } from 'src/services/admin.service';
 import { Book } from 'src/models/book.model';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { CartServiceService } from 'src/services/cart.service';
 import { CartBookModule } from 'src/models/cart-book/cart-book.module';
 import { CartModule } from 'src/models/cart/cart.module';
-import { throwError } from 'rxjs';
+import { MessageService } from 'src/services/message.service';
+import { ViewWishlistComponent } from '../view-wishlist/view-wishlist.component';
 
+
+
+export interface DialogData {
+ 
+}
 @Component({
   selector: 'app-getallbooks',
   templateUrl: './getallbooks.component.html',
@@ -21,7 +27,9 @@ export class GetallbooksComponent implements OnInit {
   cartBook: CartBookModule ;
 
 
-  constructor(private bookservice: BookService, private snackBar: MatSnackBar, private cartService: CartServiceService) { }
+  constructor(private bookservice: BookService, private snackBar: MatSnackBar, private cartService: CartServiceService,
+    private messageService: MessageService,
+    public dialog: MatDialog) { }
 
 
   ngOnInit() {
@@ -43,6 +51,43 @@ private getItems() {
   },
   );
 }
+onAddBookToWishList(bookId){
+  console.log(bookId);
+  this.bookservice.addToWishListBooks(bookId).subscribe(
+    (data) => {
+      if (data.status === 200) {
+        this.messageService.changeMessage();
+        this.snackBar.open(data.message, 'ok', {
+          duration: 2000,
+        });
+      }
+    },
+    (error: any) => {
+      this.snackBar.open(error.error, 'ok', { duration: 2000 });
+    }
+  );
+}
+
+
+
+openDialog(book) {
+  const dialogRef = this.dialog.open(ViewWishlistComponent, {
+    width: '350px',
+    data: {
+      id:book.bookId,
+      bookname: book.bookName,
+      bookauthor:book.authorName,
+      bookprice:book.price
+    }
+  });
+}
+
+
+
+
+
+
+
   addToCart(book: Book) {
     console.log(book);
     if (localStorage.getItem('token') === null) {

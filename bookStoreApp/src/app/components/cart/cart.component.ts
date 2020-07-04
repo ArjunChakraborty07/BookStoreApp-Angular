@@ -11,6 +11,9 @@ import { CartModule } from 'src/models/cart/cart.module';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
+
+  public show:boolean = false;
+  public buttonName:any = 'Show';
   @Output() cartCounter = new EventEmitter<number>();
   cartSize: any;
   cartBooks: any = [];
@@ -113,6 +116,18 @@ export class CartComponent implements OnInit {
       );
     }
   }
+
+  toggle() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if(this.show)  
+      this.buttonName = "Hide";
+    else
+      this.buttonName = "Show";
+  }
+
+
 
   removeQuantity(cartBook: any) {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {

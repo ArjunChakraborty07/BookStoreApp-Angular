@@ -76,7 +76,7 @@
     </div>
     <div fxLayoutAlign="end">
       <button
-        mat-button
+        mat-button (click)="toggle()"
         class="button-placeorder"
         fxLayoutAlign="center center"
         [disableRipple]="true"
@@ -88,3 +88,81 @@
     </div>
   </div>
 </mat-card>
+<!-- </div> -->
+<mat-card class="form">
+  Customer Details
+<ng-container *ngIf="show">
+  <div style="margin: 0 auto;text-align: left;"><br>
+
+
+  <mat-form-field appearance="outline">
+      <mat-label>*Name</mat-label>
+      <input matInput placeholder="Placeholder" name="name" id="name" />
+  </mat-form-field><br><br>
+
+
+<div class="row">
+  <mat-form-field appearance="outline">
+    <mat-label>Phone Number</mat-label>
+    <input matInput placeholder="Placeholder" name="phone" id="phone"/>
+</mat-form-field><br><br>
+</div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Pin code</mat-label>
+    <input matInput placeholder="Placeholder" name="pincode" id="pincode"/>
+</mat-form-field>
+
+
+<div class="row1">
+  <mat-form-field appearance="outline">
+    <mat-label>Locality</mat-label>
+    <input matInput placeholder="Placeholder" name="locality" id="locality"/>
+</mat-form-field><br><br>
+</div><br><br>
+
+<mat-form-field appearance="outline">
+  <mat-label>Address</mat-label>
+  <textarea matInput></textarea>
+</mat-form-field><br><br>
+
+<mat-form-field appearance="outline">
+  <mat-label>City</mat-label>
+  <input matInput placeholder="Placeholder" name="city" id="city"/>
+</mat-form-field><br>
+
+<div class="row2">
+  <mat-form-field appearance="outline">
+    <mat-label>LandMark</mat-label>
+    <input matInput placeholder="Placeholder" name="landmark" id="landmark"/>
+</mat-form-field>
+</div><br><br>
+
+<mat-radio-group formControlName="" >
+  <mat-radio-button class="" value="home">Home</mat-radio-button>
+  <mat-radio-button value="work">Work</mat-radio-button>
+  <mat-radio-button value="other">Other</mat-radio-button>
+</mat-radio-group><br><br>
+
+<div fxLayoutAlign="end">
+  <button
+    mat-button (click)="toggle()"
+    class="button-placeorder"
+    fxLayoutAlign="center center"
+    [disableRipple]="true"
+  >
+    <span style="font-size: small; height: 10px; color: white;"
+      >Continue</span
+    >
+  </button>
+</div>
+
+
+
+</div>
+</ng-container>
+</mat-card>
+
+
+
+ 
