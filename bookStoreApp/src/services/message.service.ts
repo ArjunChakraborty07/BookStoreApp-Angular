@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { VendorService } from './vendor.service';
 import { BookService } from './book.service';
 import { CartServiceService } from './cart.service';
-import { CartModule } from 'src/models/cart/cart.module';
 
 @Injectable({
   providedIn: 'root',
