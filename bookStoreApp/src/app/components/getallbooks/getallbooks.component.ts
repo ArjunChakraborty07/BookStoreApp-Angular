@@ -106,12 +106,13 @@ openDialog(book) {
           if (element.book.bookId === book.bookId) {
             this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
             this.cart.totalBooksInCart--;
-            this.snackBar.open('Item Already Added to Cart', 'ok', {duration: 2000});
+            this.snackBar.open('Book Already Added to Cart', 'ok', {duration: 2000});
           }
         });
         this.cart.cartBooks.push(this.cartBook);
         this.cart.totalBooksInCart ++;
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        this.snackBar.open('Book Added to Cart', 'ok', {duration: 2000});
         this.cartService.sendCartCounter(this.cart.totalBooksInCart);
     } else {
       this.snackBar.open('Your Cart is full', 'ok', {duration: 2000} );
