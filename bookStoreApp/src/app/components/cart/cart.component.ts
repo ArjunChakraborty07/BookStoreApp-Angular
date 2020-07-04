@@ -14,10 +14,8 @@ export class CartComponent implements OnInit {
 
   public show:boolean = false;
   public buttonName:any = 'Show';
-  @Output() cartCounter = new EventEmitter<number>();
   cartSize: any;
   cartBooks: any = [];
-  quantity = 1;
   cart: CartModule;
   constructor(
     private cartService: CartServiceService,
@@ -39,10 +37,15 @@ export class CartComponent implements OnInit {
     console.log(cartBook);
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
-      this.cart.cartBooks = this.cart.cartBooks.filter(cartBookItem => cartBookItem.book.bookId !== cartBook.book.bookId);
-      this.cart.totalBooksInCart--;
+      // this.cart.cartBooks = this.cart.cartBooks.filter(cartBookItem => cartBookItem.book.bookId !== cartBook.book.bookId);
+      this.cart.cartBooks.forEach(element => {
+        if (element.book.bookId === cartBook.book.bookId) {
+          this.cart.totalBooksInCart = this.cart.totalBooksInCart - element.bookQuantity;
+          this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
+        }
+      });
       localStorage.setItem('cart', JSON.stringify(this.cart));
-      this.cartCounter.emit(this.cart.totalBooksInCart);
+      this.cartService.sendCartCounter(this.cart.totalBooksInCart);
       this.messageService.cartBooks();
     } else {
       this.cartService.removeFromCart(cartBook.cartBookId).subscribe(
@@ -94,6 +97,7 @@ export class CartComponent implements OnInit {
           }
         });
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        this.cartService.sendCartCounter(this.cart.totalBooksInCart);
         this.messageService.cartBooks();
       } else {
         this.snackBar.open('Cart is full' , 'ok' , { duration: 2000});
@@ -102,6 +106,7 @@ export class CartComponent implements OnInit {
       this.cartService.addQuantity(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
+            this.cartService.sendCartCounter(data.data.totalItemsInCart);
             this.messageService.cartBooks();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
@@ -144,6 +149,7 @@ export class CartComponent implements OnInit {
           }
         });
         localStorage.setItem('cart', JSON.stringify(this.cart));
+        this.cartService.sendCartCounter(this.cart.totalBooksInCart);
         this.messageService.cartBooks();
       } else {
         this.snackBar.open('No Items In cart To remove quantity', 'ok' , { duration: 2000});
@@ -152,6 +158,7 @@ export class CartComponent implements OnInit {
       this.cartService.removeQuantity(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
+            this.cartService.sendCartCounter(data.data.totalItemsInCart);
             this.messageService.cartBooks();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
