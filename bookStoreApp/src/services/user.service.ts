@@ -46,4 +46,9 @@ export class UserService {
     console.log("in update user service:",data);
     return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
   }
+  checkout(bookId,quantity)
+  {
+    console.log("in user service for checkout")
+    return this.http.POST('orders/checkout/'+bookId+'/'+quantity,{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))},'');
+  }
 }

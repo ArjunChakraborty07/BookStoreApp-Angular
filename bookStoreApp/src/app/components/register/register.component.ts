@@ -92,10 +92,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onLogin() {
-      const dialogRef = this.dialog.open(LoginComponent, {
+      //const dialogRef = this.dialog.open(LoginComponent, {
      //  width: '40%',
      //  height:'90%',
-      });
-    //this.router.navigate(['/login']);
+      //});
+    this.router.navigate(['/login']);
   }
 }

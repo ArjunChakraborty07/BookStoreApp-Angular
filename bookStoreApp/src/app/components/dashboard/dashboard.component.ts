@@ -131,4 +131,9 @@ export class DashboardComponent implements OnInit {
   AddToCart(count: number) {
     this.cartCounter = count;
   }
+  myorders()
+  {
+    console.log("my orders");
+    this.router.navigate(['/myorders']);
+  }
 }

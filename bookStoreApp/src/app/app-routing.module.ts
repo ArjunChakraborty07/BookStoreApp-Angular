@@ -20,6 +20,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { SuccessPageComponent } from './components/success-page/success-page.component';
 import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
+import {MyordersComponent} from './components/myorders/myorders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'admin-dashboard/sellers', component: GetAllSellersComponent },
   { path: 'successPage', component: SuccessPageComponent },
   { path: 'viewWishList', component: ViewWishlistComponent  },
-
+  {path: 'myorders',component:MyordersComponent},
   {
     path: 'admin-dashboard/booksForVerification',
     component: GetBooksForVerificationComponent,

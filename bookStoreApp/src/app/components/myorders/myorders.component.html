@@ -1,0 +1,43 @@
+<div>
+    <div>    
+        <mat-toolbar class="tool" fxLayout="row" fxLayoutAlign="space-around center">
+            <a href="http://localhost:4200/dashboard" style="color: white;"><span><img src="../../../assets/images/education.svg" />BookStore</span></a>
+                <span>My Orders</span>
+            <button mat-icon-button style=" color: aliceblue;outline: none;" matTooltip="Logout" (click)="Logout()">
+                <!--<mat-icon>logout</mat-icon>-->Log out
+            </button>
+        </mat-toolbar>    
+    </div>
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Book Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Vendor Name</th>
+                <th>Review</th>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>2</td>
+                <td>3000</td>
+                <td>Karthik Kumar Kante</td>
+                <td>4.5</td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>2</td>
+                <td>3000</td>
+                <td>Karthik Kumar Kante</td>
+                <td><button style="border: none;background-color: inherit;outline: none;" (click)="openDialog()">{{btnName}}</button></td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>2</td>
+                <td>3000</td>
+                <td>Karthik Kumar Kante</td>
+                <td>4.5</td>
+            </tr>
+        </table>
+    </div>
+</div>

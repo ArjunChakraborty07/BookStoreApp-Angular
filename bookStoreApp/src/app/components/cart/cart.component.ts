@@ -3,6 +3,8 @@ import { Book } from 'src/models/book.model';
 import { CartServiceService } from 'src/services/cart.service';
 import { MatSnackBar } from '@angular/material';
 import { MessageService } from 'src/services/message.service';
+import {FormBuilder} from '@angular/forms';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,13 +21,27 @@ export class CartComponent implements OnInit {
   cartSize: any;
   cartBooks: any = [];
   quantity = 1;
-
+  bookSum:any=[];
+  image='./assets/images/bookstore-wallpaper.jpg';
+  disp=false;
   constructor(
     private cartService: CartServiceService,
     private snackBar: MatSnackBar,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private fb:FormBuilder,
+    private userService: UserService
   ) {}
 
+  addressGroup=this.fb.group({
+    name:['karthik'],
+    phone:['8309809155'],
+    pincode:['517391'],
+    locality:['ap'],
+    address:['Andhra pradesh'],
+    city:['Madana palli'],
+    landmark:['Madana palli'],
+    type:['work']
+  });
   ngOnInit() {
     this.messageService.cartBooks();
     if (localStorage.getItem('token') == null) {
@@ -107,15 +123,27 @@ export class CartComponent implements OnInit {
   }
 
   toggle() {
-    this.show = !this.show;
-
+    this.show=true;
+    //this.show = !this.show;
     // CHANGE THE NAME OF THE BUTTON.
-    if(this.show)  
+   /* if(this.show)  
       this.buttonName = "Hide";
     else
-      this.buttonName = "Show";
+      this.buttonName = "Show";*/
   }
-
+  continue()
+  {
+    this.cartService.displayBooksInCart().subscribe((response:any)=>{
+      console.log("book in cart:",response);
+      this.bookSum=response.data.cartBooks;
+      this.bookSum.forEach(function(val){
+        console.log("book1:",val);
+        console.log("name:",val.book.bookName);
+      });
+    });
+    //this.disp=!this.disp;
+    this.disp=true;
+  }
 
 
   removeQuantity(cartBook: any) {
@@ -134,5 +162,12 @@ export class CartComponent implements OnInit {
         });
       }
     );
+  }
+  checkout(id,qty)
+  {
+    console.log("Ordered Successfully",id,qty);
+    this.userService.checkout(id,qty).subscribe((result:any)=>{
+      
+    });
   }
 }

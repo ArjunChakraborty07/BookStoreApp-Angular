@@ -110,7 +110,7 @@ input::-webkit-inner-spin-button {
 
 
 .form{
-  margin-top: 120px;
+  margin-top: 25%;
 }
 
 
@@ -135,13 +135,31 @@ input::-webkit-inner-spin-button {
   margin-right: 120px;
 }
 
-
-
-
 .mat-form-field
 {
   width: 300px;
   height: 10px;
 }
 
+.orderMat
+{
+  margin-top: 70%;
+  //box-shadow: 0px 2px 8px 0px;
+}
+.child1
+{
+  width: 10%;
+  height: 110px;
+}
+.child2
+{
+  margin-top: 3%;
+  padding-left: 2%;
+}
+#check
+{
+  font-size: small; 
+  //height: 20px;
+  color: white;
+}
 
