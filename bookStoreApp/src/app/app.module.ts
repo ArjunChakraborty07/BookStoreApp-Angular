@@ -62,6 +62,8 @@ import { SuccessPageComponent } from './components/success-page/success-page.com
 
 import { CdkColumnDef } from '@angular/cdk/table';
 import { ReviewService } from 'src/services/review.service';
+import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
+import { MyordersComponent } from './components/myorders/myorders.component';
 
 
 @NgModule({
@@ -89,6 +91,8 @@ import { ReviewService } from 'src/services/review.service';
     CartComponent,
     ReviewComponent,
     SuccessPageComponent,
+    ViewWishlistComponent,
+    MyordersComponent,
   ],
   imports: [
     BrowserModule,

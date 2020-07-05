@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,12 @@ export class ReviewService {
   constructor(private http: HttpService) { }
 
   addReview(review: any, rating: any, token: any): Observable<any> {
-    return this.http.POST('review', {review, rating}, token);
+    return this.http.POST('review/' + localStorage.getItem('bookId'), {review, rating},
+    {headers: new HttpHeaders().set('token', token )});
   }
 
   getReview(token: any): Observable<any> {
-    return this.http.GET('review', token);
+    return this.http.GET('review/' + localStorage.getItem('bookId'),
+    {headers: new HttpHeaders().set('token', token )});
   }
 }

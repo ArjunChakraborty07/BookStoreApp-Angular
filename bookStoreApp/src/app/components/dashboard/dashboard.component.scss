@@ -8,9 +8,14 @@
 //    border: 1px solid #E2E2E2;
 //    opacity: 1;
 //    background: #FFFFFF 0% 0% no-repeat padding-box;
-   
-    
-// }
+//    }
+
+
+
+
+
+
+
 .left{
     float: right;
     height:-10px;
@@ -28,14 +33,14 @@
 }
 
 
-.box{
-    width: 100%;
-    height: 100%;  
-    padding: 25%;
-    border: 1px solid whitesmoke;
-    border-radius: 1px;
-    border-color: lightgray;
-}
+// .box{
+//     width: 100%;
+//     height: 100%;  
+//     padding: 25%;
+//     border: 1px solid whitesmoke;
+//     border-radius: 1px;
+//     border-color: lightgray;
+// }
 
 .logo{
     position: absolute;
@@ -86,6 +91,7 @@ span{
 }
 .cart{
     margin-left: 10%;
+    padding-right: 5%;
     background-color: none;
     outline: none;
     color:aliceblue;
@@ -102,7 +108,7 @@ span{
 }
 ::ng-deep .profilemenu {
     width: 300px;
-    height: 300px;
+    height: 335px;
 }
 .mat-headline,.mat-subheading-1{
     margin-top: 50%;
@@ -134,7 +140,7 @@ span{
     color: brown;
     position: absolute;
     border: 1px red solid;
-    left: 40%;
+    left: 35%;
 }
 .upload-img
 {
@@ -172,5 +178,12 @@ span{
 .span.small {
     font-size: 5px;
  }
-
+ .mat-badge-content{
+    background : white;
+    color:#A03037;
+  }
     
+
+.search{
+    color: black;
+}    

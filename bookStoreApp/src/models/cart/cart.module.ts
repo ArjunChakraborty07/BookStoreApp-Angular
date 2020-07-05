@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Book } from '../book.model';
 
 
 
@@ -10,8 +9,8 @@ import { Book } from '../book.model';
     CommonModule
   ]
 })
-export class CartBookModule {
-  cartBookId: number;
-  bookQuantity: number;
-  book: Book;
+export class CartModule {
+  cartId: any;
+  totalBooksInCart: number;
+  cartBooks: any = [];
 }
