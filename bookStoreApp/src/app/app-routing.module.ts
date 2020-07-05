@@ -33,6 +33,10 @@ const routes: Routes = [
   { path: 'successPage', component: SuccessPageComponent },
   { path: 'viewWishList', component: ViewWishlistComponent },
   { path: 'myorders', component: MyordersComponent },
+  {
+    path: 'getallbooks',
+    component: GetallbooksComponent,
+  },
   // {
   //   path: 'admin-dashboard/booksForVerification',
   //   component: GetBooksForVerificationComponent,
