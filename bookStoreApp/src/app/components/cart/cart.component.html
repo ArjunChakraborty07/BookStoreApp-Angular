@@ -8,8 +8,7 @@
     >
       <div class="book" fxLayout="row">
         <div class="book-image">
-          <img src="{{ cartBook.book.imageURL }}" *ngIf="cartBook.book.imageURL!='string'"/>
-          <img src="../../../assets/images/bookstore-wallpaper.jpg" *ngIf="cartBook.book.imageURL=='string'"/>
+          <img src="{{ cartBook.book.imageURL }}" />
         </div>
 
         <div
@@ -91,7 +90,6 @@
   </div>
 </mat-card>
 <!-- </div> -->
-<br><br>
 <mat-card class="form">
   Customer Details
   <ng-container *ngIf="show">
@@ -200,7 +198,7 @@
   </ng-container>
 </mat-card>
 
-<!-- <mat-card class="orderMat" fxLayout="column">
+<mat-card class="orderMat" fxLayout="column">
   <p class="text-muted">Order summary</p>
   <div *ngFor="let item of bookSum">
     <div fxLayout="row" *ngIf="disp">
@@ -224,4 +222,4 @@
       </button>
     </div>
   </div>
-</mat-card> -->
+</mat-card>
