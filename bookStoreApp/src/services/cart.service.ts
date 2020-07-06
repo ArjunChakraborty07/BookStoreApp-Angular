@@ -57,4 +57,10 @@ export class CartServiceService {
   sendCartCounter(cartSize: number) {
     this.subject.next(cartSize);
   }
+
+  addToOrder(): Observable<any> {
+    return this.http.POST('orders/addMyOrder', '', {
+      headers : new HttpHeaders().set('token', localStorage.getItem('token'))
+    });
+  }
 }

@@ -33,14 +33,16 @@
                 visibility_off</mat-icon>
             <mat-icon matSuffix *ngIf="(show)" (click)="onclick()">
                 visibility_on</mat-icon>
-            <mat-hint *ngIf="password.hasError('minlength')">Atleast 8 character</mat-hint>
+            <mat-error *ngIf="password.hasError('required')">*password is required</mat-error>
+            <mat-error *ngIf="password.hasError('pattern')">*Min 8 chars,Must start with Capital and must contain 1 num,1 special symbol</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Mobile Number</mat-label>
             <input matInput maxlength="10" placeholder="Mobile Number" autocomplete="off" [formControl]="phone" class="input" />
             <mat-icon matSuffix>phone_android</mat-icon>
-            <mat-hint *ngIf=" phone.hasError('minlength')">Atleast 10 digits</mat-hint>
+            <mat-error *ngIf=" phone.hasError('minlength')">Atleast 10 digits</mat-error>
+            <mat-error *ngIf=" phone.hasError('pattern')">*Must Be Numbers</mat-error>
         </mat-form-field>
         <mat-radio-group aria-label="Select an option" fxLayoutGap="10%" [(ngModel)]="radioval">
             <mat-radio-button value="3">Buyer</mat-radio-button>

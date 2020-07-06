@@ -26,7 +26,7 @@ private orderCheckoutApi = 'orders/checkOut'
     console.log('IN USER SERVICE');
     console.log(data);
     console.log(token);
-    //const params=new HttpParams().set('token',token);
+    // const params=new HttpParams().set('token',token);
     return this.http.PUT('users/resetpassword?token=' + token, data, '');
   }
 
@@ -48,9 +48,19 @@ private orderCheckoutApi = 'orders/checkOut'
     console.log("in update user service:",data);
     return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
   }
-  checkout(): Observable<any>  {
+  onCheckOut(): Observable<any>  {
     return this.http.POST(this.orderCheckoutApi, '', {
        headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
+  }
+  // checkout(bookId,quantity)
+  // {
+  //   console.log("in user service for checkout",bookId,quantity);
+  //   return this.http.POST('orders/checkout/'+bookId+'/'+quantity,'',{ params:new HttpParams().set('token',localStorage.getItem('token'))});
+  // }
+  checkout(bookSum) {
+    // console.log("in user service for checkout",bookId,quantity);
+    console.log('books', bookSum);
+    return this.http.POST('orders/checkout/', { params: new HttpParams().set('books', bookSum)}, { params: new HttpParams().set('token', localStorage.getItem('token'))});
   }
 }

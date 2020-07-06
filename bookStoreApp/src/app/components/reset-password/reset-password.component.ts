@@ -56,8 +56,8 @@ export class ResetPasswordComponent implements OnInit {
     );
     console.log(this.resetPassword.password);*/
     const data={
-      password:this.resetPasswordForm.get('password').value,
-      confirmpassword:this.resetPasswordForm.get('confirmPassword').value
+      password:this.encrDecr.set('123456$#@$^@1ERF',this.resetPasswordForm.get('confirmPassword').value),
+      confirmpassword:this.encrDecr.set('123456$#@$^@1ERF',this.resetPasswordForm.get('confirmPassword').value),
     }
    // console.log("data:",data);
    // console.log("token:",this.token);

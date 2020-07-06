@@ -10,23 +10,13 @@ import { DialogData } from '../getallbooks/getallbooks.component';
 })
 export class ViewWishlistComponent implements OnInit {
 
-  books: any;
-
-  
-  constructor(private bookservice: BookService,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
-    this.loadwishlist();
+ 
   }
 
 
 
-  private loadwishlist() {
-    this.bookservice.viewWishlist().subscribe((data: any) => {
-      this.books = data.data;
-      
-    },
-    );
-  }
+ 
 }

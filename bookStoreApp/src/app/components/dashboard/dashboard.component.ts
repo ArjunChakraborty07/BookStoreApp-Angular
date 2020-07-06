@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
   updateStats: any;
   file: any;
   isCart: boolean;
+  isSuccess: boolean;
   cartCounter: number;
   mySubscription: any;
   constructor(
@@ -87,12 +88,10 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      //  width: '40%',
-      //  height:'90%',
-    });
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.height="75%";
+    const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
   }
-
   onSearch() {
     this.service.search(this.searchBook).subscribe((response: any) => {
       this.books = response;
@@ -102,6 +101,10 @@ export class DashboardComponent implements OnInit {
   onCart() {
     // this.isCart = true;
     this.router.navigate(['/dashboard/cart']);
+  }
+  onSuccess() {
+    this.isSuccess = true;
+    this.router.navigate(['/dashboard/successPage']);
   }
   onBookStore() {
     this.isCart = false;
