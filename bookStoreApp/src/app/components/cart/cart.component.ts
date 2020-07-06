@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Book } from 'src/models/book.model';
 import { CartServiceService } from 'src/services/cart.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { MessageService } from 'src/services/message.service';
 import {FormBuilder} from '@angular/forms';
 import { UserService } from 'src/services/user.service';
 import { CartModule } from 'src/models/cart/cart.module';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-cart',
@@ -30,7 +31,8 @@ export class CartComponent implements OnInit {
     private messageService: MessageService,
     private fb:FormBuilder,
     private userService: UserService,
-    private route:Router
+    private route:Router,
+    private dialog: MatDialog,
   ) {}
 
   addressGroup=this.fb.group({
@@ -94,6 +96,7 @@ export class CartComponent implements OnInit {
       });
     } else {
       if (data.status === 200) {
+        console.log(data);
         this.cartSize = data.data.totalBooksInCart;
         data.data.cartBooks.forEach((cartBookData) => {
           this.cartBooks.push(cartBookData);
@@ -110,6 +113,7 @@ export class CartComponent implements OnInit {
           if (element.book.bookId === cartBook.book.bookId) {
             if (element.bookQuantity < cartBook.book.quantity) {
               element.bookQuantity++;
+              element.totalBookPrice  += cartBook.book.price;
               this.cart.totalBooksInCart++;
             } else {
               this.snackBar.open('book Out Of Stock' , 'ok' , { duration: 2000});
@@ -142,14 +146,14 @@ export class CartComponent implements OnInit {
     }
   }
 
-  toggle() {
-    this.show=true;
-    //this.show = !this.show;
-    // CHANGE THE NAME OF THE BUTTON.
-   /* if(this.show)  
-      this.buttonName = "Hide";
-    else
-      this.buttonName = "Show";*/
+  onPlaceOrder() {
+    if (localStorage.getItem('token') === null) {
+      this.dialog.open(LoginComponent);
+    }
+    this.show = true;
+    // this.snackBar.open('Order Placed', 'ok', {
+    //   duration: 2000
+    // });
   }
   continue()
   {
@@ -174,6 +178,7 @@ export class CartComponent implements OnInit {
           if (element.book.bookId === cartBook.book.bookId) {
             if (element.bookQuantity > 1) {
               element.bookQuantity--;
+              element.totalBookPrice -= cartBook.book.price;
               this.cart.totalBooksInCart--;
             } else {
               this.snackBar.open('Cart items cant be less than 1' , 'ok' , { duration: 2000});
@@ -205,15 +210,18 @@ export class CartComponent implements OnInit {
       );
     }
   }
-  checkout(id,qty)
-  {
-    console.log("Ordered Successfully",id,qty);
-    localStorage.setItem("bookId",id);
-    this.userService.checkout(id,qty).subscribe((result:any)=>{
-      if(result.status==200)
-      {
+  onCheckOut(){
+    this.userService.checkout().subscribe(data => {
+      if (data.status === 200){
+        this.snackBar.open(data.message, 'ok', {
+          duration: 2000
+        });
         this.route.navigate(['/successPage']);
       }
+    },(error: any) => {
+      this.snackBar.open(error.error.message, 'ok', {
+        duration: 2000
+      })
     });
   }
 }
