@@ -6,6 +6,7 @@ import { MatSnackBar, MatDialog,MatDialogConfig } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import {User} from '../../../models/user';
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
+import { EncrDecrService } from 'src/services/encr-decr.service';
 
 @Component({
   selector: 'dashboard/login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private encrDecr: EncrDecrService
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,6 @@ export class LoginComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(12),
         ],
       ],
       userroles: ['', Validators.required],
@@ -101,7 +102,11 @@ export class LoginComponent implements OnInit {
     console.log('ROLE:', this.role1);
     const data = {
       loginId: this.LoginForm.get('loginid').value,
-      password: this.LoginForm.get('password').value,
+      password:this.encrDecr.set('123456$#@$^@1ERF',this.LoginForm.get('password').value),
+     /* this.resetPassword.password = this.encrDecr.set(
+        '123456$#@$^@1ERF',
+        this.resetPassword.password
+      );*/
       role: this.role1
     };
     this.loading = true;

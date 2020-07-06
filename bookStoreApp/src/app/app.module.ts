@@ -64,6 +64,7 @@ import { CdkColumnDef } from '@angular/cdk/table';
 import { ReviewService } from 'src/services/review.service';
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 import { MyordersComponent } from './components/myorders/myorders.component';
+import { BookReviewComponent } from './components/book-review/book-review.component';
 
 
 @NgModule({
@@ -93,6 +94,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
     SuccessPageComponent,
     ViewWishlistComponent,
     MyordersComponent,
+    BookReviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
     MatBadgeModule
   ],
 
-  entryComponents: [EditProfileComponent, ForgotPasswordComponent, ReviewComponent],
+  entryComponents: [EditProfileComponent, ForgotPasswordComponent, ReviewComponent,BookReviewComponent],
 
   providers: [UserService, EncrDecrService, HttpService, VendorService, CdkColumnDef, ReviewService],
 

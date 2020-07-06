@@ -84,7 +84,8 @@ export class RegisterComponent implements OnInit {
         email: this.email.value,
         name: this.name.value,
         mobileNumber: this.phone.value,
-        password: this.password.value,
+        //password: this.password.value,
+        password:this.EncrDecr.set('123456$#@$^@1ERF',this.password.value),
         userName: this.username.value,
         role:this.selectedrole
       };
@@ -93,6 +94,10 @@ export class RegisterComponent implements OnInit {
         {
           this.snackbar.open(response.message,'ok',{duration:5000});
           this.router.navigate(['/login']);
+        }
+        else
+        {
+          this.snackbar.open(response.message,'Canecl',{duration:5000});
         }
       });
     }
