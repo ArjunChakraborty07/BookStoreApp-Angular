@@ -102,6 +102,7 @@ openDialog(book) {
      }
     if (this.cart.totalBooksInCart < 5) {
         this.cartBook.book = book;
+        this.cartBook.totalBookPrice = Number(book.price);
         this.cart.cartBooks.forEach(element => {
           if (element.book.bookId === book.bookId) {
             this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
