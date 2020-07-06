@@ -3,7 +3,7 @@ import { Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/services/user.service';
 import { EncrDecrService } from 'src/services/encr-decr.service';
 import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
 
 @Component({
@@ -22,11 +22,13 @@ export class RegisterComponent implements OnInit {
   phone = new FormControl('', Validators.compose([
     Validators.required,
     Validators.minLength(10),
+    Validators.pattern('(0|9)?[7-9][0-9]{9}')
   ]));
   password = new FormControl('', Validators.compose([
     Validators.required,
     Validators.minLength(8),
-    Validators.maxLength(16)
+    Validators.maxLength(16),
+    Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}')
   ]));
   username = new FormControl('', Validators.compose([
     Validators.required,
@@ -40,7 +42,8 @@ export class RegisterComponent implements OnInit {
   constructor(private service: UserService,
     private EncrDecr: EncrDecrService,
     private router: Router,
-    private dialog:MatDialog) {  }
+    private dialog:MatDialog,
+    private snackbar:MatSnackBar) {  }
 
   ngOnInit() { }
 
@@ -57,17 +60,17 @@ export class RegisterComponent implements OnInit {
     if (this.email.hasError('required') || this.name.hasError('required') ||
       this.password.hasError('required') || this.phone.hasError('required') ||
       this.username.hasError('required')) {
-      alert('Cannot submit empty fields');
+      this.snackbar.open('Cannot submit empty fields', 'ok', { duration: 5000 });
     } else if (this.email.hasError('email') || this.name.hasError('minlength') ||
       this.password.hasError('minlength') || this.password.hasError('maxlength') ||
       this.phone.hasError('minlength')) {
-      alert('Cannot submit invalid input');
+      this.snackbar.open('Cannot submit invalid input','ok',{duration:5000});
     }else if (isNaN(this.phone.value)) {
-      alert('Phone Number should be digits only');
+      this.snackbar.open('Phone Number should be digits only','ok',{duration:5000});
     }
     else if(this.radioval==0)
     {
-      alert('Select the role');
+      this.snackbar.open('Select the role','ok',{duration:5000});
     } else {
       if(this.radioval==2)
       {
@@ -86,7 +89,11 @@ export class RegisterComponent implements OnInit {
         role:this.selectedrole
       };
       this.service.register(data).subscribe((response: any) => {
-        alert(response.message);
+        if(response.status==200)
+        {
+          this.snackbar.open(response.message,'ok',{duration:5000});
+          this.router.navigate(['/login']);
+        }
       });
     }
   }

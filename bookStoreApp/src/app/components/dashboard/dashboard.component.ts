@@ -87,10 +87,9 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      //  width: '40%',
-      //  height:'90%',
-    });
+    const dialogConfig=new MatDialogConfig();
+    dialogConfig.height="75%";
+    const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
   }
 
   onSearch() {
