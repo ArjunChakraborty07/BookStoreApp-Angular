@@ -9,6 +9,8 @@ import { User } from 'src/models/user';
   providedIn: 'root',
 })
 export class UserService {
+private orderCheckoutApi = 'orders/checkOut'
+
   constructor(private http: HttpService) {}
   public register(user: any): Observable<any> {
     console.log(user);
@@ -46,9 +48,9 @@ export class UserService {
     console.log("in update user service:",data);
     return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
   }
-  checkout(bookId,quantity)
-  {
-    console.log("in user service for checkout",bookId,quantity);
-    return this.http.POST('orders/checkout/'+bookId+'/'+quantity,'',{ params:new HttpParams().set('token',localStorage.getItem('token'))});
+  checkout(): Observable<any>  {
+    return this.http.POST(this.orderCheckoutApi, '', {
+       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
+    });
   }
 }
