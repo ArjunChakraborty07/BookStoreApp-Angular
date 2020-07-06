@@ -25,6 +25,7 @@ export class GetBooksForVerificationComponent implements OnInit {
 
     this.service.getAllBooksForVerification().subscribe((data: any) => {
       this.books = data.data;
+      console.log(this.books);
       this.snackBar.open(data.message, 'ok', { duration: 5000 });
     });
   }

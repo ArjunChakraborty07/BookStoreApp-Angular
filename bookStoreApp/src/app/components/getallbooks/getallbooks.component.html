@@ -1,44 +1,44 @@
 <div id="items">
-    Books
-      <span id="active">
-        ({{countResult}} items) 
-      </span>
-  </div>
+  Books
+    <span id="active">
+      ({{countResult}} items) 
+    </span>
+</div>
 
-  <div id="items1">
-    <mat-form-field appearance="standard">
-    <select matNativeControl required>
-      <option value="" >high to low</option>
-      <option value="">low to high</option>
-      <option value="">New Arrivals</option>
-    </select>
-  </mat-form-field>
-  </div>
+<div id="items1">
+  <mat-form-field appearance="standard">
+  <select matNativeControl required>
+    <option value="" >high to low</option>
+    <option value="">low to high</option>
+    <option value="">New Arrivals</option>
+  </select>
+</mat-form-field>
+</div>
 
 
-  <div class="row">
-    <div
-        class="main-div"
-        fxLayoutAlign="space-around center"
-        *ngFor="let book of books">
-        <mat-card>
-            <div class="bookImageDiv" fxLayoutAlign="center">
-                <img src="../../../assets/images/bookstore-wallpaper.jpg"/>
-            </div>
-            <div class="bookInfoDiv" fxLayout="column">
-                <mat-card-content>
-                    <div class="a">
-                        <mat-card-title>{{book.bookName}}</mat-card-title>
-                        <mat-card-subtitle>By
-                            {{book.authorName}}</mat-card-subtitle>
-                    </div>
-                    <div class="price">
-                        Rs.{{book.price}}</div>
-                        </mat-card-content>
-                            <div class="left">
-                                <button mat-raised-button color="primary" (click)="addToCart(book)">ADD TO CART</button>    <button mat-stroked-button    (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
-                              </div>
+<div class="row">
+  <div
+      class="main-div"
+      fxLayoutAlign="space-around center"
+      *ngFor="let book of books">
+      <mat-card>
+          <div class="bookImageDiv" fxLayoutAlign="center">
+              <img src="../../../assets/images/bookstore-wallpaper.jpg"/>
+          </div>
+          <div class="bookInfoDiv" fxLayout="column">
+              <mat-card-content>
+                  <div class="a">
+                      <mat-card-title>{{book.bookName}}</mat-card-title>
+                      <mat-card-subtitle>By
+                          {{book.authorName}}</mat-card-subtitle>
+                  </div>
+                  <div class="price">
+                      Rs.{{book.price}}</div>
+                      </mat-card-content>
+                          <div class="left">
+                              <button mat-raised-button color="primary" (click)="addToCart(book)">ADD TO CART</button>    <button mat-stroked-button    (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
                             </div>
-                        </mat-card>
-                    </div>
-                </div>
+                          </div>
+                      </mat-card>
+                  </div>
+              </div>

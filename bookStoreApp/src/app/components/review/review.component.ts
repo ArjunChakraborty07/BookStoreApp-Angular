@@ -12,19 +12,14 @@ export class ReviewComponent implements OnInit {
   data: any;
   constructor(private service: ReviewService) { }
 
-  ngOnInit() {
-    this.service.getReview(localStorage.getItem('token')).subscribe((data) => {
-      this.rating = data.data.rating;
-      this.review = data.data.review;
-    });
-  }
+  ngOnInit() {}
 
   onRating(value: any) {
     this.rating = value;
   }
   onSubmit() {
     console.log(this.rating);
-    this.service.addReview(this.review, this.rating, localStorage.getItem('token')).subscribe((data) => {
+    this.service.addReviewApp(this.review, this.rating, localStorage.getItem('token')).subscribe((data) => {
       this.rating = data.data.rating;
       this.review = data.data.review;
     });

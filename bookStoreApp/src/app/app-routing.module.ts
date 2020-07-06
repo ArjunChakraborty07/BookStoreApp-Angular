@@ -20,7 +20,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { SuccessPageComponent } from './components/success-page/success-page.component';
 import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
-import {MyordersComponent} from './components/myorders/myorders.component';
+import { MyordersComponent } from './components/myorders/myorders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -31,20 +31,22 @@ const routes: Routes = [
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
   { path: 'admin-dashboard/sellers', component: GetAllSellersComponent },
   { path: 'successPage', component: SuccessPageComponent },
-  { path: 'viewWishList', component: ViewWishlistComponent  },
-  {path: 'myorders',component:MyordersComponent},
+  { path: 'viewWishList', component: ViewWishlistComponent },
+  { path: 'myorders', component: MyordersComponent },
   {
-    path: 'admin-dashboard/booksForVerification',
-    component: GetBooksForVerificationComponent,
+    path: 'getallbooks',
+    component: GetallbooksComponent,
   },
+  // {
+  //   path: 'admin-dashboard/booksForVerification',
+  //   component: GetBooksForVerificationComponent,
+  // },
   { path: 'addbook', component: AddBookComponent },
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'admin-login', component: AdminLoginComponent },
-  {
-    path: 'admin-dashboard',
-    redirectTo: '/admin-dashboard/sellers',
-    pathMatch: 'full',
-  },
+  { path: 'successPage', component: SuccessPageComponent },
+
+
 
   {
     path: 'dashboard',
@@ -55,14 +57,15 @@ const routes: Routes = [
         path: 'getallbooks',
         component: GetallbooksComponent,
       },
-      { path: 'cart', component: CartComponent }
-      ],
+      { path: 'cart', component: CartComponent },
+      { path: 'successPage', component: SuccessPageComponent },
+    ],
   },
   {
     path: 'admin-dashboard',
     component: AdminComponent,
     children: [
-      { path: '', redirectTo: 'admin-dashboard/sellers', pathMatch: 'full' },
+      { path: '', redirectTo: 'sellers', pathMatch: 'full' },
       { path: 'sellers', component: GetAllSellersComponent },
       {
         path: 'booksForVerification',
@@ -87,7 +90,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 export const routingComponents = [
   RegisterComponent,
   DashboardComponent,
@@ -96,5 +99,6 @@ export const routingComponents = [
   VerificationComponent,
   ResetPasswordComponent,
   AdminComponent,
-  CartComponent
+  CartComponent,
+  GetAllSellersComponent
 ];

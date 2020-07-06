@@ -24,7 +24,7 @@ export class UserService {
     console.log('IN USER SERVICE');
     console.log(data);
     console.log(token);
-    //const params=new HttpParams().set('token',token);
+    // const params=new HttpParams().set('token',token);
     return this.http.PUT('users/resetpassword?token=' + token, data, '');
   }
 
@@ -36,19 +36,22 @@ export class UserService {
   public login(login: any): Observable<any> {
     return this.http.POST('users/login', login, '');
   }
-  uploadProfie(file:FormData,isProfile:any)
-  {
-    console.log("IN USERSERVICE TO UPLOAD IMAGE:",file);
-    return this.http.POST('users/uploadImage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+  uploadProfie(file: FormData, isProfile: any) {
+    console.log('IN USERSERVICE TO UPLOAD IMAGE:', file);
+    return this.http.POST('users/uploadImage', file, { headers: new HttpHeaders().set('token', localStorage.getItem('token')), params: new HttpParams().set('isProfile', isProfile) });
   }
-  updateUser(data)
-  {
-    console.log("in update user service:",data);
-    return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
+  updateUser(data) {
+    console.log('in update user service:', data);
+    return this.http.PUT('users/update', data, { params: new HttpParams().set('token', localStorage.getItem('token'))});
   }
-  checkout(bookId,quantity)
-  {
-    console.log("in user service for checkout",bookId,quantity);
-    return this.http.POST('orders/checkout/'+bookId+'/'+quantity,'',{ params:new HttpParams().set('token',localStorage.getItem('token'))});
+  // checkout(bookId,quantity)
+  // {
+  //   console.log("in user service for checkout",bookId,quantity);
+  //   return this.http.POST('orders/checkout/'+bookId+'/'+quantity,'',{ params:new HttpParams().set('token',localStorage.getItem('token'))});
+  // }
+  checkout(bookSum) {
+    // console.log("in user service for checkout",bookId,quantity);
+    console.log('books', bookSum);
+    return this.http.POST('orders/checkout/', { params: new HttpParams().set('books', bookSum)}, { params: new HttpParams().set('token', localStorage.getItem('token'))});
   }
 }

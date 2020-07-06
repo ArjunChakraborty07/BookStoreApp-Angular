@@ -1,9 +1,15 @@
-<div>    
+ <div>   
     <mat-toolbar class="tool" fxLayout="row" fxLayoutAlign="space-around center">
-            <span>BookStore</span>
+        <div>
+                <img class="content" src="../../../assets/images/education.svg" />
+                <span class="content"> BookStore</span>
+        </div>
+            
             <span>Welcome Admin</span>
-        <button mat-icon-button style=" color: aliceblue;" matTooltip="Logout" (click)="onLogout()">
-            <mat-icon>logout</mat-icon>
+        <button  mat-icon-button style=" color: aliceblue;" matTooltip="Logout" (click)="onLogout()">
+            <mat-icon >logout</mat-icon>
         </button>
     </mat-toolbar>    
+
+    <router-outlet></router-outlet>
 </div>
