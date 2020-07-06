@@ -1,91 +1,57 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { BookService } from 'src/services/book.service';
-import { AdminService } from 'src/services/admin.service';
-import { Book } from 'src/models/book.model';
-import { MatSnackBar, MatDialog } from '@angular/material';
-import { CartServiceService } from 'src/services/cart.service';
-import { CartBookModule } from 'src/models/cart-book/cart-book.module';
+import { Component, OnInit } from '@angular/core';
 import { CartModule } from 'src/models/cart/cart.module';
+import { CartBookModule } from 'src/models/cart-book/cart-book.module';
+import { BookService } from 'src/services/book.service';
 import { MessageService } from 'src/services/message.service';
-import { ViewWishlistComponent } from '../view-wishlist/view-wishlist.component';
+import { MatSnackBar } from '@angular/material';
+import { CartServiceService } from 'src/services/cart.service';
+import { Book } from 'src/models/book.model';
 
-
-
-export interface DialogData {
- 
-}
 @Component({
-  selector: 'app-getallbooks',
-  templateUrl: './getallbooks.component.html',
-  styleUrls: ['./getallbooks.component.scss']
+  selector: 'app-getallwish-list',
+  templateUrl: './getallwish-list.component.html',
+  styleUrls: ['./getallwish-list.component.scss']
 })
-export class GetallbooksComponent implements OnInit {
-  countResult: any;
+export class GetallwishListComponent implements OnInit {
+
   books: any;
   cart: CartModule ;
   cartBook: CartBookModule ;
 
-
-  constructor(private bookservice: BookService, private snackBar: MatSnackBar, private cartService: CartServiceService,
+  constructor(private bookservice: BookService,
     private messageService: MessageService,
-    public dialog: MatDialog) { }
-
+    private snackBar: MatSnackBar,
+    private cartService: CartServiceService,) { }
 
   ngOnInit() {
-    this.loadAllBooks();
-    this.getItems();
-    this.cartService.getCartCounter();
+    this.loadwishlist();
   }
 
-  private loadAllBooks() {
-    this.bookservice.getAllbooks().subscribe((data: any) => {
+
+  private loadwishlist() {
+    this.bookservice.viewWishlist().subscribe((data: any) => {
       this.books = data.data;
+      
     },
     );
   }
 
-private getItems() {
-  this.bookservice.getNumberOfItems().subscribe((data: any) => {
-  this.countResult = data.data;
-  },
-  );
-}
-onAddBookToWishList(bookId){
-  console.log(bookId);
-  this.bookservice.addToWishListBooks(bookId).subscribe(
-    (data) => {
-      if (data.status === 200) {
-        this.messageService.changeMessage();
-        this.snackBar.open(data.message, 'ok', {
-          duration: 2000,
-        });
+  onDeleteWishList(bookId){
+    console.log(bookId);
+    this.bookservice.deletewishlist(bookId).subscribe(
+      (data) => {
+        if (data.status === 200) {
+          this.messageService.changeMessage();
+          this.snackBar.open(data.message, 'ok', {
+            duration: 2000,
+          });
+        }
+      },
+      (error: any) => {
+        this.snackBar.open(error.error, 'ok', { duration: 2000 });
       }
-    },
-    (error: any) => {
-      this.snackBar.open(error.error, 'ok', { duration: 2000 });
-    }
-  );
-}
-
-
-
-openDialog(book) {
-  const dialogRef = this.dialog.open(ViewWishlistComponent, {
-    width: '500px',
-    data: {
-      id:book.bookId,
-      bookname: book.bookName,
-      bookauthor:book.authorName,
-      bookprice:book.price,
-      bookinfo:book.description
-    }
-  });
-}
-
-
-
-
+    );
+  }
 
 
   addToCart(book: Book) {
@@ -106,13 +72,12 @@ openDialog(book) {
           if (element.book.bookId === book.bookId) {
             this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
             this.cart.totalBooksInCart--;
-            this.snackBar.open('Book Already Added to Cart', 'ok', {duration: 2000});
+            this.snackBar.open('Item Already Added to Cart', 'ok', {duration: 2000});
           }
         });
         this.cart.cartBooks.push(this.cartBook);
         this.cart.totalBooksInCart ++;
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.snackBar.open('Book Added to Cart', 'ok', {duration: 2000});
         this.cartService.sendCartCounter(this.cart.totalBooksInCart);
     } else {
       this.snackBar.open('Your Cart is full', 'ok', {duration: 2000} );
@@ -143,4 +108,17 @@ openDialog(book) {
       });
      }
   }
-}
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+

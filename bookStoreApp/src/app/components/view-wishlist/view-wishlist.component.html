@@ -1,30 +1,37 @@
 <mat-toolbar>
-    <span class="title-center">WishList</span>
-  </mat-toolbar><br>
-<h3 mat-dialog-title>book added to WishList</h3>
+  <span class="title-left">added To list</span>
+</mat-toolbar>
+<h3 mat-dialog-title>book added to   <span class="span">WishList</span></h3><br>
 
 <div fxLayout="row" fxLayoutAlign="space-around center">
-    <img style="vertical-align:-150px" src="../../../assets/images/bookstore-wallpaper.jpg">
-    <span class="right">
-        <div class="name">
-    <mat-card-title>{{data.bookname}}</mat-card-title>
-        </div>
-       <div class="author">
-    By {{data.bookauthor}}
-       </div>
-    <div class="price">
-    Rs.{{data.bookprice}}
-    </div>
+<div class="bookImageDiv" style="vertical-align:-150px" > 
+   <img  src="../../../assets/images/bookstore-wallpaper.jpg">
+   </div> 
+  <span class="right">
+      <div class="name">
+     {{data.bookname}}
+      </div>
+     <div class="author">
+     By: {{data.bookauthor}}
+     </div>
+     <div class="info">
+     About: {{data.bookinfo}}
+     </div>
+     <div class="price">
+     Rs.{{data.bookprice}}
+     </div>
      </span>
-  </div>
-  <br>
-  
+</div>
+
+<mat-divider></mat-divider><br><br>
+
+<div class="box" style="color: rgb(240, 233, 233);">
   <div class="left"   fxLayout="row" fxLayoutAlign="space-around center" >
-    <button mat-raised-button    [mat-dialog-close] [routerLink]="['']" >View WishList</button>   <button mat-stroked-button   [mat-dialog-close]  [routerLink]="['dashboard']">Continue Shopping</button>
-  </div>
+  <button mat-raised-button    [mat-dialog-close] [routerLink]="['viewallWishList']" >View WishList</button>   <button mat-stroked-button   [mat-dialog-close]  [routerLink]="['dashboard']">Continue Shopping</button>
+</div>  
+</div>
 
 
 
 
-
-               
+             

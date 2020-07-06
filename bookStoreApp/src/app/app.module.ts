@@ -65,6 +65,7 @@ import { ReviewService } from 'src/services/review.service';
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 import { MyordersComponent } from './components/myorders/myorders.component';
 import { BookReviewComponent } from './components/book-review/book-review.component';
+import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { BookReviewComponent } from './components/book-review/book-review.compon
     ViewWishlistComponent,
     MyordersComponent,
     BookReviewComponent,
+    GetallwishListComponent,
   ],
   imports: [
     BrowserModule,
