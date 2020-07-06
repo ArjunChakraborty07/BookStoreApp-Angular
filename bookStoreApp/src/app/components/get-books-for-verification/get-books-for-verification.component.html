@@ -7,13 +7,12 @@
   " fxLayoutGap="40px" ngClass.lt-md="main-div-lt-md" fxLayout="row wrap">
   <div *ngFor="let book of books" fxLayout="row">
     <mat-card>
-      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf= "imageURL=='string'||imageURL==undefined||imageURL==null">
+      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf= "book.imageURL=='string'">
         <img src="../../../assets/images/bookstore-wallpaper.jpg" />
       </div>
-      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf= "imageURL!='string'&&imageURL!=undefined&&imageURL!=null">
-        <img src=book.imageUrl />
+      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf= "book.imageURL!='string'">
+        <img src={{book.imageURL}} />
       </div>
-      
 
       <div class="bookInfoDiv" fxLayout="column">
         <input class="input-title" matInput type="text" autocomplete="off" [(ngModel)]="book.bookName" />
@@ -37,7 +36,7 @@
       </div>
     </mat-card>
     <div class="book-details">
-      <span>{{book.bookDetails}}</span>
+      <span>{{book.description}}</span>
     </div>
   </div>
 </div>

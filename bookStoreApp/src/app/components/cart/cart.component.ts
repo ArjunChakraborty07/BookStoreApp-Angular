@@ -3,7 +3,7 @@ import { Book } from 'src/models/book.model';
 import { CartServiceService } from 'src/services/cart.service';
 import { MatSnackBar } from '@angular/material';
 import { MessageService } from 'src/services/message.service';
-import {FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { UserService } from 'src/services/user.service';
 import { CartModule } from 'src/models/cart/cart.module';
 import { Router } from '@angular/router';
@@ -15,33 +15,33 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  public show:boolean = false;
-  public buttonName:any = 'Show';
+  public show = false;
+  public buttonName: any = 'Show';
   cartSize: any;
   cartBooks: any = [];
   quantity = 1;
-  bookSum:any=[];
-  image='./assets/images/bookstore-wallpaper.jpg';
-  disp=false;
+  bookSum: any = [];
+  image = './assets/images/bookstore-wallpaper.jpg';
+  disp = false;
   cart: CartModule;
   constructor(
     private cartService: CartServiceService,
     private snackBar: MatSnackBar,
     private messageService: MessageService,
-    private fb:FormBuilder,
+    private fb: FormBuilder,
     private userService: UserService,
-    private route:Router
-  ) {}
+    private route: Router
+  ) { }
 
-  addressGroup=this.fb.group({
-    name:['karthik'],
-    phone:['8309809155'],
-    pincode:['517391'],
-    locality:['ap'],
-    address:['Andhra pradesh'],
-    city:['Madana palli'],
-    landmark:['Madana palli'],
-    type:['work']
+  addressGroup = this.fb.group({
+    name: ['karthik'],
+    phone: ['8309809155'],
+    pincode: ['517391'],
+    locality: ['ap'],
+    address: ['Andhra pradesh'],
+    city: ['Madana palli'],
+    landmark: ['Madana palli'],
+    type: ['work']
   });
   ngOnInit() {
     this.cartService.getCartCounter();
@@ -105,14 +105,14 @@ export class CartComponent implements OnInit {
   addQuantity(cartBook: any) {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
-      if (this.cart.totalBooksInCart < 5 ) {
+      if (this.cart.totalBooksInCart < 5) {
         this.cart.cartBooks.forEach(element => {
           if (element.book.bookId === cartBook.book.bookId) {
             if (element.bookQuantity < cartBook.book.quantity) {
               element.bookQuantity++;
               this.cart.totalBooksInCart++;
             } else {
-              this.snackBar.open('book Out Of Stock' , 'ok' , { duration: 2000});
+              this.snackBar.open('book Out Of Stock', 'ok', { duration: 2000 });
             }
           }
         });
@@ -120,7 +120,7 @@ export class CartComponent implements OnInit {
         this.cartService.sendCartCounter(this.cart.totalBooksInCart);
         this.messageService.cartBooks();
       } else {
-        this.snackBar.open('Cart is full' , 'ok' , { duration: 2000});
+        this.snackBar.open('Cart is full', 'ok', { duration: 2000 });
       }
     } else {
       this.cartService.addQuantity(cartBook.cartBookId).subscribe(
@@ -143,40 +143,39 @@ export class CartComponent implements OnInit {
   }
 
   toggle() {
-    this.show=true;
-    //this.show = !this.show;
+    this.show = true;
+    // this.show = !this.show;
     // CHANGE THE NAME OF THE BUTTON.
-   /* if(this.show)  
-      this.buttonName = "Hide";
-    else
-      this.buttonName = "Show";*/
+    /* if(this.show)
+       this.buttonName = "Hide";
+     else
+       this.buttonName = "Show";*/
   }
-  continue()
-  {
-    this.cartService.displayBooksInCart().subscribe((response:any)=>{
-      console.log("book in cart:",response);
-      this.bookSum=response.data.cartBooks;
-      this.bookSum.forEach(function(val){
-        console.log("book1:",val);
-        console.log("name:",val.book.bookName);
+  continue() {
+    this.cartService.displayBooksInCart().subscribe((response: any) => {
+      console.log('book in cart:', response);
+      this.bookSum = response.data.cartBooks;
+      this.bookSum.forEach(function(val) {
+        console.log('book1:', val);
+        console.log('name:', val.book.bookName);
       });
     });
-    //this.disp=!this.disp;
-    this.disp=true;
+    // this.disp=!this.disp;
+    this.disp = true;
   }
 
 
   removeQuantity(cartBook: any) {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
-      if (this.cart.totalBooksInCart > 0 ) {
+      if (this.cart.totalBooksInCart > 0) {
         this.cart.cartBooks.forEach(element => {
           if (element.book.bookId === cartBook.book.bookId) {
             if (element.bookQuantity > 1) {
               element.bookQuantity--;
               this.cart.totalBooksInCart--;
             } else {
-              this.snackBar.open('Cart items cant be less than 1' , 'ok' , { duration: 2000});
+              this.snackBar.open('Cart items cant be less than 1', 'ok', { duration: 2000 });
             }
           }
         });
@@ -184,7 +183,7 @@ export class CartComponent implements OnInit {
         this.cartService.sendCartCounter(this.cart.totalBooksInCart);
         this.messageService.cartBooks();
       } else {
-        this.snackBar.open('No Items In cart To remove quantity', 'ok' , { duration: 2000});
+        this.snackBar.open('No Items In cart To remove quantity', 'ok', { duration: 2000 });
       }
     } else {
       this.cartService.removeQuantity(cartBook.cartBookId).subscribe(
@@ -205,13 +204,11 @@ export class CartComponent implements OnInit {
       );
     }
   }
-  checkout(id,qty)
-  {
-    console.log("Ordered Successfully",id,qty);
-    localStorage.setItem("bookId",id);
-    this.userService.checkout(id,qty).subscribe((result:any)=>{
-      if(result.status==200)
-      {
+  checkout(bookSum) {
+    console.log('Ordered Successfully', this.bookSum);
+    localStorage.setItem('bookId', bookSum.book);
+    this.cartService.addToOrder().subscribe((result: any) => {
+      if (result.status === 200) {
         this.route.navigate(['/successPage']);
       }
     });

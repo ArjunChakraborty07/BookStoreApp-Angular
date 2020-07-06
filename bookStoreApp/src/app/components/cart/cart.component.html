@@ -211,15 +211,16 @@
         <div class="mat-body-2">Rs.{{ item.book.price }}</div>
       </div>
     </div>
-    <div fxLayoutAlign="end" *ngIf="disp">
-      <button
-        mat-button
-        class="button-placeorder"
-        (click)="checkout(item.book.bookId, item.book.quantity)"
-        id="check"
-      >
-        CHECKOUT
-      </button>
-    </div>
+    
+  </div>
+  <div fxLayoutAlign="end" *ngIf="disp">
+    <button
+      mat-button
+      class="button-placeorder"
+      (click)="checkout(bookSum)"
+      id="check"
+    >
+      CHECKOUT
+    </button>
   </div>
 </mat-card>

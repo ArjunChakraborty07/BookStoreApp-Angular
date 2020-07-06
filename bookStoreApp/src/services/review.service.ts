@@ -19,4 +19,9 @@ export class ReviewService {
     return this.http.GET('review/' + localStorage.getItem('bookId'),
     {headers: new HttpHeaders().set('token', token )});
   }
+
+  addReviewApp(review: any, rating: any, token: any): Observable<any> {
+    return this.http.POST('reviewApp/', {review, rating},
+    {headers: new HttpHeaders().set('token', token )});
+  }
 }
