@@ -3,7 +3,7 @@
   //outline: auto;
   //border: 1px red solid;
   //margin-right: 20%;
-  float:center;
+  //float:center;
   display: flex;
   padding-bottom: 2px;
   flex-wrap: wrap;
@@ -12,7 +12,8 @@
   justify-content: center;
   box-shadow: 0px 2px 8px 0px;//0 4px 8px 0  rgb(179, 59, 59),0 6px 20px 0 rgba(241, 37, 37, 0.19);
  // border-radius: 13px;
-  margin: 0 auto;  
+  margin: 0 auto; 
+  //opacity: 1;
 }
 
 .mat-toolbar {
@@ -119,9 +120,11 @@ input[type=text] {
 .mat-dialog-container {
   padding: 0px !important;
 }
-::ng-deep .custom-modalbox > mat-dialog-container {
+/*::ng-deep .custom-modalbox > mat-dialog-container {
   //background-color:;
  // padding-left: -50px;
   //border: 1px red solid;
-  width: 100%;
-}
+ // width: 100%;
+  //margin-left: 50%;
+  //opacity: 0;
+}*/

@@ -108,6 +108,7 @@ export class RegisterComponent implements OnInit {
      //  width: '40%',
      //  height:'90%',
       //});
+      localStorage.setItem("popup","true");
     this.router.navigate(['/login']);
   }
 }
