@@ -1,7 +1,7 @@
 <div mat-dialog-content class="mat-dialog-content">
 <form [formGroup]="LoginForm">
     <div class="container-fluid">
-      <div class="my-card" fxFlexAlign="center">
+      <div class="my-card"  fxLayoutAlign="center">
         <mat-toolbar>
           <span class="title-center">{{ title }}</span>
         </mat-toolbar>
@@ -54,14 +54,16 @@
           <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')">provide password less than 12 characters</mat-error> 
           </mat-form-field>
           <div class="right">
-            <button mat-button style="outline: none;" (click)="opendialogforforgotpassowrd()">forgot password?</button>
+            <button mat-button  style="outline:none;" (click)="opendialogforforgotpassowrd()">forgot password?</button>
           </div>
-          <mat-radio-group formControlName="userroles" #roleselected>
-            <mat-radio-button class="firstRadiobutton" value="vendor">vendor</mat-radio-button>
-            <mat-radio-button value="customer">customer</mat-radio-button>
-            <mat-error *ngIf="LoginForm.get('userroles').hasError('required') && roleselected.touched">*role is required</mat-error><br/>
-          </mat-radio-group>
-          <div class="left">
+          <div>
+            <mat-radio-group formControlName="userroles" #roleselected><br/>
+              <mat-radio-button class="firstRadiobutton" value="vendor">vendor</mat-radio-button>
+              <mat-radio-button value="customer">customer</mat-radio-button>
+              <mat-error *ngIf="LoginForm.get('userroles').hasError('required') && roleselected.touched">*role is required</mat-error><br/>
+            </mat-radio-group>
+          </div>
+          <div class="left"><br>
             <button mat-button  mat-dialog-close [routerLink]="['/register']">Sign up</button>
             <button mat-raised-button mat-dialog-close (click)="onSubmit()" type="submit">Login</button>
           </div>

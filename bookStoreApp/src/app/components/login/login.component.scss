@@ -1,19 +1,20 @@
 .my-card {
-  width:380px;
-  outline: auto;
-  border: none;
-  margin-right: 20%;
+  width:40%;
+  //outline: auto;
+  //border: 1px red solid;
+  //margin-right: 20%;
+  float:center;
   display: flex;
-  padding: 2px;
+  padding-bottom: 2px;
   flex-wrap: wrap;
-  margin-top: 10%;
+  //margin-top: 10%;
  // box-sizing: border-box;
   justify-content: center;
-  //box-shadow: 0px 2px 8px 0px;//0 4px 8px 0  rgb(179, 59, 59),0 6px 20px 0 rgba(241, 37, 37, 0.19);
+  box-shadow: 0px 2px 8px 0px;//0 4px 8px 0  rgb(179, 59, 59),0 6px 20px 0 rgba(241, 37, 37, 0.19);
  // border-radius: 13px;
-  margin: 0 auto;
-  
+  margin: 0 auto;  
 }
+
 .mat-toolbar {
   background-color: rgb(179, 59, 59);
 }
@@ -44,19 +45,16 @@
   padding-top: 5%;
 }
 .mat-radio-button {
- // margin: 0 3px 0 3px;
-  padding:12px;
+  //margin: 0 5px 0 5px;
+  padding-right:25px;
   margin-top:0px;
 }
 
 .right {
- //margin-top:-9%;
-margin-left:49%;
-color: rgb(179, 59, 59);
+   margin-top:-4%;
+  margin-left:50%;
+  color: rgb(179, 59, 59);
 }
-
-
-
 
 input[type=text] {
  background-color:whitesmoke;
@@ -68,19 +66,11 @@ input[type=text] {
   text-decoration: none;
  }
 
-.container-fluid {
- // margin-left: 8%;
-  float: center;
-  padding: 0px;
-  margin: 0px;
-  //border: 1px black solid;
-}
-
 .mat-raised-button {
   margin-top: 10px;
   background-color: rgb(179, 59, 59);
   color: aliceblue;
-  margin-left: 70px;
+  margin-left: 50px;
   }
 .left
 {
@@ -104,15 +94,34 @@ input[type=text] {
   height: 100%;
   overflow: hidden;
 }
-.mat-dialog-content {
-  padding: 0;
- // margin-top: -8%;
- // margin-bottom: -7%;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 8px 0px;
-  border-bottom: none;
-}
+/*.mat-dialog-content {
+  padding: 0px;
+  margin:0px;
+  margin-left: -47%;
+  padding-right: -30%;
+  //margin-top: 0px;
+  //margin-bottom: 0px;
+  //height: auto;
+  //box-sizing: border-box;
+  //box-shadow: 0px 2px 8px 0px;
+  //border-bottom: none;
+  border:1px red solid;
+}*/
 :host ::ng-deep .mat-form-field-wrapper{
   margin: 0 !important;
   padding-bottom: 4%;
+}
+
+::ng-deep .custom-modalbox >mat-dialog-container {
+   overflow-x: hidden;
+  overflow-y: hidden !important;
+}
+.mat-dialog-container {
+  padding: 0px !important;
+}
+::ng-deep .custom-modalbox > mat-dialog-container {
+  //background-color:;
+ // padding-left: -50px;
+  //border: 1px red solid;
+  width: 100%;
 }

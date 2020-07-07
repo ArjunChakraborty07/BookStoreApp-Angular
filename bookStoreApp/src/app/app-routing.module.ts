@@ -21,6 +21,7 @@ import { SuccessPageComponent } from './components/success-page/success-page.com
 import { GetallbooksComponent } from './components/getallbooks/getallbooks.component';
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 import { MyordersComponent } from './components/myorders/myorders.component';
+import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'successPage', component: SuccessPageComponent },
   { path: 'viewWishList', component: ViewWishlistComponent },
   { path: 'myorders', component: MyordersComponent },
+  { path: 'viewallWishList', component:  GetallwishListComponent },
   {
     path: 'getallbooks',
     component: GetallbooksComponent,

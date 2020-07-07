@@ -14,4 +14,5 @@ export class CartBookModule {
   cartBookId: number;
   bookQuantity: number;
   book: Book;
+  totalBookPrice: number;
 }

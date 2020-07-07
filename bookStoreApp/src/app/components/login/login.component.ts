@@ -6,6 +6,9 @@ import { MatSnackBar, MatDialog,MatDialogConfig } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import {User} from '../../../models/user';
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
+import { CartServiceService } from 'src/services/cart.service';
+import { MessageService } from 'src/services/message.service';
+import { EncrDecrService } from 'src/services/encr-decr.service';
 
 @Component({
   selector: 'dashboard/login',
@@ -29,7 +32,10 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private cartService: CartServiceService,
+    private messageService: MessageService,
+    private encrDecr: EncrDecrService
   ) { }
 
   ngOnInit() {
@@ -46,7 +52,6 @@ export class LoginComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(12),
         ],
       ],
       userroles: ['', Validators.required],
@@ -101,7 +106,11 @@ export class LoginComponent implements OnInit {
     console.log('ROLE:', this.role1);
     const data = {
       loginId: this.LoginForm.get('loginid').value,
-      password: this.LoginForm.get('password').value,
+      password:this.encrDecr.set('123456$#@$^@1ERF',this.LoginForm.get('password').value),
+     /* this.resetPassword.password = this.encrDecr.set(
+        '123456$#@$^@1ERF',
+        this.resetPassword.password
+      );*/
       role: this.role1
     };
     this.loading = true;
@@ -117,6 +126,23 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('status', response.data['userStatus']);
         if (this.role1 === 3) {
           this.router.navigate(['/dashboard']);
+          this.cartService.placeOrder(JSON.parse(localStorage.getItem('cart'))).subscribe((data: any) => {
+            console.log('after token provided: ' + data);
+            if (data.status === 200){
+              this.messageService.cartBooks();
+            }
+          }, (error: any) => {
+            if (error.status === 417){
+              this.messageService.cartBooks();
+              this.snackBar.open(error.error.message, 'ok', {
+                duration: 2000
+              });
+            }
+            this.snackBar.open(error.error.message, 'ok', {
+              duration: 2000
+            });
+          });
+        
         }
         if (this.role1 === 1) {
           this.router.navigate(['admin-dashboard']);
