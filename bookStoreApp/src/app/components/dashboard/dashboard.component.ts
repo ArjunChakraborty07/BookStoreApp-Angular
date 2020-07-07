@@ -73,16 +73,23 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscription = this.cartService.getCartCounter().subscribe(cartSize => {
+    this.messageService.onGetAllBooks();
+    
+    this.messageService.cartBooks();
+    // this.messageService.
+    this.subscription = this.messageService.currentData.subscribe(cartSize => {
       console.log(cartSize);
       this.cartCounter = cartSize;
     });
+
+    // this.cartService.sendCartCounter(this.cartCounter);
+    // console.log('Cart size : ');
   }
 
   ngOnDestroy() {
-    if (this.mySubscription) {
-      this.mySubscription.unsubscribe();
-    }
+    // if (this.mySubscription) {
+    //   this.mySubscription.unsubscribe();
+    // }
   }
   openDialogztoedit() {
     this.dialog.open(EditProfileComponent);
@@ -94,14 +101,15 @@ export class DashboardComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
   }
   onSearch() {
-    this.service.search(this.searchBook).subscribe((response: any) => {
-      this.books = response;
-    });
-    this.isCart = false;
+  //   this.service.search(this.searchBook).subscribe((response: any) => {
+  //     this.books = response;
+  //   });
+  //   this.isCart = false;
   }
   onCart() {
     // this.isCart = true;
     this.router.navigate(['/dashboard/cart']);
+    // this.messageService.cartBooks();
   }
   onSuccess() {
     this.isSuccess = true;
