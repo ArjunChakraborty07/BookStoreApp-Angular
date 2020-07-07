@@ -155,7 +155,7 @@ export class CartComponent implements OnInit {
     this.cartService.displayBooksInCart().subscribe((response: any) => {
       console.log('book in cart:', response);
       this.bookSum = response.data.cartBooks;
-      this.bookSum.forEach(function(val) {
+      this.bookSum.forEach(function (val) {
         console.log('book1:', val);
         console.log('name:', val.book.bookName);
       });
@@ -205,7 +205,7 @@ export class CartComponent implements OnInit {
     }
   }
   checkout(bookSum) {
-    console.log('Ordered Successfully', this.bookSum);
+
     localStorage.setItem('bookId', bookSum.book);
     this.cartService.addToOrder().subscribe((result: any) => {
       if (result.status === 200) {
