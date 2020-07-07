@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/services/user.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
+import { EncrDecrService } from 'src/services/encr-decr.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -26,7 +27,8 @@ export class AdminLoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private encrDecr: EncrDecrService
   ) { }
 
   ngOnInit() {
@@ -66,12 +68,11 @@ export class AdminLoginComponent implements OnInit {
     console.log('ROLE:', this.role1);
     const data = {
       loginId: this.LoginForm.get('loginid').value,
-      password: this.LoginForm.get('password').value,
+      password: this.encrDecr.set('123456$#@$^@1ERF', this.LoginForm.get('password').value),
       role: this.role1
     };
     this.loading = true;
     this.userService.login(data).subscribe((response: any) => {
-      console.log('LOGIN COMPONENT:', response);
       if (response.status === 200) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('image', response.data.imageUrl);
@@ -89,13 +90,11 @@ export class AdminLoginComponent implements OnInit {
 
         this.snackBar.open(response.message, 'ok', { duration: 5000 });
       }
-      (error) => {
-
-        this.loading = false;
-        if (error.status === 401) {
-          this.snackBar.open(error.error.error, 'ok', { duration: 2000 });
-        }
-      };
+    },
+    (error) => {
+      console.log('error', error.error.message);
+      this.loading = false;
+      this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
     });
   }
 

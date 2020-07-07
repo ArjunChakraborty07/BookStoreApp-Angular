@@ -36,4 +36,13 @@ public viewWishlist(): Observable<any>{
   });
 }
 
+public deletewishlist(bookId: any): Observable<any> {
+  return this.http.DELETE('wishlists/removeFromWishlist/'+ bookId,"", {
+    headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+  });
+}
+
+
+
+
 }

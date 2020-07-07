@@ -19,8 +19,8 @@ export class UpdateBookComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Book
   ) {}
   updateBookForm = new FormGroup({
-    price: new FormControl('', [Validators.min(1), Validators.required]),
-    quantity: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.min(0), Validators.required]),
+    quantity: new FormControl('', [Validators.min(1), Validators.required]),
   });
 
   ngOnInit() {}

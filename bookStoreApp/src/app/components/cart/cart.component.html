@@ -1,4 +1,6 @@
-<mat-card>
+<div fxLayout="column"  fxLayoutGap="2%" style="width: 100%;height: 100%;padding: 0%; margin-top: 4%;margin-left: 12%;">
+<!-- <div> -->
+  <mat-card>
   <div fxLayout="column">
     <span class="My-cart"> My Cart({{ cartSize }})</span>
     <div
@@ -19,7 +21,7 @@
         >
           <span>{{ cartBook.book.bookName }}</span>
           <span class="author-name">by {{ cartBook.book.authorName }}</span>
-          <span>Rs. {{ cartBook.book.price }}</span>
+          <span>Rs. {{ cartBook.totalBookPrice }}</span>
         </div>
       </div>
       <div
@@ -76,8 +78,7 @@
     </div>
     <div fxLayoutAlign="end">
       <button
-        mat-button
-        (click)="toggle()"
+        mat-button (click)="onPlaceOrder()"
         class="button-placeorder"
         fxLayoutAlign="center center"
         [disableRipple]="true"
@@ -90,6 +91,7 @@
   </div>
 </mat-card>
 <!-- </div> -->
+<!-- <div> -->
 <mat-card class="form">
   Customer Details
   <ng-container *ngIf="show">
@@ -197,6 +199,60 @@
     </div>
   </ng-container>
 </mat-card>
+<!-- </div>
+<div> -->
+  <mat-card>
+    <div fxLayout="column">
+      <span class="My-cart"> Order Summary</span>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="space-around start"
+        *ngFor="let cartBook of cartBooks"
+      >
+        <div class="book"  *ngIf="disp" fxLayout="row">
+          <div class="book-image">
+            <img src="{{ cartBook.book.imageURL }}" />
+          </div>
+  
+          <div
+            fxLayout="column"
+            fxLayoutAlign="start start"
+            class="book-details"
+            fxLayoutGap="6%"
+          >
+            <span>{{ cartBook.book.bookName }}</span>
+            <span class="author-name">by {{ cartBook.book.authorName }}</span>
+            <span>Rs. {{ cartBook.totalBookPrice }}</span>
+          </div>
+        </div>
+      </div>
+      <div fxLayoutAlign="end">
+        <button
+          mat-button (click)="onCheckOut()"
+          class="button-placeorder"
+          fxLayoutAlign="center center"
+          [disableRipple]="true"
+        >
+          <span style="font-size: small; height: 10px; color: white;"
+            >CHECK OUT</span
+          >
+        </button>
+      </div>
+    </div>
+  </mat-card>
+<!-- <mat-card class="orderMat" fxLayout="column">
+  <p class="text-muted">Order summary</p>
+  <div *ngFor="let item of bookSum" fxLayout="column"
+  fxLayoutAlign="space-around start">
+  <div fxLayout="row" *ngIf="disp" >
+    <div class="child1">
+      <img src="{{item.book.imageURL}}">
+    </div>
+    <div class="child2">
+      <div class="mat-body-2">{{item.book.bookName}}</div>
+      <div class="mat-caption text-muted">{{item.book.authorName}}</div>
+      <div class="mat-body-2">Rs.{{item.totalBookPrice}}</div>
+=======
 
 <mat-card class="orderMat" fxLayout="column">
   <p class="text-muted">Order summary</p>
@@ -213,7 +269,17 @@
     </div>
     
   </div>
-  <div fxLayoutAlign="end" *ngIf="disp">
+<<<<<<< HEAD
+</div>
+    <div fxLayoutAlign="end" *ngIf="disp">
+      <button mat-button class="button-placeorder" (click)="checkout(item.book.bookId,item.bookQuantity)" id="check">CHECKOUT</button>
+    </div>
+</mat-card> -->
+<!-- </div> -->
+</div>
+
+ 
+  <!-- <div fxLayoutAlign="end" *ngIf="disp">
     <button
       mat-button
       class="button-placeorder"
@@ -223,4 +289,4 @@
       CHECKOUT
     </button>
   </div>
-</mat-card>
+</mat-card> -->/
