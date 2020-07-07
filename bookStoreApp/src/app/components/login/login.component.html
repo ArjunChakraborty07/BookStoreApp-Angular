@@ -1,10 +1,11 @@
-<div mat-dialog-content class="mat-dialog-content">
-<form [formGroup]="LoginForm">
-    <div class="container-fluid">
-      <div class="my-card"  fxLayoutAlign="center">
+  
+    
+      <div fxLayout="column" fxLayoutAlign="space-around center">
+          <mat-card>
         <mat-toolbar>
           <span class="title-center">{{ title }}</span>
         </mat-toolbar>
+        <form [formGroup]="LoginForm">
         <mat-form-field appearance="outline">
           <mat-label>Username</mat-label>
           <input
@@ -15,6 +16,7 @@
             maxlength="300"
             matInput
             autocomplete="off"
+            style="background: none"
             [ngClass]="{ 'is-invalid': submitted && f.loginid.errors }"
           />
           <mat-icon matSuffix>account_circle</mat-icon>
@@ -39,6 +41,7 @@
             rows="3"
             maxlength="300"
             matInput
+            style="background: none"
             [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
           <button
             mat-icon-button
@@ -67,7 +70,7 @@
             <button mat-button  mat-dialog-close [routerLink]="['/register']">Sign up</button>
             <button mat-raised-button mat-dialog-close (click)="onSubmit()" type="submit">Login</button>
           </div>
-         </div><br/>
-      </div>
-  </form>
-</div>
+        </form>
+        </mat-card>
+         </div>
+     
