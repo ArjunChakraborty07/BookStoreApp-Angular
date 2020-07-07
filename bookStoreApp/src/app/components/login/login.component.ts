@@ -140,6 +140,7 @@ export class LoginComponent implements OnInit {
             console.log('after token provided: ' + data);
             if (data.status === 200){
               this.messageService.cartBooks();
+              localStorage.removeItem('cart');
             }
           }, (error: any) => {
             if (error.status === 417){
