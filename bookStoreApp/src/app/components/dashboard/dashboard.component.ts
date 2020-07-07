@@ -97,8 +97,8 @@ export class DashboardComponent implements OnInit {
   openDialog(): void {
     localStorage.setItem("popup",'false');
     const dialogConfig=new MatDialogConfig();
-    dialogConfig.height="75%";
-    const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
+    // dialogConfig.height="75%";
+    this.dialog.open(LoginComponent);
   }
   onSearch() {
   //   this.service.search(this.searchBook).subscribe((response: any) => {
