@@ -88,6 +88,7 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
+    localStorage.setItem("popup",'false');
     const dialogConfig=new MatDialogConfig();
     // dialogConfig.height="75%";
     this.dialog.open(LoginComponent);

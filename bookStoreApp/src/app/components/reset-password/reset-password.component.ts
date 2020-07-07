@@ -35,8 +35,7 @@ export class ResetPasswordComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.pattern(
-              /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})/
+            Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
             ),
           ],
         ],
@@ -45,6 +44,7 @@ export class ResetPasswordComponent implements OnInit {
       { validator: PasswordValidator }
     );
     this.token = this.route.snapshot.paramMap.get('token');
+    ///((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#$%]).{8,20})/
   }
 
   onConfirm() {

@@ -68,7 +68,13 @@
           </div>
           <div class="left"><br>
             <button mat-button  mat-dialog-close [routerLink]="['/register']">Sign up</button>
-            <button mat-raised-button mat-dialog-close (click)="onSubmit()" type="submit">Login</button>
+            <div *ngIf="popup; then navigate;else popupbtn"></div>
+            <ng-template #navigate>
+              <button mat-raised-button  (click)="onSubmit()" type="submit">Login</button>
+            </ng-template>
+            <ng-template #popupbtn>
+              <button mat-raised-button mat-dialog-close (click)="onSubmit()" type="submit">Login</button>
+            </ng-template>
           </div>
         </form>
         </mat-card>

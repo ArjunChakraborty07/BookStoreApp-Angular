@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/services/user.service';
-import { MatSnackBar, MatDialog,MatDialogConfig } from '@angular/material';
+import { MatSnackBar, MatDialog,MatDialogConfig, MatDialogRef  } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import {User} from '../../../models/user';
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   role1: Number;
   roles: Number;
   logsuccess: boolean;
+  popup:boolean;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -33,10 +34,18 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private encrDecr: EncrDecrService,
     private cartService: CartServiceService,
     private messageService: MessageService,
-    private encrDecr: EncrDecrService
-  ) { }
+   // private dialogRef: MatDialogRef<LoginComponent>
+  ) 
+  {
+    if(localStorage.getItem('popup')==="true")
+      this.popup=true;
+    else
+      this.popup=false;
+    console.log("popup?",this.popup);
+  }
 
   ngOnInit() {
     this.LoginForm = this.formBuilder.group({
@@ -117,6 +126,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(data).subscribe((response: any) => {
       console.log('LOGIN COMPONENT:', response);
       if (response.status === 200) {
+        //this.dialogRef.close();
         localStorage.setItem('token', response['token']);
         localStorage.setItem('image', response.data['imageUrl']);
         localStorage.setItem('name', response.data['name']);
