@@ -21,7 +21,7 @@
           {{ book.bookName }}
         </div>
         <div fxlayout="row" class="input-author">by {{ book.authorName }}</div>
-        <div fxlayout="row" (click)="onUpdateBookForm(book)">
+        <div fxlayout="row">
           <span class="input-price-span">Rs.</span>
           <input
             class="input-price"
@@ -29,6 +29,7 @@
             type="text"
             autocomplete="off"
             [(ngModel)]="book.price"
+            (click)="onUpdateBookForm(book)"
           />
         </div>
         <div fxLayout="row">

@@ -3,24 +3,30 @@ import { BehaviorSubject } from 'rxjs';
 import { VendorService } from './vendor.service';
 import { BookService } from './book.service';
 import { CartServiceService } from './cart.service';
+import { AdminService } from './admin.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
-  count:number;
-  private dataSource=new BehaviorSubject(this.count);
-  currentData=this.dataSource.asObservable();
+  count: number;
+  private dataSource = new BehaviorSubject(this.count);
+  currentData = this.dataSource.asObservable();
   private messageSource = new BehaviorSubject(Response);
   currentMessage = this.messageSource.asObservable();
   private cartSource = new BehaviorSubject(Response);
   cartMessage = this.cartSource.asObservable();
-  
+  private adminBookSource = new BehaviorSubject(Response);
+  adminBook = this.adminBookSource.asObservable();
+  private adminSellerSource = new BehaviorSubject(Response);
+  adminSeller = this.adminSellerSource.asObservable();
+
   constructor(
     private vendorService: VendorService,
     private bookService: BookService,
-    private cartService: CartServiceService
-  ) {}
+    private cartService: CartServiceService,
+    private adminService: AdminService
+  ) { }
 
   changeMessage() {
     this.vendorService.displayBooks().subscribe((data) => {
@@ -34,8 +40,8 @@ export class MessageService {
   }
   cartBooks() {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
-        this.cartSource.next(JSON.parse(localStorage.getItem('cart')));
-        
+      this.cartSource.next(JSON.parse(localStorage.getItem('cart')));
+
     } else {
       this.cartService.displayBooksInCart().subscribe((data: any) => {
         this.cartSource.next(data);
@@ -43,7 +49,17 @@ export class MessageService {
       });
     }
   }
-  onCartCount(){
+  adminBookMessage() {
+    this.adminService.getAllBooksForVerification().subscribe((data: any) => {
+      this.adminBookSource.next(data);
+    });
+  }
+  adminSellerMessage() {
+    this.adminService.getAllSellers().subscribe((data: any) => {
+      this.adminSellerSource.next(data);
+    });
+  }
+  onCartCount() {
     this.dataSource.next(this.count);
   }
 
@@ -54,7 +70,7 @@ export class MessageService {
     this.dataSource.next(cartSize);
   }
 
-  onGetAllBooks(){
+  onGetAllBooks() {
     this.bookService.getAllbooks().subscribe((data: any) => {
       console.log(data);
       this.messageSource.next(data);
