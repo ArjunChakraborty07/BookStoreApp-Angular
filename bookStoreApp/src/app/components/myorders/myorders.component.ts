@@ -18,18 +18,27 @@ export class MyordersComponent implements OnInit {
   username = localStorage.getItem('name');
   usermail = localStorage.getItem('email');
   profile = localStorage.getItem('image');
+  orderedbooks:[];
   constructor(private userService: UserService,
               private dialog: MatDialog,
               private Adminservice: AdminService,
               private router: Router)
   { 
-     /* this.userService.getmyOrders().subscribe((response:any)=>{
-
-      });*/
+      this.userService.getmyOrders().subscribe((response:any)=>{
+          console.log("orders:",response);
+          this.orderedbooks=response.data;
+      });
   }
-  openDialog() {
-    this.dialog.open(BookReviewComponent, {width: '30%'});
-    this.btnName="4.5";
+  openDialog(book) {
+
+    console.log("book=",book);
+    console.log("book id:",book.book.bookId);
+    localStorage.setItem('bookId',book.book.bookId);
+    let dialogRef=this.dialog.open(BookReviewComponent, {width: '30%'});
+    dialogRef.afterClosed().subscribe(result=>{
+      book.review=localStorage.getItem('bookRating');
+    });
+    //this.btnName="4.5";
   }
   ngOnInit() {
   }

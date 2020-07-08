@@ -63,4 +63,8 @@ private orderCheckoutApi = 'orders/checkOut'
     console.log('books', bookSum);
     return this.http.POST('orders/checkout/', { params: new HttpParams().set('books', bookSum)}, { params: new HttpParams().set('token', localStorage.getItem('token'))});
   }
+  getmyOrders()
+  {
+    return this.http.GET('orders/myorders',{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
+  }
 }
