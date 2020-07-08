@@ -46,13 +46,17 @@ export class CartComponent implements OnInit {
     type: ['work']
   });
   ngOnInit() {
-    this.cartService.getCartCounter();
-    this.messageService.cartBooks();
-    this.messageService.currentMessage.subscribe((data) => {
+    // this.cartService.getCartCounter();
+    // this.messageService.cartBooks();
+    this.messageService.cartMessage.subscribe((data) => {
       this.cartBooks = [];
+      console.log(data);
       this.displayBooksInCart(data);
+      this.messageService.sendCartCounter(this.cartSize);
     });
-    this.cartService.sendCartCounter(this.cartSize);
+    this.messageService.currentData.subscribe(cartSize =>{
+      this.cartSize = cartSize;
+    });
   }
 
   removeFromCart(cartBook: any) {
@@ -66,7 +70,7 @@ export class CartComponent implements OnInit {
         }
       });
       localStorage.setItem('cart', JSON.stringify(this.cart));
-      this.cartService.sendCartCounter(this.cart.totalBooksInCart);
+      this.messageService.sendCartCounter(this.cart.totalBooksInCart);
       this.messageService.cartBooks();
     } else {
       this.cartService.removeFromCart(cartBook.cartBookId).subscribe(
@@ -76,6 +80,7 @@ export class CartComponent implements OnInit {
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
+            this.messageService.sendCartCounter(data.data.totalBooksInCart);
           }
         },
         (error: any) => {
@@ -120,7 +125,7 @@ export class CartComponent implements OnInit {
           }
         });
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.cartService.sendCartCounter(this.cart.totalBooksInCart);
+        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
         this.messageService.cartBooks();
       } else {
         this.snackBar.open('Cart is full', 'ok', { duration: 2000 });
@@ -129,7 +134,7 @@ export class CartComponent implements OnInit {
       this.cartService.addQuantity(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
-            this.cartService.sendCartCounter(data.data.totalItemsInCart);
+            this.messageService.sendCartCounter(data.data.totalItemsInCart);
             this.messageService.cartBooks();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
@@ -184,7 +189,7 @@ export class CartComponent implements OnInit {
           }
         });
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.cartService.sendCartCounter(this.cart.totalBooksInCart);
+        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
         this.messageService.cartBooks();
       } else {
         this.snackBar.open('No Items In cart To remove quantity', 'ok', { duration: 2000 });
@@ -193,7 +198,7 @@ export class CartComponent implements OnInit {
       this.cartService.removeQuantity(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
-            this.cartService.sendCartCounter(data.data.totalItemsInCart);
+            this.messageService.sendCartCounter(data.data.totalItemsInCart);
             this.messageService.cartBooks();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
@@ -229,7 +234,7 @@ export class CartComponent implements OnInit {
       if (result.status === 200) {
         this.route.navigate(['/successPage']);
       }
-    },(error: any) => {
+    }, (error: any) => {
       this.snackBar.open(error.error.message, 'ok', {
         duration: 2000
       })

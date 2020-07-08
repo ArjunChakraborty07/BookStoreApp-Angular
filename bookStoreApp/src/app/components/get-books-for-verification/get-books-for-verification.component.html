@@ -26,11 +26,24 @@
           <span class="input-price-span">Quantity: {{book.quantity}}</span>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between">
-          <button mat-raised-button [disabled]="(counter==book.bookId)" fxLayoutAlign="center" [disableRipple]="true" (click)="onApprove(book)" >
+          <button mat-raised-button [disabled]="(counter==book.bookId)" fxLayoutAlign="center" [disableRipple]="true" (click)="onApprove(book)" *ngIf="book.approvalSent">
             APPROVE
           </button>
-          <button mat-raised-button [disabled]="(counter==book.bookId)"fxLayoutAlign="center" [disableRipple]="true" (click)="onReject(book)" >
+          <button mat-button color="warn" fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && book.approved">
+            APPROVED
+          </button>
+          <button mat-button disabled fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && !book.approved">
+            APPROVED
+          </button>
+
+          <button mat-raised-button [disabled]="(counter==book.bookId)"fxLayoutAlign="center" [disableRipple]="true" (click)="onReject(book)" *ngIf="book.approvalSent">
             REJECT
+          </button>          
+          <button mat-button color="primary" fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && book.approved">
+            REJECTED
+          </button>
+          <button mat-button disabled fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && !book.approved">
+            REJECTED
           </button>
         </div>
       </div>
