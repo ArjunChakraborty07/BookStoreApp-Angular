@@ -99,12 +99,14 @@ export class DashboardComponent implements OnInit {
     dialogConfig.height="75%";
     const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
   }
-  onSearch() {
-    this.service.search(this.searchBook).subscribe((response: any) => {
-      this.books = response;
-    });
+
+
+  onKey(event: any) {
+    this.messageService.searchUserBook(event);
     this.isCart = false;
-  }
+   }
+
+  
   onCart() {
     // this.isCart = true;
     this.router.navigate(['/dashboard/cart']);
