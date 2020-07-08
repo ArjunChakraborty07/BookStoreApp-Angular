@@ -22,7 +22,7 @@ export interface DialogData {
 })
 export class GetallbooksComponent implements OnInit {
   countResult: any;
-  books: any = [];
+  books = [];
   cart: CartModule ;
   cartBook: CartBookModule ;
 
@@ -36,7 +36,7 @@ export class GetallbooksComponent implements OnInit {
     this.getItems();
     // this.messageService.getCartCounter();
     // this.messageService.currentData.subscribe(cartSize =>)
-    this.messageService.onGetAllBooks();
+    
     this.messageService.currentMessage.subscribe(data =>{
       this.books = [];
       console.log(data);
@@ -48,14 +48,27 @@ export class GetallbooksComponent implements OnInit {
     // });
   }
 
-  loadAllBooks(data) {
-    console.log(data.message);
-    if(data.status === 200){
-    data.data.forEach(book => {
-      this.books.push(book);
-    });
+  onFormSubmit(){
+    this.messageService.changeoptionMessage1();
+    this.messageService.changeoptionMessage();
+    }
+
+
+
+
+
+  private loadAllBooks(data) {
+    console.log(data);
+    if (data.status === 200) {
+      data.data.forEach((bookData) => {
+        this.books.push(bookData);
+      });
+      this.snackBar.open(data.message, 'ok', {
+        duration: 2000,
+      });
     }
   }
+
 
 private getItems() {
   this.bookservice.getNumberOfItems().subscribe((data: any) => {

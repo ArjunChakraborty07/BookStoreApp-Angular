@@ -4,20 +4,18 @@
   <mat-toolbar class="tool">
     <mat-card class="mattool"> </mat-card>
     <button
-      mat-icon-button
-      class="mysearch"
-      (click)="onSearch()"
-      mattooltip="Search"
+    mat-icon-button
+    class="mysearch"
+   mattooltip="Search"
+   [disableRipple]="true"
     >
-      <mat-icon class="search">search</mat-icon>
+  <mat-icon class="search">search</mat-icon>
     </button>
     <input
-      class="input"
-      type="text"
-      [(ngModel)]="searchBook"
-      name="searchBook"
-      matInput
-      placeholder="Search"
+    (input)="onKey($event)"
+    class="input"
+    type="text"
+   placeholder="Search"
     />
     <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
      Cart <mat-icon matBadge="{{ cartCounter }}" MatBadgeSize="small"
@@ -103,25 +101,11 @@
     <mat-icon>camera_alt</mat-icon>
   </mat-toolbar>
   <div class="box">
-    <!-- <div class="left" *ngIf="!isCart">
-      <select matNativeControl required>
-        <option>sort by relevance</option>
-        <option value="">Low to High</option>
-        <option value="">new Arrivals</option>
-      </select>
-    </div> -->
-    <!-- <app-getallbooks *ngIf="!isCart" (cartCounter)='AddToCart($event)'></app-getallbooks>
-    <app-cart *ngIf="isCart" (cartCounter)="AddToCart($event)"></app-cart> -->
-    <router-outlet></router-outlet>
-    <!-- <mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event">
-</mat-paginator> -->
+   <router-outlet></router-outlet>
     <br /><br />
   </div>
 </div>
-<div class="divfooter">
+<!-- <div class="divfooter">
   <mat-toolbar class="matfooter">
     <footer>
       <p style="text-align: center;">
@@ -132,4 +116,4 @@
       </p>
     </footer>
   </mat-toolbar>
-</div>
+</div> -->
