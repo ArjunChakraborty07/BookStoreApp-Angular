@@ -24,12 +24,10 @@ export class GetBooksForVerificationComponent implements OnInit {
 
   ngOnInit() {
 
-    this.messageService.currentMessage.subscribe((data: any) => {
     this.service.getAllBooksForVerification().subscribe(( datas: any) => {
+      this.messageService.adminBookMessage();
       this.books = datas.data;
-      console.log(this.books);
       this.snackBar.open(datas.message, 'ok', { duration: 5000 });
-    });
   });
   }
   onApprove(book: any) {

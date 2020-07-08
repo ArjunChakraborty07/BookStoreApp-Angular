@@ -18,15 +18,15 @@ export class GetAllSellersComponent implements OnInit {
   users: any;
   counter = 0;
   ngOnInit() {
-    this.messageService.currentMessage.subscribe((data: any) => {
-      this.service.getAllSellers().subscribe(( datas: any) => {
-      console.log(data);
+
+    this.service.getAllSellers().subscribe((datas: any) => {
+      this.messageService.adminSellerMessage();
       this.users = datas.data;
     },
       (error: any) => {
         this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
       });
-    });
+
   }
   onLink(user: any) {
     window.location.reload();

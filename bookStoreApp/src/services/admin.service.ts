@@ -15,7 +15,6 @@ export class AdminService {
     });
   }
   getAllBooksForVerification(): Observable<any> {
-    console.log('service', localStorage.getItem('token'));
     return this.http.GET(
       'admin/getBooksForVerification/' + localStorage.getItem('sellerId'),
       {
@@ -29,7 +28,6 @@ export class AdminService {
     });
   }
   verfy(bookId: any, sellerId: any, verification: any): Observable<any> {
-    console.log(verification);
     return this.http.PUT(
       'admin/bookVerification/' + bookId + '/' + sellerId + '/' + verification,
       null,
