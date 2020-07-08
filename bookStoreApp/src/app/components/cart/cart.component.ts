@@ -151,7 +151,7 @@ export class CartComponent implements OnInit {
   }
 
   onPlaceOrder() {
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem('token') === null ) {
       this.dialog.open(LoginComponent);
     }
     this.show = true;

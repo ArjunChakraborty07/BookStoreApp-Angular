@@ -79,9 +79,22 @@
     <div fxLayoutAlign="end">
       <button
         mat-button (click)="onPlaceOrder()"
+        *ngIf="cartSize>=1"
         class="button-placeorder"
         fxLayoutAlign="center center"
         [disableRipple]="true"
+      >
+        <span style="font-size: small; height: 10px; color: white;"
+          >PLACE ORDER</span
+        >
+      </button>
+      <button
+        mat-button
+        
+        *ngIf="cartSize<=0"
+        fxLayoutAlign="center center"
+        [disableRipple]="true"
+        [disabled] = true 
       >
         <span style="font-size: small; height: 10px; color: white;"
           >PLACE ORDER</span
