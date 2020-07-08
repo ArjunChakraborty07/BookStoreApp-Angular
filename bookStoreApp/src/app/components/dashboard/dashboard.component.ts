@@ -74,7 +74,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.messageService.onGetAllBooks();
-    
     this.messageService.cartBooks();
     // this.messageService.
     this.subscription = this.messageService.currentData.subscribe(cartSize => {
@@ -97,14 +96,14 @@ export class DashboardComponent implements OnInit {
   openDialog(): void {
     localStorage.setItem("popup",'false');
     const dialogConfig=new MatDialogConfig();
-    // dialogConfig.height="75%";
-    this.dialog.open(LoginComponent);
+    dialogConfig.height="75%";
+    const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
   }
   onSearch() {
-  //   this.service.search(this.searchBook).subscribe((response: any) => {
-  //     this.books = response;
-  //   });
-  //   this.isCart = false;
+    this.service.search(this.searchBook).subscribe((response: any) => {
+      this.books = response;
+    });
+    this.isCart = false;
   }
   onCart() {
     // this.isCart = true;
