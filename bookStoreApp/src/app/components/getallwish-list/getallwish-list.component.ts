@@ -78,7 +78,7 @@ export class GetallwishListComponent implements OnInit {
         this.cart.cartBooks.push(this.cartBook);
         this.cart.totalBooksInCart ++;
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.cartService.sendCartCounter(this.cart.totalBooksInCart);
+        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
     } else {
       this.snackBar.open('Your Cart is full', 'ok', {duration: 2000} );
     }
@@ -86,7 +86,7 @@ export class GetallwishListComponent implements OnInit {
       this.cartService.addToCart(book.bookId).subscribe((data: any) => {
         console.log(data);
         if (data.status === 200) {
-          this.cartService.sendCartCounter(data.data.totalBooksInCart);
+          this.messageService.sendCartCounter(data.data.totalBooksInCart);
           this.snackBar.open(data.message, 'ok', {
             duration: 2000
           });

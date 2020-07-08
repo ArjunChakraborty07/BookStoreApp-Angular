@@ -75,19 +75,10 @@ export class AdminLoginComponent implements OnInit {
     this.userService.login(data).subscribe((response: any) => {
       if (response.status === 200) {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('image', response.data.imageUrl);
-        localStorage.setItem('name', response.data.name);
-        localStorage.setItem('username', response.data.userName);
-        localStorage.setItem('email', response.data.email);
-        localStorage.setItem('mobile', response.data.mobileNumber);
-        localStorage.setItem('status', response.data.userStatus);
-
         if (this.role1 === 1) {
           this.router.navigate(['admin-dashboard/sellers']);
         }
-
         this.logsuccess = true;
-
         this.snackBar.open(response.message, 'ok', { duration: 5000 });
       }
     },

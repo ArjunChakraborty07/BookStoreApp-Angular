@@ -35,8 +35,11 @@
                   <div class="price">
                       Rs.{{book.price}}</div>
                       </mat-card-content>
-                          <div class="left">
-                              <button mat-raised-button color="primary" (click)="addToCart(book)">ADD TO CART</button>    <button mat-stroked-button    (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
+                          <div class="left" fxLayout="row" fxLayoutAlign="space-around center">
+                              <button mat-raised-button fxLayoutAlign="center" color="primary" *ngIf="book.quantity>0 && !checkAddedToCart(book.bookId)" (click)="addToCart(book)">ADD TO CART</button>
+                              <button mat-raised-button fxLayoutAlign="center" *ngIf="checkAddedToCart(book.bookId)" style="width: 100%; padding: 0%;height: 32px; margin-left: 0%;background-color: #3371B5;" (click)="addToCart(book)">ADDED TO CART</button>
+                              <button mat-stroked-button fxLayoutAlign="center" *ngIf="book.quantity>0 && !checkAddedToCart(book.bookId)" (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
+                              <button mat-stroked-button *ngIf="book.quantity === 0"  style="width: 100%; padding: 0%;height: 32px; margin-left: 0%;" (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
                             </div>
                           </div>
                       </mat-card>

@@ -8,8 +8,14 @@ import { CartServiceService } from './cart.service';
   providedIn: 'root',
 })
 export class MessageService {
+  count:number;
+  private dataSource=new BehaviorSubject(this.count);
+  currentData=this.dataSource.asObservable();
   private messageSource = new BehaviorSubject(Response);
   currentMessage = this.messageSource.asObservable();
+  private cartSource = new BehaviorSubject(Response);
+  cartMessage = this.cartSource.asObservable();
+  
   constructor(
     private vendorService: VendorService,
     private bookService: BookService,
@@ -28,11 +34,30 @@ export class MessageService {
   }
   cartBooks() {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
-        this.messageSource.next(JSON.parse(localStorage.getItem('cart')));
+        this.cartSource.next(JSON.parse(localStorage.getItem('cart')));
+        
     } else {
       this.cartService.displayBooksInCart().subscribe((data: any) => {
-        this.messageSource.next(data);
+        this.cartSource.next(data);
+        this.count = data.data.totalItemsInCart;
       });
     }
+  }
+  onCartCount(){
+    this.dataSource.next(this.count);
+  }
+
+  // getCartCounter(){
+  //    this.messageSource.next();
+  // }
+  sendCartCounter(cartSize: number) {
+    this.dataSource.next(cartSize);
+  }
+
+  onGetAllBooks(){
+    this.bookService.getAllbooks().subscribe((data: any) => {
+      console.log(data);
+      this.messageSource.next(data);
+    });
   }
 }
