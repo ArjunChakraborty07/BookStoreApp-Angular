@@ -13,7 +13,6 @@ export class CartServiceService {
   private addQuantityApi = 'carts/addQuantity/';
   private removeQuantityApi = 'carts/removeQuantity/';
   private placeOrderApi = 'carts/placeOrder';
-  private subject = new Subject<any>();
   constructor(private http: HttpService) { }
 
   addToCart(bookId: any): Observable <any> {
@@ -50,12 +49,6 @@ export class CartServiceService {
     return this.http.POST(this.placeOrderApi, cart, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
-  }
-  getCartCounter(): Observable<any> {
-    return this.subject.asObservable();
-  }
-  sendCartCounter(cartSize: number) {
-    this.subject.next(cartSize);
   }
 
   addToOrder(): Observable<any> {

@@ -22,7 +22,7 @@ export interface DialogData {
 })
 export class GetallbooksComponent implements OnInit {
   countResult: any;
-  books: any;
+  books: any = [];
   cart: CartModule ;
   cartBook: CartBookModule ;
 
@@ -33,23 +33,47 @@ export class GetallbooksComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loadAllBooks();
     this.getItems();
-    this.cartService.getCartCounter();
+    // this.messageService.getCartCounter();
+    // this.messageService.currentData.subscribe(cartSize =>)
+    this.messageService.onGetAllBooks();
+    this.messageService.currentMessage.subscribe(data =>{
+      this.books = [];
+      console.log(data);
+      this.loadAllBooks(data);
+    });
+    this.messageService.sendCartCounter(this.cart.totalBooksInCart);
+    // this.messageService.currentData.subscribe(cartSize =>{
+    //   this.cartSize = cartSize;
+    // });
   }
 
-  private loadAllBooks() {
-    this.bookservice.getAllbooks().subscribe((data: any) => {
-      this.books = data.data;
-    },
-    );
+  loadAllBooks(data) {
+    console.log(data.message);
+    if(data.status === 200){
+    data.data.forEach(book => {
+      this.books.push(book);
+    });
+    }
   }
 
 private getItems() {
   this.bookservice.getNumberOfItems().subscribe((data: any) => {
   this.countResult = data.data;
-  },
+  }
   );
+}
+checkAddedToCart(bookId): boolean{
+  let addedTocart =  false;
+  if(localStorage.getItem('cart') !== null){
+    this.cart = JSON.parse(localStorage.getItem('cart'));
+    this.cart.cartBooks.forEach(element => {
+      if(element.book.bookId === bookId){
+        addedTocart = true;
+      }
+    });
+  }
+  return addedTocart;
 }
 onAddBookToWishList(bookId){
   console.log(bookId);
@@ -114,7 +138,8 @@ openDialog(book) {
         this.cart.totalBooksInCart ++;
         localStorage.setItem('cart', JSON.stringify(this.cart));
         this.snackBar.open('Book Added to Cart', 'ok', {duration: 2000});
-        this.cartService.sendCartCounter(this.cart.totalBooksInCart);
+        this.messageService.onCartCount();
+        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
     } else {
       this.snackBar.open('Your Cart is full', 'ok', {duration: 2000} );
     }
@@ -122,7 +147,9 @@ openDialog(book) {
       this.cartService.addToCart(book.bookId).subscribe((data: any) => {
         console.log(data);
         if (data.status === 200) {
-          this.cartService.sendCartCounter(data.data.totalBooksInCart);
+          console.log(data.data)
+          this.messageService.onGetAllBooks();
+          this.messageService.sendCartCounter(data.data.totalBooksInCart);
           this.snackBar.open(data.message, 'ok', {
             duration: 2000
           });
