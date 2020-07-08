@@ -7,10 +7,9 @@ import { AdminService } from 'src/services/admin.service';
 @Component({
   selector: 'app-get-books-for-verification',
   templateUrl: './get-books-for-verification.component.html',
-  styleUrls: ['./get-books-for-verification.component.scss']
+  styleUrls: ['./get-books-for-verification.component.scss'],
 })
 export class GetBooksForVerificationComponent implements OnInit {
-
   books: any;
   response: any;
 
@@ -20,28 +19,29 @@ export class GetBooksForVerificationComponent implements OnInit {
     private service: AdminService,
     private snackBar: MatSnackBar,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-    this.service.getAllBooksForVerification().subscribe(( datas: any) => {
+    this.service.getAllBooksForVerification().subscribe((datas: any) => {
       this.messageService.adminBookMessage();
       this.books = datas.data;
       this.snackBar.open(datas.message, 'ok', { duration: 5000 });
-  });
+    });
   }
   onApprove(book: any) {
-
-    this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true).subscribe((data: any) => {
-      this.snackBar.open(data.message, 'ok', { duration: 5000 });
-      this.counter = book.bookId;
-    });
+    this.service
+      .verfy(book.bookId, localStorage.getItem('sellerId'), true)
+      .subscribe((data: any) => {
+        this.snackBar.open(data.message, 'ok', { duration: 5000 });
+        this.counter = book.bookId;
+      });
   }
   onReject(book: any) {
-
-    this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
-      this.snackBar.open(data.message, 'ok', { duration: 5000 });
-      this.counter = book.bookId;
-    });
+    this.service
+      .verfy(book.bookId, localStorage.getItem('sellerId'), false)
+      .subscribe((data: any) => {
+        this.snackBar.open(data.message, 'ok', { duration: 5000 });
+        this.counter = book.bookId;
+      });
   }
 }

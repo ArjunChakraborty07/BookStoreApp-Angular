@@ -1,24 +1,23 @@
 .main-div {
-  margin-top:-23%;
+  margin-top: -23%;
   float: left;
   width: 25%;
   padding: 0 10px;
   padding-bottom: 27%;
 }
 
-#items1{
+#items1 {
   float: right;
   margin-top: -330px;
   margin-right: -170px;
   display: flex;
   align-items: center;
-  font-size:  15px;
+  font-size: 15px;
 }
 .book-details {
   display: none;
   position: absolute;
 }
-
 
 mat-card:hover + .book-details {
   display: block;
@@ -37,19 +36,18 @@ mat-card:hover + .book-details {
   padding: 2%;
 }
 
-
-#items{
- float: left;
- margin-top: -300px;
- margin-left: -178px;
- display: flex;
- align-items: center;
- font-size:  24px;
- letter-spacing: 0px;
- font-weight: 23px;
- color: #0A0102;
- font-family: Arial, Helvetica, sans-serif;
- }
+#items {
+  float: left;
+  margin-top: -300px;
+  margin-left: -178px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  letter-spacing: 0px;
+  font-weight: 23px;
+  color: #0a0102;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 #active {
   color: darkgray;
@@ -57,37 +55,27 @@ mat-card:hover + .book-details {
   font-weight: 10px;
 }
 
-
- #left{
+#left {
   float: right;
-  height:-10px;
+  height: -10px;
   width: 15%;
   margin-top: -367px;
   margin-right: -14%;
   border-color: white;
- }
-
-
-
-
-
-
-
-
-
-
- .row {
-   margin: 0 -30%;
-   padding-top: -30%;
-}
- 
- .row:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
+.row {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 2%;
+}
 
+// .row:after {
+//   content: '';
+//   display: table;
+//   clear: both;
+// }
 
 @media screen and (max-width: 600px) {
   .main-div {
@@ -98,38 +86,35 @@ mat-card:hover + .book-details {
 }
 
 .mat-card {
-width: 220px;
-padding: 0%;
-
-
+  margin-top: 6%;
+  width: 220px;
+  padding: 0%;
 }
 .mat-card:hover {
-box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
-0 6px 20px 0 rgba(29, 29, 29, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+    0 6px 20px 0 rgba(29, 29, 29, 0.19);
 }
 
-
-.mat-card-title{
-    font-size: 14px;
+.mat-card-title {
+  font-size: 14px;
 }
-.mat-card-subtitle{
-    font-size: 11px;
+.mat-card-subtitle {
+  font-size: 11px;
 }
 
-.price{
-    font-size: 12px;
-    color: black;
-    font-weight: bold;
-    margin-top: -10px;
-    
+.price {
+  font-size: 12px;
+  color: black;
+  font-weight: bold;
+  margin-top: -10px;
 }
 
 .bookImageDiv {
   background-color: rgb(240, 233, 233);
 }
 
-.a{
-    line-height: normal;
+.a {
+  line-height: normal;
 }
 
 img {
@@ -143,32 +128,36 @@ img {
   padding: 7% 10% 10% 10%;
 }
 
-
-
 .mat-raised-button {
   margin-left: -6px;
   font-weight: 100;
-    font-size: 10px;
-    padding-bottom: 30px;
-    height: 18px;
-    width: 80px;
-    background-color: #A03037;
-    color: white;
-    text-align: center;
-    display: inline-block;
-    
+  font-size: 10px;
+  padding-bottom: 30px;
+  height: 18px;
+  width: 80px;
+  background-color: #a03037;
+  color: white;
+  text-align: center;
+  display: inline-block;
 }
 
-
-.mat-stroked-button{
-     margin-left: 20px;
-    font-weight: 100;
-    font-size: 10px;
-    padding-bottom: 30px;
-    height: 18px;
-    width: 78px;
-    background-color: whitesmoke;
-    color: black;
-    text-align: center;
-    display: inline-block;
+.mat-stroked-button {
+  margin-left: 20px;
+  font-weight: 100;
+  font-size: 10px;
+  padding-bottom: 30px;
+  height: 18px;
+  width: 78px;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  display: inline-block;
+}
+// -----------------------------------------------------------------------------------
+.whole-div {
+  width: 100%;
+  margin-top: 4%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 2%;
 }

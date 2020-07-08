@@ -1,52 +1,92 @@
-<div id="items">
-  Books
-    <span id="active">
-      ({{countResult}} items) 
-    </span>
-</div>
-
-<div id="items1">
-  <mat-form-field appearance="standard">
-  <select matNativeControl required>
-    <option value="" >high to low</option>
-    <option value="">low to high</option>
-    <option value="">New Arrivals</option>
-  </select>
-</mat-form-field>
-</div>
-
-
-<div class="row">
+<div class="whole-div">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      Books
+      <span> ({{ countResult }} items) </span>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <select matNativeControl required>
+          <option value="">high to low</option>
+          <option value="">low to high</option>
+          <option value="">New Arrivals</option>
+        </select>
+      </mat-form-field>
+    </div>
+  </div>
   <div
-      class="main-div"
-      fxLayoutAlign="space-around center"
-      *ngFor="let book of books">
+    fxLayoutGap="40px"
+    fxLayout.lt-sm="column"
+    fxLayout.sm="row wrap"
+    fxLayoutAlign.sm="start center"
+    fxLayout.md="row wrap"
+    fxLayoutAlign.md="start center"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayout.lg="row wrap"
+    fxLayoutAlign.lg="start center"
+  >
+    <div style="margin: 0px;" fxLayout="row" *ngFor="let book of books">
       <mat-card>
-          <div class="bookImageDiv" fxLayoutAlign="center">
-              <img src="../../../assets/images/bookstore-wallpaper.jpg"/>
+        <div class="bookImageDiv" fxLayoutAlign="center">
+          <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+        </div>
+        <div class="bookInfoDiv" fxLayout="column">
+          <mat-card-content>
+            <div class="a">
+              <mat-card-title>{{ book.bookName }}</mat-card-title>
+              <mat-card-subtitle>By {{ book.authorName }}</mat-card-subtitle>
+            </div>
+            <div class="price">Rs.{{ book.price }}</div>
+          </mat-card-content>
+          <div class="left" fxLayout="row" fxLayoutAlign="space-around center">
+            <button
+              mat-raised-button
+              fxLayoutAlign="center"
+              color="primary"
+              *ngIf="book.quantity > 0 && !checkAddedToCart(book.bookId)"
+              (click)="addToCart(book)"
+            >
+              ADD TO CART
+            </button>
+            <button
+              mat-raised-button
+              fxLayoutAlign="center"
+              *ngIf="checkAddedToCart(book.bookId)"
+              style="
+                width: 100%;
+                padding: 0%;
+                height: 32px;
+                margin-left: 0%;
+                background-color: #3371b5;
+              "
+              (click)="addToCart(book)"
+            >
+              ADDED TO CART
+            </button>
+            <button
+              mat-stroked-button
+              fxLayoutAlign="center"
+              *ngIf="book.quantity > 0 && !checkAddedToCart(book.bookId)"
+              (click)="onAddBookToWishList(book.bookId)"
+              (click)="openDialog(book)"
+            >
+              WISHLIST
+            </button>
+            <button
+              mat-stroked-button
+              *ngIf="book.quantity === 0"
+              style="width: 100%; padding: 0%; height: 32px; margin-left: 0%;"
+              (click)="onAddBookToWishList(book.bookId)"
+              (click)="openDialog(book)"
+            >
+              WISHLIST
+            </button>
           </div>
-          <div class="bookInfoDiv" fxLayout="column">
-              <mat-card-content>
-                  <div class="a">
-                      <mat-card-title>{{book.bookName}}</mat-card-title>
-                      <mat-card-subtitle>By
-                          {{book.authorName}}</mat-card-subtitle>
-                  </div>
-                  <div class="price">
-                      Rs.{{book.price}}</div>
-                      </mat-card-content>
-                          <div class="left" fxLayout="row" fxLayoutAlign="space-around center">
-                              <button mat-raised-button fxLayoutAlign="center" color="primary" *ngIf="book.quantity>0 && !checkAddedToCart(book.bookId)" (click)="addToCart(book)">ADD TO CART</button>
-                              <button mat-raised-button fxLayoutAlign="center" *ngIf="checkAddedToCart(book.bookId)" style="width: 100%; padding: 0%;height: 32px; margin-left: 0%;background-color: #3371B5;" (click)="addToCart(book)">ADDED TO CART</button>
-                              <button mat-stroked-button fxLayoutAlign="center" *ngIf="book.quantity>0 && !checkAddedToCart(book.bookId)" (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
-                              <button mat-stroked-button *ngIf="book.quantity === 0"  style="width: 100%; padding: 0%;height: 32px; margin-left: 0%;" (click)="onAddBookToWishList(book.bookId)"  (click)="openDialog(book)">WISHLIST</button>
-                            </div>
-                          </div>
-                      </mat-card>
-                      <div class="book-details">
-                        {{ book.description }}
-                      </div> 
-
-
-                  </div>
-              </div>
+        </div>
+      </mat-card>
+      <div class="book-details">
+        {{ book.description }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,26 +1,27 @@
-<div class="dashboard">
-  <span class="logo" (click)="onBookStore()">BookStore</span>
-  <!-- <span class="cartname">Cart</span> -->
-  <mat-toolbar class="tool">
-    <mat-card class="mattool"> </mat-card>
-    <button
-      mat-icon-button
-      class="mysearch"
-      (click)="onSearch()"
-      mattooltip="Search"
+<div style="width: 100%; height: 100%;">
+  <mat-toolbar class="tool" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="titleText" fxLayoutGap="3%">
+      <img src="../../../assets/images/education.svg" />
+      <a
+        href="http://localhost:4200/dashboard/getallbooks"
+        style="color: white;"
+        >BookStore</a
+      >
+    </div>
+
+    <mat-card
+      class="search-mat-card"
+      fxLayout="row"
+      fxLayoutAlign="space-around center"
     >
-      <mat-icon class="search">search</mat-icon>
-    </button>
-    <input
-      class="input"
-      type="text"
-      [(ngModel)]="searchBook"
-      name="searchBook"
-      matInput
-      placeholder="Search"
-    />
+      <button mat-icon-button [disableRipple]="true" matTooltip="search">
+        <mat-icon class="searchIcon">search</mat-icon>
+      </button>
+      <input class="searchInput" type="text" placeholder="Search..." />
+    </mat-card>
     <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
-     Cart <mat-icon matBadge="{{ cartCounter }}" MatBadgeSize="small"
+      Cart
+      <mat-icon matBadge="{{ cartCounter }}" MatBadgeSize="small"
         >shopping_cart</mat-icon
       ></button
     ><br />
@@ -70,18 +71,18 @@
             (click)="openDialogztoedit()"
             style="margin-bottom: 1%;"
           >
-            Edit Profile
-          </button><br/>
+            Edit Profile</button
+          ><br />
           <mat-divider></mat-divider>
           <button
-          class="edit"
-          mat-raised-button
-          class="editbutton"
-          (click)="myorders()"
-          style="margin-top: 2%;"
-        >
-          My orders
-        </button>
+            class="edit"
+            mat-raised-button
+            class="editbutton"
+            (click)="myorders()"
+            style="margin-top: 2%;"
+          >
+            My orders
+          </button>
         </div>
         <br />
         <mat-divider></mat-divider>
@@ -102,34 +103,5 @@
     </mat-menu>
     <mat-icon>camera_alt</mat-icon>
   </mat-toolbar>
-  <div class="box">
-    <!-- <div class="left" *ngIf="!isCart">
-      <select matNativeControl required>
-        <option>sort by relevance</option>
-        <option value="">Low to High</option>
-        <option value="">new Arrivals</option>
-      </select>
-    </div> -->
-    <!-- <app-getallbooks *ngIf="!isCart" (cartCounter)='AddToCart($event)'></app-getallbooks>
-    <app-cart *ngIf="isCart" (cartCounter)="AddToCart($event)"></app-cart> -->
-    <router-outlet></router-outlet>
-    <!-- <mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event">
-</mat-paginator> -->
-    <br /><br />
-  </div>
-</div>
-<div class="divfooter">
-  <mat-toolbar class="matfooter">
-    <footer>
-      <p style="text-align: center;">
-        <span class="small"
-          >Copyright &copy;2020, Bookstore Private Limited.All Rights
-          Reserved.</span
-        >
-      </p>
-    </footer>
-  </mat-toolbar>
+  <router-outlet></router-outlet>
 </div>

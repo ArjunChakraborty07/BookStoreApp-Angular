@@ -10,9 +10,9 @@ export class ReviewService {
 
   constructor(private http: HttpService) { }
 
-  addReview(review: any, rating: any, token: any): Observable<any> {
+  addReview(review: any, rating: any): Observable<any> {
     return this.http.POST('review/' + localStorage.getItem('bookId'), {review, rating},
-    {headers: new HttpHeaders().set('token', token )});
+    { headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
   }
 
   getReview(token: any): Observable<any> {

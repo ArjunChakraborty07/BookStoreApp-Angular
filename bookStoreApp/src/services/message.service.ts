@@ -4,6 +4,7 @@ import { VendorService } from './vendor.service';
 import { BookService } from './book.service';
 import { CartServiceService } from './cart.service';
 import { AdminService } from './admin.service';
+import { DashboardService } from './dashboard.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class MessageService {
     private vendorService: VendorService,
     private bookService: BookService,
     private cartService: CartServiceService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private dashboardService:DashboardService
   ) { }
 
   changeMessage() {
@@ -38,6 +40,29 @@ export class MessageService {
       this.messageSource.next(data);
     });
   }
+
+  searchUserBook(event) {
+    this.dashboardService.search(event.target.value).subscribe((data) => {
+      this.messageSource.next(data);
+    });
+  }
+
+  changeoptionMessage() {
+    this.bookService.sortbookByPriceDesc().subscribe((data) => {
+      this.messageSource.next(data);
+    });
+  }
+
+  changeoptionMessage1() {
+    this.bookService.sortbookByPriceAsc().subscribe((data) => {
+      this.messageSource.next(data);
+    });
+  }
+
+
+
+
+
   cartBooks() {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
       this.cartSource.next(JSON.parse(localStorage.getItem('cart')));
@@ -71,8 +96,7 @@ export class MessageService {
   }
 
   onGetAllBooks() {
-    this.bookService.getAllbooks().subscribe((data: any) => {
-      console.log(data);
+    this.bookService.getAllbooks().subscribe((data) => {
       this.messageSource.next(data);
     });
   }
