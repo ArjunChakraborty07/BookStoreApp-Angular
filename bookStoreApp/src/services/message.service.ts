@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { VendorService } from './vendor.service';
 import { BookService } from './book.service';
 import { CartServiceService } from './cart.service';
+import { AdminService } from './admin.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class MessageService {
   constructor(
     private vendorService: VendorService,
     private bookService: BookService,
-    private cartService: CartServiceService
+    private cartService: CartServiceService,
+    private adminService: AdminService
   ) {}
 
   changeMessage() {
@@ -34,5 +36,16 @@ export class MessageService {
         this.messageSource.next(data);
       });
     }
+  }
+  adminBookMessage() {
+    this.adminService.getAllBooksForVerification().subscribe((data: any) => {
+      this.messageSource.next(data);
+    });
+  }
+  adminSellerMessage() {
+    this.adminService.getAllBooksForVerification().subscribe((data: any) => {
+      console.log('es',data);
+      this.messageSource.next(data);
+    });
   }
 }
