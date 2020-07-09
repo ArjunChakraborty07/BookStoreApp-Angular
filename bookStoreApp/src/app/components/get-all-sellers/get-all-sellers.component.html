@@ -1,23 +1,32 @@
 <div class="seller" fxLayout="column">
-  <app-admin></app-admin>        
-    <table class="table table-bordered" style="font-size: 80%; margin-top: 2%; width: 100%">
+    <app-admin></app-admin>
+    <table
+        class="table table-bordered"
+        style="font-size: 80%; margin-top: 2%; width: 100%">
         <tr>
-          <th>Seller Id</th>
-          <th>Name</th>
-          <!-- <th>Email Id</th> -->
-          <th>User Name</th>
-          <!-- /<th class="contact">Contact</th> -->
-          <th>Action</th>
+            <th>Seller Id</th>
+            <th>Name</th>
+            <!-- <th>Email Id</th> -->
+            <th>User Name</th>
+            <!-- /<th class="contact">Contact</th> -->
+            <th>Action</th>
         </tr>
-        
+
         <tr *ngFor="let user of users; let i = index">
-          <td style="text-align: center">{{i+1}}</td>
-          <td>{{user.name}}</td>
-          <!-- <td>{{user.email}}</td> -->
-          <td>{{user.userName}}</td>
-          <!-- <td style="text-align: right">{{user.mobileNumber}}</td> -->
-          <td style="text-align: center" class="contact"><a mat-button class="contactButton" style="color: brown" href="http://localhost:4200/admin-dashboard/booksForVerification" (click)="onLink(user)">Verify Books</a></td>
+            <td style="text-align: center">{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <!-- <td>{{user.email}}</td> -->
+            <td>{{user.userName}}</td>
+            <!-- <td style="text-align: right">{{user.mobileNumber}}</td> -->
+            <td style="text-align: center" class="contact">
+                <a
+                    mat-button
+                    class="contactButton"
+                    style="color: brown"
+                    href="http://localhost:4200/admin-dashboard/booksForVerification"
+                    (click)="onLink(user)">Verify Books</a>
+            </td>
         </tr>
-      </table>
+    </table>
 
 </div>
