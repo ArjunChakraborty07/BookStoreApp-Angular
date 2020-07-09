@@ -6,6 +6,15 @@
   padding-bottom: 27%;
 }
 
+.h6{
+  font-size: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: normal;
+  margin-top: -2px;
+}
+
+
+
 #items1 {
   margin-right: 5px;
   display: flex;
@@ -27,11 +36,8 @@ mat-card:hover + .book-details {
    position: fixed;
   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
     0 6px 20px 0 rgba(29, 29, 29, 0.19);
-  // align-self: center;
-  width: 20%;
-  // min-height: 100px;
+    width: 20%;
   height: fit-content;
-  // margin-top: 10px;
   background-color:white;
   margin-left: 13px;
   z-index: 1;

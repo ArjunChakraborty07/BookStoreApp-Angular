@@ -100,4 +100,10 @@ export class MessageService {
       this.messageSource.next(data);
     });
   }
+  onViewAllWishlist(){
+    this.bookService.viewWishlist().subscribe((data) => {
+    this.messageSource.next(data);
+  });
+  
+    }
 }
