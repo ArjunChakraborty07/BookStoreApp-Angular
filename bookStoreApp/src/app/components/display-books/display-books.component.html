@@ -10,6 +10,12 @@
   fxLayout.lg="row wrap"
   fxLayoutAlign.lg="start center"
 >
+  <mat-progress-spinner
+    class="custom-spinner"
+    mode="indeterminate"
+    *ngIf="IsWait"
+  >
+  </mat-progress-spinner>
   <div *ngFor="let book of books" style="margin: 0px;" fxLayout="row">
     <mat-card>
       <div class="bookImageDiv" fxLayoutAlign="center">
