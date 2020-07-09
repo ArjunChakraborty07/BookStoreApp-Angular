@@ -1,19 +1,23 @@
 <div class="whole-div">
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div>
+    <div id="items">
       Books
-      <span> ({{ countResult }} items) </span>
+      <span id="active"> ({{ countResult }} items) </span>
     </div>
-    <div>
+
+    <div id="items1">
+      <form  (ngSubmit)="onFormSubmit()">  
       <mat-form-field appearance="standard">
-        <select matNativeControl required>
-          <option value="">high to low</option>
-          <option value="">low to high</option>
-          <option value="">New Arrivals</option>
-        </select>
+      <select matNativeControl required  formControlName="selectedoption">
+        <option  [value]="high">high to low</option>
+        <option [value]="low">low to high</option>
+        <option [value]="NewArrivals">New Arrivals</option>
+      </select>
       </mat-form-field>
-    </div>
-  </div>
+       <button mat-button color="accent">Submit</button> 
+     </form> 
+    </div> 
+</div>
   <div
     fxLayoutGap="40px"
     fxLayout.lt-sm="column"

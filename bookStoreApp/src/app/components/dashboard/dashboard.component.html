@@ -3,7 +3,7 @@
     <div class="titleText" fxLayoutGap="3%">
       <img src="../../../assets/images/education.svg" />
       <a
-        href="http://localhost:4200/dashboard/getallbooks"
+        href="http://localhost:4200/dashboard/getallbooks"   matTooltip="user Dashboard"
         style="color: white;"
         >BookStore</a
       >
@@ -17,7 +17,11 @@
       <button mat-icon-button [disableRipple]="true" matTooltip="search">
         <mat-icon class="searchIcon">search</mat-icon>
       </button>
-      <input class="searchInput" type="text" placeholder="Search..." />
+      <input  
+      (input)="onKey($event)"
+      class="searchInput"
+      type="text"
+     placeholder="Search..here..">
     </mat-card>
     <button class="cart" mat-icon-button (click)="onCart()" matTooltip="Cart">
       Cart
@@ -31,6 +35,7 @@
       [matMenuTriggerFor]="signoutmenu"
       disableRipple
       style="outline: none;"
+      matTooltip="profile"
     >
       <img mat-card-avatar [src]="profile" alt="profile" class="profile" />
     </button>
@@ -43,7 +48,7 @@
     >
       <div *ngIf="login; then loginblock; else notloggedblock"></div>
       <ng-template #loginblock>
-        <div>
+        <div fxLayoutAlign="space-around center">
           <img mat-card-avatar [src]="profile" class="pic" />
           <div class="upload-img">
             <label for="file-input">
@@ -101,7 +106,6 @@
         </div>
       </ng-template>
     </mat-menu>
-    <mat-icon>camera_alt</mat-icon>
-  </mat-toolbar>
+   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>

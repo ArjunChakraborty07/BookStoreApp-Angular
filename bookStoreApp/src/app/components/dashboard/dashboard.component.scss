@@ -90,7 +90,7 @@ span {
   color: aliceblue;
 }
 .profile {
-  margin-left: 90%;
+  margin-left: 50%;
 }
 ::ng-deep .profilemenu {
   width: 300px;
@@ -118,6 +118,7 @@ span {
 }
 .icon {
   color: black;
+  margin-left:-79px;
 }
 .pic {
   width: 50px;
@@ -125,7 +126,8 @@ span {
   color: brown;
   position: absolute;
   border: 1px red solid;
-  left: 35%;
+  // left: 35%;
+  margin-top: -12px;
 }
 .upload-img {
   position: relative;
@@ -181,14 +183,9 @@ span {
   position: fixed;
   z-index: 100;
 }
-.searchInput {
-  height: 90%;
-  width: 90%;
-  border: none;
-  outline: none;
-}
+
 .titleText {
-  margin-left: 12%;
+  margin-left: 9%;
   color: white;
 }
 .searchIcon {
@@ -199,10 +196,14 @@ span {
   opacity: 1;
 }
 .searchInput {
-  height: 90%;
+  height: 50%;
   width: 90%;
   border: none;
   outline: none;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: normal;
+  color: dimgrey;
 }
 .search-mat-card {
   margin-left: 2%;
