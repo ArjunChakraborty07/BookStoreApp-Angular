@@ -11,8 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatTableModule} from '@angular/material/table';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatTableModule } from '@angular/material/table';
+import { MatBadgeModule } from '@angular/material/badge';
 import {
   MatSnackBarModule,
   MatTooltipModule,
@@ -30,11 +30,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { VerificationComponent } from './components/verification/verification.component';
 import { EncrDecrService } from 'src/services/encr-decr.service';
 
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AdminComponent } from './components/admin/admin.component';
-
-
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpService } from 'src/services/http.service';
@@ -44,7 +41,6 @@ import { VendorDashboardComponent } from './components/vendor-dashboard/vendor-d
 
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
-
 
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
@@ -66,7 +62,7 @@ import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.
 import { MyordersComponent } from './components/myorders/myorders.component';
 import { BookReviewComponent } from './components/book-review/book-review.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
-
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -78,14 +74,14 @@ import { GetallwishListComponent } from './components/getallwish-list/getallwish
     ResetPasswordComponent,
     VerificationComponent,
     AdminComponent,
-   
+
     VendorDashboardComponent,
     AddBookComponent,
     DisplayBooksComponent,
     EditProfileComponent,
-    
+
     GetAllSellersComponent,
-  
+
     GetBooksForVerificationComponent,
     GetallbooksComponent,
     UpdateBookComponent,
@@ -121,14 +117,27 @@ import { GetallwishListComponent } from './components/getallwish-list/getallwish
     MatDialogModule,
     FlexLayoutModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     MatTableModule,
-    MatBadgeModule
+    MatBadgeModule,
   ],
 
-  entryComponents: [EditProfileComponent, ForgotPasswordComponent, ReviewComponent,BookReviewComponent],
+  entryComponents: [
+    EditProfileComponent,
+    ForgotPasswordComponent,
+    ReviewComponent,
+    BookReviewComponent,
+  ],
 
-  providers: [UserService, EncrDecrService, HttpService, VendorService, CdkColumnDef, ReviewService],
+  providers: [
+    UserService,
+    EncrDecrService,
+    HttpService,
+    VendorService,
+    CdkColumnDef,
+    ReviewService,
+  ],
 
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

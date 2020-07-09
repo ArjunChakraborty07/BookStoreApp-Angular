@@ -52,10 +52,7 @@
   margin-top: 1.5%;
   margin-left: 75%;
 }
-.tool {
-  height: 55px;
-  background-color: #a03037;
-}
+
 .mattool {
   height: 30px;
   margin-left: 300px;
@@ -169,4 +166,50 @@ span {
 
 .search {
   color: black;
+}
+// -------------------------------------------------------------------------------
+.search-mat-card {
+  margin-left: 2%;
+  width: 40%;
+  height: 60%;
+  padding: 0px;
+}
+.tool {
+  width: 100%;
+  background-color: #a03037;
+  top: 0;
+  position: fixed;
+  z-index: 100;
+}
+.searchInput {
+  height: 90%;
+  width: 90%;
+  border: none;
+  outline: none;
+}
+.titleText {
+  margin-left: 12%;
+  color: white;
+}
+.searchIcon {
+  opacity: 0.5;
+  color: black;
+}
+.searchIcon:hover {
+  opacity: 1;
+}
+.searchInput {
+  height: 90%;
+  width: 90%;
+  border: none;
+  outline: none;
+}
+.search-mat-card {
+  margin-left: 2%;
+  width: 40%;
+  height: 60%;
+  padding: 0px;
+}
+button {
+  outline: none;
 }

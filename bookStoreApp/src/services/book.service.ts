@@ -43,6 +43,14 @@ public deletewishlist(bookId: any): Observable<any> {
 }
 
 
+public sortbookByPriceDesc(): Observable<any> {
+  return this.http.GET('books/getBooksByPriceDesc', '');
+}
+public sortbookByPriceAsc(): Observable<any> {
+  return this.http.GET('books/getBooksByPriceAsc', '');
+}
+
+
 
 
 }

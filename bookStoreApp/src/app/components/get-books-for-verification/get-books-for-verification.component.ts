@@ -7,10 +7,9 @@ import { AdminService } from 'src/services/admin.service';
 @Component({
   selector: 'app-get-books-for-verification',
   templateUrl: './get-books-for-verification.component.html',
-  styleUrls: ['./get-books-for-verification.component.scss']
+  styleUrls: ['./get-books-for-verification.component.scss'],
 })
 export class GetBooksForVerificationComponent implements OnInit {
-
 
   books: any;
   response: any;
@@ -23,7 +22,7 @@ export class GetBooksForVerificationComponent implements OnInit {
     private service: AdminService,
     private snackBar: MatSnackBar,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.service.getAllBooksForVerification().subscribe((data: any) => {

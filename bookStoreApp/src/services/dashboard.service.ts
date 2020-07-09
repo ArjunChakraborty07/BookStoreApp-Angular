@@ -9,7 +9,8 @@ export class DashboardService {
 
   constructor(private http: HttpService) { }
 
-  public search(search: any): Observable<any> {
-    return this.http.PUT('dashboard/search', search, '');
+  public search(searchBook: string): Observable<any> {
+    const token = '';
+    return this.http.GET('books/bookStoreApplication/getBookByAuthorName?authorName=' + searchBook, token);
   }
 }
