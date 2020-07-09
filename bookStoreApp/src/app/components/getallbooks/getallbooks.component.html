@@ -32,7 +32,7 @@
     <div style="margin: 0px;" fxLayout="row" *ngFor="let book of books">
       <mat-card>
         <div class="bookImageDiv" fxLayoutAlign="center">
-          <img src={{book.imageURL}} />
+          <img src={{book.imageURL}}/>
         </div>
         <div class="bookInfoDiv" fxLayout="column">
           <mat-card-content>
@@ -89,8 +89,9 @@
         </div>
       </mat-card>
       <div class="book-details">
+        <h6><b>Book Details</b></h6>
         {{ book.description }}
-      </div>
+      </div> 
     </div>
   </div>
 </div>

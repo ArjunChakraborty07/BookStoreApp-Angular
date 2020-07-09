@@ -24,8 +24,10 @@ export class GetallwishListComponent implements OnInit {
     private cartService: CartServiceService,) { }
 
   ngOnInit() {
+    this.messageService.currentMessage.subscribe(data =>{
     this.loadwishlist();
-  }
+  });
+}
 
 
   private loadwishlist() {
@@ -39,19 +41,20 @@ export class GetallwishListComponent implements OnInit {
   onDeleteWishList(bookId){
     console.log(bookId);
     this.bookservice.deletewishlist(bookId).subscribe(
-      (data) => {
+      (data: any) => {
         if (data.status === 200) {
-          this.messageService.changeMessage();
+          this.messageService.onViewAllWishlist();
           this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });
         }
-      },
+      }),
       (error: any) => {
-        this.snackBar.open(error.error, 'ok', { duration: 2000 });
+        this.snackBar.open(error.error.message, 'ok', {
+          duration: 2000,
+        });
       }
-    );
-  }
+    }
 
 
   addToCart(book: Book) {
