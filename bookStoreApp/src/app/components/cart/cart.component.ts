@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
   image = './assets/images/bookstore-wallpaper.jpg';
   disp = false;
   cart: CartModule;
+
   constructor(
     private cartService: CartServiceService,
     private snackBar: MatSnackBar,
@@ -243,10 +244,11 @@ export class CartComponent implements OnInit {
     this.userService.onCheckOut().subscribe(
       (data) => {
         if (data.status === 200) {
+          localStorage.setItem('orderId', data.data.orderId);
           this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });
-          this.route.navigate(['/successPage']);
+          this.route.navigate(['/dashboard/successPage']);
         }
       },
       (error: any) => {

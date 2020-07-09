@@ -11,7 +11,7 @@ export class SuccessPageComponent implements OnInit {
 
 
   constructor(public dialog: MatDialog) { }
-
+  orderId = localStorage.getItem('orderId');
 
   ngOnInit() {
 
