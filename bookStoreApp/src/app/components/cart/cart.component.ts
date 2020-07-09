@@ -97,17 +97,11 @@ export class CartComponent implements OnInit {
       this.cart = data.cartBooks.forEach((cartBookData) => {
         this.cartBooks.push(cartBookData);
       });
-      this.snackBar.open('Displaying Books in cart', 'ok', {
-        duration: 2000,
-      });
     } else {
       if (data.status === 200) {
         this.cartSize = data.data.totalBooksInCart;
         data.data.cartBooks.forEach((cartBookData) => {
           this.cartBooks.push(cartBookData);
-        });
-        this.snackBar.open(data.message, 'ok', {
-          duration: 2000,
         });
       }
     }
