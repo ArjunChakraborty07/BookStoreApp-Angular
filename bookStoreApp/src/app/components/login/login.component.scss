@@ -113,9 +113,9 @@ input[type=text] {
   padding-bottom: 6%;
 }
 
-::ng-deep .custom-modalbox >mat-dialog-container {
-   overflow-x: hidden;
-  overflow-y: hidden !important;
+::ng-deep mat-dialog-container {
+   overflow: hidden;
+  //overflow-y: hidden;
 }
 .mat-dialog-container {
   padding: 0px !important;

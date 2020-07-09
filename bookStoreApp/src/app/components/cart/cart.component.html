@@ -138,6 +138,10 @@
               placeholder="Placeholder"
               formControlName="name"
               id="name"
+              required
+            #Myname
+            (input)="Myname.value"
+            style="background: none;"
             /> </mat-form-field
           ><br /><br />
 
@@ -149,6 +153,10 @@
                 placeholder="Placeholder"
                 formControlName="phone"
                 id="phone"
+                required
+                #Myphn
+                (input)="Myphn.value"
+                style="background: none;"
               /> </mat-form-field
             ><br /><br />
           </div>
@@ -160,10 +168,14 @@
               placeholder="Placeholder"
               formControlName="pincode"
               id="pincode"
+              required
+              #Mypin
+              (input)="Mypin.value"
+              style="background: none;"
             />
           </mat-form-field>
 
-          <div class="row1">
+         <div class="row1">
             <mat-form-field appearance="outline">
               <mat-label>Locality</mat-label>
               <input
@@ -171,6 +183,10 @@
                 placeholder="Placeholder"
                 formControlName="locality"
                 id="locality"
+                required
+                #Mylocal
+                (input)="Mylocal.value"
+                style="background: none;"
               /> </mat-form-field
             ><br /><br />
           </div>
@@ -181,9 +197,12 @@
             <textarea
               matInput
               formControlName="address"
+              required
+              #Myaddr
+              (input)="Myaddr.value"
+              style="background: none;"
             ></textarea></mat-form-field
-          ><br /><br />
-
+          >
           <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
             <input
@@ -191,9 +210,12 @@
               placeholder="Placeholder"
               formControlName="city"
               id="city"
+              required
+              #Mycity
+              (input)="Mycity.value"
+              style="background: none;"
             /> </mat-form-field
           ><br />
-
           <div class="row2">
             <mat-form-field appearance="outline">
               <mat-label>LandMark</mat-label>
@@ -202,12 +224,31 @@
                 placeholder="Placeholder"
                 formControlName="landmark"
                 id="landmark"
+                required
+               #landmark
+               (input)="landmark.value"
+               style="background: none;"
               />
             </mat-form-field>
           </div>
-          <br /><br />
+         <!-- <div class="row2">
+            <mat-form-field appearance="outline">
+              <mat-label>LandMark</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="landmark"
+                id="landmark"
+                required
+               #landmark
+               (input)="landmark.value"
+               style="background: none;"
+              />
+            </mat-form-field>
+          </div>-->
 
-          <mat-radio-group fxLayoutGap="5%" formControlName="type">
+          <br /><br />
+          <mat-radio-group fxLayoutGap="5%" formControlName="type" required>
             <mat-radio-button class="" value="home">Home</mat-radio-button>
             <mat-radio-button value="work">Work</mat-radio-button>
             <mat-radio-button value="other"
@@ -221,6 +262,7 @@
               class="button-placeorder"
               fxLayoutAlign="center center"
               [disableRipple]="true"
+              [disabled]="addressGroup.invalid"
             >
               <span style="font-size: small; height: 10px; color: white;"
                 >Continue</span

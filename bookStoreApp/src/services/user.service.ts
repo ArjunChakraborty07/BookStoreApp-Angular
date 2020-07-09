@@ -67,4 +67,9 @@ private orderCheckoutApi = 'orders/checkOut'
   {
     return this.http.GET('orders/myorders',{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
   }
+  Address(data)
+  {
+    console.log("address in user service:",data);
+    return this.http.POST('address/addAddress',data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
+  }
 }
