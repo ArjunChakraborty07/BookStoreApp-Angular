@@ -32,7 +32,7 @@
     <div style="margin: 0px;" fxLayout="row" *ngFor="let book of books">
       <mat-card>
         <div class="bookImageDiv" fxLayoutAlign="center">
-          <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+          <img src={{book.imageURL}} />
         </div>
         <div class="bookInfoDiv" fxLayout="column">
           <mat-card-content>

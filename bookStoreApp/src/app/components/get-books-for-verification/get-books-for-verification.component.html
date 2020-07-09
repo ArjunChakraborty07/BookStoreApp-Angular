@@ -72,7 +72,7 @@
 
                     <button
                         mat-raised-button
-                        style="color: aliceblue; background-color: #198010;"
+                        style="color: aliceblue;"
                         fxLayoutAlign="center"
                         [disableRipple]="true"
                         (click)="onReject(book)"
@@ -82,7 +82,7 @@
                     <button
                         mat-button
                         disabled
-                        style="color: aliceblue"
+                        style="color: aliceblue;background-color: #198010;"
                         fxLayoutAlign="center"
                         [disableRipple]="true"
                         *ngIf="click[book.bookId]==book.bookId && verify[book.bookId]=='false'">
