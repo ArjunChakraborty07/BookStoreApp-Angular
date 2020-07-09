@@ -135,15 +135,10 @@ mat-card:hover + .book-details {
   padding-right: 10%;
   padding-bottom: 2%;
 }
-// @media only screen and (min-width: 600px) and (max-width: 1300) {
-//   .main-div {
-//     background-color: green($color: #000000);
-//     padding-left: 16%;
-//     padding-right: 10%;
-//     padding-bottom: 2%;
-//     width: 100%;
-//   }
-// }
+:host ::ng-deep .custom-spinner circle {
+  stroke: #a03037;
+  margin: 0 auto;
+}
 @media only screen and (min-width: 600px) {
   .main-div {
     background-color: green($color: #000000);

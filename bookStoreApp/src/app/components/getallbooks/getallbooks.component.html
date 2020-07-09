@@ -1,19 +1,23 @@
 <div class="whole-div">
   <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div>
+    <div id="items">
       Books
-      <span> ({{ countResult }} items) </span>
+      <span id="active"> ({{ countResult }} items) </span>
     </div>
-    <div>
+
+    <div id="items1">
+      <form  (ngSubmit)="onFormSubmit()">  
       <mat-form-field appearance="standard">
-        <select matNativeControl required>
-          <option value="">high to low</option>
-          <option value="">low to high</option>
-          <option value="">New Arrivals</option>
-        </select>
+      <select matNativeControl required  formControlName="selectedoption">
+        <option  [value]="high">high to low</option>
+        <option [value]="low">low to high</option>
+        <option [value]="NewArrivals">New Arrivals</option>
+      </select>
       </mat-form-field>
-    </div>
-  </div>
+       <button mat-button color="accent">Submit</button> 
+     </form> 
+    </div> 
+</div>
   <div
     fxLayoutGap="40px"
     fxLayout.lt-sm="column"
@@ -28,7 +32,7 @@
     <div style="margin: 0px;" fxLayout="row" *ngFor="let book of books">
       <mat-card>
         <div class="bookImageDiv" fxLayoutAlign="center">
-          <img src="../../../assets/images/bookstore-wallpaper.jpg" />
+          <img src={{book.imageURL}}/>
         </div>
         <div class="bookInfoDiv" fxLayout="column">
           <mat-card-content>
@@ -85,8 +89,9 @@
         </div>
       </mat-card>
       <div class="book-details">
+        <h6><b>Book Details</b></h6>
         {{ book.description }}
-      </div>
+      </div> 
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-mat-card{
+mat-card {
   width: 60%;
   // position: absolute;
   // top: 18%;
@@ -33,15 +33,16 @@ span.author-name {
   opacity: 1;
   font-size: 10px;
 }
-.button-minus,.button-plus{
+.button-minus,
+.button-plus {
   outline: none;
-  background-color:#FAFAFA;
-  border:1px solid rgb(161, 159, 159);
+  background-color: #fafafa;
+  border: 1px solid rgb(161, 159, 159);
   opacity: 1;
   height: 24px;
   width: 24px;
   box-shadow: initial;
-  &::ng-deep .mat-button-wrapper{
+  &::ng-deep .mat-button-wrapper {
     line-height: 14px;
     padding: 0;
 
@@ -53,7 +54,7 @@ span.author-name {
 mat-mini-fab {
   height: 24px;
 }
-.button-remove{
+.button-remove {
   outline: none;
   border: none;
   background-color: white;
@@ -92,57 +93,56 @@ input::-webkit-inner-spin-button {
   border: none;
 }
 
-
 // .form{
 //   margin-top: 25%;
 // }
 
-
-.row{
+.row {
   float: right;
-  margin-top:-73px;
-  margin-right: 120px;
-
-}
-
-
-
-.row1{
-  float: right;
-  margin-top:1px;
-  margin-right: 120px;
-
-}
-.row2{
-  float: right;
-  margin-top:-50px;
+  margin-top: -73px;
   margin-right: 120px;
 }
 
-.mat-form-field
-{
+.row1 {
+  float: right;
+  margin-top: 1px;
+  margin-right: 120px;
+}
+.row2 {
+  float: right;
+  margin-top: -50px;
+  margin-right: 120px;
+}
+
+.mat-form-field {
   width: 300px;
   height: 10px;
 }
 
-  // .orderMat
-  // {
-  //   margin-top: 70%;
-  //   //box-shadow: 0px 2px 8px 0px;
-  // }
-.child1
-{
+// .orderMat
+// {
+//   margin-top: 70%;
+//   //box-shadow: 0px 2px 8px 0px;
+// }
+.child1 {
   width: 10%;
   height: 110px;
 }
-.child2
-{
+.child2 {
   margin-top: 3%;
   padding-left: 2%;
 }
-#check
-{
-  font-size: small; 
+#check {
+  font-size: small;
   //height: 20px;
+  color: white;
+}
+.book-img {
+  background-color: #a03037;
+  width: 90px;
+  height: 90px;
+}
+.shop-now {
+  background-color: #a03037;
   color: white;
 }

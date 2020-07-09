@@ -27,7 +27,7 @@ export class MessageService {
     private bookService: BookService,
     private cartService: CartServiceService,
     private adminService: AdminService,
-    private dashboardService:DashboardService
+    private dashboardService: DashboardService
   ) { }
 
   changeMessage() {
@@ -100,4 +100,10 @@ export class MessageService {
       this.messageSource.next(data);
     });
   }
+  onViewAllWishlist(){
+    this.bookService.viewWishlist().subscribe((data) => {
+    this.messageSource.next(data);
+  });
+  
+    }
 }

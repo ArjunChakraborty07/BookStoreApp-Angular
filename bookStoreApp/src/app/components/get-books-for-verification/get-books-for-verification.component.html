@@ -1,55 +1,107 @@
-
-<div style="
+<div
+    style="
     width: 100%;
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 2%;
-  " fxLayoutGap="40px" ngClass.lt-md="main-div-lt-md" fxLayout="row wrap">
-  <div *ngFor="let book of books" fxLayout="row">
-    <mat-card>
-      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf= "book.imageURL=='string'">
-        <img src="../../../assets/images/bookstore-wallpaper.jpg" />
-      </div>
-      <div class="bookImageDiv" fxLayoutAlign="center" *ngIf= "book.imageURL!='string'">
-        <img src={{book.imageURL}} />
-      </div>
+  "
+    fxLayoutGap="40px"
+    ngClass.lt-md="main-div-lt-md"
+    fxLayout="row wrap">
+    <div *ngFor="let book of books" fxLayout="row">
+        <mat-card>
+            <div
+                class="bookImageDiv"
+                fxLayoutAlign="center"
+                *ngIf="book.imageURL=='string'">
+                <img src="../../../assets/images/bookstore-wallpaper.jpg"/>
+            </div>
+            <div
+                class="bookImageDiv"
+                fxLayoutAlign="center"
+                *ngIf="book.imageURL!='string'">
+                <img src={{book.imageURL}}/>
+            </div>
 
-      <div class="bookInfoDiv" fxLayout="column">
-        <input class="input-title" matInput type="text" autocomplete="off" [(ngModel)]="book.bookName" />
-        <div fxlayout="row">
-          <span class="input-author-span">By {{book.authorName}}</span>
-        </div>
-        <div fxlayout="row">
-          <span class="input-price-span">Rs.{{book.price}}</span>
-        </div>
-        <div fxlayout="row">
-          <span class="input-price-span">Quantity: {{book.quantity}}</span>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <button mat-raised-button [disabled]="(counter==book.bookId)" fxLayoutAlign="center" [disableRipple]="true" (click)="onApprove(book)" *ngIf="book.approvalSent">
-            APPROVE
-          </button>
-          <button mat-button color="warn" fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && book.approved">
-            APPROVED
-          </button>
-          <button mat-button disabled fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && !book.approved">
-            APPROVED
-          </button>
+            <div class="bookInfoDiv" fxLayout="column">
+                <input
+                    class="input-title"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                    [(ngModel)]="book.bookName"/>
+                <div fxlayout="row">
+                    <span class="input-author-span">By
+                        {{book.authorName}}</span>
+                </div>
+                <div fxlayout="row">
+                    <span class="input-price-span">Rs.{{book.price}}</span>
+                </div>
+                <div fxlayout="row">
+                    <span class="input-price-span">Quantity:
+                        {{book.quantity}}</span>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                    <button
+                        mat-raised-button
+                        style="color: aliceblue"
+                        fxLayoutAlign="center"
+                        [disableRipple]="true"
+                        (click)="onApprove(book)"
+                        *ngIf="click[book.bookId]!=book.bookId">
+                        APPROVE
+                    </button>
+                    <button
+                        mat-button
+                        disabled
+                        style="color: aliceblue; background-color: #3371b5;"
+                        fxLayoutAlign="center"
+                        [disableRipple]="true"
+                        *ngIf="click[book.bookId]==book.bookId && verify[book.bookId]=='true'">
+                        APPROVED
+                    </button>
+                    <button
+                        mat-button
+                        disabled
+                        style="color: aliceblue"
+                        fxLayoutAlign="center"
+                        [disableRipple]="true"
+                        *ngIf="click[book.bookId]==book.bookId && verify[book.bookId]=='false'">
+                        APPROVE
+                    </button>
 
-          <button mat-raised-button [disabled]="(counter==book.bookId)"fxLayoutAlign="center" [disableRipple]="true" (click)="onReject(book)" *ngIf="book.approvalSent">
-            REJECT
-          </button>          
-          <button mat-button color="primary" fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && book.approved">
-            REJECTED
-          </button>
-          <button mat-button disabled fxLayoutAlign="center" [disableRipple]="true"  *ngIf="!book.approvalSent && !book.approved">
-            REJECTED
-          </button>
+                    <button
+                        mat-raised-button
+                        style="color: aliceblue;"
+                        fxLayoutAlign="center"
+                        [disableRipple]="true"
+                        (click)="onReject(book)"
+                        *ngIf="click[book.bookId]!=book.bookId">
+                        REJECT
+                    </button>
+                    <button
+                        mat-button
+                        disabled
+                        style="color: aliceblue;background-color: #198010;"
+                        fxLayoutAlign="center"
+                        [disableRipple]="true"
+                        *ngIf="click[book.bookId]==book.bookId && verify[book.bookId]=='false'">
+                        REJECTED
+                    </button>
+                    <button
+                        mat-button
+                        disabled
+                        style="color: aliceblue"
+                        fxLayoutAlign="center"
+                        [disableRipple]="true"
+                        *ngIf="click[book.bookId]==book.bookId && verify[book.bookId]=='true'">
+                        REJECT
+                    </button>
+                </div>
+            </div>
+        </mat-card>
+        <div class="book-details">
+            <span>{{book.description}}</span>
         </div>
-      </div>
-    </mat-card>
-    <div class="book-details">
-      <span>{{book.description}}</span>
     </div>
-  </div>
 </div>

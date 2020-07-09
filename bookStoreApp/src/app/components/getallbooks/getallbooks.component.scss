@@ -6,13 +6,22 @@
   padding-bottom: 27%;
 }
 
+.h6{
+  font-size: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: normal;
+  margin-top: -2px;
+}
+
+
+
 #items1 {
-  float: right;
-  margin-top: -330px;
-  margin-right: -170px;
+  margin-right: 5px;
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size:  15px;
+  margin-top: 10px;
+  margin-bottom: -14px;
 }
 .book-details {
   display: none;
@@ -21,32 +30,30 @@
 
 mat-card:hover + .book-details {
   display: block;
-  margin-top: 2%;
-  position: absolute;
+  margin-top: -6%;
+  font-size: 13px;
+  color: black;
+   position: fixed;
   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
     0 6px 20px 0 rgba(29, 29, 29, 0.19);
-  // align-self: center;
-  width: 18%;
-  // min-height: 100px;
+    width: 20%;
   height: fit-content;
-  // margin-top: 10px;
-  background-color: whitesmoke;
-  margin-left: 12%;
+  background-color:white;
+  margin-left: 13px;
   z-index: 1;
-  padding: 2%;
+  text-align: left;
+  padding: 1%;
 }
 
 #items {
-  float: left;
-  margin-top: -300px;
-  margin-left: -178px;
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  letter-spacing: 0px;
-  font-weight: 23px;
-  color: #0a0102;
-  font-family: Arial, Helvetica, sans-serif;
+ margin-left: -2px;
+ font-size:22px;
+ letter-spacing: 0px;
+ font-weight: bold;
+ font-style: normal;
+ color: black;
+ font-family: 'Times New Roman', Times, serif;
+ margin-bottom: -30px;
 }
 
 #active {
@@ -86,7 +93,7 @@ mat-card:hover + .book-details {
 }
 
 .mat-card {
-  margin-top: 6%;
+  margin-top: 10%;
   width: 220px;
   padding: 0%;
 }
@@ -160,4 +167,5 @@ img {
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 2%;
+  
 }

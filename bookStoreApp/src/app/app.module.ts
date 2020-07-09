@@ -62,6 +62,7 @@ import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.
 import { MyordersComponent } from './components/myorders/myorders.component';
 import { BookReviewComponent } from './components/book-review/book-review.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { GetallwishListComponent } from './components/getallwish-list/getallwish
     MatDialogModule,
     FlexLayoutModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatBadgeModule,
   ],
