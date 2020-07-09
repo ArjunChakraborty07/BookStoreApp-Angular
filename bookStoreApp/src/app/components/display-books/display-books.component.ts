@@ -11,6 +11,7 @@ import { UpdateBookComponent } from '../update-book/update-book.component';
 })
 export class DisplayBooksComponent implements OnInit {
   books = [];
+  IsWait = true;
 
   constructor(
     private vendorService: VendorService,
@@ -42,6 +43,7 @@ export class DisplayBooksComponent implements OnInit {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
+      this.IsWait = false;
       this.snackBar.open(data.message, 'ok', {
         duration: 2000,
       });
