@@ -49,7 +49,6 @@ export class CartComponent implements OnInit {
     // this.messageService.cartBooks();
     this.messageService.cartMessage.subscribe((data) => {
       this.cartBooks = [];
-      console.log(data);
       this.displayBooksInCart(data);
       this.messageService.sendCartCounter(this.cartSize);
     });
@@ -101,12 +100,17 @@ export class CartComponent implements OnInit {
       this.cart = data.cartBooks.forEach((cartBookData) => {
         this.cartBooks.push(cartBookData);
       });
+      this.snackBar.open('Displaying Books in cart', 'ok', {
+        duration: 2000,
+      });
     } else {
       if (data.status === 200) {
-        console.log(data);
         this.cartSize = data.data.totalBooksInCart;
         data.data.cartBooks.forEach((cartBookData) => {
           this.cartBooks.push(cartBookData);
+        });
+        this.snackBar.open(data.message, 'ok', {
+          duration: 2000,
         });
       }
     }
@@ -157,7 +161,7 @@ export class CartComponent implements OnInit {
   }
 
   onPlaceOrder() {
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem('token') === null ) {
       this.dialog.open(LoginComponent);
     }
     this.show = true;
