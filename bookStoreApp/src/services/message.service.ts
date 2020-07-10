@@ -16,6 +16,8 @@ export class MessageService {
   currentData = this.dataSource.asObservable();
   private messageSource = new BehaviorSubject(Response);
   currentMessage = this.messageSource.asObservable();
+  private userMessageSource = new BehaviorSubject(Response);
+  currentUserMessage = this.userMessageSource.asObservable();
   private cartSource = new BehaviorSubject(Response);
   cartMessage = this.cartSource.asObservable();
   private adminBookSource = new BehaviorSubject(Response);
@@ -30,7 +32,7 @@ export class MessageService {
     private adminService: AdminService,
     private dashboardService: DashboardService,
     private snackBar: MatSnackBar
-  ) { }
+  ) {}
 
   changeMessage() {
     this.vendorService.displayBooks().subscribe((data) => {
@@ -45,30 +47,28 @@ export class MessageService {
 
   searchUserBook(event) {
     this.dashboardService.search(event.target.value).subscribe((data) => {
-      this.messageSource.next(data);
+      this.userMessageSource.next(data);
     });
   }
 
   changeoptionMessage() {
     this.bookService.sortbookByPriceDesc().subscribe((data) => {
-      this.messageSource.next(data);
+      this.userMessageSource.next(data);
     });
   }
 
   changeoptionMessage1() {
     this.bookService.sortbookByPriceAsc().subscribe((data) => {
-      this.messageSource.next(data);
+      this.userMessageSource.next(data);
     });
   }
 
-
-
-
-
   cartBooks() {
-    if (localStorage.getItem('token') === null && localStorage.getItem('cart') != null) {
+    if (
+      localStorage.getItem('token') === null &&
+      localStorage.getItem('cart') != null
+    ) {
       this.cartSource.next(JSON.parse(localStorage.getItem('cart')));
-
     } else {
       this.cartService.displayBooksInCart().subscribe((data: any) => {
         this.cartSource.next(data);
@@ -82,13 +82,15 @@ export class MessageService {
     });
   }
   adminSellerMessage() {
-    this.adminService.getAllSellers().subscribe((data: any) => {
-      this.adminSellerSource.next(data);
-    },
-    (error: any) => {
-      console.log(error);
-      this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
-    });
+    this.adminService.getAllSellers().subscribe(
+      (data: any) => {
+        this.adminSellerSource.next(data);
+      },
+      (error: any) => {
+        console.log(error);
+        this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
+      }
+    );
   }
   onCartCount() {
     this.dataSource.next(this.count);
@@ -103,13 +105,12 @@ export class MessageService {
 
   onGetAllBooks() {
     this.bookService.getAllbooks().subscribe((data) => {
-      this.messageSource.next(data);
+      this.userMessageSource.next(data);
     });
   }
-  onViewAllWishlist(){
+  onViewAllWishlist() {
     this.bookService.viewWishlist().subscribe((data) => {
-    this.messageSource.next(data);
-  });
-  
-    }
+      this.userMessageSource.next(data);
+    });
+  }
 }
