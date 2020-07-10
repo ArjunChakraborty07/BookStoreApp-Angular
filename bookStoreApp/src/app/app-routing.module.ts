@@ -24,7 +24,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard/getallboooks', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'successPage', component: SuccessPageComponent },
   { path: 'viewWishList', component: ViewWishlistComponent },
   { path: 'myorders', component: MyordersComponent },
-  { path: 'viewallWishList', component:  GetallwishListComponent },
+  { path: 'viewallWishList', component: GetallwishListComponent },
   {
     path: 'getallbooks',
     component: GetallbooksComponent,
@@ -47,8 +47,6 @@ const routes: Routes = [
   { path: 'updateBook', component: UpdateBookComponent },
   { path: 'admin-login', component: AdminLoginComponent },
   { path: 'successPage', component: SuccessPageComponent },
-
-
 
   {
     path: 'dashboard',
@@ -89,10 +87,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 export const routingComponents = [
   RegisterComponent,
   DashboardComponent,
@@ -102,5 +100,5 @@ export const routingComponents = [
   ResetPasswordComponent,
   AdminComponent,
   CartComponent,
-  GetAllSellersComponent
+  GetAllSellersComponent,
 ];
