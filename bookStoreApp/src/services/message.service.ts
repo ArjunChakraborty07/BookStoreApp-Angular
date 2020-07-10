@@ -5,6 +5,7 @@ import { BookService } from './book.service';
 import { CartServiceService } from './cart.service';
 import { AdminService } from './admin.service';
 import { DashboardService } from './dashboard.service';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,8 @@ export class MessageService {
     private bookService: BookService,
     private cartService: CartServiceService,
     private adminService: AdminService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private snackBar: MatSnackBar
   ) { }
 
   changeMessage() {
@@ -82,6 +84,10 @@ export class MessageService {
   adminSellerMessage() {
     this.adminService.getAllSellers().subscribe((data: any) => {
       this.adminSellerSource.next(data);
+    },
+    (error: any) => {
+      console.log(error);
+      this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
     });
   }
   onCartCount() {

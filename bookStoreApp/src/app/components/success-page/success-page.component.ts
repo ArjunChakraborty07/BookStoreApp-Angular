@@ -18,6 +18,6 @@ export class SuccessPageComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(ReviewComponent, {width: '30%'});
+    this.dialog.open(ReviewComponent);
   }
 }

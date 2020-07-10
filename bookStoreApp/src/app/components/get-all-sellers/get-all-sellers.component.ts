@@ -15,21 +15,36 @@ export class GetAllSellersComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   profile = './assets/images/user.png';
-  users: any;
+  users: any = [];
   counter = 0;
   ngOnInit() {
 
-    this.service.getAllSellers().subscribe((datas: any) => {
-      this.messageService.adminSellerMessage();
-      this.users = datas.data;
-    },
-      (error: any) => {
-        this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
+    // this.service.getAllSellers().subscribe((datas: any) => {
+    //   this.messageService.adminSellerMessage();
+    //   this.users = datas.data;
+    // },
+    //   (error: any) => {
+    //     this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
+    //   });
+    this.messageService.adminSeller.subscribe((data) => {
+      this.users = [];
+      this.onGetSellers(data);
+    });
+  }
+
+  onGetSellers(data) {
+
+    if (data.status === 200) {
+      data.data.forEach((userData) => {
+        this.users.push(userData);
       });
 
+      this.snackBar.open(data.message, 'ok', {
+        duration: 2000,
+      });
+    }
   }
   onLink(user: any) {
-    window.location.reload();
     localStorage.setItem('sellerId', user.id);
   }
 
