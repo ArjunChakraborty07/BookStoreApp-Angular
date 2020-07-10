@@ -33,7 +33,7 @@ export class GetBooksForVerificationComponent implements OnInit {
   onApprove(book: any) {
 
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), true).subscribe((data: any) => {
-      this.messageService.adminBookMessage();
+
       this.snackBar.open(data.message, 'ok', { duration: 5000 });
       this.counter = book.bookId;
       this.click[book.bookId] = this.counter;
@@ -43,7 +43,7 @@ export class GetBooksForVerificationComponent implements OnInit {
   onReject(book: any) {
 
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
-      this.messageService.adminBookMessage();
+
       this.snackBar.open(data.message, 'ok', { duration: 5000 });
       this.counter = book.bookId;
       this.click[book.bookId] = this.counter;
