@@ -24,7 +24,7 @@ export class GetallwishListComponent implements OnInit {
     private cartService: CartServiceService,) { }
 
   ngOnInit() {
-    this.messageService.currentMessage.subscribe(data =>{
+    this.messageService.currentUserMessage.subscribe(data =>{
     this.loadwishlist();
   });
 }
