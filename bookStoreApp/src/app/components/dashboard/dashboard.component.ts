@@ -51,10 +51,10 @@ export class DashboardComponent implements OnInit {
       this.login = true;
       this.username = localStorage.getItem('name');
       this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image') =='string') {
+      if (localStorage.getItem('image') !=null) {
         this.profile = localStorage.getItem('image');
       }
-      else
+      if(localStorage.getItem('image').length==4)
        {
         console.log("image length",localStorage.getItem('image').length);
         this.profile='./assets/images/user.png';
