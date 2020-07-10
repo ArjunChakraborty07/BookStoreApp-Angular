@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from 'src/services/review.service';
 import {MatSnackBar} from '@angular/material';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-book-review',
   templateUrl: './book-review.component.html',
@@ -12,7 +13,9 @@ export class BookReviewComponent implements OnInit {
   rating: any;
   data: any;
   constructor(private service: ReviewService,
-              private snackbar:MatSnackBar) { }
+              private snackbar:MatSnackBar,
+              private router:Router
+              ) { }
 
   ngOnInit() {}
 

@@ -51,14 +51,14 @@ export class DashboardComponent implements OnInit {
       this.login = true;
       this.username = localStorage.getItem('name');
       this.usermail = localStorage.getItem('email');
-      // if (localStorage.getItem('image') == null) {
-      this.profile = localStorage.getItem('image');
-      // }
-      /*if(localStorage.getItem('image').length==0)
+      if (localStorage.getItem('image') =='string') {
+        this.profile = localStorage.getItem('image');
+      }
+      else
        {
         console.log("image length",localStorage.getItem('image').length);
         this.profile='./assets/images/user.png';
-       }*/
+       }
     }
     // tslint:disable-next-line: only-arrow-functions
     this.router.routeReuseStrategy.shouldReuseRoute = function() {

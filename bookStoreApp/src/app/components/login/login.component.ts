@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
   opendialogforforgotpassowrd()
   {
     console.log("to open forgot popup")
-    this.dialog.open(ForgotPasswordComponent,{height: '50%',width: '30%'});
+    this.dialog.open(ForgotPasswordComponent,{height: '50%',width: '50%'});
   }
   onSubmit() {
     this.submitted = true;

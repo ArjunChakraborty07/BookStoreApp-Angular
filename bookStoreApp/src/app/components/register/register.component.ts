@@ -92,6 +92,7 @@ export class RegisterComponent implements OnInit {
       this.service.register(data).subscribe((response: any) => {
         if(response.status==200)
         {
+          localStorage.setItem("popup","true");
           this.snackbar.open(response.message,'ok',{duration:5000});
           this.router.navigate(['/login']);
         }
