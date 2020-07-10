@@ -15,6 +15,7 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 export class MyordersComponent implements OnInit {
 
   btnName="Review";
+  bookrating:any;
   username = localStorage.getItem('name');
   usermail = localStorage.getItem('email');
   profile = localStorage.getItem('image');
@@ -28,15 +29,18 @@ export class MyordersComponent implements OnInit {
           console.log("orders:",response);
           this.orderedbooks=response.data;
       });
+      this.router.routeReuseStrategy.shouldReuseRoute = () =>{ return false;}
   }
   openDialog(book) {
 
     console.log("book=",book);
     console.log("book id:",book.book.bookId);
+    localStorage.setItem('orderid',book.myOrderId);
     localStorage.setItem('bookId',book.book.bookId);
     let dialogRef=this.dialog.open(BookReviewComponent, {width: '30%'});
     dialogRef.afterClosed().subscribe(result=>{
-      book.review=localStorage.getItem('bookRating');
+      this.router.navigate(['/myorders']);
+      this.router.navigate(['/myorders']);
     });
     //this.btnName="4.5";
   }

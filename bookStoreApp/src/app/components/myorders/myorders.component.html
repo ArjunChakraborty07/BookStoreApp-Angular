@@ -75,7 +75,7 @@
                 <td>{{book.qunatity}}</td>
                 <td>{{book.totelPrice}}</td>
                 <td>{{book.venderName}}</td>
-                <div *ngIf="book.review==null;then ReviewText;else rating"></div>
+                <div *ngIf="book.review==0;then ReviewText;else rating"></div>
                 <ng-template #ReviewText>
                   <td (click)="openDialog(book)"><button style="border: none;background-color: inherit;outline: none;color: rgb(179, 59, 59);">Review</button></td>
                 </ng-template>

@@ -36,7 +36,7 @@ export class VendorDashboardComponent implements OnInit {
     this.username = localStorage.getItem('name');
     this.usermail = localStorage.getItem('email');
     this.userProfile = localStorage.getItem('image');
-    if (this.userProfile != null) {
+    if (this.userProfile !== 'null') {
       this.isProfileAvailable = true;
       this.profile = this.userProfile;
     } else {

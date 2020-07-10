@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
 import { HttpService } from './http.service';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -11,7 +11,7 @@ export class ReviewService {
   constructor(private http: HttpService) { }
 
   addReview(review: any, rating: any): Observable<any> {
-    return this.http.POST('review/' + localStorage.getItem('bookId'), {review, rating},
+    return this.http.POST('review/' + localStorage.getItem('bookId')+'/'+localStorage.getItem('orderid'), {review, rating},
     { headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
   }
 
