@@ -75,14 +75,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.messageService.onGetAllBooks();
     this.messageService.cartBooks();
-    // this.messageService.
-    this.subscription = this.messageService.currentData.subscribe(cartSize => {
-      console.log(cartSize);
-      this.cartCounter = cartSize;
-    });
-
-    // this.cartService.sendCartCounter(this.cartCounter);
-    // console.log('Cart size : ');
+    if(localStorage.getItem('cartSize') !== null){
+      this.cartCounter = Number(localStorage.getItem('cartSize'));
+    }
+    console.log(this.cartCounter);
   }
 
   ngOnDestroy() {
@@ -108,9 +104,7 @@ export class DashboardComponent implements OnInit {
 
   
   onCart() {
-    // this.isCart = true;
     this.router.navigate(['/dashboard/cart']);
-    // this.messageService.cartBooks();
   }
   onSuccess() {
     this.isSuccess = true;
@@ -122,6 +116,7 @@ export class DashboardComponent implements OnInit {
   }
   onLogin() {
     this.router.navigate(['/login']);
+    // this.cartCounter = Number(localStorage.getItem('cartSize'));
   }
   onsignup() {
     this.router.navigate(['/register']);
