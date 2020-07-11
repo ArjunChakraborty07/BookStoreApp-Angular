@@ -21,7 +21,14 @@ table {
   tr:nth-child(even) {
     //background-color: #dddddd;
   }
-  
+  span{
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+}
   @media only screen and (max-width: 450px) {
     table{
       font-size: xx-small;

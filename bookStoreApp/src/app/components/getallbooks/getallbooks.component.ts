@@ -22,6 +22,7 @@ export class GetallbooksComponent implements OnInit {
   cart: CartModule;
   data: any;
   cartBook: CartBookModule;
+ 
 
   constructor(
     private bookservice: BookService,
@@ -51,8 +52,28 @@ export class GetallbooksComponent implements OnInit {
   }
   onFormSubmit() {
     this.messageService.changeoptionMessage1();
+    // this.messageService.sendCartCounter(this.cart.totalBooksInCart);
+    // this.messageService.currentData.subscribe(cartSize =>{
+    //   this.cartSize = cartSize;
+    // });
+     
+      
+  }
+
+ 
+  onChange(value){
+    if(value=='high'){
     this.messageService.changeoptionMessage();
   }
+  else{
+    if(value=='low'){
+      this.messageService.changeoptionMessage1();
+    }
+  }
+}
+  
+
+  
 
   private loadAllBooks(data) {
     console.log(data);

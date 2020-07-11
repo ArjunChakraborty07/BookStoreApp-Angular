@@ -17,6 +17,20 @@
 .pic:hover {
   color: blanchedalmond;
 }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:black;
+  color: white;
+  height: 40px;
+  padding-left: 17%;
+  font-size: 16px;
+
+}
+
+
 
 .left {
   float: right;
@@ -85,11 +99,12 @@ span {
   margin-left: 250px;
 }
 .cart {
-  margin-left: 10%;
+  margin-left: 4%;
   padding-right: 5%;
   background-color: none;
   outline: none;
   color: aliceblue;
+  margin-right: 3%;
 }
 .login {
   margin-left: 6%;
@@ -98,7 +113,7 @@ span {
   color: aliceblue;
 }
 .profile {
-  margin-left: 50%;
+  margin-left: 8px;
 }
 ::ng-deep .profilemenu {
   width: 300px;
@@ -179,9 +194,9 @@ span {
 }
 // -------------------------------------------------------------------------------
 .search-mat-card {
-  margin-left: 2%;
-  width: 40%;
-  height: 60%;
+   margin-left: -10%;
+  width: 55%;
+  height: 50%;
   padding: 0px;
 }
 .tool {
@@ -194,9 +209,37 @@ span {
 }
 
 .titleText {
-  margin-left: 9%;
+  margin-left: 6%;
   color: white;
+  margin-right: 3%;
 }
+@media only screen and (max-width: 720px) {
+  .titleText {
+    font-size: medium;
+    margin-left: 6%;
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .search-mat-card {
+    width: 10%;
+    color: white;
+  }
+}
+
+
+
+
+// @media only screen and (max-width: 720px) {
+//   .profile {
+//     font-size: medium;
+//     margin-left: -10px;
+//     color: white;
+//   }
+// }
+
+
 .searchIcon {
   opacity: 0.5;
   color: black;

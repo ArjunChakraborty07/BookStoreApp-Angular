@@ -52,9 +52,6 @@ export class CartComponent implements OnInit {
       this.displayBooksInCart(data);
       localStorage.setItem('cartSize', String(this.cartSize));
     });
-    this.messageService.currentData.subscribe((cartSize) => {
-      this.cartSize = cartSize;
-    });
     this.cartSize = Number(localStorage.getItem('cartSize'));
   }
 
