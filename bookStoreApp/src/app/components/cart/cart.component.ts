@@ -46,16 +46,16 @@ export class CartComponent implements OnInit {
     type: [],
   });
   ngOnInit() {
-    // this.cartService.getCartCounter();
-    // this.messageService.cartBooks();
+
     this.messageService.cartMessage.subscribe((data) => {
       this.cartBooks = [];
       this.displayBooksInCart(data);
-      this.messageService.sendCartCounter(this.cartSize);
+      localStorage.setItem('cartSize', String(this.cartSize));
     });
     this.messageService.currentData.subscribe((cartSize) => {
       this.cartSize = cartSize;
     });
+    this.cartSize = Number(localStorage.getItem('cartSize'));
   }
 
   removeFromCart(cartBook: any) {
@@ -73,17 +73,20 @@ export class CartComponent implements OnInit {
         }
       });
       localStorage.setItem('cart', JSON.stringify(this.cart));
-      this.messageService.sendCartCounter(this.cart.totalBooksInCart);
+      console.log(localStorage.getItem('cartSize'));
+      localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
       this.messageService.cartBooks();
+      this.messageService.onCartRefresh();
     } else {
       this.cartService.removeFromCart(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
+            localStorage.setItem('cartSize', data.data.totalBooksInCart);
             this.messageService.cartBooks();
+            this.messageService.onCartRefresh();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
-            this.messageService.sendCartCounter(data.data.totalBooksInCart);
           }
         },
         (error: any) => {
@@ -125,13 +128,14 @@ export class CartComponent implements OnInit {
               element.totalBookPrice += cartBook.book.price;
               this.cart.totalBooksInCart++;
             } else {
-              this.snackBar.open('book Out Of Stock', 'ok', { duration: 2000 });
+              this.snackBar.open('Book Out Of Stock', 'ok', { duration: 2000 });
             }
           }
         });
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
+        localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
         this.messageService.cartBooks();
+        this.messageService.onCartRefresh();
       } else {
         this.snackBar.open('Cart is full', 'ok', { duration: 2000 });
       }
@@ -139,8 +143,9 @@ export class CartComponent implements OnInit {
       this.cartService.addQuantity(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
-            this.messageService.sendCartCounter(data.data.totalItemsInCart);
+            localStorage.setItem('cartSize', String(data.data.totalBooksInCart));
             this.messageService.cartBooks();
+            this.messageService.onCartRefresh();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
@@ -160,9 +165,6 @@ export class CartComponent implements OnInit {
       this.dialog.open(LoginComponent);
     }
     this.show = true;
-    // this.snackBar.open('Order Placed', 'ok', {
-    //   duration: 2000
-    // });
   }
   continue() {
     const data={
@@ -214,8 +216,9 @@ export class CartComponent implements OnInit {
           }
         });
         localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
+        localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
         this.messageService.cartBooks();
+        this.messageService.onCartRefresh();
       } else {
         this.snackBar.open('No Items In cart To remove quantity', 'ok', {
           duration: 2000,
@@ -225,8 +228,9 @@ export class CartComponent implements OnInit {
       this.cartService.removeQuantity(cartBook.cartBookId).subscribe(
         (data: any) => {
           if (data.status === 200) {
-            this.messageService.sendCartCounter(data.data.totalItemsInCart);
+            localStorage.setItem('cartSize', data.data.totalBooksInCart);
             this.messageService.cartBooks();
+            this.messageService.onCartRefresh();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
@@ -249,21 +253,6 @@ export class CartComponent implements OnInit {
             duration: 2000,
           });
           this.route.navigate(['/dashboard/successPage']);
-        }
-      },
-      (error: any) => {
-        this.snackBar.open(error.error.message, 'ok', {
-          duration: 2000,
-        });
-      }
-    );
-  }
-  checkout(bookSum) {
-    localStorage.setItem('bookId', bookSum.book);
-    this.cartService.addToOrder().subscribe(
-      (result: any) => {
-        if (result.status === 200) {
-          this.route.navigate(['/successPage']);
         }
       },
       (error: any) => {
