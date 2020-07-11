@@ -50,16 +50,7 @@ export class GetallbooksComponent implements OnInit {
         this.cart = data.data;
       }
   }
-  onFormSubmit() {
-    this.messageService.changeoptionMessage1();
-    // this.messageService.sendCartCounter(this.cart.totalBooksInCart);
-    // this.messageService.currentData.subscribe(cartSize =>{
-    //   this.cartSize = cartSize;
-    // });
-     
-      
-  }
-
+  
  
   onChange(value){
     if(value=='high'){

@@ -169,3 +169,28 @@ img {
   padding-bottom: 2%;
   
 }
+
+
+.centered {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  height: 32px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  opacity: 0.9;
+   width: 180px;
+   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
+    0 6px 20px 0 rgba(29, 29, 29, 0.19);
+}
+
+.text{
+  color:black;
+  font-size: 13px;
+  font-weight: 550;
+  text-align: center;
+  margin-top: 7px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: normal;
+}
+
