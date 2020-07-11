@@ -17,6 +17,7 @@ export class GetAllSellersComponent implements OnInit {
   profile = './assets/images/user.png';
   users: any = [];
   counter = 0;
+  found = false;
   ngOnInit() {
 
     // this.service.getAllSellers().subscribe((datas: any) => {
@@ -37,6 +38,7 @@ export class GetAllSellersComponent implements OnInit {
     if (data.status === 200) {
       data.data.forEach((userData) => {
         this.users.push(userData);
+        this.found = true;
       });
 
       this.snackBar.open(data.message, 'ok', {
