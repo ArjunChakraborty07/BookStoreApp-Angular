@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { VendorService } from 'src/services/vendor.service';
-import { MessageService } from 'src/services/message.service';
 import { MatSnackBar } from '@angular/material';
 import { AdminService } from 'src/services/admin.service';
 
@@ -21,10 +19,10 @@ export class GetBooksForVerificationComponent implements OnInit {
   constructor(
     private service: AdminService,
     private snackBar: MatSnackBar,
-    private messageService: MessageService
   ) {}
 
   ngOnInit() {
+
     this.service.getAllBooksForVerification().subscribe((data: any) => {
       this.books = data.data;
     });
