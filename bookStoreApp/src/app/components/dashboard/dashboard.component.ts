@@ -1,29 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable, interval, Subscription } from 'rxjs';
-import { Router, NavigationEnd } from '@angular/router';
-import { DashboardService } from 'src/services/dashboard.service';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { RegisterComponent } from '../register/register.component';
-import { LoginComponent } from '../login/login.component';
-import { EditProfileComponent } from '../edit-profile/edit-profile.component';
-import { UserService } from 'src/services/user.service';
-import { AutofillMonitor } from '@angular/cdk/text-field';
-import { AdminService } from 'src/services/admin.service';
-import { MessageService } from 'src/services/message.service';
-import { CartServiceService } from 'src/services/cart.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { Observable, interval, Subscription } from "rxjs";
+import { Router, NavigationEnd } from "@angular/router";
+import { DashboardService } from "src/services/dashboard.service";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { RegisterComponent } from "../register/register.component";
+import { LoginComponent } from "../login/login.component";
+import { EditProfileComponent } from "../edit-profile/edit-profile.component";
+import { UserService } from "src/services/user.service";
+import { AutofillMonitor } from "@angular/cdk/text-field";
+import { AdminService } from "src/services/admin.service";
+import { MessageService } from "src/services/message.service";
+import { CartServiceService } from "src/services/cart.service";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
   subscription: Subscription;
   data: any;
-  isProfile = 'true';
+  isProfile = "true";
   searchBook: string;
   books: any;
-  profile = './assets/images/user.png';
+  profile = "./assets/images/user.png";
   login: boolean;
   username: string;
   usermail: string;
@@ -42,26 +42,25 @@ export class DashboardComponent implements OnInit {
     private messageService: MessageService,
     private cartService: CartServiceService
   ) {
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem("token") === null) {
       this.login = false;
-      console.log('not logged');
-      this.profile = './assets/images/user.png';
+      console.log("not logged");
+      this.profile = "./assets/images/user.png";
     } else {
-      console.log('logged in');
+      console.log("logged in");
       this.login = true;
-      this.username = localStorage.getItem('name');
-      this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image') !=null) {
-        this.profile = localStorage.getItem('image');
+      this.username = localStorage.getItem("name");
+      this.usermail = localStorage.getItem("email");
+      if (localStorage.getItem("image") != null) {
+        this.profile = localStorage.getItem("image");
       }
-      if(localStorage.getItem('image').length==4)
-       {
-        console.log("image length",localStorage.getItem('image').length);
-        this.profile='./assets/images/user.png';
-       }
+      if (localStorage.getItem("image").length == 4) {
+        console.log("image length", localStorage.getItem("image").length);
+        this.profile = "./assets/images/user.png";
+      }
     }
     // tslint:disable-next-line: only-arrow-functions
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {
@@ -75,8 +74,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.messageService.onGetAllBooks();
     this.messageService.cartBooks();
-    if(localStorage.getItem('cartSize') !== null){
-      this.cartCounter = Number(localStorage.getItem('cartSize'));
+    if (localStorage.getItem("cartSize") !== null) {
+      this.cartCounter = Number(localStorage.getItem("cartSize"));
     }
   }
 
@@ -89,74 +88,73 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
-    localStorage.setItem("popup",'false');
-    const dialogConfig=new MatDialogConfig();
-    dialogConfig.height="75%";
-    const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
+    localStorage.setItem("popup", "false");
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = "75%";
+    const dialogRef = this.dialog.open(LoginComponent, {
+      panelClass: "custom-modalbox",
+    });
   }
-
 
   onKey(event: any) {
     this.messageService.searchUserBook(event);
     this.isCart = false;
-   }
+  }
 
-  
   onCart() {
-    this.router.navigate(['/dashboard/cart']);
+    this.router.navigate(["/dashboard/cart"]);
   }
   onSuccess() {
     this.isSuccess = true;
-    this.router.navigate(['/dashboard/successPage']);
+    this.router.navigate(["/dashboard/successPage"]);
   }
   onBookStore() {
     this.isCart = false;
-    this.router.navigate(['/dashboard/getallbooks']);
+    this.router.navigate(["/dashboard/getallbooks"]);
   }
   onLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(["/login"]);
     // this.cartCounter = Number(localStorage.getItem('cartSize'));
   }
   onsignup() {
-    this.router.navigate(['/register']);
+    this.router.navigate(["/register"]);
   }
   Logout() {
-    console.log('CAME TO LOGOUT');
+    console.log("CAME TO LOGOUT");
     this.Adminservice.logout().subscribe();
     localStorage.clear();
     console.log(localStorage.length);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(["/dashboard"]);
   }
   OnSelectedFile(event) {
     console.log(event.target.files[0]);
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
       const formData = new FormData();
-      formData.append('file', this.file);
+      formData.append("file", this.file);
       this.file.inProgress = true;
-      console.log('FormData:', formData.get('file'));
+      console.log("FormData:", formData.get("file"));
       this.userService
         .uploadProfie(formData, this.isProfile)
         .subscribe((result: any) => {
-          console.log('PROFILE RESULT:', result);
+          console.log("PROFILE RESULT:", result);
           if (result.status === 200) {
-            localStorage.setItem('image', result.data);
+            localStorage.setItem("image", result.data);
             this.profile = result.data;
             console.log(this.profile);
           }
         });
     }
   }
-   AddToCart(count: number) {
+  AddToCart(count: number) {
     this.cartCounter = count;
   }
-  myorders()
-  {
+  myorders() {
     console.log("my orders");
-    this.router.navigate(['/myorders']);
+    this.router.navigate(["/myorders"]);
   }
 
-  mywishlist(){
-    this.router.navigate(['viewallWishList']);
-   }
+  mywishlist() {
+    this.router.navigate(["viewallWishList"]);
+  }
 }
