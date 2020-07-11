@@ -21,6 +21,7 @@ export class GetallbooksComponent implements OnInit {
   books = [];
   cart: CartModule;
   cartBook: CartBookModule;
+ 
 
   constructor(
     private bookservice: BookService,
@@ -44,12 +45,24 @@ export class GetallbooksComponent implements OnInit {
     // this.messageService.currentData.subscribe(cartSize =>{
     //   this.cartSize = cartSize;
     // });
+     
+      
   }
 
-  onFormSubmit() {
-    this.messageService.changeoptionMessage1();
+ 
+  onChange(value){
+    if(value=='high'){
     this.messageService.changeoptionMessage();
   }
+  else{
+    if(value=='low'){
+      this.messageService.changeoptionMessage1();
+    }
+  }
+}
+  
+
+  
 
   private loadAllBooks(data) {
     console.log(data);
