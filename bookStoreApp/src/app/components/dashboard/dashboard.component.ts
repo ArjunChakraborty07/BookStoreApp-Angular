@@ -161,4 +161,8 @@ export class DashboardComponent implements OnInit {
     console.log("my orders");
     this.router.navigate(['/myorders']);
   }
+
+  mywishlist(){
+    this.router.navigate(['viewallWishList']);
+   }
 }
