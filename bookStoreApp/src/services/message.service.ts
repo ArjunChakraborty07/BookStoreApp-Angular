@@ -6,14 +6,13 @@ import { CartServiceService } from './cart.service';
 import { AdminService } from './admin.service';
 import { DashboardService } from './dashboard.service';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
   count: number;
-  private dataSource = new BehaviorSubject(this.count);
-  currentData = this.dataSource.asObservable();
   private messageSource = new BehaviorSubject(Response);
   currentMessage = this.messageSource.asObservable();
   private userMessageSource = new BehaviorSubject(Response);
@@ -31,7 +30,8 @@ export class MessageService {
     private cartService: CartServiceService,
     private adminService: AdminService,
     private dashboardService: DashboardService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: Router
   ) {}
 
   changeMessage() {
@@ -92,16 +92,6 @@ export class MessageService {
       }
     );
   }
-  onCartCount() {
-    this.dataSource.next(this.count);
-  }
-
-  // getCartCounter(){
-  //    this.messageSource.next();
-  // }
-  sendCartCounter(cartSize: number) {
-    this.dataSource.next(cartSize);
-  }
 
   onGetAllBooks() {
     this.bookService.getAllbooks().subscribe((data) => {
@@ -112,5 +102,12 @@ export class MessageService {
     this.bookService.viewWishlist().subscribe((data) => {
       this.userMessageSource.next(data);
     });
+  }
+
+  onRefresh(){
+    this.route.navigate(['/dashboard']);
+  }
+  onCartRefresh(){
+    this.route.navigate(['/dashboard/cart']);
   }
 }
