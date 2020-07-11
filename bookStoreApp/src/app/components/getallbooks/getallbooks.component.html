@@ -31,7 +31,7 @@
       <mat-card>
         <div class="bookImageDiv" fxLayoutAlign="center">
           <img src={{book.imageURL}}/>
-          <mat-card class="centered" *ngIf="book.quantity===1"><p class="text">OUT OF  STOCK</p></mat-card>
+          <mat-card class="centered" *ngIf="book.quantity===0"><p class="text">OUT OF  STOCK</p></mat-card>
         </div>
         <div class="bookInfoDiv" fxLayout="column">
           <mat-card-content>

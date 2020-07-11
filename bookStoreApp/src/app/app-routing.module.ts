@@ -24,7 +24,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard/getallboooks', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
