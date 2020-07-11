@@ -1,4 +1,5 @@
 <div
+class="main-div"
     style="
     width: 100%;
     padding-left: 10%;
@@ -6,9 +7,16 @@
     padding-bottom: 2%;
   "
     fxLayoutGap="40px"
-    ngClass.lt-md="main-div-lt-md"
-    fxLayout="row wrap">
-    <div *ngFor="let book of books" fxLayout="row">
+    fxLayout.lt-sm="column"
+    fxLayout.sm="row wrap"
+    fxLayoutAlign.sm="start center"
+    fxLayout.md="row wrap"
+    fxLayoutAlign.md="start center"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayout.lg="row wrap"
+    fxLayoutAlign.lg="start center"
+    fxLayout="row" fxLayoutAlign="space-around center" >
+    <div *ngFor="let book of books" fxLayout="row" >
         <mat-card>
             <div
                 class="bookImageDiv"
