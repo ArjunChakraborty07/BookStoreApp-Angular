@@ -78,7 +78,6 @@ export class DashboardComponent implements OnInit {
     if(localStorage.getItem('cartSize') !== null){
       this.cartCounter = Number(localStorage.getItem('cartSize'));
     }
-    console.log(this.cartCounter);
   }
 
   ngOnDestroy() {

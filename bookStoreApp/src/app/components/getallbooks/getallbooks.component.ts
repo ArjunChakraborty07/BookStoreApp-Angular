@@ -76,7 +76,6 @@ export class GetallbooksComponent implements OnInit {
   
 
   private loadAllBooks(data) {
-    console.log(data);
     if (data.status === 200) {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
