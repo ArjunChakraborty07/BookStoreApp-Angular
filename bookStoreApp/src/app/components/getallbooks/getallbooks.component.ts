@@ -1,20 +1,20 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { BookService } from 'src/services/book.service';
-import { AdminService } from 'src/services/admin.service';
-import { Book } from 'src/models/book.model';
-import { MatSnackBar, MatDialog } from '@angular/material';
-import { CartServiceService } from 'src/services/cart.service';
-import { CartBookModule } from 'src/models/cart-book/cart-book.module';
-import { CartModule } from 'src/models/cart/cart.module';
-import { MessageService } from 'src/services/message.service';
-import { ViewWishlistComponent } from '../view-wishlist/view-wishlist.component';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { first } from "rxjs/operators";
+import { BookService } from "src/services/book.service";
+import { AdminService } from "src/services/admin.service";
+import { Book } from "src/models/book.model";
+import { MatSnackBar, MatDialog } from "@angular/material";
+import { CartServiceService } from "src/services/cart.service";
+import { CartBookModule } from "src/models/cart-book/cart-book.module";
+import { CartModule } from "src/models/cart/cart.module";
+import { MessageService } from "src/services/message.service";
+import { ViewWishlistComponent } from "../view-wishlist/view-wishlist.component";
 
 export interface DialogData {}
 @Component({
-  selector: 'app-getallbooks',
-  templateUrl: './getallbooks.component.html',
-  styleUrls: ['./getallbooks.component.scss'],
+  selector: "app-getallbooks",
+  templateUrl: "./getallbooks.component.html",
+  styleUrls: ["./getallbooks.component.scss"],
 })
 export class GetallbooksComponent implements OnInit {
   countResult: any;
@@ -22,7 +22,6 @@ export class GetallbooksComponent implements OnInit {
   cart: CartModule;
   data: any;
   cartBook: CartBookModule;
- 
 
   constructor(
     private bookservice: BookService,
@@ -42,36 +41,30 @@ export class GetallbooksComponent implements OnInit {
       this.books = [];
       this.loadAllBooks(data);
     });
-
   }
 
   displayBooksInCart(data) {
-      if (data.status === 200) {
-        this.cart = data.data;
-      }
-  }
-  
- 
-  onChange(value){
-    if(value=='high'){
-    this.messageService.changeoptionMessage();
-  }
-  else{
-    if(value=='low'){
-      this.messageService.changeoptionMessage1();
+    if (data.status === 200) {
+      this.cart = data.data;
     }
   }
-}
-  
 
-  
+  onChange(value) {
+    if (value == "high") {
+      this.messageService.changeoptionMessage();
+    } else {
+      if (value == "low") {
+        this.messageService.changeoptionMessage1();
+      }
+    }
+  }
 
   private loadAllBooks(data) {
     if (data.status === 200) {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
-      this.snackBar.open(data.message, 'ok', {
+      this.snackBar.open(data.message, "ok", {
         duration: 2000,
       });
     }
@@ -84,19 +77,19 @@ export class GetallbooksComponent implements OnInit {
   }
   checkAddedToCart(bookId): boolean {
     let addedTocart = false;
-    if (localStorage.getItem('cart') !== null) {
-      this.cart = JSON.parse(localStorage.getItem('cart'));
+    if (localStorage.getItem("cart") !== null) {
+      this.cart = JSON.parse(localStorage.getItem("cart"));
       this.cart.cartBooks.forEach((element) => {
         if (element.book.bookId === bookId) {
           addedTocart = true;
         }
       });
-    } else if(localStorage.getItem('token') !== null){
-        this.cart.cartBooks.forEach((element) => {
-          if (element.book.bookId === bookId) {
-            addedTocart = true;
-          }
-        });
+    } else if (localStorage.getItem("token") !== null) {
+      this.cart.cartBooks.forEach((element) => {
+        if (element.book.bookId === bookId) {
+          addedTocart = true;
+        }
+      });
     }
     return addedTocart;
   }
@@ -106,20 +99,20 @@ export class GetallbooksComponent implements OnInit {
       (data) => {
         if (data.status === 200) {
           this.messageService.onGetAllBooks();
-          this.snackBar.open(data.message, 'ok', {
+          this.snackBar.open(data.message, "ok", {
             duration: 2000,
           });
         }
       },
       (error: any) => {
-        this.snackBar.open(error.error, 'ok', { duration: 2000 });
+        this.snackBar.open(error.error, "ok", { duration: 2000 });
       }
     );
   }
 
   openDialog(book) {
     const dialogRef = this.dialog.open(ViewWishlistComponent, {
-      width: '500px',
+      width: "500px",
       data: {
         id: book.bookId,
         bookname: book.bookName,
@@ -132,14 +125,14 @@ export class GetallbooksComponent implements OnInit {
 
   addToCart(book: Book) {
     console.log(book);
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem("token") === null) {
       this.cartBook = new CartBookModule();
       this.cartBook.bookQuantity = 1;
-      if (localStorage.getItem('cart') === null) {
+      if (localStorage.getItem("cart") === null) {
         this.cart = new CartModule();
         this.cart.totalBooksInCart = 0;
       } else {
-        this.cart = JSON.parse(localStorage.getItem('cart'));
+        this.cart = JSON.parse(localStorage.getItem("cart"));
         console.log(this.cart);
       }
       if (this.cart.totalBooksInCart < 5) {
@@ -149,19 +142,19 @@ export class GetallbooksComponent implements OnInit {
           if (element.book.bookId === book.bookId) {
             this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
             this.cart.totalBooksInCart--;
-            this.snackBar.open('Book Already Added to Cart', 'ok', {
+            this.snackBar.open("Book Already Added to Cart", "ok", {
               duration: 2000,
             });
           }
         });
         this.cart.cartBooks.push(this.cartBook);
         this.cart.totalBooksInCart++;
-        localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.snackBar.open('Book Added to Cart', 'ok', { duration: 2000 });
-        localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
+        localStorage.setItem("cart", JSON.stringify(this.cart));
+        this.snackBar.open("Book Added to Cart", "ok", { duration: 2000 });
+        localStorage.setItem("cartSize", String(this.cart.totalBooksInCart));
         this.messageService.onRefresh();
       } else {
-        this.snackBar.open('Your Cart is full', 'ok', { duration: 2000 });
+        this.snackBar.open("Your Cart is full", "ok", { duration: 2000 });
       }
     } else {
       this.cartService.addToCart(book.bookId).subscribe(
@@ -169,23 +162,23 @@ export class GetallbooksComponent implements OnInit {
           console.log(data);
           if (data.status === 200) {
             this.messageService.onRefresh();
-            localStorage.setItem('cartSize', data.data.totalBooksInCart);
-            this.snackBar.open(data.message, 'ok', {
+            localStorage.setItem("cartSize", data.data.totalBooksInCart);
+            this.snackBar.open(data.message, "ok", {
               duration: 2000,
             });
           } else if (data.status === 208) {
-            this.snackBar.open(data.message, 'ok', {
+            this.snackBar.open(data.message, "ok", {
               duration: 2000,
             });
           }
         },
         (error: any) => {
           if (error.status === 500) {
-            this.snackBar.open('Internal Server Error', 'ok', {
+            this.snackBar.open("Internal Server Error", "ok", {
               duration: 2000,
             });
           } else {
-            this.snackBar.open(error.error.message, 'ok', {
+            this.snackBar.open(error.error.message, "ok", {
               duration: 2000,
             });
           }
