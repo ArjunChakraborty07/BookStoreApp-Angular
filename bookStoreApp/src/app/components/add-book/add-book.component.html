@@ -64,7 +64,10 @@
             formControlName="quantity"
           />
           <mat-error *ngIf="bookForm.get('quantity').hasError('min')"
-            >Amount should not be less than zero</mat-error
+            >Quantity should not be less than zero</mat-error
+          >
+          <mat-error *ngIf="bookForm.get('quantity').hasError('pattern')"
+            >Quantity should not be decimal values</mat-error
           >
           <mat-error *ngIf="bookForm.get('quantity').hasError('required')"
             >book quantity is required</mat-error

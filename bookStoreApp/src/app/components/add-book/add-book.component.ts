@@ -34,7 +34,7 @@ export class AddBookComponent implements OnInit {
     bookName: new FormControl('', Validators.required),
     authorName: new FormControl('', Validators.required),
     price: new FormControl('', [Validators.min(1), Validators.required]),
-    quantity: new FormControl('', [Validators.min(1), Validators.required]),
+    quantity: new FormControl('', [Validators.min(1), Validators.required, Validators.pattern('[0-9]*$')]),
     description: new FormControl('', Validators.required),
     imageURL: new FormControl(this.bookImageUrl, Validators.required),
   });
