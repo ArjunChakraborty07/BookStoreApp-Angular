@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
     private messageService: MessageService,
     private cartService: CartServiceService
   ) {
+    this.profile = "./assets/images/user.png";
     if (localStorage.getItem("token") === null) {
       this.login = false;
       console.log("not logged");
@@ -54,10 +55,7 @@ export class DashboardComponent implements OnInit {
       if (localStorage.getItem("image") != null) {
         this.profile = localStorage.getItem("image");
       }
-      if (localStorage.getItem("image").length == 4) {
-        console.log("image length", localStorage.getItem("image").length);
-        this.profile = "./assets/images/user.png";
-      }
+      
     }
     // tslint:disable-next-line: only-arrow-functions
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
@@ -72,6 +70,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.messageService.onGetAllBooks();
     this.messageService.cartBooks();
     if (localStorage.getItem("cartSize") !== null) {
