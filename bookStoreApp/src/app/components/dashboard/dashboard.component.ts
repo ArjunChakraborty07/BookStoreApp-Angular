@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
@@ -17,7 +17,7 @@ import { CartServiceService } from 'src/services/cart.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit{
   subscription: Subscription;
   data: any;
   isProfile = 'true';
@@ -73,17 +73,23 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messageService.onGetAllBooks();
-    this.messageService.cartBooks();
-    if(localStorage.getItem('cartSize') !== null){
+    if (localStorage.getItem('cartSize') !== null && localStorage.getItem('token') === null){
       this.cartCounter = Number(localStorage.getItem('cartSize'));
+    } else if (localStorage.getItem('token') !== null ) {
+      this.messageService.cartCountMessage.subscribe((data: any) => {
+        console.log(data);
+        this.cartCount(data);
+      });
     }
+    this.messageService.cartBooks();
+    this.messageService.onGetAllBooks();
+    this.messageService.onCartCount();
   }
 
-  ngOnDestroy() {
-    // if (this.mySubscription) {
-    //   this.mySubscription.unsubscribe();
-    // }
+  cartCount(data){
+    if (data.status === 200){
+      this.cartCounter = data.data;
+    }
   }
   openDialogztoedit() {
     this.dialog.open(EditProfileComponent);
@@ -103,7 +109,7 @@ export class DashboardComponent implements OnInit {
 
   
   onCart() {
-    this.router.navigate(['/dashboard/cart']);
+    this.messageService.onCartRefresh();
   }
   onSuccess() {
     this.isSuccess = true;
@@ -159,4 +165,5 @@ export class DashboardComponent implements OnInit {
   mywishlist(){
     this.router.navigate(['viewallWishList']);
    }
+
 }
