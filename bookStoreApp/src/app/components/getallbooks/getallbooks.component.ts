@@ -22,7 +22,6 @@ export class GetallbooksComponent implements OnInit {
   cart: CartModule;
   data: any;
   cartBook: CartBookModule;
- 
 
   constructor(
     private bookservice: BookService,
@@ -57,12 +56,9 @@ export class GetallbooksComponent implements OnInit {
   else{
     if(value=='low'){
       this.messageService.changeoptionMessage1();
+      }
     }
   }
-}
-  
-
-  
 
   private loadAllBooks(data) {
     if (data.status === 200) {
@@ -90,11 +86,11 @@ export class GetallbooksComponent implements OnInit {
         }
       });
     }
-    if(localStorage.getItem('token') !== null){
+    if (localStorage.getItem('token') !== null) {
       this.cart.cartBooks.forEach((element) => {
-          if (element.book.bookId === bookId) {
-            addedTocart = true;
-          }
+        if (element.book.bookId === bookId) {
+          addedTocart = true;
+        }
       });
     }
     return addedTocart;
@@ -125,6 +121,7 @@ export class GetallbooksComponent implements OnInit {
         bookauthor: book.authorName,
         bookprice: book.price,
         bookinfo: book.description,
+        bookImage: book.imageURL
       },
     });
   }

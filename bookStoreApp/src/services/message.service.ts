@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { VendorService } from './vendor.service';
-import { BookService } from './book.service';
-import { CartServiceService } from './cart.service';
-import { AdminService } from './admin.service';
-import { DashboardService } from './dashboard.service';
-import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { VendorService } from "./vendor.service";
+import { BookService } from "./book.service";
+import { CartServiceService } from "./cart.service";
+import { AdminService } from "./admin.service";
+import { DashboardService } from "./dashboard.service";
+import { MatSnackBar } from "@angular/material";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class MessageService {
   count: number;
@@ -68,14 +68,14 @@ export class MessageService {
 
   cartBooks() {
     if (
-      localStorage.getItem('token') === null &&
-      localStorage.getItem('cart') != null
+      localStorage.getItem("token") === null &&
+      localStorage.getItem("cart") != null
     ) {
-      this.cartSource.next(JSON.parse(localStorage.getItem('cart')));
+      this.cartSource.next(JSON.parse(localStorage.getItem("cart")));
     } else {
       this.cartService.displayBooksInCart().subscribe((data: any) => {
         this.cartSource.next(data);
-        this.count = data.data.totalItemsInCart;
+        this.count = data.data.totalBooksInCart;
       });
     }
   }
@@ -91,7 +91,7 @@ export class MessageService {
       },
       (error: any) => {
         console.log(error);
-        this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
+        this.snackBar.open(error.error.message, "ok", { duration: 2000 });
       }
     );
   }
@@ -107,11 +107,11 @@ export class MessageService {
     });
   }
 
-  onRefresh(){
-    this.route.navigate(['/dashboard']);
+  onRefresh() {
+    this.route.navigate(["/dashboard"]);
   }
-  onCartRefresh(){
-    this.route.navigate(['/dashboard/cart']);
+  onCartRefresh() {
+    this.route.navigate(["/dashboard/cart"]);
   }
 
   onUpdateQuantity(event,cartBookId) {

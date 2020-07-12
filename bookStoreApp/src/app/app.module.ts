@@ -63,6 +63,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
 import { BookReviewComponent } from './components/book-review/book-review.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { MatProgressSpinnerModule } from '@angular/material';
     MatProgressSpinnerModule,
     MatTableModule,
     MatBadgeModule,
+    NgxSpinnerModule
   ],
 
   entryComponents: [

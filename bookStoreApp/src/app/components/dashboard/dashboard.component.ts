@@ -7,7 +7,6 @@ import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
-import { AutofillMonitor } from '@angular/cdk/text-field';
 import { AdminService } from 'src/services/admin.service';
 import { MessageService } from 'src/services/message.service';
 import { CartServiceService } from 'src/services/cart.service';
@@ -42,6 +41,7 @@ export class DashboardComponent implements OnInit{
     private messageService: MessageService,
     private cartService: CartServiceService
   ) {
+    this.profile = './assets/images/user.png';
     if (localStorage.getItem('token') === null) {
       this.login = false;
       console.log('not logged');
@@ -51,17 +51,13 @@ export class DashboardComponent implements OnInit{
       this.login = true;
       this.username = localStorage.getItem('name');
       this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image') !=null) {
+      if (localStorage.getItem('image') != null) {
         this.profile = localStorage.getItem('image');
       }
-      if(localStorage.getItem('image').length==4)
-       {
-        console.log("image length",localStorage.getItem('image').length);
-        this.profile='./assets/images/user.png';
-       }
+      
     }
     // tslint:disable-next-line: only-arrow-functions
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {
@@ -95,19 +91,19 @@ export class DashboardComponent implements OnInit{
     this.dialog.open(EditProfileComponent);
   }
   openDialog(): void {
-    localStorage.setItem("popup",'false');
-    const dialogConfig=new MatDialogConfig();
-    dialogConfig.height="75%";
-    const dialogRef = this.dialog.open(LoginComponent,{panelClass: 'custom-modalbox' });
+    localStorage.setItem('popup', 'false');
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.height = '75%';
+    const dialogRef = this.dialog.open(LoginComponent, {
+      panelClass: 'custom-modalbox',
+    });
   }
-
 
   onKey(event: any) {
     this.messageService.searchUserBook(event);
     this.isCart = false;
-   }
+  }
 
-  
   onCart() {
     this.messageService.onCartRefresh();
   }
@@ -153,17 +149,15 @@ export class DashboardComponent implements OnInit{
         });
     }
   }
-   AddToCart(count: number) {
+  AddToCart(count: number) {
     this.cartCounter = count;
   }
-  myorders()
-  {
-    console.log("my orders");
+  myorders() {
+    console.log('my orders');
     this.router.navigate(['/myorders']);
   }
 
-  mywishlist(){
+  mywishlist() {
     this.router.navigate(['viewallWishList']);
-   }
-
+  }
 }

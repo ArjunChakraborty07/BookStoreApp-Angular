@@ -46,6 +46,7 @@
               mat-raised-button
               fxLayoutAlign="center"
               color="primary"
+              style="outline: none;"
               *ngIf="book.quantity > 0 && !checkAddedToCart(book.bookId)"
               (click)="addToCart(book)"
             >
@@ -60,6 +61,7 @@
                 padding: 0%;
                 height: 32px;
                 margin-left: 0%;
+                outline: none;
                 background-color: #3371b5;
               "
               (click)="addToCart(book)"
@@ -69,6 +71,7 @@
             <button
               mat-stroked-button
               fxLayoutAlign="center"
+              style="outline: none;"
               *ngIf="book.quantity > 0 && !checkAddedToCart(book.bookId)"
               (click)="onAddBookToWishList(book.bookId)"
               (click)="openDialog(book)"
@@ -78,7 +81,7 @@
             <button
               mat-stroked-button
               *ngIf="book.quantity === 0"
-              style="width: 100%; padding: 0%; height: 32px; margin-left: 0%;"
+              style="width: 100%; padding: 0%; height: 32px; margin-left: 0%;outline: none;"
               (click)="onAddBookToWishList(book.bookId)"
               (click)="openDialog(book)"
             >
