@@ -37,18 +37,16 @@ export class GetallbooksComponent implements OnInit {
     this.messageService.cartMessage.subscribe((data: any) => {
       this.displayBooksInCart(data);
     });
-
-    this.messageService.currentUserMessage.subscribe((data) => {
-      this.books = [];
-      this.loadAllBooks(data);
-    });
-
   }
 
   displayBooksInCart(data) {
       if (data.status === 200) {
         this.cart = data.data;
       }
+      this.messageService.currentUserMessage.subscribe((data) => {
+            this.books = [];
+            this.loadAllBooks(data);
+          });
   }
   
  
@@ -91,12 +89,13 @@ export class GetallbooksComponent implements OnInit {
           addedTocart = true;
         }
       });
-    } else if(localStorage.getItem('token') !== null){
-        this.cart.cartBooks.forEach((element) => {
+    }
+    if(localStorage.getItem('token') !== null){
+      this.cart.cartBooks.forEach((element) => {
           if (element.book.bookId === bookId) {
             addedTocart = true;
           }
-        });
+      });
     }
     return addedTocart;
   }
@@ -131,7 +130,6 @@ export class GetallbooksComponent implements OnInit {
   }
 
   addToCart(book: Book) {
-    console.log(book);
     if (localStorage.getItem('token') === null) {
       this.cartBook = new CartBookModule();
       this.cartBook.bookQuantity = 1;
@@ -140,7 +138,6 @@ export class GetallbooksComponent implements OnInit {
         this.cart.totalBooksInCart = 0;
       } else {
         this.cart = JSON.parse(localStorage.getItem('cart'));
-        console.log(this.cart);
       }
       if (this.cart.totalBooksInCart < 5) {
         this.cartBook.book = book;
@@ -166,10 +163,10 @@ export class GetallbooksComponent implements OnInit {
     } else {
       this.cartService.addToCart(book.bookId).subscribe(
         (data: any) => {
-          console.log(data);
           if (data.status === 200) {
-            this.messageService.onRefresh();
             localStorage.setItem('cartSize', data.data.totalBooksInCart);
+            this.messageService.cartBooks();
+            this.messageService.onCartCount();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
