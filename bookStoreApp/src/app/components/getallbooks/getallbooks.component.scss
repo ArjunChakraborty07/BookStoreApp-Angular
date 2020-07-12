@@ -16,12 +16,11 @@
 
 
 #items1 {
-  margin-right: 5px;
+  margin-right: 73px;
   display: flex;
   align-items: center;
   font-size:  15px;
-  margin-top: 10px;
-  margin-bottom: -14px;
+  margin-top: 30px;
 }
 .book-details {
   display: none;
@@ -29,31 +28,53 @@
 }
 mat-card:hover + .book-details {
   display: block;
-  margin-top: 2%;
-  position: absolute;
+   margin-top: 2%;
+  font-size: 13px;
+  color: black;
   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
     0 6px 20px 0 rgba(29, 29, 29, 0.19);
-  // align-self: center;
-  width: 18%;
-  // min-height: 100px;
+    width: 15%;
   height: fit-content;
-  // margin-top: 10px;
-  background-color: whitesmoke;
-  margin-left: 12%;
+  background-color:white;
+  margin-left: 200px;
   z-index: 1;
-  padding: 2%;
+  text-align: left;
+  padding: 1%;
 }
 
 #items {
- margin-left: -2px;
+  margin-left: -2px;
  font-size:22px;
  letter-spacing: 0px;
  font-weight: bold;
  font-style: normal;
  color: black;
  font-family: 'Times New Roman', Times, serif;
- margin-bottom: -30px;
+ margin-bottom: -60px;
 }
+
+@media only screen and (max-width: 720px) {
+  #items{
+    margin-left:-3px;
+    font-size:16px;
+    margin-right: 2px;
+  }
+}
+@media only screen and (max-width: 720px) {
+  #items1{
+    margin-right: 6px;
+    font-size:  12px;
+  }
+}
+@media only screen and (max-width: 720px) {
+.mat-form-field{
+  width: 90px;
+  margin-top: 10px;
+}
+}
+
+
+
 
 #active {
   color: darkgray;
@@ -92,9 +113,10 @@ mat-card:hover + .book-details {
 }
 
 .mat-card {
-  margin-top: 10%;
+  margin-top: 3%;
   width: 220px;
   padding: 0%;
+  margin-bottom: 15px;
 }
 .mat-card:hover {
   box-shadow: 0 4px 8px 0 rgba(70, 71, 70, 0.2),
