@@ -119,6 +119,7 @@ export class GetallbooksComponent implements OnInit {
         bookauthor: book.authorName,
         bookprice: book.price,
         bookinfo: book.description,
+        bookImage: book.imageURL
       },
     });
   }
