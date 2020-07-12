@@ -74,15 +74,15 @@
               >remove</mat-icon
             >
           </button>
-          <input
-            mat-input
-            type="number"
-            readonly
-            max="5"
-            min="1"
-            value="{{ cartBook.bookQuantity }}"
-            class="quantity-field"
-          />
+            <input
+              mat-input
+              type="number"
+              (input)="onKey($event,cartBook)"
+              max="5"
+              min="1"
+              value="{{ cartBook.bookQuantity }}"
+              class="quantity-field"
+            />
           <button
             mat-mini-fab
             class="button-plus"

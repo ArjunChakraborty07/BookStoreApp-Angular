@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Book } from 'src/models/book.model';
 import { CartServiceService } from 'src/services/cart.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
@@ -8,18 +8,19 @@ import { UserService } from 'src/services/user.service';
 import { CartModule } from 'src/models/cart/cart.module';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { CartBookModule } from 'src/models/cart-book/cart-book.module';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit ,OnChanges{
   public show = false;
   public buttonName: any = 'Show';
   cartSize: number;
   cartBooks: any = [];
-  quantity = 1;
+  quantity: number;
   bookSum: any = [];
   image = './assets/images/bookstore-wallpaper.jpg';
   disp = false;
@@ -46,17 +47,22 @@ export class CartComponent implements OnInit {
     type: [],
   });
   ngOnInit() {
-
     this.messageService.cartMessage.subscribe((data) => {
       this.cartBooks = [];
       this.displayBooksInCart(data);
       localStorage.setItem('cartSize', String(this.cartSize));
     });
     this.cartSize = Number(localStorage.getItem('cartSize'));
+    this.messageService.quantityMessage.subscribe((data) => {
+      this.onUpdateQuantity(data);
+      localStorage.setItem('cartSize', String(this.cartSize));
+    });
+  }
+  ngOnChanges(){
+    this.messageService.onCartRefresh();
   }
 
   removeFromCart(cartBook: any) {
-    console.log(cartBook);
     if (
       localStorage.getItem('token') === null &&
       localStorage.getItem('cart') != null
@@ -80,7 +86,7 @@ export class CartComponent implements OnInit {
           if (data.status === 200) {
             localStorage.setItem('cartSize', data.data.totalBooksInCart);
             this.messageService.cartBooks();
-            this.messageService.onCartRefresh();
+            this.messageService.onCartCount();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
@@ -142,7 +148,7 @@ export class CartComponent implements OnInit {
           if (data.status === 200) {
             localStorage.setItem('cartSize', String(data.data.totalBooksInCart));
             this.messageService.cartBooks();
-            this.messageService.onCartRefresh();
+            this.messageService.onCartCount();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
@@ -188,7 +194,6 @@ export class CartComponent implements OnInit {
         console.log('name:', val.book.bookName);
       });
     });
-    // this.disp=!this.disp;
     this.disp = true;
   }
 
@@ -227,7 +232,7 @@ export class CartComponent implements OnInit {
           if (data.status === 200) {
             localStorage.setItem('cartSize', data.data.totalBooksInCart);
             this.messageService.cartBooks();
-            this.messageService.onCartRefresh();
+            this.messageService.onCartCount();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });
@@ -245,6 +250,7 @@ export class CartComponent implements OnInit {
     this.userService.onCheckOut().subscribe(
       (data) => {
         if (data.status === 200) {
+          this.messageService.onCartCount();
           localStorage.setItem('orderId', data.data.orderId);
           this.snackBar.open(data.message, 'ok', {
             duration: 2000,
@@ -261,5 +267,64 @@ export class CartComponent implements OnInit {
   }
   onShowNow() {
     this.route.navigate(['/dashboard/getallbooks']);
+  }
+
+  onKey(event: any,cartBook: CartBookModule) {
+    if(localStorage.getItem('token') === null && localStorage.getItem('cart') !== null) {
+      this.quantity = 0;
+      this.quantity = Number(event.target.value);
+      console.log(this.quantity);
+      if (this.quantity === 0 || event.target.value === '') {
+        this.snackBar.open('Cart Items Can not be less than one', 'cancel', {
+          duration: 2000
+        });
+      } else {
+        this.cart = JSON.parse(localStorage.getItem('cart'));
+        this.cart.totalBooksInCart = this.cart.totalBooksInCart - cartBook.bookQuantity;
+        if ((this.cart.totalBooksInCart + this.quantity) < 6) {
+          this.cart.cartBooks.forEach(element => {
+            if (element.book.bookId === cartBook.book.bookId) {
+              if (Number(cartBook.book.quantity) > this.quantity){
+                element.bookQuantity = this.quantity;
+                element.totalBookPrice = element.book.price * this.quantity;
+                this.cart.totalBooksInCart = this.cart.totalBooksInCart + this.quantity;
+              } else {
+                this.snackBar.open('Book Out Of Stock', 'ok', {
+                  duration: 2000
+                });
+              }
+            }
+          });
+          localStorage.setItem('cart', JSON.stringify(this.cart));
+          localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
+          this.messageService.cartBooks();
+          this.messageService.onCartRefresh();
+        } else {
+          this.cart.totalBooksInCart = this.cart.totalBooksInCart + this.quantity;
+          this.snackBar.open('Cart Books Exceeded limit of 5 Books', 'ok', {
+            duration:2000
+          });
+        }
+      }
+    }
+    if(localStorage.getItem('token') !== null){
+      this.messageService.onUpdateQuantity(event, cartBook.cartBookId);
+    }
+  }
+
+  onUpdateQuantity(data){
+    if(data.status === 200){
+      this.cartSize = data.totalBooksInCart;
+      this.messageService.cartBooks();
+      this.messageService.onCartCount();
+      this.snackBar.open(data.message, 'ok', {
+        duration: 2000
+      });
+    } else if(data.status === 417){
+      this.messageService.cartBooks();
+      this.snackBar.open(data.error.message, 'cancel', {
+        duration: 2000
+      });
+    }
   }
 }
