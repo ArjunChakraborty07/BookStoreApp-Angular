@@ -23,7 +23,10 @@ export class MessageService {
   adminBook = this.adminBookSource.asObservable();
   private adminSellerSource = new BehaviorSubject(Response);
   adminSeller = this.adminSellerSource.asObservable();
-
+  private quantitySource = new BehaviorSubject(Response);
+  quantityMessage = this.quantitySource.asObservable();
+  private cartCountSource = new BehaviorSubject(Response);
+  cartCountMessage = this.cartCountSource.asObservable();
   constructor(
     private vendorService: VendorService,
     private bookService: BookService,
@@ -109,5 +112,22 @@ export class MessageService {
   }
   onCartRefresh(){
     this.route.navigate(['/dashboard/cart']);
+  }
+
+  onUpdateQuantity(event,cartBookId) {
+    this.cartService.updateQuantity(event.target.value, cartBookId).subscribe((data) => {
+      this.quantitySource.next(data);
+    }, (error: any) => {
+      console.log(error);
+      this.quantitySource.next(error);
+    });
+  }
+
+  onCartCount(){
+    this.cartService.cartCount().subscribe(data => {
+      this.cartCountSource.next(data);
+    },(error: any) => {
+      this.cartCountSource.next(error);
+    });
   }
 }
