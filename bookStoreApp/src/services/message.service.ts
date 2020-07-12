@@ -118,7 +118,6 @@ export class MessageService {
     this.cartService.updateQuantity(event.target.value, cartBookId).subscribe((data) => {
       this.quantitySource.next(data);
     }, (error: any) => {
-      console.log(error);
       this.quantitySource.next(error);
     });
   }
