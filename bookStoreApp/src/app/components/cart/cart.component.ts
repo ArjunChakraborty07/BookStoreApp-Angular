@@ -80,6 +80,9 @@ export class CartComponent implements OnInit ,OnChanges{
       localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
       this.messageService.cartBooks();
       this.messageService.onCartRefresh();
+      this.snackBar.open('Book Removed From Cart', 'ok', {
+        duration: 2000,
+      });
     } else {
       this.cartService.removeFromCart(cartBook.cartBookId).subscribe(
         (data: any) => {
@@ -139,6 +142,9 @@ export class CartComponent implements OnInit ,OnChanges{
         localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
         this.messageService.cartBooks();
         this.messageService.onCartRefresh();
+        this.snackBar.open('Book Quantity Increased', 'ok', {
+          duration: 2000,
+        });
       } else {
         this.snackBar.open('Cart is full', 'ok', { duration: 2000 });
       }
@@ -221,6 +227,9 @@ export class CartComponent implements OnInit ,OnChanges{
         localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
         this.messageService.cartBooks();
         this.messageService.onCartRefresh();
+        this.snackBar.open('Book Quantity Decreased', 'ok', {
+          duration: 2000,
+        });
       } else {
         this.snackBar.open('No Items In cart To remove quantity', 'ok', {
           duration: 2000,
@@ -273,8 +282,7 @@ export class CartComponent implements OnInit ,OnChanges{
     if(localStorage.getItem('token') === null && localStorage.getItem('cart') !== null) {
       this.quantity = 0;
       this.quantity = Number(event.target.value);
-      console.log(this.quantity);
-      if (this.quantity === 0 || event.target.value === '') {
+      if (this.quantity === 0 ) {
         this.snackBar.open('Cart Items Can not be less than one', 'cancel', {
           duration: 2000
         });
@@ -299,8 +307,12 @@ export class CartComponent implements OnInit ,OnChanges{
           localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
           this.messageService.cartBooks();
           this.messageService.onCartRefresh();
+          this.snackBar.open('Quantity Updated SuccessFully', 'ok', {
+            duration: 2000,
+          });
         } else {
-          this.cart.totalBooksInCart = this.cart.totalBooksInCart + this.quantity;
+          this.messageService.cartBooks();
+          this.messageService.onCartRefresh();
           this.snackBar.open('Cart Books Exceeded limit of 5 Books', 'ok', {
             duration:2000
           });
