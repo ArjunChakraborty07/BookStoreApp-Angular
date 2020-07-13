@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('mobile', response.data['mobileNumber']);
         localStorage.setItem('status', response.data['userStatus']);
         if (this.role1 === 3) {
-          this.router.navigate(['/dashboard']);
+          this.messageService.onRefresh();
           this.cartService.placeOrder(JSON.parse(localStorage.getItem('cart'))).subscribe((data: any) => {
             console.log('after token provided: ' + data);
             if (data.status === 200){
@@ -145,6 +145,7 @@ export class LoginComponent implements OnInit {
           }, (error: any) => {
             if (error.status === 417){
               this.messageService.cartBooks();
+              localStorage.removeItem('cart');
               this.snackBar.open(error.error.message, 'ok', {
                 duration: 2000
               });
@@ -153,7 +154,6 @@ export class LoginComponent implements OnInit {
               duration: 2000
             });
           });
-        
         }
         if (this.role1 === 1) {
           this.router.navigate(['admin-dashboard']);

@@ -1,13 +1,17 @@
 <div
-    style="
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-bottom: 2%;
-  "
+    class="main-div"
+    
     fxLayoutGap="40px"
-    ngClass.lt-md="main-div-lt-md"
-    fxLayout="row wrap">
+    fxLayout.lt-sm="column"
+    fxLayout.sm="row wrap"
+    fxLayoutAlign.sm="start center"
+    fxLayout.md="row wrap"
+    fxLayoutAlign.md="start center"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayout.lg="row wrap"
+    fxLayoutAlign.lg="start center"
+    fxLayout="row"
+    fxLayoutAlign="space-around center">
     <div *ngFor="let book of books" fxLayout="row">
         <mat-card>
             <div
@@ -101,7 +105,7 @@
             </div>
         </mat-card>
         <div class="book-details">
-            <h3>Book Description</h3>
+            <h3>Book Details</h3>
             <span>{{book.description}}</span>
         </div>
     </div>

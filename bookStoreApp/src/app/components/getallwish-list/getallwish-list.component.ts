@@ -24,7 +24,7 @@ export class GetallwishListComponent implements OnInit {
     private cartService: CartServiceService,) { }
 
   ngOnInit() {
-    this.messageService.currentMessage.subscribe(data =>{
+    this.messageService.currentUserMessage.subscribe(data =>{
     this.loadwishlist();
   });
 }
@@ -57,60 +57,69 @@ export class GetallwishListComponent implements OnInit {
     }
 
 
-  addToCart(book: Book) {
-    console.log(book);
-    if (localStorage.getItem('token') === null) {
-    this.cartBook = new CartBookModule();
-    this.cartBook.bookQuantity = 1;
-    if (localStorage.getItem('cart') === null) {
-      this.cart = new CartModule();
-      this.cart.totalBooksInCart = 0;
-     } else {
-       this.cart = JSON.parse(localStorage.getItem('cart'));
-       console.log(this.cart);
-     }
-    if (this.cart.totalBooksInCart < 5) {
-        this.cartBook.book = book;
-        this.cart.cartBooks.forEach(element => {
-          if (element.book.bookId === book.bookId) {
-            this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
-            this.cart.totalBooksInCart--;
-            this.snackBar.open('Item Already Added to Cart', 'ok', {duration: 2000});
-          }
-        });
-        this.cart.cartBooks.push(this.cartBook);
-        this.cart.totalBooksInCart ++;
-        localStorage.setItem('cart', JSON.stringify(this.cart));
-        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
-    } else {
-      this.snackBar.open('Your Cart is full', 'ok', {duration: 2000} );
-    }
-    } else {
-      this.cartService.addToCart(book.bookId).subscribe((data: any) => {
-        console.log(data);
-        if (data.status === 200) {
-          this.messageService.sendCartCounter(data.data.totalBooksInCart);
-          this.snackBar.open(data.message, 'ok', {
-            duration: 2000
-          });
-        } else if (data.status === 208) {
-          this.snackBar.open(data.message, 'ok', {
-            duration: 2000
-          });
-        }
-      }, (error: any) => {
-        if (error.status === 500) {
-          this.snackBar.open('Internal Server Error', 'ok', {
-            duration: 2000
-          });
+    addToCart(book: Book) {
+      console.log(book);
+      if (localStorage.getItem('token') === null) {
+        this.cartBook = new CartBookModule();
+        this.cartBook.bookQuantity = 1;
+        if (localStorage.getItem('cart') === null) {
+          this.cart = new CartModule();
+          this.cart.totalBooksInCart = 0;
         } else {
-          this.snackBar.open(error.error.message, 'ok', {
-            duration: 2000
-          });
+          this.cart = JSON.parse(localStorage.getItem('cart'));
+          console.log(this.cart);
         }
-      });
-     }
-  }
+        if (this.cart.totalBooksInCart < 5) {
+          this.cartBook.book = book;
+          this.cartBook.totalBookPrice = Number(book.price);
+          this.cart.cartBooks.forEach((element) => {
+            if (element.book.bookId === book.bookId) {
+              this.cart.cartBooks.splice(this.cart.cartBooks.indexOf(element), 1);
+              this.cart.totalBooksInCart--;
+              this.snackBar.open('Book Already Added to Cart', 'ok', {
+                duration: 2000,
+              });
+            }
+          });
+          this.cart.cartBooks.push(this.cartBook);
+          this.cart.totalBooksInCart++;
+          localStorage.setItem('cart', JSON.stringify(this.cart));
+          this.snackBar.open('Book Added to Cart', 'ok', { duration: 2000 });
+          localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
+          this.messageService.onRefresh();
+        } else {
+          this.snackBar.open('Your Cart is full', 'ok', { duration: 2000 });
+        }
+      } else {
+        this.cartService.addToCart(book.bookId).subscribe(
+          (data: any) => {
+            console.log(data);
+            if (data.status === 200) {
+              this.messageService.onRefresh();
+              localStorage.setItem('cartSize', data.data.totalBooksInCart);
+              this.snackBar.open(data.message, 'ok', {
+                duration: 2000,
+              });
+            } else if (data.status === 208) {
+              this.snackBar.open(data.message, 'ok', {
+                duration: 2000,
+              });
+            }
+          },
+          (error: any) => {
+            if (error.status === 500) {
+              this.snackBar.open('Internal Server Error', 'ok', {
+                duration: 2000,
+              });
+            } else {
+              this.snackBar.open(error.error.message, 'ok', {
+                duration: 2000,
+              });
+            }
+          }
+        );
+      }
+    }
 
 
 

@@ -202,3 +202,13 @@ mat-card:hover + .book-details {
     width: 100%;
   }
 }
+@media only screen and (min-width: 3000) {
+  .main-div {
+    background-color: green($color: #000000);
+    padding-left: 15%;
+    padding-right: 10%;
+    padding-bottom: 2%;
+    flex-flow: row wrap;
+    width: 100%;
+  }
+}

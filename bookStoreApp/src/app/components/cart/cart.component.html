@@ -74,15 +74,15 @@
               >remove</mat-icon
             >
           </button>
-          <input
-            mat-input
-            type="number"
-            readonly
-            max="5"
-            min="1"
-            value="{{ cartBook.bookQuantity }}"
-            class="quantity-field"
-          />
+            <input
+              mat-input
+              type="number"
+              (input)="onKey($event,cartBook)"
+              max="5"
+              min="1"
+              value="{{ cartBook.bookQuantity }}"
+              class="quantity-field"
+            />
           <button
             mat-mini-fab
             class="button-plus"
@@ -140,9 +140,9 @@
               formControlName="name"
               id="name"
               required
-            #Myname
-            (input)="Myname.value"
-            style="background: none;"
+              #Myname
+              (input)="(Myname.value)"
+              style="background: none;"
             /> </mat-form-field
           ><br /><br />
 
@@ -156,7 +156,7 @@
                 id="phone"
                 required
                 #Myphn
-                (input)="Myphn.value"
+                (input)="(Myphn.value)"
                 style="background: none;"
               /> </mat-form-field
             ><br /><br />
@@ -170,12 +170,12 @@
               id="pincode"
               required
               #Mypin
-              (input)="Mypin.value"
+              (input)="(Mypin.value)"
               style="background: none;"
             />
           </mat-form-field>
 
-         <div class="row1">
+          <div class="row1">
             <mat-form-field appearance="outline">
               <mat-label>Locality</mat-label>
               <input
@@ -185,7 +185,7 @@
                 id="locality"
                 required
                 #Mylocal
-                (input)="Mylocal.value"
+                (input)="(Mylocal.value)"
                 style="background: none;"
               /> </mat-form-field
             ><br /><br />
@@ -199,10 +199,10 @@
               formControlName="address"
               required
               #Myaddr
-              (input)="Myaddr.value"
+              (input)="(Myaddr.value)"
               style="background: none;"
-            ></textarea></mat-form-field
-          >
+            ></textarea>
+          </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
             <input
@@ -212,7 +212,7 @@
               id="city"
               required
               #Mycity
-              (input)="Mycity.value"
+              (input)="(Mycity.value)"
               style="background: none;"
             /> </mat-form-field
           ><br />
@@ -225,13 +225,13 @@
                 formControlName="landmark"
                 id="landmark"
                 required
-               #landmark
-               (input)="landmark.value"
-               style="background: none;"
+                #landmark
+                (input)="(landmark.value)"
+                style="background: none;"
               />
             </mat-form-field>
           </div>
-         <!-- <div class="row2">
+          <!-- <div class="row2">
             <mat-form-field appearance="outline">
               <mat-label>LandMark</mat-label>
               <input
@@ -307,7 +307,6 @@
           fxLayoutAlign="center center"
           [disableRipple]="true"
           *ngIf="disp"
-
         >
           <span style="font-size: small; height: 10px; color: white;"
             >CHECK OUT</span

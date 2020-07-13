@@ -14,8 +14,9 @@ export class AdminComponent implements OnInit {
               private messageService: MessageService) { }
 
   ngOnInit() {
-    this.messageService.adminBookMessage();
-    this.messageService.adminSellerMessage();
+
+      this.messageService.adminBookMessage();
+      this.messageService.adminSellerMessage();
   }
   onLogout() {
    this.service.logout().subscribe();

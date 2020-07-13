@@ -20,6 +20,7 @@ export class GetallbooksComponent implements OnInit {
   countResult: any;
   books = [];
   cart: CartModule;
+  data: any;
   cartBook: CartBookModule;
 
   constructor(
@@ -32,34 +33,41 @@ export class GetallbooksComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
-    // this.messageService.getCartCounter();
-    // this.messageService.currentData.subscribe(cartSize =>)
-
-    this.messageService.currentUserMessage.subscribe((data) => {
-      this.books = [];
-      console.log(data);
-      this.loadAllBooks(data);
+    this.messageService.cartMessage.subscribe((data: any) => {
+      this.displayBooksInCart(data);
     });
-    this.messageService.sendCartCounter(this.cart.totalBooksInCart);
-    // this.messageService.currentData.subscribe(cartSize =>{
-    //   this.cartSize = cartSize;
-    // });
   }
 
-  onFormSubmit() {
-    this.messageService.changeoptionMessage1();
+  displayBooksInCart(data) {
+      if (data.status === 200) {
+        this.cart = data.data;
+      }
+      this.messageService.currentUserMessage.subscribe((data) => {
+            this.books = [];
+            this.loadAllBooks(data);
+          });
+  }
+  
+ 
+  onChange(value){
+    if(value=='high'){
     this.messageService.changeoptionMessage();
+  }
+  else{
+    if(value=='low'){
+      this.messageService.changeoptionMessage1();
+      }
+    }
   }
 
   private loadAllBooks(data) {
-    console.log(data);
     if (data.status === 200) {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
-      this.snackBar.open(data.message, 'ok', {
-        duration: 2000,
-      });
+      // this.snackBar.open(data.message, 'ok', {
+      //   duration: 2000,
+      // });
     }
   }
 
@@ -72,6 +80,13 @@ export class GetallbooksComponent implements OnInit {
     let addedTocart = false;
     if (localStorage.getItem('cart') !== null) {
       this.cart = JSON.parse(localStorage.getItem('cart'));
+      this.cart.cartBooks.forEach((element) => {
+        if (element.book.bookId === bookId) {
+          addedTocart = true;
+        }
+      });
+    }
+    if (localStorage.getItem('token') !== null) {
       this.cart.cartBooks.forEach((element) => {
         if (element.book.bookId === bookId) {
           addedTocart = true;
@@ -106,12 +121,12 @@ export class GetallbooksComponent implements OnInit {
         bookauthor: book.authorName,
         bookprice: book.price,
         bookinfo: book.description,
+        bookImage: book.imageURL
       },
     });
   }
 
   addToCart(book: Book) {
-    console.log(book);
     if (localStorage.getItem('token') === null) {
       this.cartBook = new CartBookModule();
       this.cartBook.bookQuantity = 1;
@@ -120,7 +135,6 @@ export class GetallbooksComponent implements OnInit {
         this.cart.totalBooksInCart = 0;
       } else {
         this.cart = JSON.parse(localStorage.getItem('cart'));
-        console.log(this.cart);
       }
       if (this.cart.totalBooksInCart < 5) {
         this.cartBook.book = book;
@@ -138,19 +152,18 @@ export class GetallbooksComponent implements OnInit {
         this.cart.totalBooksInCart++;
         localStorage.setItem('cart', JSON.stringify(this.cart));
         this.snackBar.open('Book Added to Cart', 'ok', { duration: 2000 });
-        this.messageService.onCartCount();
-        this.messageService.sendCartCounter(this.cart.totalBooksInCart);
+        localStorage.setItem('cartSize', String(this.cart.totalBooksInCart));
+        this.messageService.onRefresh();
       } else {
         this.snackBar.open('Your Cart is full', 'ok', { duration: 2000 });
       }
     } else {
       this.cartService.addToCart(book.bookId).subscribe(
         (data: any) => {
-          console.log(data);
           if (data.status === 200) {
-            console.log(data.data);
-            this.messageService.onGetAllBooks();
-            this.messageService.sendCartCounter(data.data.totalBooksInCart);
+            localStorage.setItem('cartSize', data.data.totalBooksInCart);
+            this.messageService.cartBooks();
+            this.messageService.onCartCount();
             this.snackBar.open(data.message, 'ok', {
               duration: 2000,
             });

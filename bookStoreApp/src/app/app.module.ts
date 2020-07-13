@@ -64,6 +64,7 @@ import { BookReviewComponent } from './components/book-review/book-review.compon
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { VericationSuccessPageComponent } from './components/verication-success-
     MatProgressSpinnerModule,
     MatTableModule,
     MatBadgeModule,
+    NgxSpinnerModule,
   ],
 
   entryComponents: [

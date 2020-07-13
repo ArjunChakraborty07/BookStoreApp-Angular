@@ -17,6 +17,20 @@
 .pic:hover {
   color: blanchedalmond;
 }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:black;
+  color: white;
+  height: 40px;
+  padding-left: 17%;
+  font-size: 16px;
+
+}
+
+
 
 .left {
   float: right;
@@ -85,11 +99,12 @@ span {
   margin-left: 250px;
 }
 .cart {
-  margin-left: 10%;
+  margin-left: 4%;
   padding-right: 5%;
   background-color: none;
   outline: none;
   color: aliceblue;
+  margin-right: 3%;
 }
 .login {
   margin-left: 6%;
@@ -98,7 +113,7 @@ span {
   color: aliceblue;
 }
 .profile {
-  margin-left: 50%;
+  margin-left: 8px;
 }
 ::ng-deep .profilemenu {
   width: 300px;
@@ -178,14 +193,10 @@ span {
   color: black;
 }
 // -------------------------------------------------------------------------------
-.search-mat-card {
-  margin-left: 2%;
-  width: 40%;
-  height: 60%;
-  padding: 0px;
-}
+
 .tool {
   width: 100%;
+  height: 64px;
   background-color: #a03037;
   top: 0;
   position: fixed;
@@ -193,9 +204,60 @@ span {
 }
 
 .titleText {
-  margin-left: 9%;
+  margin-left: 6%;
   color: white;
+  margin-right: 3%;
 }
+@media only screen and (max-width: 720px) {
+  .titleText {
+    font-size: 15px;
+    margin-left: -2%;
+    color: white;
+    margin-right: 16px;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 720px) {
+  .search-mat-card{
+    margin-right: 10px;  
+    width: 30px;
+   } 
+}
+@media only screen and (max-width: 720px) {
+  .cart{
+    font-size: 14px;
+    margin-right: 25px;
+  }
+}
+
+
+@media only screen and (max-width: 720px) {
+  .mat-icon{
+  font-size: 18px;
+}
+}
+
+@media only screen and (max-width: 720px) {
+.searchInput{
+ margin-left: -15px;
+
+}
+}
+@media only screen and (max-width: 720px) {
+.searchIcon{
+  font-size: 17px;
+  margin-right: 3px;
+}
+}
+
+
+
+
+
+
 .searchIcon {
   opacity: 0.5;
   color: black;
@@ -214,9 +276,9 @@ span {
   color: dimgrey;
 }
 .search-mat-card {
-  margin-left: 2%;
-  width: 40%;
-  height: 60%;
+  margin-left: -3%;
+  width: 50%;
+  height: 54%;
   padding: 0px;
 }
 button {
