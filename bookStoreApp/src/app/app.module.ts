@@ -121,7 +121,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatProgressSpinnerModule,
     MatTableModule,
     MatBadgeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
 
   entryComponents: [
