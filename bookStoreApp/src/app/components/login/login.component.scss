@@ -18,6 +18,7 @@
 
 .mat-toolbar {
   background-color: rgb(179, 59, 59);
+  color: white;
 }
 .title-center {
   flex: 1 1 auto;
@@ -56,22 +57,19 @@
   margin-left:45%;
   color: rgb(179, 59, 59);
 }
-
 input[type=text] {
  background-color:whitesmoke;
 }
-
-
-.a{
+.a
+{
   font-size: medium;
   text-decoration: none;
  }
-
 .mat-raised-button {
   margin-top: 10px;
   background-color: rgb(179, 59, 59);
   color: aliceblue;
-  margin-left: 50px;
+  //margin-left: 50px;
   }
 .left
 {
@@ -129,3 +127,7 @@ input[type=text] {
   //margin-left: 50%;
   //opacity: 0;
 }*/
+.loginbutton
+{
+  margin-left: 40%;
+}

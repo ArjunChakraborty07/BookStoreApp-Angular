@@ -74,15 +74,15 @@
               >remove</mat-icon
             >
           </button>
-          <input
-            mat-input
-            type="number"
-            readonly
-            max="5"
-            min="1"
-            value="{{ cartBook.bookQuantity }}"
-            class="quantity-field"
-          />
+            <input
+              mat-input
+              type="number"
+              (input)="onKey($event,cartBook)"
+              max="5"
+              min="1"
+              value="{{ cartBook.bookQuantity }}"
+              class="quantity-field"
+            />
           <button
             mat-mini-fab
             class="button-plus"
@@ -125,7 +125,8 @@
   <!-- </div> -->
   <!-- <div> -->
   <mat-card class="form">
-    Customer Details
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Customer Details
+    <span fxLayoutAlign="end" *ngIf="show" (click)="onedit()">Edit</span>
     <ng-container *ngIf="show">
       <div style="margin: 0 auto; text-align: left;">
         <br />
@@ -248,10 +249,9 @@
 
           <br /><br />
           <mat-radio-group fxLayoutGap="5%" formControlName="type" required>
-            <mat-radio-button class="" value="home">Home</mat-radio-button>
-            <mat-radio-button value="work">Work</mat-radio-button>
-            <mat-radio-button value="other"
-              >Other</mat-radio-button
+            <mat-radio-button class="" value="home" (change)="selectAddrType($event)">Home</mat-radio-button>
+            <mat-radio-button value="work" (change)="selectAddrType($event)">Work</mat-radio-button>
+            <mat-radio-button value="other" (change)="selectAddrType($event)">Other</mat-radio-button
             > </mat-radio-group
           ><br /><br />
 

@@ -63,6 +63,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
 import { BookReviewComponent } from './components/book-review/book-review.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
@@ -94,6 +95,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MyordersComponent,
     BookReviewComponent,
     GetallwishListComponent,
+    VericationSuccessPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +123,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatProgressSpinnerModule,
     MatTableModule,
     MatBadgeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
 
   entryComponents: [
