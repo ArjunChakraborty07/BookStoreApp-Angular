@@ -126,6 +126,7 @@
   <!-- <div> -->
   <mat-card class="form">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Customer Details
+    <span fxLayoutAlign="end" *ngIf="show" (click)="onedit()">Edit</span>
     <ng-container *ngIf="show">
       <div style="margin: 0 auto; text-align: left;">
         <br />

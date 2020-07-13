@@ -21,7 +21,6 @@
             <small class="text-danger" *ngIf="name.hasError('minlength')">Min 3 chars</small>
             <small class="text-danger" *ngIf="name.hasError('pattern')">Only alphabet are allowed</small>
         </div>
-        <!--{{name.valid}}{{name.touched}}{{name.dirty}}{{name.invalid}}{{name.untouched}}{{name.pristine}}-->
 
         <mat-form-field appearance="outline">
             <mat-label>Email Id</mat-label>
@@ -30,7 +29,7 @@
         </mat-form-field>
         <div *ngIf="email.hasError &&(email.invalid || email.touched)">
             <small class="text-danger" *ngIf="email.hasError('required') && email.touched">mail is required</small>
-            <small class="text-danger" *ngIf="email.hasError('pattern') && email.dirty">enter valid mail</small>
+            <small class="text-danger" *ngIf="email.hasError('pattern') && email.dirty && email.invalid">enter valid mail</small>
         </div>
 
         <mat-form-field appearance="outline">
@@ -41,7 +40,7 @@
         <div *ngIf="username.hasError && (username.invalid && username.touched)">
             <small class="text-danger" *ngIf="username.hasError('required') && username.touched">User name is required</small>
             <small class="text-danger" *ngIf="username.hasError('minlength')">Minimum 8 charecters</small>
-            <small class="text-danger" *ngIf="username.hasError('pattern')">User name must start with capital & 1 number,1 symbol</small>
+            <small class="text-danger" *ngIf="username.hasError('pattern') && username.invalid">User name must start with capital & 1 number,1 symbol</small>
         </div>
 
         <mat-form-field appearance="outline">
@@ -56,7 +55,7 @@
         <div *ngIf="password.hasError && (password.invalid || password.touched)">
             <small class="text-danger" *ngIf="password.hasError('required') && password.touched">password is required</small>
             <small class="text-danger" *ngIf="password.hasError('minlength')">Min 8 chars</small>
-            <small class="text-danger" *ngIf="password.hasError('pattern')">Must start with Capital and must contain 1 num,1 special symbol</small>
+            <small class="text-danger" *ngIf="password.hasError('pattern') && password.invalid">Must start with Capital and must contain 1 num,1 special symbol</small>
         </div>
 
         <mat-form-field appearance="outline">

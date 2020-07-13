@@ -166,22 +166,6 @@ export class CartComponent implements OnInit {
     // });
   }
   continue() {
-    const data={
-      name:this.addressGroup.get('name').value,
-      phoneNumber:this.addressGroup.get('phone').value,
-      pincode:this.addressGroup.get('pincode').value,
-      locality:this.addressGroup.get('locality').value,
-      address:this.addressGroup.get('address').value,
-      city:this.addressGroup.get('city').value,
-      landmark:this.addressGroup.get('landmark').value,
-      addressType:this.addressGroup.get('type').value
-    };
-    this.userService.Address(data).subscribe((result:any)=>{
-      if(result.status==200)
-      {
-        this.snackBar.open('address added','ok',{duration:5000});
-      }
-    });
     this.cartService.displayBooksInCart().subscribe((response: any) => {
       console.log('book in cart:', response);
       this.bookSum = response.data.cartBooks;
@@ -242,6 +226,22 @@ export class CartComponent implements OnInit {
     }
   }
   onCheckOut() {
+    const data={
+      name:this.addressGroup.get('name').value,
+      phoneNumber:this.addressGroup.get('phone').value,
+      pincode:this.addressGroup.get('pincode').value,
+      locality:this.addressGroup.get('locality').value,
+      address:this.addressGroup.get('address').value,
+      city:this.addressGroup.get('city').value,
+      landmark:this.addressGroup.get('landmark').value,
+      addressType:this.addressGroup.get('type').value
+    };
+    this.userService.Address(data).subscribe((result:any)=>{
+      if(result.status==200)
+      {
+        this.snackBar.open('address added','ok',{duration:5000});
+      }
+    });
     this.userService.onCheckOut().subscribe(
       (data) => {
         if (data.status === 200) {
@@ -312,6 +312,12 @@ export class CartComponent implements OnInit {
     this.addressGroup.get('city').setValue(addr.city);
     this.addressGroup.get('landmark').setValue(addr.landmark);
     this.addressGroup.get('type').setValue(addr.addressType);
+    this.addressGroup.disable();
+  }
+  onedit()
+  {
+    console.log("to enable fiedls");
+    this.addressGroup.enable();
   }
   selectAddrType(event:any)
   {

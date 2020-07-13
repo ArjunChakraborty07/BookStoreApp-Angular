@@ -60,20 +60,20 @@
             <button mat-button disableRipple onclick="this.blur()" style="outline:none;" (click)="opendialogforforgotpassowrd()">forgot password?</button>
           </div>
           <div>
-            <mat-radio-group formControlName="userroles" #roleselected><br/>
+            <mat-radio-group formControlName="userroles" #roleselected>
               <mat-radio-button class="firstRadiobutton" value="vendor">vendor</mat-radio-button>
               <mat-radio-button value="customer">customer</mat-radio-button>
               <mat-error *ngIf="LoginForm.get('userroles').hasError('required') && roleselected.touched">*role is required</mat-error><br/>
             </mat-radio-group>
           </div>
-          <div class="left"><br>
+          <div class="left">
             <button mat-button  mat-dialog-close onclick="this.blur()" style="outline: none;" [routerLink]="['/register']">Sign up</button>
             <div *ngIf="popup; then navigate;else popupbtn"></div>
             <ng-template #navigate>
-              <button mat-raised-button  (click)="onSubmit()" type="submit">Login</button>
+              <button mat-raised-button class="loginbutton" (click)="onSubmit()" type="submit">Login</button>
             </ng-template>
             <ng-template #popupbtn>
-              <button mat-raised-button mat-dialog-close (click)="onSubmit()" type="submit">Login</button>
+              <button mat-raised-button mat-dialog-close class="loginbutton" (click)="onSubmit()" type="submit">Login</button>
             </ng-template>
           </div>
         </form>
