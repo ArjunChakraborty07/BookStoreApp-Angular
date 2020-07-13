@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { BookService } from 'src/services/book.service';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../getallbooks/getallbooks.component';
 
@@ -12,11 +11,5 @@ export class ViewWishlistComponent implements OnInit {
 
 constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  ngOnInit() {
- 
-  }
-
-
-
- 
+  ngOnInit() {}
 }
