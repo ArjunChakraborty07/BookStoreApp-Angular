@@ -22,6 +22,7 @@ import { GetallbooksComponent } from './components/getallbooks/getallbooks.compo
 import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.component';
 import { MyordersComponent } from './components/myorders/myorders.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
+import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'verification/:token', component: VerificationComponent },
   { path: 'resetpassword/:token', component: ResetPasswordComponent },
+  { path:'verificationSuccess/:token',component:VericationSuccessPageComponent},
   { path: 'admin-dashboard/sellers', component: GetAllSellersComponent },
   { path: 'successPage', component: SuccessPageComponent },
   { path: 'viewWishList', component: ViewWishlistComponent },

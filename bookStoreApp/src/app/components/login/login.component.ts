@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
       //console.log(error);
       this.loading = false;
      // if (error.status === 400) {
-        this.snackBar.open('Oops! Failed,provide valid credidentals', 'ok', { duration: 2000 });
+        this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
      // }
     });
   }

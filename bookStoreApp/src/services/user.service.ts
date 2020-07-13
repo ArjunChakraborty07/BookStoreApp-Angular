@@ -72,4 +72,12 @@ private orderCheckoutApi = 'orders/checkOut'
     console.log("address in user service:",data);
     return this.http.POST('address/addAddress',data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
   }
+  getAddress(addresstype)
+  {
+    return this.http.GET('address/getAddressByType',{params: new HttpParams().set('addressType', addresstype),headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
+  }
+  verifyUser(token:string)
+  {
+    return this.http.GET('users/verify',{params:new HttpParams().set('token',token)});
+  }
 }

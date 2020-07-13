@@ -57,7 +57,7 @@
           <mat-error *ngIf="LoginForm.get('password').hasError('maxlength')">provide password less than 12 characters</mat-error> 
           </mat-form-field>
           <div class="right">
-            <button mat-button  style="outline:none;" (click)="opendialogforforgotpassowrd()">forgot password?</button>
+            <button mat-button disableRipple onclick="this.blur()" style="outline:none;" (click)="opendialogforforgotpassowrd()">forgot password?</button>
           </div>
           <div>
             <mat-radio-group formControlName="userroles" #roleselected><br/>
@@ -67,7 +67,7 @@
             </mat-radio-group>
           </div>
           <div class="left"><br>
-            <button mat-button  mat-dialog-close [routerLink]="['/register']">Sign up</button>
+            <button mat-button  mat-dialog-close onclick="this.blur()" style="outline: none;" [routerLink]="['/register']">Sign up</button>
             <div *ngIf="popup; then navigate;else popupbtn"></div>
             <ng-template #navigate>
               <button mat-raised-button  (click)="onSubmit()" type="submit">Login</button>

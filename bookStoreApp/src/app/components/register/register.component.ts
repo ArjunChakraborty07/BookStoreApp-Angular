@@ -13,15 +13,18 @@ import {LoginComponent} from '../login/login.component';
 })
 export class RegisterComponent implements OnInit {
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  number1:boolean;
+  symbol1:boolean;
+  email = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9][a-zA-Z0-9_.]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+')]);
   name = new FormControl('', Validators.compose([
     Validators.required,
-    Validators.minLength(8),
-    Validators.pattern('^[A-Z][a-z]+\\s?[A-Z][a-z]+$')
+    Validators.minLength(3),
+    Validators.pattern('^[a-zA-z]+([\\s][a-zA-Z]+)*$')
   ]));
   phone = new FormControl('', Validators.compose([
     Validators.required,
     Validators.minLength(10),
+    Validators.maxLength(10),
     Validators.pattern('(0|9)?[7-9][0-9]{9}')
   ]));
   password = new FormControl('', Validators.compose([
@@ -43,7 +46,8 @@ export class RegisterComponent implements OnInit {
     private EncrDecr: EncrDecrService,
     private router: Router,
     private dialog:MatDialog,
-    private snackbar:MatSnackBar) {  }
+    private snackbar:MatSnackBar)
+    {}
 
   ngOnInit() { }
 

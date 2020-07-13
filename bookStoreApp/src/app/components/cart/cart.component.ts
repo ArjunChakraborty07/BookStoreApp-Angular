@@ -160,6 +160,7 @@ export class CartComponent implements OnInit {
       this.dialog.open(LoginComponent);
     }
     this.show = true;
+    this.checkAddressExistornot();
     // this.snackBar.open('Order Placed', 'ok', {
     //   duration: 2000
     // });
@@ -275,5 +276,53 @@ export class CartComponent implements OnInit {
   }
   onShowNow() {
     this.route.navigate(['/dashboard/getallbooks']);
+  }
+  checkAddressExistornot()
+  {
+      this.userService.getAddress('home').subscribe((result:any)=>{
+          if(result.status==200)
+          {
+            console.log("Entered to get home address");
+            console.log("home address:",result)
+            this.addAddress(result.data);
+          }
+        },
+        (error=>{
+          console.log("Entered to get work address");
+          this.userService.getAddress('work').subscribe((response:any)=>{
+            if(response.status==200)
+            {
+              console.log("office Address:",response);
+              this.addAddress(response.data);
+            }
+          },
+          (error=>{
+            this.snackBar.open('you have not provided any address,Please fill your address','ok',{duration:5000});
+          }));
+      }));
+  }
+  addAddress(addr)
+  {
+    console.log("address in add address:",addr);
+    this.addressGroup.get('name').setValue(addr.name);
+    this.addressGroup.get('phone').setValue(addr.phoneNumber);
+    this.addressGroup.get('pincode').setValue(addr.pincode);
+    this.addressGroup.get('locality').setValue(addr.locality);
+    this.addressGroup.get('address').setValue(addr.address);
+    this.addressGroup.get('city').setValue(addr.city);
+    this.addressGroup.get('landmark').setValue(addr.landmark);
+    this.addressGroup.get('type').setValue(addr.addressType);
+  }
+  selectAddrType(event:any)
+  {
+    this.addressGroup.reset();
+    this.addressGroup.get('type').setValue(event.value);
+    this.userService.getAddress(event.value).subscribe((result:any)=>{
+      if(result.status==200)
+        this.addAddress(result.data);
+    },
+    (error: any) => {
+      this.snackBar.open(error.error.message, 'ok', { duration: 3000 });
+    });
   }
 }
