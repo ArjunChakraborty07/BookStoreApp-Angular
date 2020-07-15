@@ -2,10 +2,12 @@
     <mat-toolbar style="position: fixed ;z-index: 100;" class="tool" fxLayout="row" fxLayoutAlign="space-around center">
         <div>
                 <img class="content" src="../../../assets/images/education.svg" />
-                <span class="content"> BookStore</span>
+                <a class="content" style="color: aliceblue"
+                href="http://localhost:4200/admin-dashboard/sellers"
+                > BookStore</a>
         </div>
             
-            <span>Welcome Admin</span>
+            <span >Welcome Admin</span>
         <button  mat-icon-button style=" color: aliceblue; outline: none" matTooltip="Logout" (click)="onLogout()">
             <mat-icon >logout</mat-icon>
         </button>

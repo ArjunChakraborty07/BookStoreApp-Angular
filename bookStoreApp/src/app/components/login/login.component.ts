@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  title = 'Login';
+  title = 'Book Store Login';
   error = '';
   role1: Number;
   roles: Number;
@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
       //console.log(error);
       this.loading = false;
      // if (error.status === 400) {
-        this.snackBar.open('Oops! Failed,provide valid credidentals', 'ok', { duration: 2000 });
+        this.snackBar.open(error.error.message, 'ok', { duration: 2000 });
      // }
     });
   }
