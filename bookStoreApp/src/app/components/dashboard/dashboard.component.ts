@@ -53,8 +53,9 @@ export class DashboardComponent implements OnInit{
       this.usermail = localStorage.getItem('email');
       if (localStorage.getItem('image') != null) {
         this.profile = localStorage.getItem('image');
+      } else {
+        this.profile = './assets/images/user.png';
       }
-      
     }
     // tslint:disable-next-line: only-arrow-functions
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
