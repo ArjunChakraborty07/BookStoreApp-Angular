@@ -117,7 +117,7 @@ span {
 }
 ::ng-deep .profilemenu {
   width: 300px;
-  height: 335px;
+  height: 340px;
 }
 .mat-headline,
 .mat-subheading-1 {
@@ -160,7 +160,8 @@ span {
 .editbutton {
   background-color: rgb(179, 59, 59);
   color: white;
-  left: 40%;
+  left: 30%;
+  width: 50%;
 }
 #logout {
   left: 40%;

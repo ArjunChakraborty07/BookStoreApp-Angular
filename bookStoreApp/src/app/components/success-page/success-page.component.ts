@@ -13,8 +13,8 @@ export class SuccessPageComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private encrDecr: EncrDecrService) { }
-
-  orderId = parseInt(localStorage.getItem('orderId'), 4) * 7893;
+  id = localStorage.getItem('orderId');
+  orderId = parseInt(this.id, 4) * 7893;
   ngOnInit() {
 
   }
