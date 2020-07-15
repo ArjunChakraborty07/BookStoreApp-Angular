@@ -41,28 +41,31 @@ export class DashboardComponent implements OnInit{
     private messageService: MessageService,
     private cartService: CartServiceService
   ) {
-    this.profile = './assets/images/user.png';
     if (localStorage.getItem('token') === null) {
       this.login = false;
       console.log('not logged');
       this.profile = './assets/images/user.png';
     } else {
       console.log('logged in');
+      console.log('image:',localStorage.getItem('image'));
       this.login = true;
       this.username = localStorage.getItem('name');
       this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image') != null) {
+      if (localStorage.getItem('image')=='null') 
+      {
+        this.profile='./assets/images/user.png';
+      }
+      else
+      {
         this.profile = localStorage.getItem('image');
       }
       
     }
-    // tslint:disable-next-line: only-arrow-functions
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // Trick the Router into believing it's last link wasn't previously loaded
         this.router.navigated = false;
       }
     });
