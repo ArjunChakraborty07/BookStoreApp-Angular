@@ -131,6 +131,7 @@ mat-card:hover + .book-details {
 }
 .main-div {
   width: 100%;
+  padding-top: 80px;
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 2%;
@@ -211,4 +212,15 @@ mat-card:hover + .book-details {
     flex-flow: row wrap;
     width: 100%;
   }
+}
+.bookText {
+  font-size: 90%;
+  color: white;
+}
+.addBookButton {
+  color: white;
+  width: 15%;
+  background-color: #a03037;
+  // border-radius: 2vw;
+  outline: none;
 }
