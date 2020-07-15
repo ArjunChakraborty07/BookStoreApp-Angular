@@ -3,6 +3,7 @@ import { VendorService } from 'src/services/vendor.service';
 import { MessageService } from 'src/services/message.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { UpdateBookComponent } from '../update-book/update-book.component';
+import { AddBookComponent } from '../add-book/add-book.component';
 
 @Component({
   selector: 'app-display-books',
@@ -32,6 +33,11 @@ export class DisplayBooksComponent implements OnInit {
     this.dialog.open(UpdateBookComponent, {
       width: '600px',
       data: book,
+      panelClass: 'custom-modalbox',
+    });
+  }
+  openBookForm() {
+    this.dialog.open(AddBookComponent, {
       panelClass: 'custom-modalbox',
     });
   }

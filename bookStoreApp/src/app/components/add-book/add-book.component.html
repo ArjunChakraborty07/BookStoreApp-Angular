@@ -6,11 +6,10 @@
     <form [formGroup]="bookForm" fxLayout="column" (ngSubmit)="onFormSubmit()">
       <div fxLayoutAlign="space-between center">
         <mat-form-field appearance="outline" class="titleInput">
-          <mat-label>title</mat-label>
+          <mat-label>Title</mat-label>
           <input
             required
             matInput
-            placeholder="title"
             formControlName="bookName"
             autocomplete="off"
           />
@@ -19,11 +18,10 @@
           >
         </mat-form-field>
         <mat-form-field appearance="outline" class="authorInput">
-          <mat-label>author</mat-label>
+          <mat-label>Author</mat-label>
           <input
             required
             matInput
-            placeholder="author name..."
             formControlName="authorName"
             autocomplete="off"
           />
@@ -53,11 +51,10 @@
           <span matPrefix>₹&nbsp;</span>
         </mat-form-field>
         <mat-form-field appearance="outline" class="quantityInput">
-          <mat-label>quantity</mat-label>
+          <mat-label>Quantity</mat-label>
           <input
             matInput
             required
-            placeholder="quantity"
             type="number"
             min="1"
             autocomplete="off"
@@ -75,11 +72,10 @@
         </mat-form-field>
       </div>
       <mat-form-field appearance="outline">
-        <mat-label>description</mat-label>
+        <mat-label>Description</mat-label>
         <textarea
           required
           matInput
-          placeholder="description"
           style="overflow: hidden;"
           formControlName="description"
           autocomplete="off"
