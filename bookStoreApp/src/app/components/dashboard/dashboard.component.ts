@@ -58,8 +58,6 @@ export class DashboardComponent implements OnInit{
       else
       {
         this.profile = localStorage.getItem('image');
-      } else {
-        this.profile = './assets/images/user.png';
       }
     }
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
