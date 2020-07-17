@@ -9,6 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class BookService {
   private searchBookApi = '/sellers/search/';
+  private booksCountApi = '/sellers/booksCount'
   constructor(private http: HttpService) {}
 
   public getAllbooks(): Observable<any> {
@@ -54,6 +55,10 @@ public findByPage(findpage: string): Observable<any> {
   return this.http.GET('books/getBookByPage?pageNo='+ findpage, token);
 }
 
-
+  booksCount(): Observable<any> {
+    return this.http.GET(this.booksCountApi, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token'))
+    });
+  }
 
 }
