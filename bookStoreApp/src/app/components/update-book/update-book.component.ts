@@ -12,6 +12,7 @@ import { VendorService } from 'src/services/vendor.service';
 })
 export class UpdateBookComponent implements OnInit {
   book: any;
+  pageNum: number;
   constructor(
     private vendorService: VendorService,
     private messageService: MessageService,
@@ -29,7 +30,13 @@ export class UpdateBookComponent implements OnInit {
     this.vendorService
       .updateBook(this.updateBookForm.value, this.data.bookId)
       .subscribe((data) => {
-        this.messageService.changeMessage();
+        this.messageService.onBooksCount();
+        if (localStorage.getItem('pageNum') === null ){
+          this.pageNum = 1;
+      } else {
+          this.pageNum = Number(localStorage.getItem('pageNum'));
+      }
+        this.messageService.changeMessage(this.pageNum);
       });
   }
 }
