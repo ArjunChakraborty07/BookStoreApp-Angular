@@ -65,7 +65,8 @@ import { GetallwishListComponent } from './components/getallwish-list/getallwish
 import { MatProgressSpinnerModule } from '@angular/material';
 import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import {MatPaginatorModule} from '@angular/material'
+import {MatPaginatorModule} from '@angular/material';
+import { PaginationComponent } from './components/pagination/pagination.component'
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import {MatPaginatorModule} from '@angular/material'
     BookReviewComponent,
     GetallwishListComponent,
     VericationSuccessPageComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
