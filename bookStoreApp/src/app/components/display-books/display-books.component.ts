@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VendorService } from 'src/services/vendor.service';
 import { MessageService } from 'src/services/message.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, PageEvent } from '@angular/material';
 import { UpdateBookComponent } from '../update-book/update-book.component';
 import { AddBookComponent } from '../add-book/add-book.component';
 
@@ -12,7 +12,11 @@ import { AddBookComponent } from '../add-book/add-book.component';
 })
 export class DisplayBooksComponent implements OnInit {
   books = [];
-
+  pages = [];
+  totalPages: number;
+  pageSize = 8;
+  totalBooks: number;
+  pageNum: number;
   constructor(
     private vendorService: VendorService,
     private messageService: MessageService,
@@ -21,6 +25,17 @@ export class DisplayBooksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.messageService.booksCountMessage.subscribe((data) => {
+      this.totalBooks = 0;
+      this.onBooksCount(data);
+    });
+  }
+  onBooksCount(data) {
+    console.log(data);
+    if (data.status === 200) {
+      console.log(data.data);
+      this.totalBooks = data.data;
+    }
     this.messageService.currentMessage.subscribe((data) => {
       this.books = [];
       this.onDisplayBooks(data);
@@ -43,12 +58,19 @@ export class DisplayBooksComponent implements OnInit {
   }
 
   onDisplayBooks(data) {
-    console.log(data);
     if (data.status === 200) {
       data.data.forEach((bookData) => {
         this.books.push(bookData);
       });
-
+      this.pages = [];
+      this.totalPages = parseInt((this.totalBooks / this.pageSize).toFixed(), 10);
+      if (this.totalBooks > (this.totalPages * this.pageSize)) {
+        this.totalPages = this.totalPages + 1;
+      }
+      for (let i = 1 ; i <= this.totalPages; i++) {
+        this.pages.push(i);
+      }
+      console.log(this.pages);
       this.snackBar.open(data.message, 'ok', {
         duration: 2000,
       });
@@ -60,7 +82,14 @@ export class DisplayBooksComponent implements OnInit {
     this.vendorService.deleteBooks(bookId).subscribe(
       (data) => {
         if (data.status === 200) {
-          this.messageService.changeMessage();
+          this.messageService.onBooksCount();
+          if (localStorage.getItem('pageNum') === null ){
+            this.pageNum = 1;
+        } else {
+            this.pageNum = Number(localStorage.getItem('pageNum'));
+        }
+          this.messageService.onBooksCount();
+          this.messageService.changeMessage(this.pageNum);
           this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });
@@ -75,7 +104,8 @@ export class DisplayBooksComponent implements OnInit {
     this.vendorService.onApprove(bookId).subscribe(
       (data) => {
         if (data.status === 200) {
-          this.messageService.changeMessage();
+          this.messageService.onBooksCount();
+          this.messageService.changeMessage(1);
           this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });
@@ -87,5 +117,9 @@ export class DisplayBooksComponent implements OnInit {
         });
       }
     );
+  }
+  onBooksByPage(page) {
+    this.messageService.changeMessage(page);
+    localStorage.setItem('pageNum',page);
   }
 }
