@@ -11,8 +11,7 @@ import { EncrDecrService } from 'src/services/encr-decr.service';
 export class SuccessPageComponent implements OnInit {
 
 
-  constructor(public dialog: MatDialog,
-              private encrDecr: EncrDecrService) { }
+  constructor(public dialog: MatDialog) { }
   id = localStorage.getItem('orderId');
   orderId = parseInt(this.id, 4) * 7893;
   ngOnInit() {
