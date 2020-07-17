@@ -51,7 +51,8 @@ export class AddBookComponent implements OnInit {
     this.vendorService.addBook(this.book).subscribe(
       (data) => {
         if (data.status === 201) {
-          this.messageService.changeMessage();
+          this.messageService.changeMessage(1);
+          this.messageService.onBooksCount();
           this.snackBar.open(data.message, 'ok', {
             duration: 2000,
           });
