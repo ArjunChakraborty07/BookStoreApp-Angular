@@ -129,4 +129,18 @@ export class MessageService {
       this.cartCountSource.next(error);
     });
   }
+  
+  sendByPage(pageIndex) {
+    this.bookService.findByPage(pageIndex).subscribe((data) => {
+      this.userMessageSource.next(data);
+    });
+  }
+
+
+
+
+
+
+
+
 }

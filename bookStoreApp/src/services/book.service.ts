@@ -49,7 +49,10 @@ public sortbookByPriceDesc(): Observable<any> {
 public sortbookByPriceAsc(): Observable<any> {
   return this.http.GET('books/getBooksByPriceAsc', '');
 }
-
+public findByPage(findpage: string): Observable<any> {
+  const token = '';
+  return this.http.GET('books/getBookByPage?pageNo='+ findpage, token);
+}
 
 
 

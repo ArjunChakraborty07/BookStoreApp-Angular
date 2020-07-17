@@ -71,6 +71,7 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.messageService.onCartCount();
     if (localStorage.getItem('cartSize') !== null && localStorage.getItem('token') === null){
       this.cartCounter = Number(localStorage.getItem('cartSize'));
     } else if (localStorage.getItem('token') !== null ) {
@@ -81,7 +82,6 @@ export class DashboardComponent implements OnInit{
     }
     this.messageService.cartBooks();
     this.messageService.onGetAllBooks();
-    this.messageService.onCartCount();
   }
 
   cartCount(data){

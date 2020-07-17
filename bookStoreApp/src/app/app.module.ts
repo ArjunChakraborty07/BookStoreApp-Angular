@@ -65,6 +65,7 @@ import { GetallwishListComponent } from './components/getallwish-list/getallwish
 import { MatProgressSpinnerModule } from '@angular/material';
 import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {MatPaginatorModule} from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatTableModule,
     MatBadgeModule,
     NgxSpinnerModule,
+    MatPaginatorModule
   ],
 
   entryComponents: [
