@@ -59,7 +59,6 @@ export class DashboardComponent implements OnInit{
       {
         this.profile = localStorage.getItem('image');
       }
-      
     }
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
