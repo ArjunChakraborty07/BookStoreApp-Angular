@@ -17,7 +17,7 @@ export interface DialogData {}
   styleUrls: ['./getallbooks.component.scss'],
 })
 export class GetallbooksComponent implements OnInit {
-  pageEvent:PageEvent;
+  // pageEvent:PageEvent;
   pageIndex:number;
   countResult: any;
   books = [];
@@ -49,9 +49,8 @@ export class GetallbooksComponent implements OnInit {
             this.loadAllBooks(data);
           });
   }
-  getServerData(event?:PageEvent)
-  {
-    this.messageService.sendByPage(event.pageIndex);
+  getServerData(pageIndex:number){
+     this.messageService.sendByPage(pageIndex);
   }
 
     onChange(value){

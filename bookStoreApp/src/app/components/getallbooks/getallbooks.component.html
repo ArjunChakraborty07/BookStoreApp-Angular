@@ -108,12 +108,15 @@
         {{ book.description }}
       </div>
     </div>
-  </div>
-</div><br>
-<div class="paginator">
+  </div><br><br>
+  <app-pagination    [totalRecords]="23" [recordsPerPage]="8"  (page) = "getServerData($event)"></app-pagination>
+</div>
+<!-- <div class="paginator">
   <mat-paginator   #paginator [length] = "15"
     [pageIndex]="pageIndex"
      [pageSize] = "8"
      (page) = "getServerData($event)">
   </mat-paginator>
-  </div>
+  </div> -->
+
+
