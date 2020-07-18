@@ -16,14 +16,14 @@ export class VendorDashboardComponent implements OnInit {
   file: any;
   profile: string;
   isProfile = 'true';
-
+  pageNum: number;
   isProfileAvailable = false;
   login: boolean;
   username: string;
   usermail: string;
   updateStats: any;
   userProfile: any;
-
+  pageTemp = 1;
   constructor(
     private dialog: MatDialog,
     private messageService: MessageService,
@@ -32,7 +32,16 @@ export class VendorDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.messageService.changeMessage();
+    this.messageService.onBooksCount();
+    if(localStorage.getItem('pageNum') === null ){
+        console.log('In if ');
+        this.pageNum = 1;
+        console.log(this.pageNum);
+      } else{
+        console.log('In else');
+        this.pageNum = Number(localStorage.getItem('pageNum'));
+      }
+    this.messageService.changeMessage(this.pageNum);
     this.username = localStorage.getItem('name');
     this.usermail = localStorage.getItem('email');
     this.userProfile = localStorage.getItem('image');

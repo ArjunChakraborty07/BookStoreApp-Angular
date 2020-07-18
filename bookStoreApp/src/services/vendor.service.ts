@@ -23,9 +23,10 @@ export class VendorService {
     });
   }
 
-  displayBooks(): Observable<any> {
+  displayBooks(page): Observable<any> {
     return this.http.get(environment.baseUrl + this.displayBookApi, {
       headers: new HttpHeaders().set('token', localStorage.getItem('token')),
+      params: new HttpParams().set('pageNo',page)
     });
   }
 

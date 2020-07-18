@@ -94,17 +94,27 @@ input::-webkit-inner-spin-button {
 //   margin-top: 25%;
 // }
 
-.row {
-  float: right;
-  margin-top: -73px;
-  //margin-right: 120px;
-}
+// .row {
+//   float: right;
+//   margin-top: -73px;
+//   //margin-right: 120px;
+// }
 
+.row3 {
+  float: right;
+   margin-top: -74px;
+ 
+}
 .row1 {
   float: right;
-  margin-top: 1px;
- // margin-right: 120px;
+  margin-top: -50px;
+   // margin-right: 120px;
 }
+// .row1 {
+//   float: right;
+//   margin-top: 1px;
+//  // margin-right: 120px;
+// }
 .row2 {
   float: right;
   margin-top: -50px;
@@ -146,3 +156,32 @@ input::-webkit-inner-spin-button {
 .matInput{
   background: none;
 }
+
+
+
+@media only screen and (max-width: 720px) {
+  .form{
+    width: 240px;
+  }
+}
+
+ @media only screen and (max-width: 720px) {
+  .mat-form-field{
+    width: 100px;
+    height: 4px;  
+  
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .row3{
+    float: right;
+    margin-top:-74px;
+    
+  }
+}
+ @media only screen and (max-width: 720px) {
+ .mat-radio-group{
+font-size: 10px;
+ }
+ }

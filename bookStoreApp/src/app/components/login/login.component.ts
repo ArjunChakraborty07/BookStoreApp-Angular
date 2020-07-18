@@ -137,9 +137,9 @@ export class LoginComponent implements OnInit {
         if (this.role1 === 3) {
           this.messageService.onRefresh();
           this.cartService.placeOrder(JSON.parse(localStorage.getItem('cart'))).subscribe((data: any) => {
-            console.log('after token provided: ' + data);
             if (data.status === 200){
               this.messageService.cartBooks();
+              this.messageService.onCartCount();
               localStorage.removeItem('cart');
             }
           }, (error: any) => {

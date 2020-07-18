@@ -224,3 +224,38 @@ mat-card:hover + .book-details {
   // border-radius: 2vw;
   outline: none;
 }
+
+.paginator{
+  padding-top: 4%;
+}
+.page-buttons{
+  outline: none;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #E2E2E2;
+  opacity: 1;
+  color: black;
+  box-shadow: none;
+}
+.page-number{
+  height: 37px;
+  width: 37px;
+  border: none;
+  outline: none;
+  opacity: 0.5;
+  background-color: white;
+}
+.page-number:hover{
+  height: 37px;
+  width: 37px;
+  border: none;
+  outline: none;
+  opacity: 1;
+}
+.page-number:active{
+  height: 37px;
+  width: 37px;
+  border: none;
+  outline: none;
+  opacity: 1;
+  background-color: #8F2B2F ;
+}

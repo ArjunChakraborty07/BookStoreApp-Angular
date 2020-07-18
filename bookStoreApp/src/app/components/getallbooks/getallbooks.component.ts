@@ -3,7 +3,7 @@ import { first } from 'rxjs/operators';
 import { BookService } from 'src/services/book.service';
 import { AdminService } from 'src/services/admin.service';
 import { Book } from 'src/models/book.model';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, PageEvent } from '@angular/material';
 import { CartServiceService } from 'src/services/cart.service';
 import { CartBookModule } from 'src/models/cart-book/cart-book.module';
 import { CartModule } from 'src/models/cart/cart.module';
@@ -17,6 +17,8 @@ export interface DialogData {}
   styleUrls: ['./getallbooks.component.scss'],
 })
 export class GetallbooksComponent implements OnInit {
+  // pageEvent:PageEvent;
+  pageIndex:number;
   countResult: any;
   books = [];
   cart: CartModule;
@@ -47,9 +49,11 @@ export class GetallbooksComponent implements OnInit {
             this.loadAllBooks(data);
           });
   }
-  
- 
-  onChange(value){
+  getServerData(pageIndex:number){
+     this.messageService.sendByPage(pageIndex);
+  }
+
+    onChange(value){
     if(value=='high'){
     this.messageService.changeoptionMessage();
   }
