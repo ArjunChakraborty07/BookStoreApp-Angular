@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
-import { Observable, interval, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { DashboardService } from 'src/services/dashboard.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from '../login/login.component';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { UserService } from 'src/services/user.service';
@@ -16,7 +15,7 @@ import { CartServiceService } from 'src/services/cart.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
   subscription: Subscription;
   data: any;
   isProfile = 'true';
@@ -34,33 +33,26 @@ export class DashboardComponent implements OnInit{
   mySubscription: any;
   constructor(
     private userService: UserService,
-    private service: DashboardService,
     private router: Router,
     public dialog: MatDialog,
     private Adminservice: AdminService,
     private messageService: MessageService,
-    private cartService: CartServiceService
+
   ) {
     if (localStorage.getItem('token') === null) {
       this.login = false;
-      console.log('not logged');
       this.profile = './assets/images/user.png';
     } else {
-      console.log('logged in');
-      console.log('image:',localStorage.getItem('image'));
       this.login = true;
       this.username = localStorage.getItem('name');
       this.usermail = localStorage.getItem('email');
-      if (localStorage.getItem('image')=='null') 
-      {
-        this.profile='./assets/images/user.png';
-      }
-      else
-      {
+      if (localStorage.getItem('image') === 'null') {
+        this.profile = './assets/images/user.png';
+      } else {
         this.profile = localStorage.getItem('image');
       }
     }
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
     this.mySubscription = this.router.events.subscribe((event) => {
@@ -72,11 +64,10 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit() {
     this.messageService.onCartCount();
-    if (localStorage.getItem('cartSize') !== null && localStorage.getItem('token') === null){
+    if (localStorage.getItem('cartSize') !== null && localStorage.getItem('token') === null) {
       this.cartCounter = Number(localStorage.getItem('cartSize'));
     } else if (localStorage.getItem('token') !== null ) {
       this.messageService.cartCountMessage.subscribe((data: any) => {
-        console.log(data);
         this.cartCount(data);
       });
     }
@@ -84,8 +75,8 @@ export class DashboardComponent implements OnInit{
     this.messageService.onGetAllBooks();
   }
 
-  cartCount(data){
-    if (data.status === 200){
+  cartCount(data) {
+    if (data.status === 200) {
       this.cartCounter = data.data;
     }
   }
@@ -96,7 +87,7 @@ export class DashboardComponent implements OnInit{
     localStorage.setItem('popup', 'false');
     const dialogConfig = new MatDialogConfig();
     dialogConfig.height = '75%';
-    const dialogRef = this.dialog.open(LoginComponent, {
+    this.dialog.open(LoginComponent, {
       panelClass: 'custom-modalbox',
     });
   }
@@ -119,34 +110,28 @@ export class DashboardComponent implements OnInit{
   }
   onLogin() {
     this.router.navigate(['/login']);
-    // this.cartCounter = Number(localStorage.getItem('cartSize'));
+
   }
   onsignup() {
     this.router.navigate(['/register']);
   }
   Logout() {
-    console.log('CAME TO LOGOUT');
     this.Adminservice.logout().subscribe();
     localStorage.clear();
-    console.log(localStorage.length);
     this.router.navigate(['/dashboard']);
   }
   OnSelectedFile(event) {
-    console.log(event.target.files[0]);
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
       const formData = new FormData();
       formData.append('file', this.file);
       this.file.inProgress = true;
-      console.log('FormData:', formData.get('file'));
       this.userService
         .uploadProfie(formData, this.isProfile)
         .subscribe((result: any) => {
-          console.log('PROFILE RESULT:', result);
           if (result.status === 200) {
             localStorage.setItem('image', result.data);
             this.profile = result.data;
-            console.log(this.profile);
           }
         });
     }

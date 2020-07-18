@@ -128,10 +128,14 @@ span {
 }
 .signup,
 .log {
-  width: 100%;
-  //background-color: rgb(179, 59, 59);
-  //color: white;
+  width: 50%;
+  
+ :hover{
+    background: none;
+  }
 }
+
+
 
 .fileuploadbtn {
   width: 0px;
@@ -158,14 +162,14 @@ span {
   padding-top: 13%;
 }
 .editbutton {
-  background-color: rgb(179, 59, 59);
-  color: white;
-  left: 30%;
+  //background-color: rgb(179, 59, 59);
+  color: black;
+  left: 25%;
   width: 50%;
 }
-#logout {
-  left: 40%;
-}
+// #logout {
+//   left: 0%;
+// }
 
 .divfooter {
   width: 1366px;
