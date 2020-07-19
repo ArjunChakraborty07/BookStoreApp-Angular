@@ -59,19 +59,16 @@
         />
       </div>
       <div class="usertext" fxLayout="column" fxLayoutAlign="center">
-        <span fxLayoutAlign="center" style="font-weight: bold;">{{
-          username
-        }}</span>
-        <span fxLayoutAlign="center" style="padding: 2%; font-weight: bold;">{{
-          usermail
-        }}</span>
+        <span fxLayoutAlign="center">{{ username }}</span>
+        <span fxLayoutAlign="center" style="padding: 2%;">{{ usermail }}</span>
       </div>
       <div fxLayout="column" fxLayoutGap="4%">
+        <mat-divider></mat-divider>
         <div fxLayoutAlign="center">
           <button
-            style="background-color: brown; color: white;"
+            style="color: black;"
             class="edit"
-            mat-raised-button
+            mat-button
             [disableRipple]="true"
             class="editbutton"
             (click)="openDialogztoedit()"
@@ -79,13 +76,13 @@
             Edit Profile
           </button>
         </div>
-
+        <mat-divider></mat-divider>
         <div class="logout" fxLayoutAlign="center">
           <button
-            id="logout"
-            mat-raised-button
+            mat-button
             [disableRipple]="true"
-            style="background-color: brown; color: white;"
+            id="logout"
+            style="color: black;"
             (click)="Logout()"
           >
             Sign Out
