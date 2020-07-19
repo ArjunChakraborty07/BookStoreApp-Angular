@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { AdminService } from 'src/services/admin.service';
+import { RejectionComponent } from '../rejection/rejection.component';
 
 @Component({
   selector: 'app-get-books-for-verification',
@@ -19,6 +20,7 @@ export class GetBooksForVerificationComponent implements OnInit {
   constructor(
     private service: AdminService,
     private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -39,7 +41,8 @@ export class GetBooksForVerificationComponent implements OnInit {
     });
   }
   onReject(book: any) {
-
+    this.dialog.open(RejectionComponent, {width: '30%'});
+    if (localStorage.getItem('reject') === 'reject') {
     this.service.verfy(book.bookId, localStorage.getItem('sellerId'), false).subscribe((data: any) => {
 
       this.snackBar.open(data.message, 'ok', { duration: 5000 });
@@ -47,5 +50,6 @@ export class GetBooksForVerificationComponent implements OnInit {
       this.click[book.bookId] = this.counter;
       this.verify[book.bookId] = 'false';
     });
+  }
   }
 }

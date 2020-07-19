@@ -66,7 +66,9 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatPaginatorModule} from '@angular/material';
-import { PaginationComponent } from './components/pagination/pagination.component'
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { RejectionComponent } from './components/rejection/rejection.component';
+
 
 @NgModule({
   declarations: [
@@ -99,6 +101,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     GetallwishListComponent,
     VericationSuccessPageComponent,
     PaginationComponent,
+    RejectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,6 +138,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ForgotPasswordComponent,
     ReviewComponent,
     BookReviewComponent,
+    RejectionComponent
   ],
 
   providers: [

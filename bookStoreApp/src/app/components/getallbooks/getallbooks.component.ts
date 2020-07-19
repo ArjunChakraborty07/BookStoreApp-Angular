@@ -18,7 +18,7 @@ export interface DialogData {}
 })
 export class GetallbooksComponent implements OnInit {
   // pageEvent:PageEvent;
-  pageIndex:number;
+  pageIndex: number;
   countResult: any;
   books = [];
   cart: CartModule;
@@ -49,16 +49,15 @@ export class GetallbooksComponent implements OnInit {
             this.loadAllBooks(data);
           });
   }
-  getServerData(pageIndex:number){
+  getServerData(pageIndex: number) {
      this.messageService.sendByPage(pageIndex);
   }
 
-    onChange(value){
-    if(value=='high'){
+    onChange(value) {
+    if (value === 'high') {
     this.messageService.changeoptionMessage();
-  }
-  else{
-    if(value=='low'){
+  } else {
+    if (value === 'low') {
       this.messageService.changeoptionMessage1();
       }
     }
@@ -100,7 +99,6 @@ export class GetallbooksComponent implements OnInit {
     return addedTocart;
   }
   onAddBookToWishList(bookId) {
-    console.log(bookId);
     this.bookservice.addToWishListBooks(bookId).subscribe(
       (data) => {
         if (data.status === 200) {

@@ -30,7 +30,7 @@ export class AdminService {
   verfy(bookId: any, sellerId: any, verification: any): Observable<any> {
     return this.http.PUT(
       'admin/bookVerification/' + bookId + '/' + sellerId + '/' + verification,
-      null,
+      localStorage.getItem('description'),
       {
         headers: new HttpHeaders().set('token', localStorage.getItem('token')),
       }
