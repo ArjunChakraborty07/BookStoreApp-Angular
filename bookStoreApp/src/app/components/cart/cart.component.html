@@ -61,9 +61,24 @@
           fxLayoutGap="2%"
           fxLayoutAlign="start center"
         >
+        <button
+        mat-mini-fab
+        class="button-minus"
+        *ngIf="cartBook.bookQuantity==1"
+        [disableRipple]="true"
+        [disabled]= "true"
+        fxLayoutAlign="center start"
+      >
+        <mat-icon
+          fxLayoutAlign="center center"
+          style="color: black; font-size: xx-small;"
+          >remove</mat-icon
+        >
+      </button>
           <button
             mat-mini-fab
             class="button-minus"
+            *ngIf="cartBook.bookQuantity>1"
             (click)="removeQuantity(cartBook)"
             [disableRipple]="true"
             fxLayoutAlign="center start"
@@ -288,7 +303,7 @@
           </div>
 
           <div
-            fxLayout="column"
+            fxLayout="column" 
             fxLayoutAlign="start start"
             class="book-details"
             fxLayoutGap="6%"
@@ -299,7 +314,8 @@
           </div>
         </div>
       </div>
-      <div fxLayoutAlign="end">
+      <div class="total-price" fxLayoutAlign="space-between center">
+        <span *ngIf="disp">  Total Price: Rs. {{totalPrice}}</span>
         <button
           mat-button
           (click)="onCheckOut()"
