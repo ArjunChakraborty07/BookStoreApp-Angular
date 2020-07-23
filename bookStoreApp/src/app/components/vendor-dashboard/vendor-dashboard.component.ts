@@ -33,14 +33,11 @@ export class VendorDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.messageService.onBooksCount();
-    if(localStorage.getItem('pageNum') === null ){
-        console.log('In if ');
+    if (localStorage.getItem('pageNum') === null ){
         this.pageNum = 1;
-        console.log(this.pageNum);
-      } else{
-        console.log('In else');
+    } else {
         this.pageNum = Number(localStorage.getItem('pageNum'));
-      }
+    }
     this.messageService.changeMessage(this.pageNum);
     this.username = localStorage.getItem('name');
     this.usermail = localStorage.getItem('email');
