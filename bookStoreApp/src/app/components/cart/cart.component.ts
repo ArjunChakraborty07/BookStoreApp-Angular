@@ -15,7 +15,7 @@ import { CartBookModule } from 'src/models/cart-book/cart-book.module';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent implements OnInit ,OnChanges{
+export class CartComponent implements OnInit , OnChanges {
   public show = false;
   public buttonName: any = 'Show';
   cartSize: number;
@@ -58,7 +58,7 @@ export class CartComponent implements OnInit ,OnChanges{
       localStorage.setItem('cartSize', String(this.cartSize));
     });
   }
-  ngOnChanges(){
+  ngOnChanges() {
     this.messageService.onCartRefresh();
   }
 
@@ -183,7 +183,7 @@ export class CartComponent implements OnInit ,OnChanges{
     this.cartService.displayBooksInCart().subscribe((response: any) => {
       console.log('book in cart:', response);
       this.bookSum = response.data.cartBooks;
-      this.bookSum.forEach(function (val) {
+      this.bookSum.forEach( function(val) {
         console.log('book1:', val);
         console.log('name:', val.book.bookName);
       });
@@ -244,20 +244,19 @@ export class CartComponent implements OnInit ,OnChanges{
     }
   }
   onCheckOut() {
-    const data={
-      name:this.addressGroup.get('name').value,
-      phoneNumber:this.addressGroup.get('phone').value,
-      pincode:this.addressGroup.get('pincode').value,
-      locality:this.addressGroup.get('locality').value,
-      address:this.addressGroup.get('address').value,
-      city:this.addressGroup.get('city').value,
-      landmark:this.addressGroup.get('landmark').value,
-      addressType:this.addressGroup.get('type').value
+    const data = {
+      name: this.addressGroup.get('name').value,
+      phoneNumber: this.addressGroup.get('phone').value,
+      pincode: this.addressGroup.get('pincode').value,
+      locality: this.addressGroup.get('locality').value,
+      address: this.addressGroup.get('address').value,
+      city: this.addressGroup.get('city').value,
+      landmark: this.addressGroup.get('landmark').value,
+      addressType: this.addressGroup.get('type').value
     };
-    this.userService.Address(data).subscribe((result:any)=>{
-      if(result.status==200)
-      {
-        this.snackBar.open('address added','ok',{duration:5000});
+    this.userService.Address(data).subscribe((result: any) => {
+      if (result.status === 200) {
+        this.snackBar.open('address added', 'ok', {duration: 5000});
       }
     });
     this.userService.onCheckOut().subscribe(
@@ -282,8 +281,8 @@ export class CartComponent implements OnInit ,OnChanges{
     this.route.navigate(['/dashboard/getallbooks']);
   }
 
-  onKey(event: any,cartBook: CartBookModule) {
-    if(localStorage.getItem('token') === null && localStorage.getItem('cart') !== null) {
+  onKey(event: any, cartBook: CartBookModule) {
+    if (localStorage.getItem('token') === null && localStorage.getItem('cart') !== null) {
       this.quantity = 0;
       this.quantity = Number(event.target.value);
       if (this.quantity === 0 ) {
@@ -296,7 +295,7 @@ export class CartComponent implements OnInit ,OnChanges{
         if ((this.cart.totalBooksInCart + this.quantity) < 6) {
           this.cart.cartBooks.forEach(element => {
             if (element.book.bookId === cartBook.book.bookId) {
-              if (Number(cartBook.book.quantity) > this.quantity){
+              if (Number(cartBook.book.quantity) > this.quantity) {
                 element.bookQuantity = this.quantity;
                 element.totalBookPrice = element.book.price * this.quantity;
                 this.cart.totalBooksInCart = this.cart.totalBooksInCart + this.quantity;
@@ -318,58 +317,54 @@ export class CartComponent implements OnInit ,OnChanges{
           this.messageService.cartBooks();
           this.messageService.onCartRefresh();
           this.snackBar.open('Cart Books Exceeded limit of 5 Books', 'ok', {
-            duration:2000
+            duration: 2000
           });
         }
       }
     }
-    if(localStorage.getItem('token') !== null){
+    if (localStorage.getItem('token') !== null) {
       this.messageService.onUpdateQuantity(event, cartBook.cartBookId);
     }
   }
 
-  onUpdateQuantity(data){
-    if(data.status === 200){
+  onUpdateQuantity(data) {
+    if (data.status === 200) {
       this.cartSize = data.totalBooksInCart;
       this.messageService.cartBooks();
       this.messageService.onCartCount();
       this.snackBar.open(data.message, 'ok', {
         duration: 2000
       });
-    } else if(data.status === 417){
+    } else if (data.status === 417) {
       this.messageService.cartBooks();
       this.snackBar.open(data.error.message, 'cancel', {
         duration: 2000
       });
     }
   }
-  checkAddressExistornot()
-  {
-      this.userService.getAddress('home').subscribe((result:any)=>{
-          if(result.status==200)
-          {
-            console.log("Entered to get home address");
-            console.log("home address:",result)
+  checkAddressExistornot() {
+      this.userService.getAddress('home').subscribe((result: any) => {
+          if (result.status === 200) {
+            console.log('Entered to get home address');
+            console.log('home address:', result);
             this.addAddress(result.data);
           }
         },
-        (error=>{
-          console.log("Entered to get work address");
-          this.userService.getAddress('work').subscribe((response:any)=>{
-            if(response.status==200)
-            {
-              console.log("office Address:",response);
+        (error => {
+          console.log('Entered to get work address');
+          this.userService.getAddress('work').subscribe((response: any) => {
+            if (response.status === 200) {
+              console.log('office Address:', response);
               this.addAddress(response.data);
             }
           },
-          (error=>{
-            this.snackBar.open('you have not provided any address,Please fill your address','ok',{duration:5000});
+          (error => {
+            this.snackBar.open('you have not provided any address,Please fill your address', 'ok', {duration: 5000});
           }));
       }));
   }
-  addAddress(addr)
-  {
-    console.log("address in add address:",addr);
+  addAddress(addr) {
+    console.log('address in add address:', addr);
     this.addressGroup.get('name').setValue(addr.name);
     this.addressGroup.get('phone').setValue(addr.phoneNumber);
     this.addressGroup.get('pincode').setValue(addr.pincode);
@@ -380,18 +375,17 @@ export class CartComponent implements OnInit ,OnChanges{
     this.addressGroup.get('type').setValue(addr.addressType);
     this.addressGroup.disable();
   }
-  onedit()
-  {
-    console.log("to enable fiedls");
+  onedit() {
+    console.log('to enable fiedls');
     this.addressGroup.enable();
   }
-  selectAddrType(event:any)
-  {
+  selectAddrType(event: any) {
     this.addressGroup.reset();
     this.addressGroup.get('type').setValue(event.value);
-    this.userService.getAddress(event.value).subscribe((result:any)=>{
-      if(result.status==200)
+    this.userService.getAddress(event.value).subscribe((result: any) => {
+      if (result.status === 200) {
         this.addAddress(result.data);
+      }
     },
     (error: any) => {
       this.snackBar.open(error.error.message, 'ok', { duration: 3000 });
