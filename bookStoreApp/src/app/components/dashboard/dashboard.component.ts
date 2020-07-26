@@ -71,8 +71,8 @@ export class DashboardComponent implements OnInit {
         this.cartCount(data);
       });
     }
-    this.messageService.cartBooks();
     this.messageService.onGetAllBooks();
+    this.messageService.cartBooks();
   }
 
   cartCount(data) {

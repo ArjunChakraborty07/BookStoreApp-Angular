@@ -25,6 +25,7 @@ export class CartComponent implements OnInit , OnChanges {
   image = './assets/images/bookstore-wallpaper.jpg';
   disp = false;
   cart: CartModule;
+  totalPrice: number;
 
   constructor(
     private cartService: CartServiceService,
@@ -49,6 +50,7 @@ export class CartComponent implements OnInit , OnChanges {
   ngOnInit() {
     this.messageService.cartMessage.subscribe((data) => {
       this.cartBooks = [];
+      this.totalPrice = 0;
       this.displayBooksInCart(data);
       localStorage.setItem('cartSize', String(this.cartSize));
     });
@@ -109,11 +111,15 @@ export class CartComponent implements OnInit , OnChanges {
       this.cartSize = data.totalBooksInCart;
       this.cart = data.cartBooks.forEach((cartBookData) => {
         this.cartBooks.push(cartBookData);
+        // console.log(cartBookData);
+        // this.totalPrice = this.totalPrice + cartBookData.totalBookPrice;
       });
     } else {
       if (data.status === 200) {
         this.cartSize = data.data.totalBooksInCart;
         data.data.cartBooks.forEach((cartBookData) => {
+          console.log(cartBookData);
+          this.totalPrice = this.totalPrice + cartBookData.totalBookPrice;
           this.cartBooks.push(cartBookData);
         });
       }
@@ -285,7 +291,7 @@ export class CartComponent implements OnInit , OnChanges {
     if (localStorage.getItem('token') === null && localStorage.getItem('cart') !== null) {
       this.quantity = 0;
       this.quantity = Number(event.target.value);
-      if (this.quantity === 0 ) {
+      if (this.quantity === 0 || event.target.value === '') {
         this.snackBar.open('Cart Items Can not be less than one', 'cancel', {
           duration: 2000
         });
@@ -336,6 +342,11 @@ export class CartComponent implements OnInit , OnChanges {
         duration: 2000
       });
     } else if (data.status === 417) {
+      this.messageService.cartBooks();
+      this.snackBar.open(data.error.message, 'cancel', {
+        duration: 2000
+      });
+    } else if (data.status === 404) {
       this.messageService.cartBooks();
       this.snackBar.open(data.error.message, 'cancel', {
         duration: 2000
