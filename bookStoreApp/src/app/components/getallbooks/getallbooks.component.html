@@ -80,7 +80,7 @@
               fxLayoutAlign="center"
               style="outline: none;"
               *ngIf="book.quantity > 0 && !checkAddedToCart(book.bookId)"
-              (click)="onAddBookToWishList(book.bookId)"
+              (click)="onAddBookToWishList(book)"
               (click)="openDialog(book)"
             >
               WISHLIST
@@ -95,7 +95,7 @@
                 margin-left: 0%;
                 outline: none;
               "
-              (click)="onAddBookToWishList(book.bookId)"
+              (click)="onAddBookToWishList(book)"
               (click)="openDialog(book)"
             >
               WISHLIST

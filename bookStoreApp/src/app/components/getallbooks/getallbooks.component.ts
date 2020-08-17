@@ -9,6 +9,8 @@ import { CartBookModule } from 'src/models/cart-book/cart-book.module';
 import { CartModule } from 'src/models/cart/cart.module';
 import { MessageService } from 'src/services/message.service';
 import { ViewWishlistComponent } from '../view-wishlist/view-wishlist.component';
+import { WishlistModule } from 'src/models/wishlist.module';
+import { WishlistBookModule } from 'src/models/cart-book/wishlist-book.module';
 
 export interface DialogData {}
 @Component({
@@ -24,6 +26,8 @@ export class GetallbooksComponent implements OnInit {
   cart: CartModule;
   data: any;
   cartBook: CartBookModule;
+  wishlist:WishlistModule;
+  wishlistbook:WishlistBookModule;
 
   constructor(
     private bookservice: BookService,
@@ -98,21 +102,49 @@ export class GetallbooksComponent implements OnInit {
     }
     return addedTocart;
   }
-  onAddBookToWishList(bookId) {
-    this.bookservice.addToWishListBooks(bookId).subscribe(
-      (data) => {
-        if (data.status === 200) {
-          this.messageService.onGetAllBooks();
-          this.snackBar.open(data.message, 'ok', {
-            duration: 2000,
-          });
-        }
-      },
-      (error: any) => {
-        this.snackBar.open(error.error, 'ok', { duration: 2000 });
-      }
-    );
+  
+  onAddBookToWishList(book:Book) {
+    if (localStorage.getItem('token') === null) {
+      this.wishlistbook = new WishlistBookModule();
+      this.wishlistbook.bookQuantity = 1;
+      this.wishlist.wishlistBooks.forEach((element) => {
+      if(element.book.bookId === book.bookId) {
+      this.snackBar.open('Book Already Added to wishlist', 'ok', {
+      duration: 2000,
+    });
   }
+});
+} 
+else 
+  {
+    this.bookservice.addToWishListBooks(book.bookId).subscribe(
+        (data: any) => {
+          if (data.status === 200) {
+            this.snackBar.open(data.message, 'ok', {
+              duration: 2000,
+            });
+          } else if (data.status === 208) {
+            this.snackBar.open(data.message, 'ok', {
+              duration: 2000,
+            });
+          }
+        }),
+        (error: any) => {
+          if (error.status === 500) {
+            this.snackBar.open('Internal Server Error', 'ok', {
+              duration: 2000,
+            });
+          } else {
+            this.snackBar.open(error.error.message, 'ok', {
+              duration: 2000,
+            });
+          }
+        }
+      }
+    }
+    
+
+
 
   openDialog(book) {
     const dialogRef = this.dialog.open(ViewWishlistComponent, {
