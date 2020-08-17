@@ -1,7 +1,7 @@
-<nav aria-label="page navigation example">  
-    <ul class="pagination">  
-      <li class="page-item"  (click)="onClickPage(activePage-1)"><a class="page-link" href="javascript:void(0);">Previous</a></li>  
-      <li class="page-item" [ngClass]="{'active': activePage === item}" *ngFor="let item of pages" (click)="onClickPage(item)"><a class="page-link" href="javascript:void(0);">{{item}}</a></li>  
-      <li class="page-item" (click)="onClickPage(activePage + 1)"><a class="page-link" href="javascript:void(0);">Next</a></li>  
-    </ul>  
-  </nav>  
+<div class="paginator" fxLayout = "row" fxLayoutAlign="center center" fxLayoutGap = "20px">
+  <div><button class = "page-buttons" mat-mini-fab [disableRipple]="true"><</button></div>
+  <div *ngFor="let item of pages" >
+    <div  > <button (click)="onClickPage(item)" class="page-number"> {{item}}</button> </div>
+  </div>
+  <div><button class = "page-buttons" mat-mini-fab [disableRipple]="true" >></button></div>
+</div>
