@@ -328,6 +328,18 @@
             >CHECK OUT</span
           >
         </button>
+        <button  
+        mat-button
+        class="button-discount"
+        fxLayoutAlign="center center"
+        [disableRipple]="true"
+        (click)="openDialog()"
+        *ngIf="disp"
+        >
+          <span style="font-size: small; height: 10px; color: white;"
+          >Discount</span
+        >  
+        </button>  
       </div>
     </div>
   </mat-card>

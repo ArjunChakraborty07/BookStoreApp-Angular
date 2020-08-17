@@ -9,6 +9,7 @@ import { CartModule } from 'src/models/cart/cart.module';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { CartBookModule } from 'src/models/cart-book/cart-book.module';
+import { DiscountCouponsComponent } from '../discount-coupons/discount-coupons.component';
 
 @Component({
   selector: 'app-cart',
@@ -402,4 +403,15 @@ export class CartComponent implements OnInit , OnChanges {
       this.snackBar.open(error.error.message, 'ok', { duration: 3000 });
     });
   }
+  
+  openDialog() {
+    const dialogRef = this.dialog.open(DiscountCouponsComponent, {
+      width: '500px',
+     });
+  }
+
+
+
+
+
 }

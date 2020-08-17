@@ -23,6 +23,7 @@ import { ViewWishlistComponent } from './components/view-wishlist/view-wishlist.
 import { MyordersComponent } from './components/myorders/myorders.component';
 import { GetallwishListComponent } from './components/getallwish-list/getallwish-list.component';
 import { VericationSuccessPageComponent } from './components/verication-success-page/verication-success-page.component';
+import { DiscountCouponsComponent } from './components/discount-coupons/discount-coupons.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'viewWishList', component: ViewWishlistComponent },
   { path: 'myorders', component: MyordersComponent },
   { path: 'viewallWishList', component: GetallwishListComponent },
+  { path: 'discountCoupons', component: DiscountCouponsComponent  },
   {
     path: 'getallbooks',
     component: GetallbooksComponent,

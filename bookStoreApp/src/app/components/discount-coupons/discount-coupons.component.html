@@ -1,0 +1,26 @@
+
+    <div fxLayout="column">
+      <div
+         fxLayout="column"
+         fxLayoutAlign="space-around start"
+         *ngFor="let cartBook of cartBooks"
+       >
+         <div class="book" fxLayout="row">
+           <div class="book-image">
+             <img src="{{ cartBook.book.imageURL }}" />
+           </div>
+ 
+           <div
+             fxLayout="column"
+             fxLayoutAlign="start start"
+             class="book-details"
+             fxLayoutGap="6%"
+           >
+             <span>{{ cartBook.book.bookName }}</span>
+             <span class="author-name">by {{ cartBook.book.authorName }}</span>
+             <span>Rs. {{ cartBook.totalBookPrice }}</span>
+           </div>
+         </div>
+         </div>
+         </div>
+     

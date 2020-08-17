@@ -68,6 +68,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import {MatPaginatorModule} from '@angular/material';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { RejectionComponent } from './components/rejection/rejection.component';
+import { DiscountCouponsComponent } from './components/discount-coupons/discount-coupons.component';
 
 
 @NgModule({
@@ -102,6 +103,7 @@ import { RejectionComponent } from './components/rejection/rejection.component';
     VericationSuccessPageComponent,
     PaginationComponent,
     RejectionComponent,
+    DiscountCouponsComponent,
   ],
   imports: [
     BrowserModule,
