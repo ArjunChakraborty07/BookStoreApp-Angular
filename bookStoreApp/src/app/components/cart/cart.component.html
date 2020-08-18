@@ -300,14 +300,14 @@
         </div>
       </div>
       <div class="total-price" fxLayoutAlign="space-between center">
-        <span *ngIf="disp && !discountStatus">  <b>Total Price:</b> Rs. {{totalPrice}}</span>
+        <!-- <span *ngIf="disp && !discountStatus">  <b>Total Price:</b> Rs. {{totalPrice}}</span>
         
         <div *ngIf="discountStatus && disp">
           <span style="font-size: 14px;"> <b>Coupon Added:</b> {{coupon}}</span><br>
           <span style="font-size: 14px;"> <b>Total Price:</b> Rs. {{totalPrice}}</span><br>
           <span style="color: green;font-size: 14px;"> <b style="color: black">Discount:</b> -Rs. {{discount}}</span><br>
           <span> <b>Amount:</b> Rs. {{amount}}</span>
-        </div>
+        </div> -->
         <button
           mat-button
           (click)="onCheckOut()"
@@ -331,7 +331,18 @@
           <span style="font-size: small; height: 10px; color: white;"
           >Apply Coupon</span
         >  
-        </button>  
+        </button>
+        
+        <div class="a" *ngIf="discountStatus">
+          <span *ngIf="disp && !discountStatus">  <b>Total Price:</b> Rs. {{totalPrice}}</span>
+        
+        <div *ngIf="discountStatus && disp">
+          <span style="font-size: 14px;"> <b>Coupon Added:</b> {{coupon}}</span><br>
+          <span style="font-size: 14px;"> <b>Total Price:</b> Rs. {{totalPrice}}</span><br>
+          <span style="color: green;font-size: 14px;"> <b style="color: black">Discount:</b> -Rs. {{discount}}</span><br>
+          <span> <b>Amount:</b> Rs. {{amount}}</span>
+        </div>
+        </div>
       </div>
     </div>
   </mat-card>

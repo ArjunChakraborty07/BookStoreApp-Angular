@@ -97,6 +97,12 @@ export class CartComponent implements OnInit , OnChanges {
         (data: any) => {
           if (data.status === 200) {
             localStorage.setItem('cartSize', data.data.totalBooksInCart);
+
+            this.cartSize = data.data.totalBooksInCart;
+            data.data.cartBooks.forEach((cartBookData) => {
+              console.log(cartBookData);
+              this.totalPrice = this.totalPrice - cartBookData.totalBookPrice;
+            });
             this.messageService.cartBooks();
             this.messageService.onCartCount();
             this.snackBar.open(data.message, 'ok', {
