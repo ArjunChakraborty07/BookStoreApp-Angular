@@ -1,26 +1,67 @@
+<div fxLayout="column">
+    <div fxLayout="column" fxLayoutAlign="space-around start">
+        <div class="discount" fxLayout="row">
+            <div class="discount-image">
+                <img src="../../../assets/images/sbi.jpg"/>
+                <span>MYSBI</span>
+            </div>
 
-    <div fxLayout="column">
-      <div
-         fxLayout="column"
-         fxLayoutAlign="space-around start"
-         *ngFor="let cartBook of cartBooks"
-       >
-         <div class="book" fxLayout="row">
-           <div class="book-image">
-             <img src="{{ cartBook.book.imageURL }}" />
-           </div>
- 
-           <div
-             fxLayout="column"
-             fxLayoutAlign="start start"
-             class="book-details"
-             fxLayoutGap="6%"
-           >
-             <span>{{ cartBook.book.bookName }}</span>
-             <span class="author-name">by {{ cartBook.book.authorName }}</span>
-             <span>Rs. {{ cartBook.totalBookPrice }}</span>
-           </div>
-         </div>
-         </div>
-         </div>
-     
+            <div fxLayout="column" fxLayoutAlign="start start" class="discount-details">
+                <span>Flat 20% discount on use of SBI card</span>
+                <mat-hint *ngIf="total<500" style="color: red">Minimum price to apply is Rs.500</mat-hint>
+                <button
+                    mat-stroked-button
+                    *ngIf="total>=500"
+                    color="accent"
+                    mat-dialog-close
+                    matTooltip="Apply Coupon"
+                    (click)="onApplySBI()"
+                    >Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="space-around start">
+        <div class="discount" fxLayout="row">
+            <div class="discount-image">
+                <img src="../../../assets/images/hdfc.png"/>
+                <span>MYHDFC</span>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="start start" class="discount-details">
+                <span>Flat 25% discount on use of HDFC card</span>
+                <mat-hint *ngIf="total<700" style="color: red">Minimum price to apply is Rs.700</mat-hint>
+                <button
+                    mat-stroked-button
+                    color="accent"
+                    *ngIf="total>=700"
+                    mat-dialog-close
+                    matTooltip="Apply Coupon"
+                    (click)="onApplyHDFC()"
+                    >Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="space-around start">
+        <div class="discount" fxLayout="row">
+            <div class="discount-image">
+                <img src="../../../assets/images/paytm.png"/>
+                <span>MYPAYTM</span>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="start start" class="discount-details">
+                <span>Flat 25% cashback on use of paytm</span>
+                <mat-hint *ngIf="total<300" style="color: red">Minimum price to apply is Rs.300</mat-hint>
+                <button
+                    mat-stroked-button
+                    color="accent"
+                    *ngIf="total>=300"
+                    mat-dialog-close
+                    matTooltip="Apply Coupon"
+                    (click)="onApplyPaytm()"
+                    >Apply</button>
+            </div>
+        </div>
+    </div>
+</div>

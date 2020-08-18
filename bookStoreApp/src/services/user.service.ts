@@ -9,9 +9,9 @@ import { User } from 'src/models/user';
   providedIn: 'root',
 })
 export class UserService {
-private orderCheckoutApi = 'orders/checkOut'
+  private orderCheckoutApi = 'orders/checkOut'
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) { }
   public register(user: any): Observable<any> {
     console.log(user);
     return this.http.POST('users/register', user, '');
@@ -38,19 +38,17 @@ private orderCheckoutApi = 'orders/checkOut'
   public login(login: any): Observable<any> {
     return this.http.POST('users/login', login, '');
   }
-  uploadProfie(file:FormData,isProfile:any)
-  {
-    console.log("IN USERSERVICE TO UPLOAD IMAGE:",file);
-    return this.http.POST('users/uploadImage',file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')),params: new HttpParams().set('isProfile', isProfile) });
+  uploadProfie(file: FormData, isProfile: any) {
+    console.log("IN USERSERVICE TO UPLOAD IMAGE:", file);
+    return this.http.POST('users/uploadImage', file, { headers: new HttpHeaders().set('token', localStorage.getItem('token')), params: new HttpParams().set('isProfile', isProfile) });
   }
-  updateUser(data)
-  {
-    console.log("in update user service:",data);
-    return this.http.PUT('users/update',data,{ params:new HttpParams().set('token',localStorage.getItem('token'))});
+  updateUser(data) {
+    console.log("in update user service:", data);
+    return this.http.PUT('users/update', data, { params: new HttpParams().set('token', localStorage.getItem('token')) });
   }
-  onCheckOut(): Observable<any>  {
-    return this.http.POST(this.orderCheckoutApi, '', {
-       headers: new HttpHeaders().set('token', localStorage.getItem('token'))
+  onCheckOut(price): Observable<any> {
+    return this.http.POST(this.orderCheckoutApi, price, {
+      headers: new HttpHeaders().set('token', localStorage.getItem('token'))
     });
   }
   // checkout(bookId,quantity)
@@ -61,23 +59,19 @@ private orderCheckoutApi = 'orders/checkOut'
   checkout(bookSum) {
     // console.log("in user service for checkout",bookId,quantity);
     console.log('books', bookSum);
-    return this.http.POST('orders/checkout/', { params: new HttpParams().set('books', bookSum)}, { params: new HttpParams().set('token', localStorage.getItem('token'))});
+    return this.http.POST('orders/checkout/', { params: new HttpParams().set('books', bookSum) }, { params: new HttpParams().set('token', localStorage.getItem('token')) });
   }
-  getmyOrders():Observable<any>
-  {
-    return this.http.GET('orders/myorders',{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
+  getmyOrders(): Observable<any> {
+    return this.http.GET('orders/myorders', { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
-  Address(data)
-  {
-    console.log("address in user service:",data);
-    return this.http.POST('address/addAddress',data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
+  Address(data) {
+    console.log("address in user service:", data);
+    return this.http.POST('address/addAddress', data, { headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
-  getAddress(addresstype)
-  {
-    return this.http.GET('address/getAddressByType',{params: new HttpParams().set('addressType', addresstype),headers: new HttpHeaders().set('token', localStorage.getItem('token'))});
+  getAddress(addresstype) {
+    return this.http.GET('address/getAddressByType', { params: new HttpParams().set('addressType', addresstype), headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
-  verifyUser(token:string)
-  {
-    return this.http.GET('users/verify',{params:new HttpParams().set('token',token)});
+  verifyUser(token: string) {
+    return this.http.GET('users/verify', { params: new HttpParams().set('token', token) });
   }
 }

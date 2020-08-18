@@ -246,21 +246,7 @@
               />
             </mat-form-field>
           </div>
-          <!-- <div class="row2">
-            <mat-form-field appearance="outline">
-              <mat-label>LandMark</mat-label>
-              <input
-                matInput
-                placeholder="Placeholder"
-                formControlName="landmark"
-                id="landmark"
-                required
-               #landmark
-               (input)="landmark.value"
-               style="background: none;"
-              />
-            </mat-form-field>
-          </div>-->
+          
 
           <br /><br />
           <mat-radio-group fxLayoutGap="5%" formControlName="type" required>
@@ -287,8 +273,7 @@
       </div>
     </ng-container>
   </mat-card>
-  <!-- </div>
-<div> -->
+  
   <mat-card>
     <div fxLayout="column">
       <span class="My-cart"> Order Summary</span>
@@ -315,7 +300,14 @@
         </div>
       </div>
       <div class="total-price" fxLayoutAlign="space-between center">
-        <span *ngIf="disp">  Total Price: Rs. {{totalPrice}}</span>
+        <span *ngIf="disp && !discountStatus">  <b>Total Price:</b> Rs. {{totalPrice}}</span>
+        
+        <div *ngIf="discountStatus && disp">
+          <span style="font-size: 14px;"> <b>Coupon Added:</b> {{coupon}}</span><br>
+          <span style="font-size: 14px;"> <b>Total Price:</b> Rs. {{totalPrice}}</span><br>
+          <span style="color: green;font-size: 14px;"> <b style="color: black">Discount:</b> -Rs. {{discount}}</span><br>
+          <span> <b>Amount:</b> Rs. {{amount}}</span>
+        </div>
         <button
           mat-button
           (click)="onCheckOut()"
@@ -337,7 +329,7 @@
         *ngIf="disp"
         >
           <span style="font-size: small; height: 10px; color: white;"
-          >Discount</span
+          >Apply Coupon</span
         >  
         </button>  
       </div>

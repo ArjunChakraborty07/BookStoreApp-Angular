@@ -27,6 +27,10 @@ export class CartComponent implements OnInit , OnChanges {
   disp = false;
   cart: CartModule;
   totalPrice: number;
+  discount: number;
+  amount: number;
+  discountStatus = false;
+  coupon: string;
 
   constructor(
     private cartService: CartServiceService,
@@ -60,6 +64,8 @@ export class CartComponent implements OnInit , OnChanges {
       this.onUpdateQuantity(data);
       localStorage.setItem('cartSize', String(this.cartSize));
     });
+
+    
   }
   ngOnChanges() {
     this.messageService.onCartRefresh();
@@ -261,12 +267,18 @@ export class CartComponent implements OnInit , OnChanges {
       landmark: this.addressGroup.get('landmark').value,
       addressType: this.addressGroup.get('type').value
     };
+
+    const price = {
+      amount: this.amount,
+      discount: this.discount
+    };
+
     this.userService.Address(data).subscribe((result: any) => {
       if (result.status === 200) {
         this.snackBar.open('address added', 'ok', {duration: 5000});
       }
     });
-    this.userService.onCheckOut().subscribe(
+    this.userService.onCheckOut(price).subscribe(
       (data) => {
         if (data.status === 200) {
           this.messageService.onCartCount();
@@ -403,11 +415,22 @@ export class CartComponent implements OnInit , OnChanges {
       this.snackBar.open(error.error.message, 'ok', { duration: 3000 });
     });
   }
-  
+
   openDialog() {
+    localStorage.setItem('totalPrice', this.totalPrice.toString());
     const dialogRef = this.dialog.open(DiscountCouponsComponent, {
       width: '500px',
      });
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.discount = parseInt(localStorage.getItem('discount'), 10) * this.totalPrice / 100;
+      this.amount = this.totalPrice - this.discount;
+      this.coupon = localStorage.getItem('coupon');
+
+      if (!this.coupon.match('0')) {
+        this.discountStatus = true;
+      }
+    });
   }
 
 

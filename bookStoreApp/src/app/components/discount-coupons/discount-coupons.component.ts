@@ -9,38 +9,36 @@ import { MessageService } from 'src/services/message.service';
 })
 export class DiscountCouponsComponent implements OnInit {
 
-  cartSize: number;
-  cartBooks: any = [];
-  cart: CartModule;
-  constructor(
-  private messageService: MessageService) {}
+  total: number;
+  check = false;
+  constructor() { }
 
-  
   ngOnInit() {
-    this.messageService.cartMessage.subscribe((data) => {
-      this.cartBooks = [];
-      this.displayBooksInCart(data);
-    });
-  }
-  
-
-
-  
-
-  displayBooksInCart(data) {
-    if (localStorage.getItem('token') === null) {
-      this.cartSize = data.totalBooksInCart;
-      this.cart = data.cartBooks.forEach((cartBookData) => {
-        this.cartBooks.push(cartBookData);
-      });
-    } else {
-      if (data.status === 200) {
-        this.cartSize = data.data.totalBooksInCart;
-        data.data.cartBooks.forEach((cartBookData) => {
-          this.cartBooks.push(cartBookData);
-        });
-      }
+    this.total = parseInt(localStorage.getItem('totalPrice'), 10);
+    if (this.total < 300) {
+      this.check = true;
     }
+    if (this.total < 500) {
+      this.check = true;
+    }
+    if (this.total < 700) {
+      this.check = true;
+    }
+    localStorage.setItem('coupon', '0');
+    localStorage.setItem('discount', '0');
+  }
+
+  onApplySBI() {
+    localStorage.setItem('coupon', 'MYSBI');
+    localStorage.setItem('discount', '25');
+  }
+  onApplyHDFC() {
+    localStorage.setItem('coupon', 'MYHDFC');
+    localStorage.setItem('discount', '20');
+  }
+  onApplyPaytm() {
+    localStorage.setItem('coupon', 'MYPAYTM');
+    localStorage.setItem('discount', '0');
   }
 }
 
