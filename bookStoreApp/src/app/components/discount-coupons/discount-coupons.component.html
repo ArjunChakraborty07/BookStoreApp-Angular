@@ -1,4 +1,6 @@
+
 <div fxLayout="column">
+    <div class="box">
     <div fxLayout="column" fxLayoutAlign="space-around start">
         <div class="discount" fxLayout="row">
             <div class="discount-image">
@@ -8,7 +10,7 @@
 
             <div fxLayout="column" fxLayoutAlign="start start" class="discount-details">
                 <span>Flat 20% discount on use of SBI card</span>
-                <mat-hint *ngIf="total<500" style="color: red">Minimum price to apply is Rs.500</mat-hint>
+                <mat-hint *ngIf="total<500" style="color: red">*minimum price to apply is Rs.500</mat-hint><br>
                 <button
                     mat-stroked-button
                     *ngIf="total>=500"
@@ -17,10 +19,13 @@
                     matTooltip="Apply Coupon"
                     (click)="onApplySBI()"
                     >Apply</button>
+                    <mat-hint    *ngIf="total>=500" >Discount at Checkout</mat-hint>
             </div>
         </div>
     </div>
-
+    </div>
+    
+    <div class="box">
     <div fxLayout="column" fxLayoutAlign="space-around start">
         <div class="discount" fxLayout="row">
             <div class="discount-image">
@@ -30,7 +35,7 @@
 
             <div fxLayout="column" fxLayoutAlign="start start" class="discount-details">
                 <span>Flat 25% discount on use of HDFC card</span>
-                <mat-hint *ngIf="total<700" style="color: red">Minimum price to apply is Rs.700</mat-hint>
+                <mat-hint *ngIf="total<700" style="color: red"> *minimum price to apply is Rs.700</mat-hint><br>
                 <button
                     mat-stroked-button
                     color="accent"
@@ -39,10 +44,14 @@
                     matTooltip="Apply Coupon"
                     (click)="onApplyHDFC()"
                     >Apply</button>
+                    <mat-hint  *ngIf="total>=700" >Discount at Checkout</mat-hint>
             </div>
         </div>
     </div>
+    </div>
 
+
+    <div class="box">
     <div fxLayout="column" fxLayoutAlign="space-around start">
         <div class="discount" fxLayout="row">
             <div class="discount-image">
@@ -52,7 +61,7 @@
 
             <div fxLayout="column" fxLayoutAlign="start start" class="discount-details">
                 <span>Flat 25% cashback on use of paytm</span>
-                <mat-hint *ngIf="total<300" style="color: red">Minimum price to apply is Rs.300</mat-hint>
+                <mat-hint *ngIf="total<300" style="color: red">*minimum price to apply is Rs.300</mat-hint><br>
                 <button
                     mat-stroked-button
                     color="accent"
@@ -61,7 +70,9 @@
                     matTooltip="Apply Coupon"
                     (click)="onApplyPaytm()"
                     >Apply</button>
+                    <mat-hint    *ngIf="total>=300">Discount at Checkout</mat-hint>
             </div>
         </div>
+    </div>
     </div>
 </div>
