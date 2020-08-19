@@ -31,6 +31,7 @@ export class CartComponent implements OnInit , OnChanges {
   amount: number;
   discountStatus = false;
   coupon: string;
+  cashback: number;
 
   constructor(
     private cartService: CartServiceService,
@@ -53,6 +54,7 @@ export class CartComponent implements OnInit , OnChanges {
     type: [],
   });
   ngOnInit() {
+
     this.messageService.cartMessage.subscribe((data) => {
       this.cartBooks = [];
       this.totalPrice = 0;
@@ -65,7 +67,10 @@ export class CartComponent implements OnInit , OnChanges {
       localStorage.setItem('cartSize', String(this.cartSize));
     });
 
-    
+
+
+
+
   }
   ngOnChanges() {
     this.messageService.onCartRefresh();
@@ -117,6 +122,7 @@ export class CartComponent implements OnInit , OnChanges {
         }
       );
     }
+    
   }
 
   displayBooksInCart(data) {
@@ -136,6 +142,20 @@ export class CartComponent implements OnInit , OnChanges {
           this.cartBooks.push(cartBookData);
         });
       }
+    }
+    if(( localStorage.getItem('coupon').match('MYHDFC') && this.totalPrice<700) || (localStorage.getItem('coupon').match('MYSBI') && this.totalPrice<500) || (localStorage.getItem('coupon').match('MYPAYTM') && this.totalPrice<300)) {
+      this.discountStatus = false;
+      this.amount = this.totalPrice;
+      localStorage.setItem('coupon', '0');
+      this.discount = 0;
+      localStorage.setItem('discount', '0');
+      this.coupon = '0';
+      this.snackBar.open('Coupon removed, price is not matching required condition', 'ok', {
+        duration: 2000,
+      });
+    } else {
+    this.discount = parseInt(localStorage.getItem('discount'), 10) * this.totalPrice / 100;
+    this.amount = this.totalPrice - this.discount;
     }
   }
 
@@ -186,6 +206,7 @@ export class CartComponent implements OnInit , OnChanges {
         }
       );
     }
+    
   }
 
   onPlaceOrder() {
@@ -261,6 +282,7 @@ export class CartComponent implements OnInit , OnChanges {
         }
       );
     }
+    
   }
   onCheckOut() {
     const data = {
@@ -350,6 +372,7 @@ export class CartComponent implements OnInit , OnChanges {
     if (localStorage.getItem('token') !== null) {
       this.messageService.onUpdateQuantity(event, cartBook.cartBookId);
     }
+    
   }
 
   onUpdateQuantity(data) {
@@ -371,6 +394,7 @@ export class CartComponent implements OnInit , OnChanges {
         duration: 2000
       });
     }
+    
   }
   checkAddressExistornot() {
       this.userService.getAddress('home').subscribe((result: any) => {
@@ -423,6 +447,7 @@ export class CartComponent implements OnInit , OnChanges {
   }
 
   openDialog() {
+
     localStorage.setItem('totalPrice', this.totalPrice.toString());
     const dialogRef = this.dialog.open(DiscountCouponsComponent, {
       width: '500px',
@@ -435,6 +460,12 @@ export class CartComponent implements OnInit , OnChanges {
 
       if (!this.coupon.match('0')) {
         this.discountStatus = true;
+      }
+      if (this.coupon.match('0')) {
+        this.discountStatus = false;
+      }
+      if (this.coupon.match('MYPAYTM')) {
+        this.cashback = 20 * this.totalPrice / 100;
       }
     });
   }

@@ -31,14 +31,18 @@ export class DiscountCouponsComponent implements OnInit {
   onApplySBI() {
     localStorage.setItem('coupon', 'MYSBI');
     localStorage.setItem('discount', '25');
+    localStorage.setItem('priceLimit', 'check');
   }
   onApplyHDFC() {
     localStorage.setItem('coupon', 'MYHDFC');
     localStorage.setItem('discount', '20');
+    localStorage.setItem('priceLimit', 'check');
+
   }
   onApplyPaytm() {
     localStorage.setItem('coupon', 'MYPAYTM');
     localStorage.setItem('discount', '0');
+    localStorage.setItem('priceLimit', 'check');
   }
 }
 

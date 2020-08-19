@@ -182,7 +182,12 @@ input::-webkit-inner-spin-button {
   border-radius: 20px;
   background-color: pink;
 }
-
+.price{
+  width: 30%;
+  position:fixed;
+  top: 20%;
+  right: 2%;
+}
 @media only screen and (max-width: 720px) {
   .form{
     width: 240px;

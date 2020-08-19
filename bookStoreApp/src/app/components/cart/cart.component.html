@@ -24,13 +24,15 @@
     </button>
   </div>
 </div>
+
 <div
   *ngIf="cartSize > 0"
   fxLayout="column"
   fxLayoutGap="2%"
   style="padding-left: 15%; padding-top: 10%;"
 >
-  <!-- <div> -->
+  <div fxLayout="row"
+  fxLayoutGap="2%">
   <mat-card>
     <div fxLayout="column">
       <span class="My-cart"> My Cart({{ cartSize }})</span>
@@ -137,7 +139,10 @@
       </div>
     </div>
   </mat-card>
-  <!-- </div> -->
+  
+    
+    
+  </div>
   <!-- <div> -->
   <mat-card class="form">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Customer Details
@@ -332,18 +337,22 @@
           >Apply Coupon</span
         >  
         </button>
-        
-        <div class="a" *ngIf="discountStatus">
-          <span *ngIf="disp && !discountStatus">  <b>Total Price:</b> Rs. {{totalPrice}}</span>
-        
-        <div *ngIf="discountStatus && disp">
-          <span style="font-size: 14px;"> <b>Coupon Added:</b> {{coupon}}</span><br>
-          <span style="font-size: 14px;"> <b>Total Price:</b> Rs. {{totalPrice}}</span><br>
-          <span style="color: green;font-size: 14px;"> <b style="color: black">Discount:</b> -Rs. {{discount}}</span><br>
-          <span> <b>Amount:</b> Rs. {{amount}}</span>
-        </div>
-        </div>
       </div>
     </div>
   </mat-card>
 </div>
+
+<mat-card *ngIf="cartSize != 0" class="price">
+    <span><b style="color:gray"> PRICE DETAILS</b></span><br><br>
+    <mat-divider></mat-divider><br>
+    <span> Price ({{ cartSize }} item) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Rs. {{totalPrice}}</span><br>
+    
+    <br *ngIf="discountStatus"><span *ngIf="discountStatus"> Coupon Added &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{coupon}}</span><br>
+    <br *ngIf="discountStatus"><mat-divider></mat-divider><br>
+    <span> <b> Total Amount &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Rs. {{amount}} </b></span><br>
+    <br *ngIf="discountStatus"><mat-divider  *ngIf="discountStatus"></mat-divider><br>
+    <span  *ngIf="discountStatus && coupon!='MYPAYTM'" style="color: green;"> You will save Rs. {{discount}} on this order</span><br *ngIf="discountStatus && coupon!='MYPAYTM'">
+    <span  *ngIf="discountStatus && coupon=='MYPAYTM'" style="color: green;"> You will recieve Rs. {{cashback}}  cashback on this order</span><br *ngIf="discountStatus && coupon=='MYPAYTM'">
+</mat-card>
+
+
